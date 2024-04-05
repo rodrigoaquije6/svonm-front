@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { DashboardGerenteComponent } from './components/dashboard-gerente/dashboard-gerente.component';
 import { DashboardTrabajadorComponent } from './components/dashboard-trabajador/dashboard-trabajador.component';
 import { LoginComponent } from './components/login/login.component';
+import { TrabajadorComponent } from './components/trabajador/trabajador.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardGerenteComponent,
     DashboardTrabajadorComponent,
-    LoginComponent
+    LoginComponent,
+    TrabajadorComponent
   ],
   imports: [
     BrowserModule,

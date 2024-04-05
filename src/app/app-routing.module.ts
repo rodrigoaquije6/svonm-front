@@ -3,12 +3,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { DashboardGerenteComponent } from './components/dashboard-gerente/dashboard-gerente.component';
 import { DashboardTrabajadorComponent } from './components/dashboard-trabajador/dashboard-trabajador.component';
+import { TrabajadorComponent } from './components/trabajador/trabajador.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent},
+  { path: 'login', component: LoginComponent},
   { path: 'dashboard-gerente', component: DashboardGerenteComponent},
   { path: 'dashboard-trabajador', component: DashboardTrabajadorComponent},
-  { path: 'login', component: LoginComponent},
+  { path: 'dashboard-gerente/trabajador', component: TrabajadorComponent},
   { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
 
