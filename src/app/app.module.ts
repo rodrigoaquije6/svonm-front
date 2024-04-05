@@ -7,6 +7,7 @@ import { DashboardGerenteComponent } from './components/dashboard-gerente/dashbo
 import { DashboardTrabajadorComponent } from './components/dashboard-trabajador/dashboard-trabajador.component';
 import { LoginComponent } from './components/login/login.component';
 import { TrabajadorComponent } from './components/trabajador/trabajador.component';
+import { RolComponent } from './components/rol/rol.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { TrabajadorComponent } from './components/trabajador/trabajador.componen
     DashboardGerenteComponent,
     DashboardTrabajadorComponent,
     LoginComponent,
-    TrabajadorComponent
+    TrabajadorComponent,
+    RolComponent
   ],
   imports: [
     BrowserModule,

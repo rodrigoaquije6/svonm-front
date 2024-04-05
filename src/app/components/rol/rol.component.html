@@ -16,7 +16,7 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="dashboard-trabajador.component.css" rel="stylesheet">
+    <link href="rol.component.css" rel="stylesheet">
 
 </head>
 
@@ -29,7 +29,8 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Logo -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" routerLink="/dashboard-trabajador">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" routerLink="/dashboard-gerente">
+
                 <div class="sidebar-brand-icon">
                     <i class="fa-solid fa-glasses"></i>
                 </div>
@@ -47,57 +48,24 @@
             <!-- Divisor -->
             <hr class="sidebar-divider">
 
-            <!-- Heading Cita-->
+            <!-- Heading Trabajador-->
             <div class="sidebar-heading">
-                Cita
+                Trabajador
             </div>
 
-            <!-- Gestionar Cita -->
+            <!-- Gestionar Trabajador -->
             <li class="nav-item">
-                <a class="nav-link collapsed" routerLink="#" data-toggle="collapse">
-                    <i class="fa-solid fa-calendar-check"></i>
-                    <span>Gestionar Cita</span>
+                <a class="nav-link collapsed" routerLink="/dashboard-gerente/trabajador" data-toggle="collapse">
+                    <i class="fa-solid fa-briefcase"></i>
+                    <span>Gestionar Trabajador</span>
                 </a>
             </li>
 
-            <!-- Divisor -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading Venta-->
-            <div class="sidebar-heading">
-                Venta
-            </div>
-
-            <!-- Gestionar Venta -->
+            <!-- Gestionar Roles -->
             <li class="nav-item">
-                <a class="nav-link collapsed" routerLink="#" data-toggle="collapse">
-                    <i class="fa-solid fa-dollar-sign"></i>
-                    <span>Gestionar Venta</span>
-                </a>
-            </li>
-
-            <!-- Divisor -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading Cliente-->
-            <div class="sidebar-heading">
-                Cliente
-            </div>
-
-            <!-- Gestionar Cliente -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" routerLink="#" data-toggle="collapse">
-                    <i class="fa-solid fa-user"></i>
-                    <span>Gestionar Clientes</span>
-                </a>
-            </li>
-
-            <!-- Historial Cliente -->
-
-            <li class="nav-item">
-                <a class="nav-link collapsed" routerLink="#" data-toggle="collapse">
-                    <i class="fa-solid fa-book-medical"></i>
-                    <span>Historial de Clientes</span>
+                <a class="nav-link collapsed" routerLink="/dashboard-gerente/rol" data-toggle="collapse">
+                    <i class="fa-solid fa-sheet-plastic"></i>
+                    <span>Gestionar Roles</span>
                 </a>
             </li>
 
@@ -109,15 +77,55 @@
                 Producto
             </div>
 
-            <!-- Visualizar Stock -->
+            <!-- Gestionar Producto -->
             <li class="nav-item">
                 <a class="nav-link collapsed" routerLink="#" data-toggle="collapse">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                    <span>Visualizar Stock</span>
+                    <i class="fa-solid fa-glasses"></i>
+                    <span>Gestionar Producto</span>
+                </a>
+            </li>
+
+            <!-- Gestionar Marca -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" routerLink="#" data-toggle="collapse">
+                    <i class="fa-regular fa-copyright"></i>
+                    <span>Gestionar Marca</span>
                 </a>
             </li>
 
             <!-- Divisor -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading Catálogo-->
+            <div class="sidebar-heading">
+                Catálogo
+            </div>
+
+            <!-- Gestionar Catálogo -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" routerLink="#" data-toggle="collapse">
+                    <i class="fa-solid fa-book"></i>
+                    <span>Gestionar Catálogo</span>
+                </a>
+            </li>
+
+            <!-- Divisor -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading Almacén-->
+            <div class="sidebar-heading">
+                Almacén
+            </div>
+
+            <!-- Gestionar Almacén -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" routerLink="#" data-toggle="collapse">
+                    <i class="fa-solid fa-database"></i>
+                    <span>Gestionar Almacén</span>
+                </a>
+            </li>
+
+            <!-- Divider -->
             <hr class="sidebar-divider">
 
         </ul>
@@ -131,13 +139,15 @@
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                    <span class="span-text mx-3">GESTIONAR ROL</span>
+
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
                         <!-- Nav Item - User Information -->
-                        <li class="nav-item">
-                            <a class="nav-link" routerLink="/login" >
+                        <li class="nav-item ">
+                            <a class="nav-link" routerLink="/login">
                                 <i class="fa-solid fa-right-from-bracket" style="color: #ff000d;"></i>
                             </a>
                         </li>
@@ -145,10 +155,55 @@
                     </ul>
 
                 </nav>
-
                 <!-- End of Topbar -->
-            </div>
 
+                <!-- Table -->
+                <div class="container mt-5">
+                    <div class="row">
+                        <div class="col-lg-11 offser-lg-2">
+                            <button class="btn btn-success float-end">
+                                Agregar
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                            <table class="table table-striped mx-5 mt-5 text-center">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Rol</th>
+                                        <th>Acción</th>                                         
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <p>1</p>
+                                        </td>
+                                        <td>
+                                            Gerente
+                                        </td>                                 
+                                        <td>
+                                            <i class='fa-solid fa-trash text-danger'></i>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>2</p>
+                                        </td>
+                                        <td>
+                                            Trabajador
+                                        </td>                                 
+                                        <td>
+                                            <i class='fa-solid fa-trash text-danger'></i>
+                                        </td>
+                                    </tr>                             
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End of Table -->
             <!-- End of Main Content -->
 
             <!-- Footer -->
@@ -159,11 +214,9 @@
                     </div>
                 </div>
             </footer>
-
             <!-- End of Footer -->
 
         </div>
-
         <!-- End of Content Wrapper -->
 
     </div>

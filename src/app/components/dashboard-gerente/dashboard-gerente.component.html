@@ -29,7 +29,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Logo -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/dashboard-gerente">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" routerLink="/dashboard-gerente">
 
                 <div class="sidebar-brand-icon">
                     <i class="fa-solid fa-glasses"></i>
@@ -55,7 +55,7 @@
 
             <!-- Gestionar Trabajador -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse">
+                <a class="nav-link collapsed" routerLink="/dashboard-gerente/trabajador" data-toggle="collapse">
                     <i class="fa-solid fa-briefcase"></i>
                     <span>Gestionar Trabajador</span>
                 </a>
@@ -63,7 +63,7 @@
 
             <!-- Gestionar Roles -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse">
+                <a class="nav-link collapsed" routerLink="#" data-toggle="collapse">
                     <i class="fa-solid fa-sheet-plastic"></i>
                     <span>Gestionar Roles</span>
                 </a>
@@ -79,7 +79,7 @@
 
             <!-- Gestionar Producto -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse">
+                <a class="nav-link collapsed" routerLink="#" data-toggle="collapse">
                     <i class="fa-solid fa-glasses"></i>
                     <span>Gestionar Producto</span>
                 </a>
@@ -87,7 +87,7 @@
 
             <!-- Gestionar Marca -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse">
+                <a class="nav-link collapsed" routerLink="#" data-toggle="collapse">
                     <i class="fa-regular fa-copyright"></i>
                     <span>Gestionar Marca</span>
                 </a>
@@ -103,7 +103,7 @@
 
             <!-- Gestionar Catálogo -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse">
+                <a class="nav-link collapsed" routerLink="#" data-toggle="collapse">
                     <i class="fa-solid fa-book"></i>
                     <span>Gestionar Catálogo</span>
                 </a>
@@ -119,7 +119,7 @@
 
             <!-- Gestionar Almacén -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse">
+                <a class="nav-link collapsed" routerLink="#" data-toggle="collapse">
                     <i class="fa-solid fa-database"></i>
                     <span>Gestionar Almacén</span>
                 </a>
@@ -145,7 +145,7 @@
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item ">
-                            <a class="nav-link" href="/login">
+                            <a class="nav-link" routerLink="/login">
                                 <i class="fa-solid fa-right-from-bracket" style="color: #ff000d;"></i>
                             </a>
                         </li>
@@ -153,9 +153,13 @@
                     </ul>
 
                 </nav>
-                <!-- End of Topbar -->
+                <!-- End of Topbar -->         
             </div>
+
+
             <!-- End of Main Content -->
+
+
 
             <!-- Footer -->
             <footer class="sticky-footer bg-white">

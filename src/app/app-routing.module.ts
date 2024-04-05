@@ -4,6 +4,7 @@ import { LoginComponent } from './components/login/login.component';
 import { DashboardGerenteComponent } from './components/dashboard-gerente/dashboard-gerente.component';
 import { DashboardTrabajadorComponent } from './components/dashboard-trabajador/dashboard-trabajador.component';
 import { TrabajadorComponent } from './components/trabajador/trabajador.component';
+import { RolComponent } from './components/rol/rol.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent},
@@ -11,6 +12,7 @@ const routes: Routes = [
   { path: 'dashboard-gerente', component: DashboardGerenteComponent},
   { path: 'dashboard-trabajador', component: DashboardTrabajadorComponent},
   { path: 'dashboard-gerente/trabajador', component: TrabajadorComponent},
+  { path: 'dashboard-gerente/rol', component: RolComponent},
   { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
 
