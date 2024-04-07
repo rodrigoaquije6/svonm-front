@@ -16,7 +16,7 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="trabajador.component.css" rel="stylesheet">
+    <link href="crear-rol.component.css" rel="stylesheet">
 
 </head>
 
@@ -147,7 +147,7 @@
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                    <span class="span-text mx-3">GESTIONAR TRABAJADOR</span>
+                    <span class="span-text mx-3">CREAR ROL</span>
 
 
                     <!-- Topbar Navbar -->
@@ -165,90 +165,26 @@
                 </nav>
                 <!-- End of Topbar -->
 
-                <!-- Table -->
-                <div class="container mt-5">
-                    <div class="row">
-                        <div class="col-lg-11 offser-lg-2">
-                            <button class="btn btn-success float-end">
-                                Agregar
-                                <i class="fa-solid fa-plus"></i>
-                            </button>
-                            <table class="table table-striped mx-5 mt-5 text-center">
-                                <thead>
-                                    <tr>
-                                        <th>DNI</th>
-                                        <th>Nombre</th>
-                                        <th>Rol</th>
-                                        <th>Estado</th>
-                                        <th>Acción</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <p>72635212</p>
-                                        </td>
-                                        <td>
-                                            Rodrigo Aquije
-                                        </td>
-                                        <td>
-                                            Trabajador
-                                        </td>
-                                        <td>
-                                            Activo
-                                        </td>
-                                        <td>
-                                            <i class="faw fa-solid fa-eye text-primary"></i>
-                                            <i class='faw fa fa-edit text-secondary'></i>
-                                            <i class='faw fa-solid fa-trash text-danger'></i>
-                                        </td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <p>10263347</p>
-                                        </td>
-                                        <td>
-                                            Kevin Arroyo
-                                        </td>
-                                        <td>
-                                            Gerente
-                                        </td>
-                                        <td>
-                                            Activo
-                                        </td>
-                                        <td>
-                                            <i class="faw fa-solid fa-eye text-primary"></i>
-                                            <i class='faw fa fa-edit text-secondary'></i>
-                                            <i class='faw fa-solid fa-trash text-danger'></i>
-                                        </td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <p>72654562</p>
-                                        </td>
-                                        <td>
-                                            Oscar Castillo
-                                        </td>
-                                        <td>
-                                            Trabajador
-                                        </td>
-                                        <td>
-                                            Activo
-                                        </td>
-                                        <td>
-                                            <i class="faw fa-solid fa-eye text-primary"></i>
-                                            <i class='faw fa fa-edit text-secondary'></i>
-                                            <i class='faw fa-solid fa-trash text-danger'></i>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                <!-- Content -->
+                <div class="container mt-5 mx-4 col-lg-4">
+                    <form [formGroup]="rolForm" (ngSubmit)="agregarRol()">
+                        <div class="mb-3 d-flex align-items-end">
+                            <div style="flex: 1;">
+                                <label class="form-label label-text">Rol</label>
+                                <input type="text" formControlName="nombre" class="form-control" style="width: 350px;" placeholder="Escriba el nombre del rol...">
+                                <div class="text-danger"
+                                    *ngIf="rolForm.get('nombre')?.hasError('required') && rolForm.get('nombre')?.touched">
+                                    <span>El nombre del rol <strong>es obligatorio</strong></span>
+                                </div>
+                            </div>
+                            <button class="btn btn-success float-end" style="margin-left: 10px;">Agregar</button>
                         </div>
-                    </div>
+                        <div class="class mb 3">
+                            <button routerLink="/dashboard-gerente/rol" class="btn btn-secondary flat-start">Volver</button>
+                        </div>
+                    </form>
                 </div>
-                <!-- End of Table -->
+                <!-- End of Content -->
 
             </div>
             <!-- End of Main Content -->

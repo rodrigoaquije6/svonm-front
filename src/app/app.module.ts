@@ -7,7 +7,12 @@ import { DashboardGerenteComponent } from './components/dashboard-gerente/dashbo
 import { DashboardTrabajadorComponent } from './components/dashboard-trabajador/dashboard-trabajador.component';
 import { LoginComponent } from './components/login/login.component';
 import { TrabajadorComponent } from './components/trabajador/trabajador.component';
-import { RolComponent } from './components/rol/rol.component';
+import { RolComponent } from './components/roles/rol/rol.component';
+import { MonturaComponent } from './components/montura/montura.component';
+import { LunaComponent } from './components/luna/luna.component';
+import { MarcaComponent } from './components/marca/marca.component';
+import { CrearRolComponent } from './components/roles/crear-rol/crear-rol.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,10 +22,15 @@ import { RolComponent } from './components/rol/rol.component';
     LoginComponent,
     TrabajadorComponent,
     RolComponent,
+    MonturaComponent,
+    LunaComponent,
+    MarcaComponent,
+    CrearRolComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -16,7 +16,7 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="rol.component.css" rel="stylesheet">
+    <link href="montura.component.css" rel="stylesheet">
 
 </head>
 
@@ -57,7 +57,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" routerLink="/dashboard-gerente/trabajador" data-toggle="collapse">
                     <i class="fa-solid fa-briefcase"></i>
-                    <span>Gestionar Trabajador</span>
+                    <span> Gestionar Trabajador</span>
                 </a>
             </li>
 
@@ -65,7 +65,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" routerLink="/dashboard-gerente/rol" data-toggle="collapse">
                     <i class="fa-solid fa-sheet-plastic"></i>
-                    <span>Gestionar Roles</span>
+                    <span> Gestionar Roles</span>
                 </a>
             </li>
 
@@ -81,15 +81,15 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" routerLink="/dashboard-gerente/montura" data-toggle="collapse">
                     <i class="fa-solid fa-glasses"></i>
-                    <span>Gestionar Monturas</span>
+                    <span> Monturas</span>
                 </a>
             </li>
-            
+
             <!-- Gestionar Lunas -->
             <li class="nav-item">
                 <a class="nav-link collapsed" routerLink="/dashboard-gerente/luna" data-toggle="collapse">
                     <i class="fa-regular fa-eye"></i>
-                    <span>Gestionar Lunas</span>
+                    <span> Lunas</span>
                 </a>
             </li>
 
@@ -97,7 +97,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" routerLink="/dashboard-gerente/marca" data-toggle="collapse">
                     <i class="fa-regular fa-copyright"></i>
-                    <span>Gestionar Marca</span>
+                    <span> Marcas</span>
                 </a>
             </li>
 
@@ -113,7 +113,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" routerLink="/dashboard-gerente/catalogo" data-toggle="collapse">
                     <i class="fa-solid fa-book"></i>
-                    <span>Gestionar Catálogo</span>
+                    <span> Gestionar Catálogo</span>
                 </a>
             </li>
 
@@ -129,7 +129,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" routerLink="/dashboard-gerente/almacen" data-toggle="collapse">
                     <i class="fa-solid fa-box"></i>
-                    <span>Gestionar Almacén</span>
+                    <span> Gestionar Almacén</span>
                 </a>
             </li>
 
@@ -147,7 +147,7 @@
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                    <span class="span-text mx-3">GESTIONAR ROL</span>
+                    <span class="span-text mx-3">GESTIONAR MONTURA</span>
 
 
                     <!-- Topbar Navbar -->
@@ -176,42 +176,91 @@
                             <table class="table table-striped mx-5 mt-5 text-center">
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
-                                        <th>Rol</th>
-                                        <th>Acción</th>                                         
+                                        <th>Código</th>
+                                        <th>Marca</th>
+                                        <th>Nombre</th>
+                                        <th>Color</th>
+                                        <th>Precio</th>
+                                        <th>Acción</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td>
-                                            <p>1</p>
+                                            <p>0AN7237U</p>
                                         </td>
                                         <td>
-                                            Gerente
-                                        </td>                                 
+                                            Arnette
+                                        </td>
                                         <td>
-                                            <i class='fa-solid fa-trash text-danger'></i>
+                                            Arnette A-Volution
+                                        </td>
+                                        <td>
+                                            Gris
+                                        </td>
+                                        <td>
+                                            335.00
+                                        </td>
+                                        <td>
+                                            <i class="faw fa-solid fa-eye text-primary"></i>
+                                            <i class='faw fa fa-edit text-secondary'></i>
+                                            <i class='faw fa-solid fa-trash text-danger'></i>
                                         </td>
 
                                     </tr>
                                     <tr>
                                         <td>
-                                            <p>2</p>
+                                            <p>0AN7241U</p>
                                         </td>
                                         <td>
-                                            Trabajador
-                                        </td>                                 
-                                        <td>
-                                            <i class='fa-solid fa-trash text-danger'></i>
+                                            Arnette
                                         </td>
-                                    </tr>                             
+                                        <td>
+                                            Arnette A.T.
+                                        </td>
+                                        <td>
+                                            Gris
+                                        </td>
+                                        <td>
+                                            335.00
+                                        </td>
+                                        <td>
+                                            <i class="faw fa-solid fa-eye text-primary"></i>
+                                            <i class='faw fa fa-edit text-secondary'></i>
+                                            <i class='faw fa-solid fa-trash text-danger'></i>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p>0OX5076</p>
+                                        </td>
+                                        <td>
+                                            Oakley
+                                        </td>
+                                        <td>
+                                            OakleySway Bar 0.5
+                                        </td>
+                                        <td>
+                                            Negro
+                                        </td>
+                                        <td>
+                                            980.00
+                                        </td>
+                                        <td>
+                                            <i class="faw fa-solid fa-eye text-primary"></i>
+                                            <i class='faw fa fa-edit text-secondary'></i>
+                                            <i class='faw fa-solid fa-trash text-danger'></i>
+                                        </td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
+                <!-- End of Table -->
+
             </div>
-            <!-- End of Table -->
             <!-- End of Main Content -->
 
             <!-- Footer -->
