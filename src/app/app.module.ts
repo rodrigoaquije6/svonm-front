@@ -8,7 +8,6 @@ import { DashboardTrabajadorComponent } from './components/dashboard-trabajador/
 import { LoginComponent } from './components/login/login.component';
 import { TrabajadorComponent } from './components/trabajador/trabajador.component';
 import { RolComponent } from './components/rol/rol.component';
-import { MonturaComponent } from './components/montura/montura.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +17,6 @@ import { MonturaComponent } from './components/montura/montura.component';
     LoginComponent,
     TrabajadorComponent,
     RolComponent,
-    MonturaComponent
   ],
   imports: [
     BrowserModule,
