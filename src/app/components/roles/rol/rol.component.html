@@ -173,40 +173,25 @@
                                 Agregar
                                 <i class="fa-solid fa-plus"></i>
                             </button>
-                            <table class="table table-striped mx-5 mt-5 text-center">
+                            <table *ngIf="listRoles.length > 0" class="table table-striped mx-5 mt-5 text-center">
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
                                         <th>Rol</th>
                                         <th>Acción</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
+                                    <tr *ngFor="let rol of listRoles">                                    
                                         <td>
-                                            <p>1</p>
+                                            {{rol.nombre}}
                                         </td>
                                         <td>
-                                            Gerente
+                                            <i (click)="eliminarRol(rol._id)" class='faw fa-solid fa-trash text-danger'></i>
                                         </td>
-                                        <td>
-                                            <i class='fa-solid fa-trash text-danger'></i>
-                                        </td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <p>2</p>
-                                        </td>
-                                        <td>
-                                            Trabajador
-                                        </td>
-                                        <td>
-                                            <i class='fa-solid fa-trash text-danger'></i>
-                                        </td>
-                                    </tr>
+                                    </tr>                             
                                 </tbody>
                             </table>
+                            <h5 style="text-align: start; margin-top: 10px;" *ngIf="listRoles.length == 0">No hay roles para mostrar</h5>
                         </div>
                     </div>
                 </div>
