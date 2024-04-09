@@ -9,6 +9,7 @@ import { MonturaComponent } from './components/montura/montura.component';
 import { LunaComponent } from './components/luna/luna.component';
 import { MarcaComponent } from './components/marca/marca.component';
 import { CrearRolComponent } from './components/roles/crear-rol/crear-rol.component';
+import { CrearMarcaComponent } from './components/crear-marca/crear-marca.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent},
@@ -22,7 +23,7 @@ const routes: Routes = [
   { path: 'dashboard-gerente/marca', component: MarcaComponent},
   //--------------------------------------------CREAR--------------------------------------------
   { path: 'dashboard-gerente/rol/crear-rol', component: CrearRolComponent},
-  
+  { path: 'dashboard-gerente/marca/crear-marca', component: CrearMarcaComponent},
   { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
 

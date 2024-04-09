@@ -16,6 +16,8 @@ import { LunaComponent } from './components/luna/luna.component';
 import { MarcaComponent } from './components/marca/marca.component';
 import { CrearRolComponent } from './components/roles/crear-rol/crear-rol.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CrearMarcaComponent } from './components/crear-marca/crear-marca.component';
+import { IngresarMonturaComponent } from './components/ingresar-montura/ingresar-montura.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     LunaComponent,
     MarcaComponent,
     CrearRolComponent,
+    CrearMarcaComponent,
+    IngresarMonturaComponent,
   ],
   imports: [
     BrowserModule,
