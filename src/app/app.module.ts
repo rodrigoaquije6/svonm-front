@@ -16,6 +16,7 @@ import { LunaComponent } from './components/luna/luna.component';
 import { MarcaComponent } from './components/marca/marca.component';
 import { CrearRolComponent } from './components/roles/crear-rol/crear-rol.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CrearTrabajadorComponent } from './components/trabajador/crear-trabajador/crear-trabajador.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     LunaComponent,
     MarcaComponent,
     CrearRolComponent,
+    CrearTrabajadorComponent,
   ],
   imports: [
     BrowserModule,

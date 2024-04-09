@@ -16,7 +16,7 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="trabajador.component.css" rel="stylesheet">
+    <link href="crear-trabajador.component.css" rel="stylesheet">
 
 </head>
 
@@ -147,7 +147,7 @@
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                    <span class="span-text mx-3">GESTIONAR TRABAJADOR</span>
+                    <span class="span-text mx-3">CREAR TRABAJADOR</span>
 
 
                     <!-- Topbar Navbar -->
@@ -165,55 +165,49 @@
                 </nav>
                 <!-- End of Topbar -->
 
-                <!-- Table -->
-                <div class="container mt-5">
-                    <div class="row">
-                        <div class="col-lg-11 offser-lg-2">
-                            <button class="btn btn-success float-end" routerLink="/dashboard-gerente/trabajador/crear-trabajador">
-                                Agregar
-                                <i class="fa-solid fa-plus"></i>
-                            </button>
-                            <table *ngIf="listTrabajadores.length > 5" class="table table-striped mx-5 mt-5 text-center">
-                                <thead>
-                                    <tr>
-                                        <th>Dni</th>
-                                        <th>Nombre</th>
-                                        <th>Rol</th>
-                                        <th>Estado</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="let trabajador of listTrabajadores">                                    
-                                        <td>
-                                            {{trabajador.dni}}
-                                            {{trabajador.nombre}}
-                                            {{trabajador.rol}}
-                                            {{trabajador.estado}}
-                                        </td>
-                                        <td>
-                                            <i (click)="eliminarTrabajadores(trabajador._id)" class='faw fa-solid fa-trash text-danger'></i>
-                                        </td>
-                                    </tr>                             
-                                </tbody>
-                            </table>
-                            <h5 style="text-align: start; margin-top: 10px;" *ngIf="listTrabajadores.length == 0">No hay Trabajadores para mostrar</h5>
+                <!-- Content -->
+                <div class="container mt-5 mx-4 col-lg-4">
+                    <form [formGroup]="trabajadorForm" (ngSubmit)="agregarTrabajadores()">
+                        <div class="mb-3 d-flex align-items-end">
+                            <div style="flex: 1;">
+                                <label class="form-label label-text">Dni</label>
+                                <input type="number" formControlName="dni" class="form-control" style="width: 350px;" placeholder="Escriba el dni del trabajador...">
+                                <div class="text-danger"
+                                    *ngIf="trabajadorForm.get('dni')?.hasError('required') && trabajadorForm.get('dni')?.touched">
+                                    <span>El dni del trabajador <strong>es obligatorio</strong></span>
+                                </div>
+
+                                <label class="form-label label-text">Trabajador</label>
+                                <input type="string" formControlName="nombre" class="form-control" style="width: 350px;" placeholder="Escriba el nombre del trabajador...">
+                                <div class="text-danger"
+                                    *ngIf="trabajadorForm.get('nombre')?.hasError('required') && trabajadorForm.get('nombre')?.touched">
+                                    <span>El nombre del trabajador <strong>es obligatorio</strong></span>
+                                </div>
+
+                                <label class="form-label label-text">Rol</label>
+                                <input type="string" formControlName="rol" class="form-control" style="width: 350px;" placeholder="Escriba el rol del trabajador...">
+                                <div class="text-danger"
+                                    *ngIf="trabajadorForm.get('rol')?.hasError('required') && trabajadorForm.get('rol')?.touched">
+                                    <span>El rol del trabajador <strong>es obligatorio</strong></span>
+                                </div>
+
+                                <label class="form-label label-text">Estado</label>
+                                <input type="boolean" formControlName="estado" class="form-control" style="width: 350px;" placeholder="Escriba el estado del trabajador...">
+                                <div class="text-danger"
+                                    *ngIf="trabajadorForm.get('estado')?.hasError('required') && trabajadorForm.get('estado')?.touched">
+                                    <span>El estado del trabajador <strong>es obligatorio</strong></span>
+                                </div>
+
+                            </div>
+
+                            <button class="btn btn-success float-end" style="margin-left: 10px;">Agregar</button>
                         </div>
-                    </div>
+                        <div class="class mb 3">
+                            <button routerLink="/dashboard-gerente/trabajador" class="btn btn-secondary flat-start">Volver</button>
+                        </div>
+                    </form>
                 </div>
-                <!-- End of Table -->
-
-            </div>
-            <!-- End of Main Content -->
-
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Óptica Nuevo Mundo &copy; 2024</span>
-                    </div>
-                </div>
-            </footer>
-                <!-- End of Table -->
+                <!-- End of Content -->
 
             </div>
             <!-- End of Main Content -->
@@ -227,6 +221,10 @@
                 </div>
             </footer>
             <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
     </div>
     <!-- End of Page Wrapper -->
 
