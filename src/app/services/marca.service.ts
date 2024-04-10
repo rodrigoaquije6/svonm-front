@@ -1,12 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { crearmarca } from '../models/marca';
+import { marca } from '../models/marca';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CrearMarcaService {
+export class MarcaService {
 
   url = 'http://localhost:4000/api/rol/'
 
@@ -16,12 +16,12 @@ export class CrearMarcaService {
     return this.http.get(this.url);
   }
 
-  eliminarMarca(id: string): Observable<any>{
-    return this.http.delete(this.url + id);
+  eliminarMarca(codigo: string): Observable<any>{
+    return this.http.delete(this.url + codigo);
 
   }
 
-  guardarMarca(crearmarca: crearmarca): Observable<any> {
-    return this.http.post(this.url, crearmarca);
+  guardarMarca(marca: marca): Observable<any> {
+    return this.http.post(this.url, marca);
   }
 }

@@ -25,7 +25,7 @@ const routes: Routes = [
   { path: 'dashboard-gerente/rol/crear-rol', component: CrearRolComponent},
   { path: 'dashboard-gerente/marca/crear-marca', component: CrearMarcaComponent},
   { path: '**', redirectTo: '', pathMatch: 'full' }
-];
+];  
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
