@@ -23,8 +23,7 @@ const routes: Routes = [
   { path: 'dashboard-gerente/marca', component: MarcaComponent},
   //--------------------------------------------CREAR--------------------------------------------
   { path: 'dashboard-gerente/rol/crear-rol', component: CrearRolComponent},
-  { path: 'dashboard-gerente/trabajador/crear-trabajador', component: CrearTrabajadorComponent},
-  
+  { path: 'dashboard-gerente/trabajador/crear-trabjador', component: CrearTrabajadorComponent},
   { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
 

@@ -12,16 +12,16 @@ export class TrabajadorService {
 
   constructor(private http: HttpClient) { }
 
-  getTrabajadores(): Observable<any> {
+  getTrabajador(): Observable<any> {
     return this.http.get(this.url);
   }
 
-  eliminarTrabajadores(id: string): Observable<any>{
+  eliminarTrabajador(id: string): Observable<any>{
     return this.http.delete(this.url + id);
 
   }
 
-  guardarTrabajadores(trabajador: Trabajador): Observable<any> {
-    return this.http.post(this.url, Trabajador);
+  guardarTrabajador(trabajador: Trabajador): Observable<any> {
+    return this.http.post(this.url, trabajador);
   }
 }

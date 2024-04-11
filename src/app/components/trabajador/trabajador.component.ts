@@ -1,42 +1,37 @@
-import { Component, OnInit } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
+import { Component } from '@angular/core';
 import { Trabajador } from 'src/app/models/trabajador';
+import { ToastrService } from 'ngx-toastr';
 import { TrabajadorService } from 'src/app/services/trabajador.service';
-
-declare var bootstrap: any; // Declarar la variable bootstrap
-
 @Component({
   selector: 'app-trabajador',
   templateUrl: './trabajador.component.html',
   styleUrls: ['./trabajador.component.css']
 })
-export class TrabajadorComponent implements OnInit{
-  listTrabajadores: Trabajador[] = [];
+export class TrabajadorComponent {
+  listTrabajador: Trabajador[] = [];
 
   constructor(private _trabajadorService: TrabajadorService,
               private toastr: ToastrService,) { }
 
   ngOnInit(): void { 
-    this.obtenerTrabajadores();
+    this.obtenerTrabajador();
   }
 
-  obtenerTrabajadores() {
-    this._trabajadorService.getTrabajadores().subscribe(data => {
+  obtenerTrabajador() {
+    this._trabajadorService.getTrabajador().subscribe(data => {
       console.log(data);
-      this.listTrabajadores = data;
+      this.listTrabajador = data;
     },error => {
       console.log(error);
     })
   }
 
-  eliminarTrabajadores(id: any){
-    this._trabajadorService.eliminarTrabajadores(id).subscribe(data =>{
-      this.toastr.error('El Trabajador fue eliminado con éxito!','Producto Eliminado!')
-      this.obtenerTrabajadores();
+  eliminarTrabajador(id: any){
+    this._trabajadorService.eliminarTrabajador(id).subscribe(data =>{
+      this.toastr.error('El trabajador fue eliminado con éxito!','Producto Eliminado!')
+      this.obtenerTrabajador();
     },error =>{
       console.log(error);
     })
   }
-
 }
-

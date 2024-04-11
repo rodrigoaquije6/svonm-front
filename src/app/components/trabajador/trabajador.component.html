@@ -169,21 +169,23 @@
                 <div class="container mt-5">
                     <div class="row">
                         <div class="col-lg-11 offser-lg-2">
-                            <button class="btn btn-success float-end" routerLink="/dashboard-gerente/trabajador/crear-trabajador">
+                            <button class="btn btn-success float-end" routerLink="/dashboard-gerente/trabajador/crear-trabjador">
                                 Agregar
                                 <i class="fa-solid fa-plus"></i>
                             </button>
-                            <table *ngIf="listTrabajadores.length > 5" class="table table-striped mx-5 mt-5 text-center">
+                            <table *ngIf="listTrabajador.length > 0" class="table table-striped mx-5 mt-5 text-center">
                                 <thead>
                                     <tr>
-                                        <th>Dni</th>
+                                        <th>DNI</th>
                                         <th>Nombre</th>
                                         <th>Rol</th>
                                         <th>Estado</th>
+                                        <th>Acción</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let trabajador of listTrabajadores">                                    
+
+                                    <tr *ngFor="let trabajador of listTrabajador">                                    
                                         <td>
                                             {{trabajador.dni}}
                                             {{trabajador.nombre}}
@@ -191,12 +193,12 @@
                                             {{trabajador.estado}}
                                         </td>
                                         <td>
-                                            <i (click)="eliminarTrabajadores(trabajador._id)" class='faw fa-solid fa-trash text-danger'></i>
+                                            <i (click)="eliminarTrabajador(trabajador._id)" class='faw fa-solid fa-trash text-danger'></i>
                                         </td>
-                                    </tr>                             
+                                    </tr>
                                 </tbody>
                             </table>
-                            <h5 style="text-align: start; margin-top: 10px;" *ngIf="listTrabajadores.length == 0">No hay Trabajadores para mostrar</h5>
+                            <h5 style="text-align: start; margin-top: 10px;" *ngIf="listTrabajador.length == 0">No hay trabajadores para mostrar</h5>
                         </div>
                     </div>
                 </div>
@@ -213,20 +215,11 @@
                     </div>
                 </div>
             </footer>
-                <!-- End of Table -->
-
-            </div>
-            <!-- End of Main Content -->
-
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Óptica Nuevo Mundo &copy; 2024</span>
-                    </div>
-                </div>
-            </footer>
             <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
     </div>
     <!-- End of Page Wrapper -->
 

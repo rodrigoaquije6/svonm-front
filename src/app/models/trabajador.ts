@@ -1,11 +1,11 @@
 export class Trabajador{
     _id?: number;
-    dni: number ;
+    dni: string ;
     nombre: string;
-    rol: string
-    estado: boolean
+    rol: string;
+    estado: boolean;
 
-    constructor(nombre: string, dni: number, rol: string, estado: boolean) {
+    constructor(dni: string, nombre: string, rol: string, estado: boolean) {
         this.dni = dni
         this.nombre = nombre
         this.rol = rol
