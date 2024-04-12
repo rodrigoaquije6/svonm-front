@@ -16,7 +16,7 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="dashboard-gerente.component.css" rel="stylesheet">
+    <link href="tipo.component.css" rel="stylesheet">
 
 </head>
 
@@ -92,7 +92,7 @@
                     <span> Monturas</span>
                 </a>
             </li>
-            
+
             <!-- Gestionar Lunas -->
             <li class="nav-item">
                 <a class="nav-link collapsed" routerLink="/dashboard-gerente/luna" data-toggle="collapse">
@@ -155,6 +155,8 @@
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                    <span class="span-text mx-3">GESTIONAR MARCA</span>
+
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -169,13 +171,59 @@
                     </ul>
 
                 </nav>
-                <!-- End of Topbar -->         
+                <!-- End of Topbar -->
+
+                <!-- Table -->
+                <div class="container mt-5">
+                    <div class="row">
+                        <div class="col-lg-11 offser-lg-2">
+                            <button class="btn btn-success float-end">
+                                Agregar
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                            <table class="table table-striped mx-5 mt-5 text-center">
+                                <thead>
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>Acción</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            Monturas
+                                        </td>
+                                        <td>
+                                            <i class='faw fa-solid fa-trash text-danger'></i>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Lentes de sol
+                                        </td>
+                                        <td>
+                                            <i class='faw fa-solid fa-trash text-danger'></i>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Otros
+                                        </td>
+                                        <td>
+                                            <i class='faw fa-solid fa-trash text-danger'></i>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- End of Table -->
+
             </div>
-
-
             <!-- End of Main Content -->
-
-
 
             <!-- Footer -->
             <footer class="sticky-footer bg-white">
