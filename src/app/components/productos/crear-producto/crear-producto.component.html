@@ -183,12 +183,14 @@
 
                 <!-- Content -->
                 <div class="container mt-5 mx-4 col-lg-4">
-                    <form>
+                    <form [formGroup]="productoForm" (ngSubmit)="agregarProducto()">
                         <div class="mb-3 d-flex align-items-end">
                             <div style="flex: 1;">
                                 <label class="form-label label-text">Código</label>
-                                <input type="text" formControlName="código" class="form-control" style="width: 350px;" placeholder="Escriba el código del producto...">
-                                <div class="text-danger">
+                                <input type="text" formControlName="código" class="form-control" style="width: 350px;"
+                                    placeholder="Escriba el código del producto...">
+                                <div class="text-danger"
+                                    *ngIf="productoForm.get('código')?.hasError('required') && productoForm.get('código')?.touched">
                                     <span>El código del producto <strong>es obligatorio</strong></span>
                                 </div>
                             </div>
@@ -196,21 +198,11 @@
 
                         <div class="mb-3 d-flex align-items-end">
                             <div style="flex: 1;">
-                                <label class="form-label label-text">Tipo de producto</label>
-                                <select formControlName="tipoProducto" class="form-control" style="width: 350px;" >
-                                    <option *ngFor="let tipo of tiposDeProductos" [value]="tipo._id">{{ tipo.nombre }}</option>
-                                </select>
-                                <div class="text-danger">
-                                    <span>El tipo del producto <strong>es obligatorio</strong></span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="mb-3 d-flex align-items-end">
-                            <div style="flex: 1;">
                                 <label class="form-label label-text">Nombre</label>
-                                <input type="text"  formControlName="nombre" class="form-control" style="width: 350px;" placeholder="Escriba el nombre del producto...">
-                                <div class="text-danger">
+                                <input type="text" formControlName="nombre" class="form-control" style="width: 350px;"
+                                    placeholder="Escriba el nombre del producto...">
+                                <div class="text-danger"
+                                    *ngIf="productoForm.get('nombre')?.hasError('required') && productoForm.get('nombre')?.touched">
                                     <span>El nombre del producto <strong>es obligatorio</strong></span>
                                 </div>
                             </div>
@@ -219,16 +211,38 @@
                         <div class="mb-3 d-flex align-items-end">
                             <div style="flex: 1;">
                                 <label class="form-label label-text">Precio</label>
-                                <input type="number" formControlName="precio" class="form-control" style="width: 350px;" placeholder="Escriba el precio del producto...">
-                                <div class="text-danger">
+                                <input type="number" formControlName="precio" class="form-control" style="width: 350px;"
+                                    placeholder="Escriba el precio del producto...">
+                                <div class="text-danger"
+                                    *ngIf="productoForm.get('precio')?.hasError('required') && productoForm.get('precio')?.touched">
                                     <span>El precio del producto <strong>es obligatorio</strong></span>
                                 </div>
                             </div>
                         </div>
 
+                        <div class="mb-3 d-flex align-items-end">
+                            <div style="flex: 1;">
+                                <label class="form-label label-text">Precio</label>
+                                <input type="file" formControlName="imagen" class="form-control" style="width: 350px;"
+                                    placeholder="Escriba el precio del producto...">
+                            </div>
+                        </div>
+
+                        <div class="mb-3 d-flex align-items-end">
+                            <div style="flex: 1;">
+                                <label class="form-label label-text">Tipo de producto</label>
+                                <select formControlName="tipoProducto" class="form-select" style="width: 350px;">
+                                    <option disabled selected>Selecciona el tipo de producto...</option>
+                                    <option *ngFor="let tipo of tiposDeProductos" [value]="tipo._id">{{ tipo.nombre }}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+
                         <div class="class mb 3">
                             <button class="btn btn-success float-end" style="margin-left: 10px;">Agregar</button>
-                            <button routerLink="/dashboard-gerente/producto" class="btn btn-secondary flat-start">Volver</button>
+                            <button routerLink="/dashboard-gerente/producto"
+                                class="btn btn-secondary flat-start">Volver</button>
                         </div>
                     </form>
                 </div>

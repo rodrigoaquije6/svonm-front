@@ -24,7 +24,11 @@ export class CrearProductoComponent implements OnInit{
     private _productoService: ProductoService,
     private http: HttpClient) { 
       this.productoForm = this.fb.group({
+        código: ['', Validators.required],
+        tipoP: ['', Validators.required],
         nombre: ['', Validators.required],
+        precio: ['', Validators.required],
+        imagen: ['', Validators.required],
     })
   }
 
@@ -46,7 +50,11 @@ export class CrearProductoComponent implements OnInit{
   agregarProducto() {
 
     const PRODUCTO: Producto = {
-      nombre: this.productoForm.get('nombre')?.value
+      código: this.productoForm.get('código')?.value,
+      tipoP: this.productoForm.get('tipoP')?.value,
+      nombre: this.productoForm.get('nombre')?.value,
+      precio: this.productoForm.get('precio')?.value,
+      imagen: this.productoForm.get('imagen')?.value,
     }
 
     console.log(PRODUCTO);
