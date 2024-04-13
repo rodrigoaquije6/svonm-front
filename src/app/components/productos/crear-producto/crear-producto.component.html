@@ -16,7 +16,7 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="montura.component.css" rel="stylesheet">
+    <link href="crear-producto.component.css" rel="stylesheet">
 
 </head>
 
@@ -163,7 +163,7 @@
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                    <span class="span-text mx-3">GESTIONAR MONTURA</span>
+                    <span class="span-text mx-3">CREAR PRODUCTO</span>
 
 
                     <!-- Topbar Navbar -->
@@ -181,100 +181,58 @@
                 </nav>
                 <!-- End of Topbar -->
 
-                <!-- Table -->
-                <div class="container mt-5">
-                    <div class="row">
-                        <div class="col-lg-11 offser-lg-2">
-                            <button class="btn btn-success float-end">
-                                Agregar
-                                <i class="fa-solid fa-plus"></i>
-                            </button>
-                            <table class="table table-striped mx-5 mt-5 text-center">
-                                <thead>
-                                    <tr>
-                                        <th>Código</th>
-                                        <th>Marca</th>
-                                        <th>Nombre</th>
-                                        <th>Color</th>
-                                        <th>Precio</th>
-                                        <th>Acción</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <p>0AN7237U</p>
-                                        </td>
-                                        <td>
-                                            Arnette
-                                        </td>
-                                        <td>
-                                            Arnette A-Volution
-                                        </td>
-                                        <td>
-                                            Gris
-                                        </td>
-                                        <td>
-                                            335.00
-                                        </td>
-                                        <td>
-                                            <i class="faw fa-solid fa-eye text-primary"></i>
-                                            <i class='faw fa fa-edit text-secondary'></i>
-                                            <i class='faw fa-solid fa-trash text-danger'></i>
-                                        </td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <p>0AN7241U</p>
-                                        </td>
-                                        <td>
-                                            Arnette
-                                        </td>
-                                        <td>
-                                            Arnette A.T.
-                                        </td>
-                                        <td>
-                                            Gris
-                                        </td>
-                                        <td>
-                                            335.00
-                                        </td>
-                                        <td>
-                                            <i class="faw fa-solid fa-eye text-primary"></i>
-                                            <i class='faw fa fa-edit text-secondary'></i>
-                                            <i class='faw fa-solid fa-trash text-danger'></i>
-                                        </td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <p>0OX5076</p>
-                                        </td>
-                                        <td>
-                                            Oakley
-                                        </td>
-                                        <td>
-                                            OakleySway Bar 0.5
-                                        </td>
-                                        <td>
-                                            Negro
-                                        </td>
-                                        <td>
-                                            980.00
-                                        </td>
-                                        <td>
-                                            <i class="faw fa-solid fa-eye text-primary"></i>
-                                            <i class='faw fa fa-edit text-secondary'></i>
-                                            <i class='faw fa-solid fa-trash text-danger'></i>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                <!-- Content -->
+                <div class="container mt-5 mx-4 col-lg-4">
+                    <form>
+                        <div class="mb-3 d-flex align-items-end">
+                            <div style="flex: 1;">
+                                <label class="form-label label-text">Código</label>
+                                <input type="text" formControlName="código" class="form-control" style="width: 350px;" placeholder="Escriba el código del producto...">
+                                <div class="text-danger">
+                                    <span>El código del producto <strong>es obligatorio</strong></span>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+
+                        <div class="mb-3 d-flex align-items-end">
+                            <div style="flex: 1;">
+                                <label class="form-label label-text">Tipo de producto</label>
+                                <select formControlName="tipoProducto" class="form-control" style="width: 350px;" >
+                                    <option *ngFor="let tipo of tiposDeProductos" [value]="tipo._id">{{ tipo.nombre }}</option>
+                                </select>
+                                <div class="text-danger">
+                                    <span>El tipo del producto <strong>es obligatorio</strong></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3 d-flex align-items-end">
+                            <div style="flex: 1;">
+                                <label class="form-label label-text">Nombre</label>
+                                <input type="text"  formControlName="nombre" class="form-control" style="width: 350px;" placeholder="Escriba el nombre del producto...">
+                                <div class="text-danger">
+                                    <span>El nombre del producto <strong>es obligatorio</strong></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3 d-flex align-items-end">
+                            <div style="flex: 1;">
+                                <label class="form-label label-text">Precio</label>
+                                <input type="number" formControlName="precio" class="form-control" style="width: 350px;" placeholder="Escriba el precio del producto...">
+                                <div class="text-danger">
+                                    <span>El precio del producto <strong>es obligatorio</strong></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="class mb 3">
+                            <button class="btn btn-success float-end" style="margin-left: 10px;">Agregar</button>
+                            <button routerLink="/dashboard-gerente/producto" class="btn btn-secondary flat-start">Volver</button>
+                        </div>
+                    </form>
                 </div>
-                <!-- End of Table -->
+                <!-- End of Content -->
 
             </div>
             <!-- End of Main Content -->

@@ -17,7 +17,9 @@ import { MarcaComponent } from './components/marca/marca.component';
 import { CrearRolComponent } from './components/roles/crear-rol/crear-rol.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TipoComponent } from './components/tipoProducto/tipo/tipo.component';
-import { CrearTipoProductoComponent } from './tipoProducto/crear-tipo-producto/crear-tipo-producto.component';
+import { CrearTipoProductoComponent } from './components/tipoProducto/crear-tipo-producto/crear-tipo-producto.component';
+import { ProductoComponent } from './components/productos/producto/producto.component';
+import { CrearProductoComponent } from './components/productos/crear-producto/crear-producto.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,8 @@ import { CrearTipoProductoComponent } from './tipoProducto/crear-tipo-producto/c
     CrearRolComponent,
     TipoComponent,
     CrearTipoProductoComponent,
+    ProductoComponent,
+    CrearProductoComponent,
   ],
   imports: [
     BrowserModule,

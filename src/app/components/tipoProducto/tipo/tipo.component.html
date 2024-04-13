@@ -87,7 +87,7 @@
 
             <!-- Gestionar Producto -->
             <li class="nav-item">
-                <a class="nav-link collapsed" routerLink="/dashboard-gerente/Producto" data-toggle="collapse">
+                <a class="nav-link collapsed" routerLink="/dashboard-gerente/producto" data-toggle="collapse">
                     <i class="fa-solid fa-box-archive"></i>
                     <span> Gestionar Producto</span>
                 </a>
@@ -185,11 +185,11 @@
                 <div class="container mt-5">
                     <div class="row">
                         <div class="col-lg-11 offser-lg-2">
-                            <button class="btn btn-success float-end">
+                            <button class="btn btn-success float-end" routerLink="/dashboard-gerente/tipoProducto/crear-tipoProducto">
                                 Agregar
                                 <i class="fa-solid fa-plus"></i>
                             </button>
-                            <table class="table table-striped mx-5 mt-5 text-center">
+                            <table *ngIf="listTipo.length > 0" class="table table-striped mx-5 mt-5 text-center">
                                 <thead>
                                     <tr>
                                         <th>Nombre</th>
@@ -197,34 +197,17 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
+                                    <tr *ngFor="let tipoProducto of listTipo">
                                         <td>
-                                            Monturas
+                                            {{tipoProducto.nombre}}
                                         </td>
                                         <td>
-                                            <i class='fa-solid fa-trash text-danger'></i>
+                                            <i (click)="eliminarTipoProducto(tipoProducto._id)" class='faw fa-solid fa-trash text-danger'></i>
                                         </td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            Lentes de sol
-                                        </td>
-                                        <td>
-                                            <i class='fa-solid fa-trash text-danger'></i>
-                                        </td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            Otros
-                                        </td>
-                                        <td>
-                                            <i class='fa-solid fa-trash text-danger'></i>
-                                        </td>
-                                    </tr>
+                                    </tr>                                               
                                 </tbody>
                             </table>
+                            <h5 style="text-align: start; margin-top: 10px;" *ngIf="listTipo.length == 0">No hay tipo de producto para mostrar</h5>
                         </div>
                     </div>
                 </div>
