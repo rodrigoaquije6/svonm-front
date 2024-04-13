@@ -16,12 +16,14 @@ export class MarcaService {
     return this.http.get(this.url);
   }
 
-  eliminarMarca(codigo: string): Observable<any>{
-    return this.http.delete(this.url + codigo);
+  eliminarMarca(id: number): Observable<any>{
+    return this.http.delete(this.url + id);
 
   }
 
-  guardarMarca(marca: marca): Observable<any> {
-    return this.http.post(this.url, marca);
+  guardarMarca(codigo: marca): Observable<any> {
+    return this.http.post(this.url, codigo);
   }
+
+
 }

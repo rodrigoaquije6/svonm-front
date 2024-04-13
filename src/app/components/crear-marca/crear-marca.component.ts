@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { marca } from 'src/app/models/marca';
+import { MarcaService } from 'src/app/services/marca.service';
 
 @Component({
   selector: 'app-crear-marca',
@@ -14,7 +15,7 @@ export class CrearMarcaComponent implements OnInit{
   crearmarcaForm: FormGroup;
 
 
-  constructor(private fb:FormBuilder, private router: Router, private toastr: ToastrService){
+  constructor(private fb:FormBuilder, private router: Router, private toastr: ToastrService, private _marcaService : MarcaService){
     this.crearmarcaForm = this.fb.group({
       codigo:['',Validators.required],
       nombre:['',Validators.required]
@@ -34,8 +35,17 @@ agregarMarca(){
   }
   
   console.log(CODIGO);
-  this.toastr.success('La marca fue registrada con éxito!', 'Marca registrada!')
-  this.router.navigate(['/dashboard-gerente/marca'])
+  this._marcaService.guardarMarca(CODIGO).subscribe(data => {
+
+    this.toastr.success('La marca fue registrada con éxito!', 'Marca registrada!')
+    this.router.navigate(['/dashboard-gerente/marca'])
+  },error =>{
+    console.log(error);
+    this.crearmarcaForm.reset();
+  }
+)
+
+
 
 }
 

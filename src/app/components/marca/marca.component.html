@@ -173,7 +173,7 @@
                                 Agregar
                                 <i class="fa-solid fa-plus"></i>
                             </button>
-                            <table class="table table-striped mx-5 mt-5 text-center">
+                            <table *ngIf="listMarcas.length > 0" class="table table-striped mx-5 mt-5 text-center">
                                 <thead>
                                     <tr>
                                         <th>Código</th>
@@ -182,7 +182,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
+                                    <!--<tr>
                                         <td>
                                             <p>1</p>
                                         </td>
@@ -215,6 +215,17 @@
                                         </td>
                                         <td>
                                             <i class='faw fa-solid fa-trash text-danger'></i>
+                                        </td>
+                                    </tr>!-->
+                                    <tr *ngFor="let marca of listMarcas">
+                                        <td>
+                                            <p>{{marca.codigo}}</p>
+                                        </td>
+                                        <td>
+                                            {{marca.nombre}}
+                                        </td>
+                                        <td>
+                                            <i (click)= "eliminarMarca(marca.codigo)"class='faw fa-solid fa-trash text-danger'></i>
                                         </td>
                                     </tr>
                                 </tbody>
