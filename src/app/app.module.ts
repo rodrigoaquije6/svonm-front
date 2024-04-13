@@ -17,6 +17,7 @@ import { MarcaComponent } from './components/marca/marca.component';
 import { CrearRolComponent } from './components/roles/crear-rol/crear-rol.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TipoComponent } from './components/tipoProducto/tipo/tipo.component';
+import { CrearTipoProductoComponent } from './tipoProducto/crear-tipo-producto/crear-tipo-producto.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { TipoComponent } from './components/tipoProducto/tipo/tipo.component';
     MarcaComponent,
     CrearRolComponent,
     TipoComponent,
+    CrearTipoProductoComponent,
   ],
   imports: [
     BrowserModule,
