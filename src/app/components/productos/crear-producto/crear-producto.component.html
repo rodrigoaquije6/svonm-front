@@ -222,20 +222,38 @@
 
                         <div class="mb-3 d-flex align-items-end">
                             <div style="flex: 1;">
-                                <label class="form-label label-text">Precio</label>
-                                <input type="file" formControlName="imagen" class="form-control" style="width: 350px;"
-                                    placeholder="Escriba el precio del producto...">
+                                <label class="form-label label-text">Imagen</label>
+                                <input type="file" (change)="onFileSelected($event)" formControlName="imagen"
+                                    class="form-control" style="width: 350px;">
                             </div>
                         </div>
 
                         <div class="mb-3 d-flex align-items-end">
                             <div style="flex: 1;">
                                 <label class="form-label label-text">Tipo de producto</label>
-                                <select formControlName="tipoProducto" class="form-select" style="width: 350px;">
+                                <select formControlName="tipoP" class="form-select" style="width: 350px;">
                                     <option disabled selected>Selecciona el tipo de producto...</option>
-                                    <option *ngFor="let tipo of tiposDeProductos" [value]="tipo._id">{{ tipo.nombre }}
+                                    <option *ngFor="let tipo of tipoP" [value]="tipo._id">{{ tipo.nombre }}
                                     </option>
                                 </select>
+                            </div>
+                        </div>
+
+                        <div class="mb-3 d-flex align-items-end" *ngIf="productoForm.get('tipoP')?.value === 'Monturas'">
+                            <div class="mb-3 d-flex align-items-end">
+                                <div style="flex: 1;">
+                                    <label class="form-label label-text">Código</label>
+                                    <input type="text" formControlName="código" class="form-control" style="width: 350px;" placeholder="Escriba el código del producto...">                                
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3 d-flex align-items-end" *ngIf="productoForm.get('tipoP')?.value === 'Lentes de sol'">
+                            <div class="mb-3 d-flex align-items-end">
+                                <div style="flex: 1;">
+                                    <label class="form-label label-text">Código</label>
+                                    <input type="text" formControlName="código" class="form-control" style="width: 350px;" placeholder="Escriba el código del producto...">                            
+                                </div>
                             </div>
                         </div>
 

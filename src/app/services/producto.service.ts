@@ -17,7 +17,6 @@ export class ProductoService {
 
   eliminarProducto(id: string): Observable<any>{
     return this.http.delete(this.url + id);
-
   }
 
   guardarProducto(producto: Producto): Observable<any> {

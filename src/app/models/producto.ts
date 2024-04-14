@@ -25,9 +25,9 @@ export class Montura extends Producto {
     forma: string;
     material: string;
 
-    constructor(código: string, tipoP: string, nombre: string, precio: number, imagen : Buffer, marca: string, color: string, género: string, 
+    constructor(código: string, tipoP: string, nombre: string, precio: number, imagen: Buffer, marca: string, color: string, género: string,
         forma: string, material: string, _id?: ObjectId) {
-        super(código, tipoP, nombre, precio, imagen,  _id);
+        super(código, tipoP, nombre, precio, imagen, _id);
         this.marca = marca;
         this.color = color;
         this.género = género;
@@ -43,10 +43,10 @@ export class LentesDeSol extends Producto {
     forma: string;
     color: string;
     colorLente: string;
-    UVProtection: string;
+    proteccionUV: string;
 
-    constructor(código: string, tipoP: string, nombre: string, precio: number, imagen : Buffer, marca: string, género: string, material: string, 
-        forma: string, color: string, colorLente: string, UVProtection: string, _id?: ObjectId) {
+    constructor(código: string, tipoP: string, nombre: string, precio: number, imagen: Buffer, marca: string, género: string, material: string,
+        forma: string, color: string, colorLente: string, proteccionUV: string, _id?: ObjectId) {
         super(código, tipoP, nombre, precio, imagen, _id);
         this.marca = marca;
         this.género = género;
@@ -54,6 +54,6 @@ export class LentesDeSol extends Producto {
         this.forma = forma;
         this.color = color;
         this.colorLente = colorLente;
-        this.UVProtection = UVProtection;
+        this.proteccionUV = proteccionUV;
     }
 }
