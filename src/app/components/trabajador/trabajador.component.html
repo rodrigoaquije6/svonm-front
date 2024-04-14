@@ -188,9 +188,15 @@
                                     <tr *ngFor="let trabajador of listTrabajador">                                    
                                         <td>
                                             {{trabajador.dni}}
-                                            {{trabajador.nombre}}
-                                            {{trabajador.rol}}
-                                            {{trabajador.estado}}
+                                        </td>
+                                        <td>
+                                            {{trabajador.nombre}}                                          
+                                        </td>
+                                        <td>
+                                            {{trabajador.rol}}                                     
+                                        </td>
+                                        <td>
+                                            {{trabajador.estado}}                              
                                         </td>
                                         <td>
                                             <i (click)="eliminarTrabajador(trabajador._id)" class='faw fa-solid fa-trash text-danger'></i>

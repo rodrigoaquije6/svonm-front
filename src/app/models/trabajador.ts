@@ -3,9 +3,9 @@ export class Trabajador{
     dni: string ;
     nombre: string;
     rol: string;
-    estado: boolean;
+    estado: string;
 
-    constructor(dni: string, nombre: string, rol: string, estado: boolean) {
+    constructor(dni: string, nombre: string, rol: string, estado: string) {
         this.dni = dni
         this.nombre = nombre
         this.rol = rol

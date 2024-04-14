@@ -187,14 +187,14 @@
                                   </div>
                                 
                                   <label class="form-label label-text">Rol</label>
-                                  <input type="text" formControlName="rol" class="form-control" style="width: 350px;" placeholder="Escriba el rol del trabajador...">
-                                  <div class="text-danger"
-                                    *ngIf="trabajadorForm.get('rol')?.hasError('required') && trabajadorForm.get('rol')?.touched">
-                                    <span>El rol del trabajador <strong>es obligatorio</strong></span>
-                                  </div>
+                                  <select formControlName="rol" class="form-select" style="width: 350px;">
+                                      <option disabled selected>Selecciona el rol...</option>
+                                      <option *ngFor="let roles of rol" [value]="roles.nombre">{{ roles.nombre }}</option>
+                                  </select>
 
                                   <label class="form-label label-text">Estado</label>
-                                  <select name="estado" formControlName="estado" class="form-control" style="width: 350px;">
+                                  <select formControlName="estado" class="form-select" style="width: 350px;">
+                                  <option disabled selected>Selecciona el estado...</option>
                                   <option value="activo" style="color: #076818;">activo</option> 
                                   <option value="inactivo" style="color: #ff000d;">inactivo</option>
                                   </select>   

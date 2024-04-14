@@ -1,8 +1,10 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Trabajador } from 'src/app/models/trabajador';
+import { TrabajadorService } from 'src/app/services/trabajador.service';
 
 @Component({
   selector: 'app-crear-trabajador',
@@ -11,10 +13,15 @@ import { Trabajador } from 'src/app/models/trabajador';
 })
 export class CrearTrabajadorComponent implements OnInit {
   trabajadorForm: FormGroup;
+  rol: any[] = [];
+  url = 'http://localhost:4000/api/rol/' //https://fuzzy-space-bassoon-5wv69qr7jx7cvr6r-4000.app.github.dev/api/tipoProducto/
 
 constructor(private fb: FormBuilder,
     private toastr: ToastrService,
-    private router: Router){ 
+    private router: Router,
+    private _trabajadorService: TrabajadorService, 
+    private http:HttpClient
+){ 
   this.trabajadorForm = this.fb.group({
       dni: ['', Validators.required],
       nombre: ['', Validators.required],
@@ -24,6 +31,18 @@ constructor(private fb: FormBuilder,
   }
 
   ngOnInit(): void {
+    this.obtenerRol();
+  }
+
+  obtenerRol() {
+    this.http.get<any[]>(this.url).subscribe(
+      (roles) => {
+        this.rol = roles;
+      },
+      (error) => {
+        console.error('Error al obtener los tipos de productos:', error);
+      }
+    );
   }
 
   agregarTrabajador() {   
@@ -35,8 +54,14 @@ constructor(private fb: FormBuilder,
     }
 
     console.log(TRABAJADOR);
-    this.toastr.success('El trabajador fue registrado con éxito!', 'Trabajador Registrado!');
-    this.router.navigate(['dashboard-gerente/trabajador/']);
+    this._trabajadorService.guardarTrabajador(TRABAJADOR).subscribe(data => {
+      this.toastr.success('El trabajador fue registrado con éxito!', 'Trabajador Registrado!');
+      this.router.navigate(['/dashboard-gerente/trabajador']);
+    }, error =>{
+      console.log(error);
+      this.trabajadorForm.reset();
+    })
   }
 }
+
 
