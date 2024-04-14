@@ -1,5 +1,5 @@
-export class marca {
-codigo?: number;
+export class Marca {
+_id?: number;
 nombre: string;
 
 constructor(nombre: string){

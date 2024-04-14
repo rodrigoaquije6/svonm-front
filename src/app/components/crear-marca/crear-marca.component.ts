@@ -2,7 +2,7 @@ import { Component,OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { marca } from 'src/app/models/marca';
+import { Marca } from 'src/app/models/marca';
 import { MarcaService } from 'src/app/services/marca.service';
 
 @Component({
@@ -17,7 +17,7 @@ export class CrearMarcaComponent implements OnInit{
 
   constructor(private fb:FormBuilder, private router: Router, private toastr: ToastrService, private _marcaService : MarcaService){
     this.crearmarcaForm = this.fb.group({
-      codigo:['',Validators.required],
+
       nombre:['',Validators.required]
     })
   }
@@ -28,8 +28,8 @@ ngOnInit(): void {
 agregarMarca(){
 
 
-  const CODIGO: marca = {
-    codigo:this.crearmarcaForm.get('codigo')?.value,
+  const CODIGO: Marca = {
+
     nombre: this.crearmarcaForm.get('nombre')?.value
 
   }

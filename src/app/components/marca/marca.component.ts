@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { marca } from 'src/app/models/marca';
+import { Marca } from 'src/app/models/marca';
 import { MarcaService } from 'src/app/services/marca.service';
+
+declare var bootstrap: any; // Declarar la variable bootstrap
 
 @Component({
   selector: 'app-marca',
@@ -10,7 +12,7 @@ import { MarcaService } from 'src/app/services/marca.service';
 })
 export class MarcaComponent implements OnInit {
 
-  listMarcas : marca [] = [];
+  listMarcas : Marca [] = [];
 
   constructor(private _crearmarcaService:MarcaService, 
     private toastr: ToastrService) {}
@@ -32,6 +34,7 @@ export class MarcaComponent implements OnInit {
 
     this._crearmarcaService.eliminarMarca(id).subscribe(data => {
       this.toastr.error('La marca fue eliminada con éxito','Marca eliminada');
+      this.obtenerMarcas();
     },error =>{
       console.log(error);
     }

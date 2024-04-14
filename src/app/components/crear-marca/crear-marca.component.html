@@ -173,12 +173,8 @@
                         <div class ="card-body text-center">
                               <span class="Título" style="font-size: 24px; font-weight: bold;">INGRESA NUEVA MARCA</span>
                                   <form class ="mt-3" [formGroup]="crearmarcaForm" (ngSubmit)="agregarMarca()">
-                                  <div class="mb-3">
-                                      <input type="number" formControlName="codigo" class="form-control form-control-lg" placeholder="Código">
-                                      <div class="text-danger" *ngIf="crearmarcaForm.get('codigo')?.hasError('required') && crearmarcaForm.get('codigo')?.touched"> 
-                                        <span> Ingresar un código <strong> es obligatorio </strong></span>
-                                    </div>
-                                  </div>
+                                  
+                                  
                                   <div class="mb-3">
                                     <input type="text" formControlName="nombre" class="form-control form-control-lg" placeholder="Marca">
                                     <div class="text-danger" *ngIf="crearmarcaForm.get('nombre')?.hasError('required') && crearmarcaForm.get('nombre')?.touched"> 
