@@ -238,25 +238,7 @@
                                 </select>
                             </div>
                         </div>
-
-                        <div class="mb-3 d-flex align-items-end" *ngIf="productoForm.get('tipoP')?.value === 'Monturas'">
-                            <div class="mb-3 d-flex align-items-end">
-                                <div style="flex: 1;">
-                                    <label class="form-label label-text">Código</label>
-                                    <input type="text" formControlName="código" class="form-control" style="width: 350px;" placeholder="Escriba el código del producto...">                                
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="mb-3 d-flex align-items-end" *ngIf="productoForm.get('tipoP')?.value === 'Lentes de sol'">
-                            <div class="mb-3 d-flex align-items-end">
-                                <div style="flex: 1;">
-                                    <label class="form-label label-text">Código</label>
-                                    <input type="text" formControlName="código" class="form-control" style="width: 350px;" placeholder="Escriba el código del producto...">                            
-                                </div>
-                            </div>
-                        </div>
-
+              
                         <div class="class mb 3">
                             <button class="btn btn-success float-end" style="margin-left: 10px;">Agregar</button>
                             <button routerLink="/dashboard-gerente/producto"

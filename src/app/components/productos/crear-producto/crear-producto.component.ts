@@ -29,7 +29,7 @@ export class CrearProductoComponent implements OnInit {
       tipoP: ['', Validators.required],
       nombre: ['', Validators.required],
       precio: ['', Validators.required],
-      imagen: ['', Validators.required],
+      imagen: [''],
     })
   }
 
