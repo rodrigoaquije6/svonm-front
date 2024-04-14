@@ -173,10 +173,11 @@
                                 Agregar
                                 <i class="fa-solid fa-plus"></i>
                             </button>
-                            <table class="table table-striped mx-5 mt-5 text-center">
+
+                            <table *ngIf="listMontura.length > 0" class="table table-striped mx-5 mt-5 text-center">
                                 <thead>
                                     <tr>
-                                        <th>Código</th>
+                                        <th>Codigo</th>
                                         <th>Marca</th>
                                         <th>Nombre</th>
                                         <th>Color</th>
@@ -185,76 +186,30 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
+                                    <tr *ngFor="let montura of listMontura">
                                         <td>
-                                            <p>0AN7237U</p>
+                                            {{montura.codigo}}
                                         </td>
                                         <td>
-                                            Arnette
+                                            {{montura.marca}}
                                         </td>
                                         <td>
-                                            Arnette A-Volution
+                                            {{montura.nombre}}
                                         </td>
                                         <td>
-                                            Gris
+                                            {{montura.color}}
                                         </td>
                                         <td>
-                                            335.00
-                                        </td>
                                         <td>
-                                            <i class="faw fa-solid fa-eye text-primary"></i>
-                                            <i class='faw fa fa-edit text-secondary'></i>
-                                            <i class='faw fa-solid fa-trash text-danger'></i>
-                                        </td>
-
-                                    </tr>
-                                    <tr>
+                                            {{montura.precio}}
+                                         </td>
                                         <td>
-                                            <p>0AN7241U</p>
-                                        </td>
-                                        <td>
-                                            Arnette
-                                        </td>
-                                        <td>
-                                            Arnette A.T.
-                                        </td>
-                                        <td>
-                                            Gris
-                                        </td>
-                                        <td>
-                                            335.00
-                                        </td>
-                                        <td>
-                                            <i class="faw fa-solid fa-eye text-primary"></i>
-                                            <i class='faw fa fa-edit text-secondary'></i>
-                                            <i class='faw fa-solid fa-trash text-danger'></i>
-                                        </td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <p>0OX5076</p>
-                                        </td>
-                                        <td>
-                                            Oakley
-                                        </td>
-                                        <td>
-                                            OakleySway Bar 0.5
-                                        </td>
-                                        <td>
-                                            Negro
-                                        </td>
-                                        <td>
-                                            980.00
-                                        </td>
-                                        <td>
-                                            <i class="faw fa-solid fa-eye text-primary"></i>
-                                            <i class='faw fa fa-edit text-secondary'></i>
-                                            <i class='faw fa-solid fa-trash text-danger'></i>
+                                            <i (click)="eliminarMontura(montura._id)" class='faw fa-solid fa-trash text-danger'></i>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
+                            <h5 style="text-align: start; margin-top: 10px;" *ngIf="listMontura.length == 0">No hay monturas para mostrar</h5>
                         </div>
                     </div>
                 </div>

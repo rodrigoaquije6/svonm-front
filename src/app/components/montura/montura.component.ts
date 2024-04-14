@@ -11,7 +11,7 @@ declare var bootstrap: any; // Declarar la variable bootstrap
   styleUrls: ['./montura.component.css']
 })
 export class MonturaComponent implements OnInit{
-  listMonturas: Montura[] = [];
+  listMontura: Montura[] = [];
 
   constructor(private _monturaService: MonturaService,
               private toastr: ToastrService,) { }
@@ -23,7 +23,7 @@ export class MonturaComponent implements OnInit{
   obtenerMonturas() {
     this._monturaService.getMontura().subscribe(data => {
       console.log(data);
-      this.listMonturas = data;
+      this.listMontura = data;
     },error => {
       console.log(error);
     })
@@ -31,7 +31,7 @@ export class MonturaComponent implements OnInit{
 
   eliminarMontura(id: any){
     this._monturaService.eliminarMontura(id).subscribe(data =>{
-      this.toastr.error('La montua fue eliminado con éxito!','Producto Eliminado!')
+      this.toastr.error('La montura fue eliminado con éxito!','Producto Eliminado!')
       this.obtenerMonturas();
     },error =>{
       console.log(error);

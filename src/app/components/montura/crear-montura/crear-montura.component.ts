@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Montura } from 'src/app/models/montura';
 import { MonturaService } from 'src/app/services/montura.service';
-
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -14,15 +14,22 @@ import { MonturaService } from 'src/app/services/montura.service';
 })
 export class CrearMonturaComponent implements OnInit {
   monturaForm: FormGroup;
-  private _monturaService: any;
+  marca: any[] = [];
+  url = 'http://localhost:4000/api/marca/' //https://fuzzy-space-bassoon-5wv69qr7jx7cvr6r-4000.app.github.dev/api/tipoProducto/
 
   constructor(private fb: FormBuilder,
     private toastr: ToastrService,
     private router: Router,
-    private monturaService: MonturaService) {
-    this.monturaForm = this.fb.group({
+    private _monturaService: MonturaService, 
+    private http:HttpClient
+){ 
+  this.monturaForm = this.fb.group({
+      codigo: ['', Validators.required],
+      marca: ['', Validators.required],
       nombre: ['', Validators.required],
-    });
+      color: ['', Validators.required],
+      precio: ['', Validators.required],
+    })
   }
 
   ngOnInit(): void {
@@ -39,14 +46,8 @@ export class CrearMonturaComponent implements OnInit {
     };
 
     console.log(MONTURA);
-    this.monturaService.guardarMontura(MONTURA).subscribe((data: any) => {
       this.toastr.success('La montura fue registrado con éxito!', 'Montura Registrado!');
       this.router.navigate(['/dashboard-gerente/montura']);
-    }, error => {
-      console.log(error);
-      this.monturaForm.reset();
-    });
-
   }
 
 }
