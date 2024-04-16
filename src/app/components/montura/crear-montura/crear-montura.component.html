@@ -179,10 +179,11 @@
                                   </div>
 
                                   <label class="form-label label-text">Marca</label>
-                                  <select formControlName="marca" class="form-select" style="width: 350px;">
-                                      <option disabled selected>Selecciona la marca...</option>
-                                      <option *ngFor="let marcas of marca" [value]="marcas.nombre">{{ marcas.nombre }}</option>
-                                  </select>
+                                  <input type="text" formControlName="marca" class="form-control" style="width: 350px;" placeholder="Escriba la marca de la montura...">
+                                  <div class="text-danger"
+                                    *ngIf="monturaForm.get('marca')?.hasError('required') && monturaForm.get('marca')?.touched">
+                                    <span>El marca de la montura <strong>es obligatorio</strong></span>
+                                  </div>
 
                                   <label class="form-label label-text">Nombre</label>
                                   <input type="text" formControlName="nombre" class="form-control" style="width: 350px;" placeholder="Escriba el nombre de la montura...">
