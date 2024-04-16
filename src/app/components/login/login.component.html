@@ -5,28 +5,36 @@
 
 <div class="split right">
     <div class="centered">
-        <h2>Iniciar Sesión</h2>
-        <form [formGroup]="loginForm" (ngSubmit)="onLogin(loginForm.value)">
-            <!--  -->
-            <div class="form-group">
-                <label for="email">
-                    <i class="fas fa-envelope"></i> Correo electrónico
-                </label>
-                <input type="email" id="email" class="form-control" placeholder="Correo electrónico" formControlName="email"/>
-            </div>
-            <div class="form-group">
-                <label for="password">
-                    <i class="fas fa-lock"></i> Contraseña
-                </label>
-                <input type="password" id="password" class="form-control" placeholder="Contraseña" formControlName="password"/>
-            </div>
-            <button type="submit" class="btn btn-primary">Iniciar sesión</button>
-        </form>
-        <p>No tienes una cuenta? <a href="/registro">Regístrate</a></p>
-        <!-- <div *ngIf="errorStatus" >
+        <div id="card">
+            <div id="card-content">
+                <div id="card-title">
+                    <h2>Iniciar Sesión</h2>
+                    <div class="underline-title"></div>
+                </div>
+                <form [formGroup]="loginForm" (ngSubmit)="onLogin(loginForm.value)" class="form">
+                    <!--  -->
+                    <label for="email" style="padding-top:13px">
+                        <i class="fas fa-envelope"></i> Correo electrónico
+                    </label>
+                    <input type="email" id="email" class="form-content" formControlName="email" />
+                    <div class="form-border"></div>
+
+                    <label for="password" style="padding-top:22px">
+                        <i class="fas fa-lock"></i> Contraseña
+                    </label>
+                    <input type="password" id="password" class="form-content" formControlName="password" />
+                    <div class="form-border"></div>
+                    <button type="submit" class="submit-btn">Iniciar sesión</button>
+                </form>
+
+                <p class="signup">No tienes una cuenta? <a class="signup" href="/registro">Regístrate</a></p>
+                <!-- <div *ngIf="errorStatus" >
             <p>
                 {{errorMsg}}
             </p>
         </div> -->
+            </div>
+        </div>
     </div>
 </div>
+
