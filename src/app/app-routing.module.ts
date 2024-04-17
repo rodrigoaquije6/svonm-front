@@ -5,12 +5,12 @@ import { DashboardGerenteComponent } from './components/dashboard-gerente/dashbo
 import { DashboardTrabajadorComponent } from './components/dashboard-trabajador/dashboard-trabajador.component';
 import { TrabajadorComponent } from './components/trabajador/trabajador.component';
 import { RolComponent } from './components/roles/rol/rol.component';
-import { MonturaComponent } from './components/montura/montura.component';
+import { MonturaComponent } from './components/monturas/montura/montura.component';
 import { LunaComponent } from './components/luna/luna.component';
 import { MarcaComponent } from './components/marcas/marca/marca.component';
 import { CrearRolComponent } from './components/roles/crear-rol/crear-rol.component';
 import { CrearMarcaComponent } from './components/marcas/crear-marca/crear-marca.component';
-import { CrearMarcaComponent } from './components//marcas/crear-marca/crear-marca.component';
+import { CrearMonturaComponent } from './components/monturas/crear-montura/crear-montura.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent},
@@ -22,9 +22,13 @@ const routes: Routes = [
   { path: 'dashboard-gerente/montura', component: MonturaComponent},
   { path: 'dashboard-gerente/luna', component: LunaComponent},
   { path: 'dashboard-gerente/marca', component: MarcaComponent},
-  //--------------------------------------------CREAR--------------------------------------------
   { path: 'dashboard-gerente/rol/crear-rol', component: CrearRolComponent},
+
+  //--------------------------------------------CREAR--------------------------------------------
+  { path: 'dashboard-gerente/montura/crear-montura', component: CrearMonturaComponent},
+  { path: 'dashboard-gerente/montura/editar-montura/:id', component: CrearMonturaComponent},
   { path: 'dashboard-gerente/marca/crear-marca', component: CrearMarcaComponent},
+  
   { path: '**', redirectTo: '', pathMatch: 'full' }
 ];  
 

@@ -16,7 +16,7 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="montura.component.css" rel="stylesheet">
+    <link href="ver-montura.component.css" rel="stylesheet">
 
 </head>
 
@@ -147,7 +147,7 @@
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                    <span class="span-text mx-3">GESTIONAR MONTURA</span>
+                    <span class="span-text mx-3">VER MONTURA</span>
 
 
                     <!-- Topbar Navbar -->
@@ -165,100 +165,65 @@
                 </nav>
                 <!-- End of Topbar -->
 
-                <!-- Table -->
-                <div class="container mt-5">
-                    <div class="row">
-                        <div class="col-lg-11 offser-lg-2">
-                            <button class="btn btn-success float-end">
-                                Agregar
-                                <i class="fa-solid fa-plus"></i>
-                            </button>
-                            <table class="table table-striped mx-5 mt-5 text-center">
-                                <thead>
-                                    <tr>
-                                        <th>Código</th>
-                                        <th>Marca</th>
-                                        <th>Nombre</th>
-                                        <th>Color</th>
-                                        <th>Precio</th>
-                                        <th>Acción</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <p>0AN7237U</p>
-                                        </td>
-                                        <td>
-                                            Arnette
-                                        </td>
-                                        <td>
-                                            Arnette A-Volution
-                                        </td>
-                                        <td>
-                                            Gris
-                                        </td>
-                                        <td>
-                                            335.00
-                                        </td>
-                                        <td>
-                                            <i class="faw fa-solid fa-eye text-primary"></i>
-                                            <i class='faw fa fa-edit text-secondary'></i>
-                                            <i class='faw fa-solid fa-trash text-danger'></i>
-                                        </td>
+                <!-- Content -->
+                <div class="container mt-5 mx-4 col-lg-4">
+                    <form [formGroup]="monturaForm" (ngSubmit)="agregarMontura()" enctype="multipart/form-data">
+                        <div class="mb-3 d-flex align-items-end">
+                            <div style="flex: 1;">
+                                <label class="form-label label-text">Codigo</label>
+                                <input type="text" formControlName="codigo" class="form-control" style="width: 350px;"
+                                    placeholder="Escriba el codigo de la montura...">
+                                <div class="text-danger"
+                                    *ngIf="monturaForm.get('codigo')?.hasError('required') && monturaForm.get('codigo')?.touched">
+                                    <span>El codigo de la montura <strong>es obligatorio</strong></span>
+                                </div>
 
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <p>0AN7241U</p>
-                                        </td>
-                                        <td>
-                                            Arnette
-                                        </td>
-                                        <td>
-                                            Arnette A.T.
-                                        </td>
-                                        <td>
-                                            Gris
-                                        </td>
-                                        <td>
-                                            335.00
-                                        </td>
-                                        <td>
-                                            <i class="faw fa-solid fa-eye text-primary"></i>
-                                            <i class='faw fa fa-edit text-secondary'></i>
-                                            <i class='faw fa-solid fa-trash text-danger'></i>
-                                        </td>
+                                <label class="form-label label-text">Marca</label>
+                                <input type="text" formControlName="marca" class="form-control" style="width: 350px;"
+                                    placeholder="Escriba la marca de la montura...">
+                                <div class="text-danger"
+                                    *ngIf="monturaForm.get('marca')?.hasError('required') && monturaForm.get('marca')?.touched">
+                                    <span>El marca de la montura <strong>es obligatorio</strong></span>
+                                </div>
 
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <p>0OX5076</p>
-                                        </td>
-                                        <td>
-                                            Oakley
-                                        </td>
-                                        <td>
-                                            OakleySway Bar 0.5
-                                        </td>
-                                        <td>
-                                            Negro
-                                        </td>
-                                        <td>
-                                            980.00
-                                        </td>
-                                        <td>
-                                            <i class="faw fa-solid fa-eye text-primary"></i>
-                                            <i class='faw fa fa-edit text-secondary'></i>
-                                            <i class='faw fa-solid fa-trash text-danger'></i>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                                <label class="form-label label-text">Nombre</label>
+                                <input type="text" formControlName="nombre" class="form-control" style="width: 350px;"
+                                    placeholder="Escriba el nombre de la montura...">
+                                <div class="text-danger"
+                                    *ngIf="monturaForm.get('nombre')?.hasError('required') && monturaForm.get('nombre')?.touched">
+                                    <span>El nombre de la montura <strong>es obligatorio</strong></span>
+                                </div>
+
+                                <label class="form-label label-text">Color</label>
+                                <input type="text" formControlName="color" class="form-control" style="width: 350px;"
+                                    placeholder="Escriba el color de la montura...">
+                                <div class="text-danger"
+                                    *ngIf="monturaForm.get('color')?.hasError('required') && monturaForm.get('color')?.touched">
+                                    <span>El color de la montura <strong>es obligatorio</strong></span>
+                                </div>
+
+                                <label class="form-label label-text">Precio</label>
+                                <input type="number" formControlName="precio" class="form-control" style="width: 350px;"
+                                    placeholder="Escriba el precio de la montura...">
+                                <div class="text-danger"
+                                    *ngIf="monturaForm.get('precio')?.hasError('required') && monturaForm.get('precio')?.touched">
+                                    <span>El precio de la montura <strong>es obligatorio</strong></span>
+                                </div>
+
+                                <label class="form-label label-text">Imagen</label>
+                                <input type="file" formControlName="imagen" (change)="onFileSelected($event)"
+                                    accept="image/*" class="form-control" style="width: 350px;">
+
+                            </div>
+                            <button class="btn btn-success float-end" style="margin-left: 10px;">Agregar</button>
                         </div>
-                    </div>
+                        <div class="class mb 3">
+                            <button routerLink="/dashboard-gerente/montura"
+                                class="btn btn-secondary flat-start">Volver</button>
+                        </div>
+                    </form>
                 </div>
-                <!-- End of Table -->
+                <!-- End of Content -->
 
             </div>
             <!-- End of Main Content -->
