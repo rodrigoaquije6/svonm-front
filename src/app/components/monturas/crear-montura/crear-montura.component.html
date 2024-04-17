@@ -16,7 +16,7 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="montura.component.css" rel="stylesheet">
+    <link href="crear-montura.component.css" rel="stylesheet">
 
 </head>
 
@@ -147,7 +147,7 @@
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                    <span class="span-text mx-3">GESTIONAR MONTURA</span>
+                    <span class="span-text mx-3">{{titulo | uppercase}}</span>
 
 
                     <!-- Topbar Navbar -->
@@ -165,54 +165,71 @@
                 </nav>
                 <!-- End of Topbar -->
 
-                <!-- Table -->
-                <div class="container mt-5">
-                    <div class="row">
-                        <div class="col-lg-11 offser-lg-2">
-                            <button class="btn btn-success float-end"routerLink="/dashboard-gerente/montura/crear-montura">
-                                Agregar
-                                <i class="fa-solid fa-plus"></i>
-                            </button>
+                <!-- Content -->
+                <div class="container mt-5 mx-4 col-lg-4">
+                    <form [formGroup]="monturaForm" (ngSubmit)="agregarMontura()" enctype="multipart/form-data">
+                        <div class="mb-3 d-flex align-items-center">
+                            <div style="flex: 1;">
+                                <label class="form-label label-text">Codigo</label>
+                                <input type="text" formControlName="codigo" class="form-control" style="width: 350px;"
+                                    placeholder="Escriba el codigo de la montura...">
+                                <div class="text-danger"
+                                    *ngIf="monturaForm.get('codigo')?.hasError('required') && monturaForm.get('codigo')?.touched">
+                                    <span>El codigo de la montura <strong>es obligatorio</strong></span>
+                                </div>
 
-                            <table *ngIf="listMontura.length > 0" class="table table-striped mx-5 mt-5 text-center">
-                                <thead>
-                                    <tr>
-                                        <th>Codigo</th>
-                                        <th>Marca</th>
-                                        <th>Nombre</th>
-                                        <th>Color</th>
-                                        <th>Precio</th>
-                                        <th>Acción</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="let montura of listMontura">
-                                        <td>
-                                            {{montura.codigo}}
-                                        </td>
-                                        <td>
-                                            {{montura.marca}}
-                                        </td>
-                                        <td>
-                                            {{montura.nombre}}
-                                        </td>
-                                        <td>
-                                            {{montura.color}}
-                                        </td>
-                                        <td>
-                                            {{montura.precio}}
-                                         </td>
-                                        <td>
-                                            <i (click)="eliminarMontura(montura._id)" class='faw fa-solid fa-trash text-danger'></i>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <h5 style="text-align: start; margin-top: 10px;" *ngIf="listMontura.length == 0">No hay monturas para mostrar</h5>
+                                <label class="form-label label-text" style="margin-top: 10px;">Marca</label>
+                                <input type="text" formControlName="marca" class="form-control" style="width: 350px;"
+                                    placeholder="Escriba la marca de la montura...">
+                                <div class="text-danger"
+                                    *ngIf="monturaForm.get('marca')?.hasError('required') && monturaForm.get('marca')?.touched">
+                                    <span>El marca de la montura <strong>es obligatorio</strong></span>
+                                </div>
+
+                                <label class="form-label label-text" style="margin-top: 10px;">Nombre</label>
+                                <input type="text" formControlName="nombre" class="form-control" style="width: 350px;"
+                                    placeholder="Escriba el nombre de la montura...">
+                                <div class="text-danger"
+                                    *ngIf="monturaForm.get('nombre')?.hasError('required') && monturaForm.get('nombre')?.touched">
+                                    <span>El nombre de la montura <strong>es obligatorio</strong></span>
+                                </div>
+
+                                <label class="form-label label-text" style="margin-top: 10px;">Color</label>
+                                <input type="text" formControlName="color" class="form-control" style="width: 350px;"
+                                    placeholder="Escriba el color de la montura...">
+                                <div class="text-danger"
+                                    *ngIf="monturaForm.get('color')?.hasError('required') && monturaForm.get('color')?.touched">
+                                    <span>El color de la montura <strong>es obligatorio</strong></span>
+                                </div>
+
+                                <label class="form-label label-text" style="margin-top: 10px;">Precio</label>
+                                <input type="number" formControlName="precio" class="form-control" style="width: 350px;"
+                                    placeholder="Escriba el precio de la montura...">
+                                <div class="text-danger"
+                                    *ngIf="monturaForm.get('precio')?.hasError('required') && monturaForm.get('precio')?.touched">
+                                    <span>El precio de la montura <strong>es obligatorio</strong></span>
+                                </div>
+
+                                <label class="form-label label-text" style="margin-top: 10px;">Imagen</label>
+                                <input type="text" formControlName="imagen" class="form-control" style="width: 350px;"
+                                    placeholder="Ingrese la URL de la imagen...">
+                            </div>
+                            <!-- Contenedor para la imagen -->
+                            <div class="ml-4 mr-2 " style="margin-left: 50px;">
+                                <!-- Imagen -->
+                                <img *ngIf="monturaForm.get('imagen')?.value" [src]="monturaForm.get('imagen')?.value" class="img-fluid" alt="Imagen de la montura"
+                                style="max-width: 100%;max-height: 100%;">
+                            </div>
                         </div>
-                    </div>
+
+                        <button class="btn btn-success float-end" style="margin-left: 10px;">Agregar</button>
+                        <div class="class mb 3">
+                            <button routerLink="/dashboard-gerente/montura"
+                                class="btn btn-secondary flat-start">Volver</button>
+                        </div>
+                    </form>
                 </div>
-                <!-- End of Table -->
+                <!-- End of Content -->
 
             </div>
             <!-- End of Main Content -->

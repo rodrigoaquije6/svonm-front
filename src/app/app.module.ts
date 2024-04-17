@@ -11,12 +11,13 @@ import { DashboardTrabajadorComponent } from './components/dashboard-trabajador/
 import { LoginComponent } from './components/login/login.component';
 import { TrabajadorComponent } from './components/trabajador/trabajador.component';
 import { RolComponent } from './components/roles/rol/rol.component';
-import { MonturaComponent } from './components/montura/montura.component';
+import { MonturaComponent } from './components/monturas/montura/montura.component';
 import { LunaComponent } from './components/luna/luna.component';
 import { MarcaComponent } from './components/marca/marca.component';
 import { CrearRolComponent } from './components/roles/crear-rol/crear-rol.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { CrearMonturaComponent } from './components/montura/crear-montura/crear-montura.component';
+import { CrearMonturaComponent } from './components/monturas/crear-montura/crear-montura.component';
+import { VerMonturaComponent } from './components/monturas/ver-montura/ver-montura.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { CrearMonturaComponent } from './components/montura/crear-montura/crear-
     MarcaComponent,
     CrearRolComponent,
     CrearMonturaComponent,
+    VerMonturaComponent,
   ],
   imports: [
     BrowserModule,

@@ -5,9 +5,9 @@ export class Montura{
     color: string;
     precio: number;
     codigo: number;
-    imagen?: File;
+    imagen: string;
 
-    constructor(nombre: string, marca: string,  color: string, precio: number, codigo: number, imagen: File) {
+    constructor(nombre: string, marca: string,  color: string, precio: number, codigo: number, imagen: string) {
         this.nombre = nombre
         this.marca = marca
         this.color = color
@@ -15,5 +15,4 @@ export class Montura{
         this.codigo = codigo
         this.imagen = imagen
     }
-
 }

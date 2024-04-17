@@ -5,11 +5,12 @@ import { DashboardGerenteComponent } from './components/dashboard-gerente/dashbo
 import { DashboardTrabajadorComponent } from './components/dashboard-trabajador/dashboard-trabajador.component';
 import { TrabajadorComponent } from './components/trabajador/trabajador.component';
 import { RolComponent } from './components/roles/rol/rol.component';
-import { MonturaComponent } from './components/montura/montura.component';
+import { MonturaComponent } from './components/monturas/montura/montura.component';
 import { LunaComponent } from './components/luna/luna.component';
 import { MarcaComponent } from './components/marca/marca.component';
 import { CrearRolComponent } from './components/roles/crear-rol/crear-rol.component';
-import { CrearMonturaComponent } from './components/montura/crear-montura/crear-montura.component';
+import { CrearMonturaComponent } from './components/monturas/crear-montura/crear-montura.component';
+import { VerMonturaComponent } from './components/monturas/ver-montura/ver-montura.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent},
@@ -25,6 +26,7 @@ const routes: Routes = [
 
   //--------------------------------------------CREAR--------------------------------------------
   { path: 'dashboard-gerente/montura/crear-montura', component: CrearMonturaComponent},
+  { path: 'dashboard-gerente/montura/editar-montura/:id', component: CrearMonturaComponent},
   
   { path: '**', redirectTo: '', pathMatch: 'full' }
 ];

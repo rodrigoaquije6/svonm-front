@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Montura } from 'src/app/models/montura';
 import { MonturaService } from 'src/app/services/montura.service';
@@ -8,12 +8,13 @@ import { HttpClient } from '@angular/common/http';
 
 
 @Component({
-  selector: 'app-crear-montura',
-  templateUrl: './crear-montura.component.html',
-  styleUrls: ['./crear-montura.component.css']
+  selector: 'app-ver-montura',
+  templateUrl: './ver-montura.component.html',
+  styleUrls: ['./ver-montura.component.css']
 })
-export class CrearMonturaComponent implements OnInit {
+export class VerMonturaComponent implements OnInit {
   monturaForm: FormGroup;
+  id: string | null;
   marca: any[] = [];
   url = 'http://localhost:4000/api/crear-marca/' //https://fuzzy-space-bassoon-5wv69qr7jx7cvr6r-4000.app.github.dev/api/tipoProducto/
 
@@ -21,7 +22,7 @@ export class CrearMonturaComponent implements OnInit {
     private toastr: ToastrService,
     private router: Router,
     private _monturaService: MonturaService,
-
+    private aRouter: ActivatedRoute
   ) {
     this.monturaForm = this.fb.group({
       codigo: ['', Validators.required],
@@ -29,8 +30,9 @@ export class CrearMonturaComponent implements OnInit {
       nombre: ['', Validators.required],
       color: ['', Validators.required],
       precio: ['', Validators.required],
-      imagen: [''],
+      imagen: ['', Validators.required],
     })
+    this.id = this.aRouter.snapshot.paramMap.get('id')
   }
 
   ngOnInit(): void {
@@ -39,9 +41,6 @@ export class CrearMonturaComponent implements OnInit {
 
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
-    this.monturaForm.patchValue({
-      imagen: file
-    });
   }
 
   agregarMontura() {
@@ -64,6 +63,21 @@ export class CrearMonturaComponent implements OnInit {
       this.monturaForm.reset();
     })
 
+  }
+
+  obtenerMontura() {
+    if (this.id !== null) {
+      this._monturaService.obtenerMontura(this.id).subscribe(data => {
+        this.monturaForm.setValue({
+          codigo: data.codigo,
+          marca: data.marca,
+          nombre: data.nombre,
+          color: data.color,
+          precio: data.precio,
+          imagen: data.imagen
+        })
+      })
+    }
   }
 
 }
