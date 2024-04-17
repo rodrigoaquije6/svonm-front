@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Rol } from 'src/app/models/rol';
 import { RolService } from 'src/app/services/rol.service';
@@ -13,16 +13,23 @@ import { RolService } from 'src/app/services/rol.service';
 export class CrearRolComponent implements OnInit {
   rolForm: FormGroup;
 
+  titulo = 'Crear Rol';
+
+  id: string | null;
+
   constructor(private fb: FormBuilder,
     private toastr: ToastrService,
     private router: Router,
+    private aRouter: ActivatedRoute,
     private _rolService: RolService) {
     this.rolForm = this.fb.group({
       nombre: ['', Validators.required],
     })
+    this.id = this.aRouter.snapshot.paramMap.get('id')
   }
 
   ngOnInit(): void {
+    this.esEditar();
   }
 
   agregarRol() {
@@ -31,15 +38,38 @@ export class CrearRolComponent implements OnInit {
       nombre: this.rolForm.get('nombre')?.value
     }
 
-    console.log(ROL);
-    this._rolService.guardarRol(ROL).subscribe(data => {
-      this.toastr.success('El rol fue registrado con éxito!', 'Rol Registrado!');
-      this.router.navigate(['/dashboard-gerente/rol']);
-    }, error =>{
-      console.log(error);
-      this.rolForm.reset();
-    })
+    if (this.id !== null) {
+      //editamos rol
+      this._rolService.editarRol(this.id, ROL).subscribe(data => {
+        this.toastr.info('El rol fue actualizado con éxito!', 'Rol Actualizado!')
+        this.router.navigate(['/dashboard-gerente/rol']);
+      }, error => {
+        console.log(error);
+        this.rolForm.reset();
+      })
 
+    } else {
+      //agregamos rol
+      console.log(ROL);
+      this._rolService.guardarRol(ROL).subscribe(data => {
+        this.toastr.success('El rol fue registrado con éxito!', 'Rol Registrado!');
+        this.router.navigate(['/dashboard-gerente/rol']);
+      }, error => {
+        console.log(error);
+        this.rolForm.reset();
+      })
+    }
+  }
+
+  esEditar() {
+    if (this.id !== null) {
+      this.titulo = 'Editar producto';
+      this._rolService.obtenerRol(this.id).subscribe(data => {
+        this.rolForm.setValue({
+          nombre: data.nombre,
+        })
+      })
+    }
   }
 
 }

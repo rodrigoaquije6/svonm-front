@@ -31,7 +31,7 @@ export class RolComponent implements OnInit{
 
   eliminarRol(id: any){
     this._rolService.eliminarRol(id).subscribe(data =>{
-      this.toastr.error('El rol fue eliminado con éxito!','Producto Eliminado!')
+      this.toastr.info('El rol fue eliminado con éxito!','Rol Eliminado!')
       this.obtenerRoles();
     },error =>{
       console.log(error);

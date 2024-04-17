@@ -19,8 +19,6 @@ export class CrearMonturaComponent implements OnInit {
 
   id: string | null;
 
-  imagenSeleccionada: string = '';
-
   marca: any[] = [];
   url = 'http://localhost:4000/api/crear-marca/' //https://fuzzy-space-bassoon-5wv69qr7jx7cvr6r-4000.app.github.dev/api/tipoProducto/
 
@@ -29,7 +27,7 @@ export class CrearMonturaComponent implements OnInit {
     private router: Router,
     private _monturaService: MonturaService,
     private aRouter: ActivatedRoute,
-    private http:HttpClient
+    private http: HttpClient
   ) {
     this.monturaForm = this.fb.group({
       codigo: ['', Validators.required],
@@ -67,16 +65,29 @@ export class CrearMonturaComponent implements OnInit {
       color: this.monturaForm.get('color')?.value,
       precio: this.monturaForm.get('precio')?.value,
       imagen: this.monturaForm.get('imagen')?.value,
-    };
+    }
 
-    console.log(MONTURA);
-    this._monturaService.guardarMontura(MONTURA).subscribe(data => {
-      this.toastr.success('La montura fue registrado con éxito!', 'Montura Registrado!');
-      this.router.navigate(['/dashboard-gerente/montura']);
-    }, error => {
-      console.log(error);
-      this.monturaForm.reset();
-    })
+    if (this.id !== null) {
+      //editamos rol
+      this._monturaService.editarMontura(this.id, MONTURA).subscribe(data => {
+        this.toastr.info('La montura fue actualizada con éxito!', 'Montura Actualizada!')
+        this.router.navigate(['/dashboard-gerente/montura']);
+      }, error => {
+        console.log(error);
+        this.monturaForm.reset();
+      })
+
+    } else {
+
+      console.log(MONTURA);
+      this._monturaService.guardarMontura(MONTURA).subscribe(data => {
+        this.toastr.success('La montura fue registrada con éxito!', 'Montura Registrada!');
+        this.router.navigate(['/dashboard-gerente/montura']);
+      }, error => {
+        console.log(error);
+        this.monturaForm.reset();
+      })
+    }
   }
 
   esEditar() {

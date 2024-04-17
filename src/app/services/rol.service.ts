@@ -15,7 +15,11 @@ export class RolService {
     return this.http.get(this.url);
   }
 
-  eliminarRol(id: string): Observable<any>{
+  obtenerRol(id: string): Observable<any> {
+    return this.http.get(this.url + id);
+  }
+
+  eliminarRol(id: string): Observable<any> {
     return this.http.delete(this.url + id);
 
   }
@@ -23,4 +27,9 @@ export class RolService {
   guardarRol(rol: Rol): Observable<any> {
     return this.http.post(this.url, rol);
   }
+
+  editarRol(id: string, rol: Rol): Observable<any> {
+    return this.http.put(this.url + id, rol);
+  }
+  
 }

@@ -26,4 +26,9 @@ export class MonturaService {
   guardarMontura(montura: Montura): Observable<any> {
     return this.http.post(this.url, montura);
   }
+
+  editarMontura(id: string, montura: Montura): Observable<any> {
+    return this.http.put(this.url + id, montura);
+  }
+
 }

@@ -16,6 +16,10 @@ export class TrabajadorService {
     return this.http.get(this.url);
   }
 
+  obtenerTrabajador(id: string): Observable<any> {
+    return this.http.get(this.url + id);
+  }
+
   eliminarTrabajador(id: string): Observable<any>{
     return this.http.delete(this.url + id);
 
@@ -24,4 +28,9 @@ export class TrabajadorService {
   guardarTrabajador(trabajador: Trabajador): Observable<any> {
     return this.http.post(this.url, trabajador);
   }
+
+  editarTrabajador(id: string, trabajador: Trabajador): Observable<any> {
+    return this.http.put(this.url + id, trabajador);
+  }
+
 }

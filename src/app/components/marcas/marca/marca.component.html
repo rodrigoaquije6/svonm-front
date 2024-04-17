@@ -181,48 +181,14 @@
                                         <th>Acción</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <!--<tr>
-                                        <td>
-                                            <p>1</p>
-                                        </td>
-                                        <td>
-                                            Ray-Ban
-                                        </td>
-                                        <td>
-                                            <i class='faw fa-solid fa-trash text-danger'></i>
-                                        </td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <p>2</p>
-                                        </td>
-                                        <td>
-                                            Oaklaey
-                                        </td>
-                                        <td>
-                                            <i class='faw fa-solid fa-trash text-danger'></i>
-                                        </td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <p>3</p>
-                                        </td>
-                                        <td>
-                                            Arnette
-                                        </td>
-                                        <td>
-                                            <i class='faw fa-solid fa-trash text-danger'></i>
-                                        </td>
-                                    </tr>!-->
+                                <tbody>                    
                                     <tr *ngFor="let marca of listMarcas">
                                         
                                         <td>
                                             {{marca.nombre}}
                                         </td>
                                         <td>
+                                            <i [routerLink]="['/dashboard-gerente/marca/editar-marca/', marca._id]" class="faw fa fa-edit text-primary"></i>
                                             <i (click)= "eliminarMarca(marca._id)"class='faw fa-solid fa-trash text-danger'></i>
                                         </td>
                                     </tr>

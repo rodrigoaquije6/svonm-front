@@ -186,6 +186,7 @@
                                             {{rol.nombre}}
                                         </td>
                                         <td>
+                                            <i [routerLink]="['/dashboard-gerente/rol/editar-rol/', rol._id]" class="faw fa fa-edit text-primary"></i>
                                             <i (click)="eliminarRol(rol._id)" class='faw fa-solid fa-trash text-danger'></i>
                                         </td>
                                     </tr>                             

@@ -1,6 +1,6 @@
-import { Component,OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Marca } from 'src/app/models/marca';
 import { MarcaService } from 'src/app/services/marca.service';
@@ -10,43 +10,71 @@ import { MarcaService } from 'src/app/services/marca.service';
   templateUrl: './crear-marca.component.html',
   styleUrls: ['./crear-marca.component.css']
 })
-export class CrearMarcaComponent implements OnInit{
+export class CrearMarcaComponent implements OnInit {
 
   crearmarcaForm: FormGroup;
 
+  titulo = 'Crear Marca';
 
-  constructor(private fb:FormBuilder, private router: Router, private toastr: ToastrService, private _marcaService : MarcaService){
+  id: string | null;
+
+  constructor(private fb: FormBuilder,
+    private router: Router,
+    private toastr: ToastrService,
+    private _marcaService: MarcaService,
+    private aRouter: ActivatedRoute) {
     this.crearmarcaForm = this.fb.group({
 
-      nombre:['',Validators.required]
+      nombre: ['', Validators.required]
     })
+    this.id = this.aRouter.snapshot.paramMap.get('id')
   }
 
-ngOnInit(): void {
-}
-
-agregarMarca(){
-
-
-  const CODIGO: Marca = {
-
-    nombre: this.crearmarcaForm.get('nombre')?.value
-
+  ngOnInit(): void {
+    this.esEditar();
   }
-  
-  console.log(CODIGO);
-  this._marcaService.guardarMarca(CODIGO).subscribe(data => {
 
-    this.toastr.success('La marca fue registrada con éxito!', 'Marca registrada!')
-    this.router.navigate(['/dashboard-gerente/marca'])
-  },error =>{
-    console.log(error);
-    this.crearmarcaForm.reset();
+  agregarMarca() {
+
+
+    const MARCA: Marca = {
+
+      nombre: this.crearmarcaForm.get('nombre')?.value
+
+    }
+
+    if (this.id !== null) {
+      //editamos rol
+      this._marcaService.editarMarca(this.id, MARCA).subscribe(data => {
+        this.toastr.info('La marca fue actualizada con éxito!', 'Marca Actualizada!')
+        this.router.navigate(['/dashboard-gerente/marca']);
+      }, error => {
+        console.log(error);
+        this.crearmarcaForm.reset();
+      })
+
+    } else {
+      console.log(MARCA);
+      this._marcaService.guardarMarca(MARCA).subscribe(data => {
+
+        this.toastr.success('La marca fue registrada con éxito!', 'Marca registrada!')
+        this.router.navigate(['/dashboard-gerente/marca'])
+      }, error => {
+        console.log(error);
+        this.crearmarcaForm.reset();
+      })
+    }
   }
-)
 
-
-
-}
+  esEditar() {
+    if (this.id !== null) {
+      this.titulo = 'Editar Marca';
+      this._marcaService.obtenerMarca(this.id).subscribe(data => {
+        this.crearmarcaForm.setValue({
+          nombre: data.nombre
+        })
+      })
+    }
+  }
 
 }

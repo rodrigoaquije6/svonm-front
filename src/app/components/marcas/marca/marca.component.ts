@@ -33,7 +33,7 @@ export class MarcaComponent implements OnInit {
   eliminarMarca(id: any){
 
     this._crearmarcaService.eliminarMarca(id).subscribe(data => {
-      this.toastr.error('La marca fue eliminada con éxito','Marca eliminada');
+      this.toastr.info('La marca fue eliminada con éxito!','Marca eliminada!');
       this.obtenerMarcas();
     },error =>{
       console.log(error);

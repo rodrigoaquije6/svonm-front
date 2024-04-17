@@ -28,7 +28,7 @@ export class TrabajadorComponent {
 
   eliminarTrabajador(id: any){
     this._trabajadorService.eliminarTrabajador(id).subscribe(data =>{
-      this.toastr.error('El trabajador fue eliminado con éxito!','Producto Eliminado!')
+      this.toastr.info('El trabajador fue eliminado con éxito!','Trabajador Eliminado!')
       this.obtenerTrabajador();
     },error =>{
       console.log(error);

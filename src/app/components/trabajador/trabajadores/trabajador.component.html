@@ -199,6 +199,7 @@
                                             {{trabajador.estado}}                              
                                         </td>
                                         <td>
+                                            <i [routerLink]="['/dashboard-gerente/trabajador/editar-trabajador/', trabajador._id]" class="faw fa fa-edit text-primary"></i>
                                             <i (click)="eliminarTrabajador(trabajador._id)" class='faw fa-solid fa-trash text-danger'></i>
                                         </td>
                                     </tr>

@@ -31,7 +31,7 @@ export class MonturaComponent implements OnInit{
 
   eliminarMontura(id: any){
     this._monturaService.eliminarMontura(id).subscribe(data =>{
-      this.toastr.error('La montura fue eliminado con éxito!','Producto Eliminado!')
+      this.toastr.info('La montura fue eliminada con éxito!','Montura Eliminada!')
       this.obtenerMonturas();
     },error =>{
       console.log(error);

@@ -23,13 +23,19 @@ const routes: Routes = [
   { path: 'dashboard-gerente/montura', component: MonturaComponent},
   { path: 'dashboard-gerente/luna', component: LunaComponent},
   { path: 'dashboard-gerente/marca', component: MarcaComponent},
-  { path: 'dashboard-gerente/rol/crear-rol', component: CrearRolComponent},
 
   //--------------------------------------------CREAR--------------------------------------------
+  { path: 'dashboard-gerente/rol/crear-rol', component: CrearRolComponent},
+  { path: 'dashboard-gerente/rol/editar-rol/:id', component: CrearRolComponent},
+
   { path: 'dashboard-gerente/montura/crear-montura', component: CrearMonturaComponent},
   { path: 'dashboard-gerente/montura/editar-montura/:id', component: CrearMonturaComponent},
+
   { path: 'dashboard-gerente/marca/crear-marca', component: CrearMarcaComponent},
+  { path: 'dashboard-gerente/marca/editar-marca/:id', component: CrearMarcaComponent},
+
   { path: 'dashboard-gerente/trabajador/crear-trabajador', component: CrearTrabajadorComponent},
+  { path: 'dashboard-gerente/trabajador/editar-trabajador/:id', component: CrearTrabajadorComponent},
   
   { path: '**', redirectTo: '', pathMatch: 'full' }
 ];  
