@@ -28,7 +28,8 @@ export class CrearMonturaComponent implements OnInit {
     private toastr: ToastrService,
     private router: Router,
     private _monturaService: MonturaService,
-    private aRouter: ActivatedRoute
+    private aRouter: ActivatedRoute,
+    private http:HttpClient
   ) {
     this.monturaForm = this.fb.group({
       codigo: ['', Validators.required],
@@ -42,7 +43,19 @@ export class CrearMonturaComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.obtenerMarca();
     this.esEditar();
+  }
+
+  obtenerMarca() {
+    this.http.get<any[]>(this.url).subscribe(
+      (marcas) => {
+        this.marca = marcas;
+      },
+      (error) => {
+        console.error('Error al obtener los tipos de productos:', error);
+      }
+    );
   }
 
   agregarMontura() {

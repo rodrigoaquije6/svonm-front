@@ -16,7 +16,6 @@ import { MarcaComponent } from './components/marcas/marca/marca.component';
 import { CrearRolComponent } from './components/roles/crear-rol/crear-rol.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CrearMonturaComponent } from './components/monturas/crear-montura/crear-montura.component';
-import { VerMonturaComponent } from './components/monturas/ver-montura/ver-montura.component';
 import { CrearMarcaComponent } from './components/marcas/crear-marca/crear-marca.component';
 import { IngresarMonturaComponent } from './components/ingresar-montura/ingresar-montura.component';
 
@@ -34,7 +33,6 @@ import { IngresarMonturaComponent } from './components/ingresar-montura/ingresar
     MarcaComponent,
     CrearRolComponent,
     CrearMonturaComponent,
-    VerMonturaComponent,
     CrearMarcaComponent,
     IngresarMonturaComponent,
   ],
