@@ -8,12 +8,13 @@ import { AppComponent } from './app.component';
 import { DashboardGerenteComponent } from './components/dashboard-gerente/dashboard-gerente.component';
 import { DashboardTrabajadorComponent } from './components/dashboard-trabajador/dashboard-trabajador.component';
 import { LoginComponent } from './components/login/login.component';
-import { TrabajadorComponent } from './components/trabajador/trabajador.component';
+import { TrabajadorComponent } from './components/trabajador/trabajadores/trabajador.component';
 import { RolComponent } from './components/roles/rol/rol.component';
 import { MonturaComponent } from './components/monturas/montura/montura.component';
 import { LunaComponent } from './components/luna/luna.component';
 import { MarcaComponent } from './components/marcas/marca/marca.component';
 import { CrearRolComponent } from './components/roles/crear-rol/crear-rol.component';
+import { CrearTrabajadorComponent } from './components/trabajador/crear-trabajador/crear-trabajador.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CrearMonturaComponent } from './components/monturas/crear-montura/crear-montura.component';
 import { CrearMarcaComponent } from './components/marcas/crear-marca/crear-marca.component';
@@ -32,6 +33,7 @@ import { IngresarMonturaComponent } from './components/ingresar-montura/ingresar
     LunaComponent,
     MarcaComponent,
     CrearRolComponent,
+    CrearTrabajadorComponent,
     CrearMonturaComponent,
     CrearMarcaComponent,
     IngresarMonturaComponent,

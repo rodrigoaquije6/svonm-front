@@ -169,11 +169,11 @@
                 <div class="container mt-5">
                     <div class="row">
                         <div class="col-lg-11 offser-lg-2">
-                            <button class="btn btn-success float-end">
+                            <button class="btn btn-success float-end" routerLink="/dashboard-gerente/trabajador/crear-trabajador">
                                 Agregar
                                 <i class="fa-solid fa-plus"></i>
                             </button>
-                            <table class="table table-striped mx-5 mt-5 text-center">
+                            <table *ngIf="listTrabajador.length > 0" class="table table-striped mx-5 mt-5 text-center">
                                 <thead>
                                     <tr>
                                         <th>DNI</th>
@@ -184,67 +184,27 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>
-                                            <p>72635212</p>
-                                        </td>
-                                        <td>
-                                            Rodrigo Aquije
-                                        </td>
-                                        <td>
-                                            Trabajador
-                                        </td>
-                                        <td>
-                                            Activo
-                                        </td>
-                                        <td>
-                                            <i class="faw fa-solid fa-eye text-primary"></i>
-                                            <i class='faw fa fa-edit text-secondary'></i>
-                                            <i class='faw fa-solid fa-trash text-danger'></i>
-                                        </td>
 
-                                    </tr>
-                                    <tr>
+                                    <tr *ngFor="let trabajador of listTrabajador">                                    
                                         <td>
-                                            <p>10263347</p>
+                                            {{trabajador.dni}}
                                         </td>
                                         <td>
-                                            Kevin Arroyo
+                                            {{trabajador.nombre}}                                          
                                         </td>
                                         <td>
-                                            Gerente
+                                            {{trabajador.rol}}                                     
                                         </td>
                                         <td>
-                                            Activo
+                                            {{trabajador.estado}}                              
                                         </td>
                                         <td>
-                                            <i class="faw fa-solid fa-eye text-primary"></i>
-                                            <i class='faw fa fa-edit text-secondary'></i>
-                                            <i class='faw fa-solid fa-trash text-danger'></i>
-                                        </td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <p>72654562</p>
-                                        </td>
-                                        <td>
-                                            Oscar Castillo
-                                        </td>
-                                        <td>
-                                            Trabajador
-                                        </td>
-                                        <td>
-                                            Activo
-                                        </td>
-                                        <td>
-                                            <i class="faw fa-solid fa-eye text-primary"></i>
-                                            <i class='faw fa fa-edit text-secondary'></i>
-                                            <i class='faw fa-solid fa-trash text-danger'></i>
+                                            <i (click)="eliminarTrabajador(trabajador._id)" class='faw fa-solid fa-trash text-danger'></i>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
+                            <h5 style="text-align: start; margin-top: 10px;" *ngIf="listTrabajador.length == 0">No hay trabajadores para mostrar</h5>
                         </div>
                     </div>
                 </div>
