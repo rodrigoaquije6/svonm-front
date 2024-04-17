@@ -20,20 +20,28 @@ export class CrearMonturaComponent implements OnInit {
   constructor(private fb: FormBuilder,
     private toastr: ToastrService,
     private router: Router,
-    private _monturaService: MonturaService, 
-  
-){ 
-  this.monturaForm = this.fb.group({
+    private _monturaService: MonturaService,
+
+  ) {
+    this.monturaForm = this.fb.group({
       codigo: ['', Validators.required],
       marca: ['', Validators.required],
       nombre: ['', Validators.required],
       color: ['', Validators.required],
       precio: ['', Validators.required],
+      imagen: [''],
     })
   }
 
   ngOnInit(): void {
- 
+
+  }
+
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+    this.monturaForm.patchValue({
+      imagen: file
+    });
   }
 
   agregarMontura() {
@@ -44,14 +52,14 @@ export class CrearMonturaComponent implements OnInit {
       nombre: this.monturaForm.get('nombre')?.value,
       color: this.monturaForm.get('color')?.value,
       precio: this.monturaForm.get('precio')?.value,
-    
+      imagen: this.monturaForm.get('imagen')?.value,
     };
 
     console.log(MONTURA);
     this._monturaService.guardarMontura(MONTURA).subscribe(data => {
       this.toastr.success('La montura fue registrado con éxito!', 'Montura Registrado!');
       this.router.navigate(['/dashboard-gerente/montura']);
-    }, error =>{
+    }, error => {
       console.log(error);
       this.monturaForm.reset();
     })

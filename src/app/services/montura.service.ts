@@ -7,7 +7,7 @@ import { Montura } from '../models/montura';
   providedIn: 'root'
 })
 export class MonturaService {
-  url = 'http://localhost:4000/api/montura/'
+  url = 'https://shiny-space-rotary-phone-5wv69qr7jrxf6r4-4000.app.github.dev/api/montura/' // http://localhost:4000/api/montura/
 
   constructor(private http: HttpClient) { }
 
