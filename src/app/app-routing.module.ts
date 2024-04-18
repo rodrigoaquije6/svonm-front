@@ -6,12 +6,13 @@ import { DashboardTrabajadorComponent } from './components/dashboard-trabajador/
 import { TrabajadorComponent } from './components/trabajador/trabajadores/trabajador.component';
 import { RolComponent } from './components/roles/rol/rol.component';
 import { MonturaComponent } from './components/monturas/montura/montura.component';
-import { LunaComponent } from './components/luna/luna.component';
+import { LunaComponent } from './components/lunas/luna/luna.component';
 import { MarcaComponent } from './components/marcas/marca/marca.component';
 import { CrearRolComponent } from './components/roles/crear-rol/crear-rol.component';
 import { CrearTrabajadorComponent } from './components/trabajador/crear-trabajador/crear-trabajador.component';
 import { CrearMarcaComponent } from './components/marcas/crear-marca/crear-marca.component';
 import { CrearMonturaComponent } from './components/monturas/crear-montura/crear-montura.component';
+import { CrearLunaComponent } from './components/lunas/crear-luna/crear-luna.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent},
@@ -36,6 +37,9 @@ const routes: Routes = [
 
   { path: 'dashboard-gerente/trabajador/crear-trabajador', component: CrearTrabajadorComponent},
   { path: 'dashboard-gerente/trabajador/editar-trabajador/:id', component: CrearTrabajadorComponent},
+
+  { path: 'dashboard-gerente/luna/crear-luna', component: CrearLunaComponent},
+  { path: 'dashboard-gerente/luna/editar-luna/:id', component: CrearLunaComponent},
   
   { path: '**', redirectTo: '', pathMatch: 'full' }
 ];  

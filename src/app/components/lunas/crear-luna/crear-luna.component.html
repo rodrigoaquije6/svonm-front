@@ -16,7 +16,7 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="luna.component.css" rel="stylesheet">
+    <link href="crear-luna.component.css" rel="stylesheet">
 
 </head>
 
@@ -147,7 +147,7 @@
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                    <span class="span-text mx-3">GESTIONAR LUNA</span>
+                    <span class="span-text mx-3">{{titulo | uppercase}}</span>
 
 
                     <!-- Topbar Navbar -->
@@ -165,74 +165,36 @@
                 </nav>
                 <!-- End of Topbar -->
 
-                <!-- Table -->
-                <div class="container mt-5">
-                    <div class="row">
-                        <div class="col-lg-11 offser-lg-2">
-                            <button class="btn btn-success float-end">
-                                Agregar
-                                <i class="fa-solid fa-plus"></i>
-                            </button>
-                            <table class="table table-striped mx-5 mt-5 text-center">
-                                <thead>
-                                    <tr>
-                                        <th>Código</th>
-                                        <th>Material</th>
-                                        <th>Precio</th>
-                                        <th>Acción</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <p>1</p>
-                                        </td>
-                                        <td>
-                                            Policarbonato
-                                        </td>
-                                        <td>
-                                            60.00
-                                        </td>
-                                        <td>
-                                            <i class='fa-solid fa-trash text-danger'></i>
-                                        </td>
+                <!-- Content -->
+                <div class="container mt-5 mx-4 col-lg-4">
+                    <form [formGroup]="lunaForm" (ngSubmit)="agregarLuna()">
+                        <div class="mb-3 d-flex align-items-end">
+                            <div style="flex: 1;">
+                                <label class="form-label label-text">Material</label>
+                                <input type="text" formControlName="material" class="form-control" style="width: 350px;"
+                                    placeholder="Escriba el material de la luna..">
+                                <div class="text-danger"
+                                    *ngIf="lunaForm.get('material')?.hasError('required') && lunaForm.get('material')?.touched">
+                                    <span>El material de la luna <strong>es obligatorio</strong></span>
+                                </div>
 
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <p>2</p>
-                                        </td>
-                                        <td>
-                                            Resina
-                                        </td>
-                                        <td>
-                                            70.00
-                                        </td>
-                                        <td>
-                                            <i class='fa-solid fa-trash text-danger'></i>
-                                        </td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <p>3</p>
-                                        </td>
-                                        <td>
-                                            Cristal
-                                        </td>
-                                        <td>
-                                            80.00
-                                        </td>
-                                        <td>
-                                            <i class='fa-solid fa-trash text-danger'></i>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                                <label class="form-label label-text" style="margin-top: 10px;">Precio</label>
+                                <input type="number" formControlName="precio" class="form-control" style="width: 350px;"
+                                    placeholder="Escriba el precio de la luna..">
+                                <div class="text-danger"
+                                    *ngIf="lunaForm.get('precio')?.hasError('required') && lunaForm.get('precio')?.touched">
+                                    <span>El precio de la luna <strong>es obligatorio</strong></span>
+                                </div>
+                            </div>
+                            <button class="btn btn-success float-end" style="margin-left: 10px;">Aceptar</button>
                         </div>
-                    </div>
+                        <div class="class mb 3">
+                            <button routerLink="/dashboard-gerente/luna"
+                                class="btn btn-secondary flat-start">Volver</button>
+                        </div>
+                    </form>
                 </div>
-                <!-- End of Table -->
+                <!-- End of Content -->
 
             </div>
             <!-- End of Main Content -->
@@ -269,5 +231,4 @@
     <!-- Page level custom scripts -->
     <script src="js/demo/chart-area-demo.js"></script>
     <script src="js/demo/chart-pie-demo.js"></script>
-
 </body>

@@ -11,7 +11,7 @@ import { LoginComponent } from './components/login/login.component';
 import { TrabajadorComponent } from './components/trabajador/trabajadores/trabajador.component';
 import { RolComponent } from './components/roles/rol/rol.component';
 import { MonturaComponent } from './components/monturas/montura/montura.component';
-import { LunaComponent } from './components/luna/luna.component';
+import { LunaComponent } from './components/lunas/luna/luna.component';
 import { MarcaComponent } from './components/marcas/marca/marca.component';
 import { CrearRolComponent } from './components/roles/crear-rol/crear-rol.component';
 import { CrearTrabajadorComponent } from './components/trabajador/crear-trabajador/crear-trabajador.component';
@@ -19,6 +19,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TokenInterceptorService } from './interceptors/token-interceptor.service.service';
 import { CrearMonturaComponent } from './components/monturas/crear-montura/crear-montura.component';
 import { CrearMarcaComponent } from './components/marcas/crear-marca/crear-marca.component';
+import { CrearLunaComponent } from './components/lunas/crear-luna/crear-luna.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { CrearMarcaComponent } from './components/marcas/crear-marca/crear-marca
     CrearTrabajadorComponent,
     CrearMonturaComponent,
     CrearMarcaComponent,
+    CrearLunaComponent,
   ],
   imports: [
     BrowserModule,
