@@ -21,7 +21,7 @@ export class CrearMonturaComponent implements OnInit {
   id: string | null;
 
   marca: any[] = [];
-  url = 'http://localhost:4000/api/crear-marca/' //https://fuzzy-space-bassoon-5wv69qr7jx7cvr6r-4000.app.github.dev/api/tipoProducto/
+  url = 'https://shiny-tribble-rqj5r9gj7xwf5x55-4000.app.github.dev/api/crear-marca/' //http://localhost:4000/api/crear-marca/
 
   constructor(private fb: FormBuilder,
     private toastr: ToastrService,
