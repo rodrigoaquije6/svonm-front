@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-import { HttpClientModule } from '@angular/common/http'
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardGerenteComponent } from './components/dashboard-gerente/dashboard-gerente.component';
@@ -15,11 +15,10 @@ import { LunaComponent } from './components/luna/luna.component';
 import { MarcaComponent } from './components/marcas/marca/marca.component';
 import { CrearRolComponent } from './components/roles/crear-rol/crear-rol.component';
 import { CrearTrabajadorComponent } from './components/trabajador/crear-trabajador/crear-trabajador.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TokenInterceptorService } from './interceptors/token-interceptor.service.service';
 import { CrearMonturaComponent } from './components/monturas/crear-montura/crear-montura.component';
 import { CrearMarcaComponent } from './components/marcas/crear-marca/crear-marca.component';
-import { IngresarMonturaComponent } from './components/ingresar-montura/ingresar-montura.component';
-
 
 @NgModule({
   declarations: [
@@ -36,17 +35,17 @@ import { IngresarMonturaComponent } from './components/ingresar-montura/ingresar
     CrearTrabajadorComponent,
     CrearMonturaComponent,
     CrearMarcaComponent,
-    IngresarMonturaComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    FormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     HttpClientModule
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

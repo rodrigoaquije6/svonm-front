@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { Trabajador } from 'src/app/models/trabajador';
 import { ToastrService } from 'ngx-toastr';
 import { TrabajadorService } from 'src/app/services/trabajador.service';
+import { Router } from '@angular/router';//este import no debería ir si usaramos un componente header, explicación más abajo
+import { LoginService } from 'src/app/services/login.service';//este import no debería ir si usaramos un componente header, explicación más abajo
+
 @Component({
   selector: 'app-trabajador',
   templateUrl: './trabajador.component.html',
@@ -11,7 +14,9 @@ export class TrabajadorComponent {
   listTrabajador: Trabajador[] = [];
 
   constructor(private _trabajadorService: TrabajadorService,
-              private toastr: ToastrService,) { }
+              private toastr: ToastrService,
+              private api: LoginService, 
+              private router: Router) { }
 
   ngOnInit(): void { 
     this.obtenerTrabajador();
@@ -34,4 +39,13 @@ export class TrabajadorComponent {
       console.log(error);
     })
   }
+
+  isLoggedIn: boolean = this.api.isLogged();
+
+  onClickLogout(){
+    localStorage.removeItem('token');
+    localStorage.removeItem('rol');
+    this.router.navigate(['login']);
+  }
+
 }
