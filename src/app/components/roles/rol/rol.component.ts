@@ -10,13 +10,13 @@ declare var bootstrap: any; // Declarar la variable bootstrap
   templateUrl: './rol.component.html',
   styleUrls: ['./rol.component.css']
 })
-export class RolComponent implements OnInit{
+export class RolComponent implements OnInit {
   listRoles: Rol[] = [];
 
   constructor(private _rolService: RolService,
-              private toastr: ToastrService,) { }
+    private toastr: ToastrService,) { }
 
-  ngOnInit(): void { 
+  ngOnInit(): void {
     this.obtenerRoles();
   }
 
@@ -24,16 +24,16 @@ export class RolComponent implements OnInit{
     this._rolService.getRoles().subscribe(data => {
       console.log(data);
       this.listRoles = data;
-    },error => {
+    }, error => {
       console.log(error);
     })
   }
 
-  eliminarRol(id: any){
-    this._rolService.eliminarRol(id).subscribe(data =>{
-      this.toastr.info('El rol fue eliminado con éxito!','Rol Eliminado!')
+  eliminarRol(id: any) {
+    this._rolService.eliminarRol(id).subscribe(data => {
+      this.toastr.info('El rol fue eliminado con éxito!', 'Rol Eliminado!')
       this.obtenerRoles();
-    },error =>{
+    }, error => {
       console.log(error);
     })
   }

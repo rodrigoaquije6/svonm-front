@@ -181,7 +181,8 @@
                                 <label class="form-label label-text" style="margin-top: 10px;">Marca</label>
                                 <select formControlName="marca" class="form-select" style="width: 350px;">
                                     <option disabled selected>Selecciona una marca...</option>
-                                    <option *ngFor="let marcas of marca" [value]="marcas.nombre">{{ marcas.nombre }}</option>
+                                    <option *ngFor="let marcas of marca" [value]="marcas.nombre">{{ marcas.nombre }}
+                                    </option>
                                 </select>
 
                                 <label class="form-label label-text" style="margin-top: 10px;">Nombre</label>
@@ -200,6 +201,24 @@
                                     <span>El color de la montura <strong>es obligatorio</strong></span>
                                 </div>
 
+                                <label class="form-label label-text" style="margin-top: 10px;">Género</label>
+                                <div class="d-flex">
+                                    <div class="form-check me-3">
+                                        <input class="form-check-input" type="radio" formControlName="género"
+                                            id="hombre" value="Hombre">
+                                        <label class="radio-text form-check-label" for="hombre">
+                                            Hombre
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" formControlName="género" id="mujer"
+                                            value="Mujer">
+                                        <label class="radio-text form-check-label" for="mujer">
+                                            Mujer
+                                        </label>
+                                    </div>
+                                </div>
+
                                 <label class="form-label label-text" style="margin-top: 10px;">Precio</label>
                                 <input type="number" formControlName="precio" class="form-control" style="width: 350px;"
                                     placeholder="Escriba el precio de la montura...">
@@ -208,15 +227,24 @@
                                     <span>El precio de la montura <strong>es obligatorio</strong></span>
                                 </div>
 
+                                <label class="form-label label-text" style="margin-top: 10px;">Forma</label>
+                                <input type="text" formControlName="forma" class="form-control" style="width: 350px;"
+                                    placeholder="Escriba el color de la montura...">
+                                <div class="text-danger"
+                                    *ngIf="monturaForm.get('forma')?.hasError('required') && monturaForm.get('forma')?.touched">
+                                    <span>La forma de la montura <strong>es obligatoria</strong></span>
+                                </div>
+
                                 <label class="form-label label-text" style="margin-top: 10px;">Imagen</label>
                                 <input type="text" formControlName="imagen" class="form-control" style="width: 350px;"
                                     placeholder="Ingrese la URL de la imagen...">
                             </div>
                             <!-- Contenedor para la imagen -->
-                            <div class="ml-4 mr-2 " style="margin-left: 50px;">
+                            <div class="ml-10 mr-2 " style="margin-top: 100%; margin-left: 50px;">
                                 <!-- Imagen -->
-                                <img *ngIf="monturaForm.get('imagen')?.value" [src]="monturaForm.get('imagen')?.value" class="img-fluid" alt="Imagen de la montura"
-                                style="max-width: 100%;max-height: 100%;">
+                                <img *ngIf="monturaForm.get('imagen')?.value" [src]="monturaForm.get('imagen')?.value"
+                                    class="img-fluid" alt="Imagen de la montura"
+                                    style="max-width: 100%;max-height: 100%;">
                             </div>
                         </div>
 

@@ -352,6 +352,10 @@
     color: black;
     font-size: 18px;
   }
+
+  .radio-text {
+    color: black;
+  }
   
   .faw {
     cursor: pointer;
