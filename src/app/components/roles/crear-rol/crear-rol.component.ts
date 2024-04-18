@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { LoginService } from 'src/app/services/login.service';
 import { ToastrService } from 'ngx-toastr';
 import { Rol } from 'src/app/models/rol';
 import { RolService } from 'src/app/services/rol.service';
@@ -21,6 +22,7 @@ export class CrearRolComponent implements OnInit {
     private toastr: ToastrService,
     private router: Router,
     private aRouter: ActivatedRoute,
+    private api: LoginService,
     private _rolService: RolService) {
     this.rolForm = this.fb.group({
       nombre: ['', Validators.required],
@@ -72,4 +74,11 @@ export class CrearRolComponent implements OnInit {
     }
   }
 
+  isLoggedIn: boolean = this.api.isLogged();
+
+  onClickLogout(){
+    localStorage.removeItem('token');
+    localStorage.removeItem('rol');
+    this.router.navigate(['login']);
+  }
 }

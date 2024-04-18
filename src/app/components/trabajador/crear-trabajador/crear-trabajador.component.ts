@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { LoginService } from 'src/app/services/login.service';
 import { ToastrService } from 'ngx-toastr';
 import { Trabajador } from 'src/app/models/trabajador';
 import { TrabajadorService } from 'src/app/services/trabajador.service';
@@ -27,8 +28,8 @@ export class CrearTrabajadorComponent implements OnInit {
     private router: Router,
     private _trabajadorService: TrabajadorService,
     private aRouter: ActivatedRoute,
-    private http: HttpClient
-  ) {
+    private api: LoginService,
+    private http: HttpClient) {
     this.trabajadorForm = this.fb.group({
       dni: ['', Validators.required],
       nombre: ['', Validators.required],
@@ -97,6 +98,14 @@ export class CrearTrabajadorComponent implements OnInit {
     }
   }
 
+  isLoggedIn: boolean = this.api.isLogged();
+
+  onClickLogout() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('rol');
+    this.router.navigate(['login']);
+  }
 }
+
 
 

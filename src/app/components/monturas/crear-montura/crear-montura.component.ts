@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { LoginService } from 'src/app/services/login.service';
 import { ToastrService } from 'ngx-toastr';
 import { Montura } from 'src/app/models/montura';
 import { MonturaService } from 'src/app/services/montura.service';
@@ -27,8 +28,8 @@ export class CrearMonturaComponent implements OnInit {
     private router: Router,
     private _monturaService: MonturaService,
     private aRouter: ActivatedRoute,
-    private http: HttpClient
-  ) {
+    private http: HttpClient,
+    private api: LoginService) {
     this.monturaForm = this.fb.group({
       codigo: ['', Validators.required],
       marca: ['', Validators.required],
@@ -110,6 +111,14 @@ export class CrearMonturaComponent implements OnInit {
         })
       })
     }
+  }
+
+  isLoggedIn: boolean = this.api.isLogged();
+
+  onClickLogout(){
+    localStorage.removeItem('token');
+    localStorage.removeItem('rol');
+    this.router.navigate(['login']);
   }
 
 }

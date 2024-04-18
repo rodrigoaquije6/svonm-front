@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { LoginService } from 'src/app/services/login.service';
 import { ToastrService } from 'ngx-toastr';
 import { Marca } from 'src/app/models/marca';
 import { MarcaService } from 'src/app/services/marca.service';
@@ -22,6 +23,7 @@ export class CrearMarcaComponent implements OnInit {
     private router: Router,
     private toastr: ToastrService,
     private _marcaService: MarcaService,
+    private api: LoginService,
     private aRouter: ActivatedRoute) {
     this.crearmarcaForm = this.fb.group({
 
@@ -77,4 +79,11 @@ export class CrearMarcaComponent implements OnInit {
     }
   }
 
+  isLoggedIn: boolean = this.api.isLogged();
+
+  onClickLogout(){
+    localStorage.removeItem('token');
+    localStorage.removeItem('rol');
+    this.router.navigate(['login']);
+  }
 }

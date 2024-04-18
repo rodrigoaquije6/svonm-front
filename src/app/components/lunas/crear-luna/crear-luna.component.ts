@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { LoginService } from 'src/app/services/login.service';//este import no debería ir si usaramos un componente header, explicación más abajo
 import { ToastrService } from 'ngx-toastr';
 import { Luna } from 'src/app/models/luna';
 import { LunaService } from 'src/app/services/luna.service';
@@ -21,7 +22,8 @@ export class CrearLunaComponent implements OnInit {
     private toastr: ToastrService,
     private router: Router,
     private aRouter: ActivatedRoute,
-    private _lunaService: LunaService) {
+    private _lunaService: LunaService,
+    private api: LoginService,) {
     this.lunaForm = this.fb.group({
       material: ['', Validators.required],
       precio: ['', Validators.required],
@@ -73,6 +75,14 @@ export class CrearLunaComponent implements OnInit {
         })
       })
     }
+  }
+
+  isLoggedIn: boolean = this.api.isLogged();
+
+  onClickLogout(){
+    localStorage.removeItem('token');
+    localStorage.removeItem('rol');
+    this.router.navigate(['login']);
   }
 
 }
