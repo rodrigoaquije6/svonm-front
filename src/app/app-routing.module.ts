@@ -10,6 +10,7 @@ import { LunaComponent } from './components/luna/luna.component';
 import { MarcaComponent } from './components/marcas/marca/marca.component';
 import { CrearRolComponent } from './components/roles/crear-rol/crear-rol.component';
 import { CrearMarcaComponent } from './components/marcas/crear-marca/crear-marca.component';
+import { GestionarAlmacenComponent } from './components/gestionar-almacen/gestionar-almacen.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent},
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'dashboard-gerente/montura', component: MonturaComponent},
   { path: 'dashboard-gerente/luna', component: LunaComponent},
   { path: 'dashboard-gerente/marca', component: MarcaComponent},
+  { path: 'dashboard-gerente/gestionar-almacen', component: GestionarAlmacenComponent},
   //--------------------------------------------CREAR--------------------------------------------
   { path: 'dashboard-gerente/rol/crear-rol', component: CrearRolComponent},
   { path: 'dashboard-gerente/marca/crear-marca', component: CrearMarcaComponent},

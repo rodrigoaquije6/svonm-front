@@ -18,6 +18,7 @@ import { CrearRolComponent } from './components/roles/crear-rol/crear-rol.compon
 import { ReactiveFormsModule } from '@angular/forms';
 import { CrearMarcaComponent } from './components/marcas/crear-marca/crear-marca.component';
 import { IngresarMonturaComponent } from './components/ingresar-montura/ingresar-montura.component';
+import { GestionarAlmacenComponent } from './components/gestionar-almacen/gestionar-almacen.component';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { IngresarMonturaComponent } from './components/ingresar-montura/ingresar
     CrearRolComponent,
     CrearMarcaComponent,
     IngresarMonturaComponent,
+    GestionarAlmacenComponent,
   ],
   imports: [
     BrowserModule,
