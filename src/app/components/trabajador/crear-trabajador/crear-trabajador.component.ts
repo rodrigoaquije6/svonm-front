@@ -21,7 +21,7 @@ export class CrearTrabajadorComponent implements OnInit {
 
   rol: any[] = [];
 
-  url = 'https://shiny-tribble-rqj5r9gj7xwf5x55-4000.app.github.dev/api/rol/' //http://localhost:4000/api/rol/
+  url = 'http://localhost:4000/api/rol/ ' //https://shiny-tribble-rqj5r9gj7xwf5x55-4000.app.github.dev/api/rol/
 
   constructor(private fb: FormBuilder,
     private toastr: ToastrService,
