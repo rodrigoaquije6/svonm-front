@@ -16,7 +16,7 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="dashboard-trabajador.component.css" rel="stylesheet">
+    <link href="venta.component.css" rel="stylesheet">
 
 </head>
 
@@ -139,12 +139,13 @@
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                    <span class="span-text mx-3">GESTIONAR VENTA</span>
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
                         <!-- Nav Item - User Information -->
-                        <li class="nav-item">
+                        <li class="nav-item"> <!-- *ngIf="isLoggedIn" (click)="onClickLogout()" -->
                             <a class="nav-link" routerLink="/login" >
                                 <i class="fa-solid fa-right-from-bracket" style="color: #ff000d;"></i>
                             </a>
@@ -155,8 +156,19 @@
                 </nav>
 
                 <!-- End of Topbar -->
-            </div>
 
+                <!-- TABLE -->
+                <div class="container mt-5">
+                    <div class="row">
+                        <div class="col-lg-11 offser-lg-2">
+                            <button class="btn btn-success float-end" routerLink="/dashboard-trabajador/venta/registrar-venta">
+                                Registrar Venta
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
             <!-- End of Main Content -->
 
             <!-- Footer -->

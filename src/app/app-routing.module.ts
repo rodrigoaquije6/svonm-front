@@ -4,6 +4,9 @@ import { LoginComponent } from './components/login/login.component';
 import { DashboardGerenteComponent } from './components/dashboard-gerente/dashboard-gerente.component';
 import { DashboardTrabajadorComponent } from './components/dashboard-trabajador/dashboard-trabajador.component';
 import { TrabajadorComponent } from './components/trabajador/trabajadores/trabajador.component';
+import { VentaComponent } from './components/venta/ventas/venta.component';
+import { RegistrarVentaComponent } from './components/venta/registrar-venta/registrar-venta.component'
+
 import { RolComponent } from './components/roles/rol/rol.component';
 import { MonturaComponent } from './components/monturas/montura/montura.component';
 import { LunaComponent } from './components/lunas/luna/luna.component';
@@ -19,6 +22,9 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'dashboard-gerente', component: DashboardGerenteComponent},
   { path: 'dashboard-trabajador', component: DashboardTrabajadorComponent},
+  { path: 'dashboard-trabajador/venta', component: VentaComponent},
+  { path: 'dashboard-trabajador/venta/registrar-venta', component: RegistrarVentaComponent},
+
   { path: 'dashboard-gerente/trabajador', component: TrabajadorComponent},
   { path: 'dashboard-gerente/rol', component: RolComponent},
   { path: 'dashboard-gerente/montura', component: MonturaComponent},
