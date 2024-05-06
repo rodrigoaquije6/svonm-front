@@ -8,7 +8,7 @@ import { Marca } from '../models/marca';
 })
 export class MarcaService {
 
-  url = 'https://shiny-tribble-rqj5r9gj7xwf5x55-4000.app.github.dev/api/crear-marca/' //http://localhost:4000/api/crear-marca/
+  url = 'http://localhost:4000/api/crear-marca/' //https://shiny-tribble-rqj5r9gj7xwf5x55-4000.app.github.dev/api/crear-marca/
 
   constructor(private http: HttpClient) { }
 

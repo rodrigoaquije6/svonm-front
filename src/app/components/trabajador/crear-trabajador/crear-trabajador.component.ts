@@ -21,7 +21,7 @@ export class CrearTrabajadorComponent implements OnInit {
 
   rol: any[] = [];
 
-  url = 'https://shiny-tribble-rqj5r9gj7xwf5x55-4000.app.github.dev/api/rol/' //http://localhost:4000/api/rol/
+  url = 'http://localhost:4000/api/rol/' //http://localhost:4000/api/rol/
 
   constructor(private fb: FormBuilder,
     private toastr: ToastrService,
@@ -56,6 +56,12 @@ export class CrearTrabajadorComponent implements OnInit {
   }
 
   agregarTrabajador() {
+
+    if (this.trabajadorForm.invalid) {
+      this.toastr.error('Por favor, complete el formulario correctamente.', 'Error');
+      return;
+    }
+
     const TRABAJADOR: Trabajador = {
       dni: this.trabajadorForm.get('dni')?.value,
       nombre: this.trabajadorForm.get('nombre')?.value,
@@ -69,8 +75,17 @@ export class CrearTrabajadorComponent implements OnInit {
         this.toastr.info('El trabajador fue actualizado con éxito!', 'Trabajador Actualizado!')
         this.router.navigate(['/dashboard-gerente/trabajador']);
       }, error => {
-        console.log(error);
-        this.trabajadorForm.reset();
+        if (error.error && error.error.msg) {
+          error.error.msg.forEach((errorMessage: string) => {
+            //const errorMessage = error.error.msg.join('\n');
+            this.toastr.error(errorMessage, 'Error');
+          });
+        } else {
+          console.log(error);
+          this.trabajadorForm.reset();
+        }
+        //console.log(error);
+        //this.trabajadorForm.reset();
       })
     } else {
       console.log(TRABAJADOR);
@@ -78,8 +93,17 @@ export class CrearTrabajadorComponent implements OnInit {
         this.toastr.success('El trabajador fue registrado con éxito!', 'Trabajador Registrado!');
         this.router.navigate(['/dashboard-gerente/trabajador']);
       }, error => {
-        console.log(error);
-        this.trabajadorForm.reset();
+        if (error.error && error.error.msg) {
+          error.error.msg.forEach((errorMessage: string) => {
+            //const errorMessage = error.error.msg.join('\n');
+            this.toastr.error(errorMessage, 'Error');
+          });
+        } else {
+          console.log(error);
+          this.trabajadorForm.reset();
+        }
+        //console.log(error);
+        //this.trabajadorForm.reset();
       })
     }
   }
