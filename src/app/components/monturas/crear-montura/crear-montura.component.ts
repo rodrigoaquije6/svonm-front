@@ -16,7 +16,7 @@ import { HttpClient } from '@angular/common/http';
 export class CrearMonturaComponent implements OnInit {
   monturaForm: FormGroup;
 
-  titulo = 'Crear producto';
+  titulo = 'Crear montura';
 
   id: string | null;
 
