@@ -16,7 +16,7 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="rol.component.css" rel="stylesheet">
+    <link href="tipo.component.css" rel="stylesheet">
 
 </head>
 
@@ -163,15 +163,15 @@
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                    <span class="span-text mx-3">GESTIONAR ROL</span>
+                    <span class="span-text mx-3">GESTIONAR TIPO DE PRODUCTO</span>
 
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
                         <!-- Nav Item - User Information -->
-                        <li class="nav-item " *ngIf="isLoggedIn" (click)="onClickLogout()">
-                            <a class="nav-link" href="">
+                        <li class="nav-item ">
+                            <a class="nav-link" routerLink="/login">
                                 <i class="fa-solid fa-right-from-bracket" style="color: #ff000d;"></i>
                             </a>
                         </li>
@@ -185,30 +185,30 @@
                 <div class="container mt-5">
                     <div class="row">
                         <div class="col-lg-11 offser-lg-2">
-                            <button class="btn btn-success float-end" routerLink="/dashboard-gerente/rol/crear-rol">
+                            <button class="btn btn-success float-end" routerLink="/dashboard-gerente/tipoProducto/crear-tipoProducto">
                                 Agregar
                                 <i class="fa-solid fa-plus"></i>
                             </button>
-                            <table *ngIf="listRoles.length > 0" class="table table-striped mx-5 mt-5 text-center">
+                            <table *ngIf="listTipo.length > 0" class="table table-striped mx-5 mt-5 text-center">
                                 <thead>
                                     <tr>
-                                        <th>Rol</th>
+                                        <th>Nombre</th>
                                         <th>Acción</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let rol of listRoles">                                    
+                                    <tr *ngFor="let tipoProducto of listTipo">
                                         <td>
-                                            {{rol.nombre}}
+                                            {{tipoProducto.nombre}}
                                         </td>
                                         <td>
-                                            <i [routerLink]="['/dashboard-gerente/rol/editar-rol/', rol._id]" class="faw fa fa-edit text-primary"></i>
-                                            <i (click)="eliminarRol(rol._id)" class='faw fa-solid fa-trash text-danger'></i>
+                                            <i [routerLink]="['/dashboard-gerente/tipoProducto/editar-tipoProducto/', tipoProducto._id]" class="faw fa fa-edit text-primary"></i>
+                                            <i (click)="eliminarTipoProducto(tipoProducto._id)" class='faw fa-solid fa-trash text-danger'></i>
                                         </td>
-                                    </tr>                             
+                                    </tr>                                               
                                 </tbody>
                             </table>
-                            <h5 style="text-align: start; margin-top: 10px;" *ngIf="listRoles.length == 0">No hay roles para mostrar</h5>
+                            <h5 style="text-align: start; margin-top: 10px;" *ngIf="listTipo.length == 0">No hay tipo de producto para mostrar</h5>
                         </div>
                     </div>
                 </div>

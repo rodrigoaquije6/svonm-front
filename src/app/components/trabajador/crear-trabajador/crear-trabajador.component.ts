@@ -126,7 +126,7 @@ export class CrearTrabajadorComponent implements OnInit {
 
   onClickLogout() {
     localStorage.removeItem('token');
-    localStorage.removeItem('rol');
+    localStorage.removeItem('trabajador');
     this.router.navigate(['login']);
   }
 }

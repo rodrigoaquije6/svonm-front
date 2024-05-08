@@ -44,7 +44,7 @@ export class TrabajadorComponent {
 
   onClickLogout(){
     localStorage.removeItem('token');
-    localStorage.removeItem('rol');
+    localStorage.removeItem('trabajador');
     this.router.navigate(['login']);
   }
 

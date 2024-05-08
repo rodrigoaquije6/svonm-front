@@ -53,7 +53,7 @@ export class LunaComponent implements OnInit {
 
   onClickLogout(){
     localStorage.removeItem('token');
-    localStorage.removeItem('rol');
+    localStorage.removeItem('luna');
     this.router.navigate(['login']);
   }
 }
