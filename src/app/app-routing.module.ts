@@ -11,8 +11,6 @@ import { MarcaComponent } from './components/marca/marca.component';
 import { CrearRolComponent } from './components/roles/crear-rol/crear-rol.component';
 import { TipoComponent } from './components/tipoProducto/tipo/tipo.component';
 import { CrearTipoProductoComponent } from './components/tipoProducto/crear-tipo-producto/crear-tipo-producto.component';
-import { ProductoComponent } from './components/productos/producto/producto.component';
-import { CrearProductoComponent } from './components/productos/crear-producto/crear-producto.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent},
@@ -25,11 +23,9 @@ const routes: Routes = [
   { path: 'dashboard-gerente/luna', component: LunaComponent},
   { path: 'dashboard-gerente/marca', component: MarcaComponent},
   { path: 'dashboard-gerente/tipoProducto', component: TipoComponent},
-  { path: 'dashboard-gerente/producto', component: ProductoComponent},
   //--------------------------------------------CREAR--------------------------------------------
   { path: 'dashboard-gerente/rol/crear-rol', component: CrearRolComponent},
   { path: 'dashboard-gerente/tipoProducto/crear-tipoProducto', component: CrearTipoProductoComponent},
-  { path: 'dashboard-gerente/producto/crear-producto', component: CrearProductoComponent},
 
   { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
