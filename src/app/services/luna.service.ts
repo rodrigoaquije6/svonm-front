@@ -7,7 +7,7 @@ import { Luna } from '../models/luna';
   providedIn: 'root'
 })
 export class LunaService {
-  url = 'http://localhost:4000/api/luna/' //https://shiny-tribble-rqj5r9gj7xwf5x55-4000.app.github.dev/api/luna/
+  url = 'https://vigilant-acorn-q7777qjxj95jhx77v-4000.app.github.dev/api/luna/' //http://localhost:4000/api/luna/ 
 
   constructor(private http: HttpClient) { }
 

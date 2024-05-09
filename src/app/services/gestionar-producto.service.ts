@@ -8,7 +8,7 @@ import { GestionarProducto } from '../models/gestionar-producto';
   providedIn: 'root'
 })
 export class GestionarProductoService {
-  url = 'http://localhost:4000/api/gestionar-producto/' //https://shiny-tribble-rqj5r9gj7xwf5x55-4000.app.github.dev/api/gestionar-producto/
+  url = 'https://vigilant-acorn-q7777qjxj95jhx77v-4000.app.github.dev/api/gestionar-producto/' //http://localhost:4000/api/gestionar-producto/ 
 
   constructor(private http: HttpClient) { }
 

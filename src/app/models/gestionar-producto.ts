@@ -3,10 +3,10 @@ export class GestionarProducto{
     codigo: string;
     tipoProducto: string;
     nombre: string;
-    precio: string;
+    precio: number;
     imagen: string;
 
-    constructor(codigo: string, tipoProducto: string, nombre: string, precio: string, imagen: string) {
+    constructor(codigo: string, tipoProducto: string, nombre: string, precio: number, imagen: string) {
         this.codigo = codigo
         this.tipoProducto = tipoProducto
         this.nombre = nombre

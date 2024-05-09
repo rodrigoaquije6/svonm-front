@@ -84,7 +84,7 @@
                     <span> Gestionar Productos</span>
                 </a>
             </li>
-            
+
             <!-- Gestionar Monturas -->
             <li class="nav-item">
                 <a class="nav-link collapsed" routerLink="/dashboard-gerente/montura" data-toggle="collapse">
@@ -148,8 +148,7 @@
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
-
+        <div id="content-wrapper">
             <!-- Main Content -->
             <div id="content">
 
@@ -173,76 +172,222 @@
                 </nav>
                 <!-- End of Topbar -->
 
-                <!-- Content -->
-                <div class="container mt-5 mx-4 col-lg-4">
-                    <form [formGroup]="gestionarproductoForm" (ngSubmit)="agregarGestionarProducto()">
-                        <div class="mb-3 d-flex align-items-center">
-                            <div style="flex: 1;">
-                                <label class="form-label label-text">Codigo</label>
-                                <input type="text" formControlName="codigo" class="form-control" style="width: 350px;"
-                                    placeholder="Escriba el codigo del producto...">
-                                <div class="text-danger"
-                                    *ngIf="gestionarproductoForm.get('codigo')?.hasError('required') && gestionarproductoForm.get('codigo')?.touched">
-                                    <span>El codigo de la montura <strong>es obligatorio</strong></span>
+                <div class="container-form">
+                    <!-- Content -->
+                    <div class="container mt-5 mx-4 col-lg-4">
+                        <form [formGroup]="gestionarproductoForm" (ngSubmit)="agregarGestionarProducto()">
+                            <div class="mb-3 d-flex align-items-center">
+                                <div style="flex: 1;">
+                                    <label class="form-label label-text">Codigo</label>
+                                    <input type="text" formControlName="codigo" class="form-control"
+                                        style="width: 350px;" placeholder="Escriba el codigo del producto...">
+                                    <div class="text-danger"
+                                        *ngIf="gestionarproductoForm.get('codigo')?.hasError('required') && gestionarproductoForm.get('codigo')?.touched">
+                                        <span>El codigo de la montura <strong>es obligatorio</strong></span>
+                                    </div>
+
+                                    <label class="form-label label-text" style="margin-top: 10px;">Tipo de
+                                        producto</label>
+                                    <select formControlName="tipoProducto" class="form-select" style="width: 350px;">
+                                        <option disabled selected>Selecciona el tipo de producto...</option>
+                                        <option value="Lentes de sol">Lentes de sol</option>
+                                        <option value="Montura">Montura</option>
+                                    </select>
+
+                                    <label class="form-label label-text" style="margin-top: 10px;">Nombre</label>
+                                    <input type="text" formControlName="nombre" class="form-control"
+                                        style="width: 350px;" placeholder="Escriba el nombre del producto...">
+                                    <div class="text-danger"
+                                        *ngIf="gestionarproductoForm.get('nombre')?.hasError('required') && gestionarproductoForm.get('nombre')?.touched">
+                                        <span>El nombre del producto <strong>es obligatorio</strong></span>
+                                    </div>
+
+                                    <label class="form-label label-text" style="margin-top: 10px;">Precio</label>
+                                    <input type="number" formControlName="precio" class="form-control"
+                                        style="width: 350px;" placeholder="Escriba el precio del producto...">
+                                    <div class="text-danger"
+                                        *ngIf="gestionarproductoForm.get('precio')?.hasError('required') && gestionarproductoForm.get('precio')?.touched">
+                                        <span>El precio del producto <strong>es obligatorio</strong></span>
+                                    </div>
+
+                                    <label class="form-label label-text" style="margin-top: 10px;">Imagen</label>
+                                    <input type="text" formControlName="imagen" class="form-control"
+                                        style="width: 350px;" placeholder="Ingrese la URL de la imagen...">
                                 </div>
-
-                                <label class="form-label label-text" style="margin-top: 10px;">Tipo de producto</label>
-                                <select formControlName="tipoProducto" class="form-select" style="width: 350px;">
-                                    <option disabled selected>Selecciona el tipo de producto...</option>
-                                    <option value="Lentes de sol">Lentes de sol</option>
-                                    <option value="Montura">Montura</option>
-                                </select>
-
-                                <label class="form-label label-text" style="margin-top: 10px;">Nombre</label>
-                                <input type="text" formControlName="nombre" class="form-control" style="width: 350px;"
-                                    placeholder="Escriba el nombre del producto...">
-                                <div class="text-danger"
-                                    *ngIf="gestionarproductoForm.get('nombre')?.hasError('required') && gestionarproductoForm.get('nombre')?.touched">
-                                    <span>El nombre del producto <strong>es obligatorio</strong></span>
+                                <!-- Contenedor para la imagen -->
+                                <div class="ml-10 mr-2 " style="margin-top: 100%; margin-left: 50px;">
+                                    <!-- Imagen -->
+                                    <img *ngIf="gestionarproductoForm.get('imagen')?.value"
+                                        [src]="gestionarproductoForm.get('imagen')?.value" class="img-fluid"
+                                        alt="Imagen de la montura" style="max-width: 100%;max-height: 100%;">
                                 </div>
-
-                                <label class="form-label label-text" style="margin-top: 10px;">Precio</label>
-                                <input type="number" formControlName="precio" class="form-control" style="width: 350px;"
-                                    placeholder="Escriba el precio del producto...">
-                                <div class="text-danger"
-                                    *ngIf="gestionarproductoForm.get('precio')?.hasError('required') && gestionarproductoForm.get('precio')?.touched">
-                                    <span>El precio del producto <strong>es obligatorio</strong></span>
-                                </div>
-
-                                <label class="form-label label-text" style="margin-top: 10px;">Imagen</label>
-                                <input type="text" formControlName="imagen" class="form-control" style="width: 350px;"
-                                    placeholder="Ingrese la URL de la imagen...">
                             </div>
-                            <!-- Contenedor para la imagen -->
-                            <div class="ml-10 mr-2 " style="margin-top: 100%; margin-left: 50px;">
-                                <!-- Imagen -->
-                                <img *ngIf="gestionarproductoForm.get('imagen')?.value" [src]="gestionarproductoForm.get('imagen')?.value"
-                                    class="img-fluid" alt="Imagen de la montura"
-                                    style="max-width: 100%;max-height: 100%;">
+                            <button class="btn btn-success float-end" style="margin-left: 10px;">Aceptar</button>
+                            <div class="class mb 3">
+                                <button routerLink="/dashboard-gerente/gestionar-producto"
+                                    class="btn btn-secondary flat-start">Volver</button>
                             </div>
-                        </div>
 
-                        <div id="formulario-lentes" style="display: none;">
-                            <h2>Formulario para Lentes de Sol</h2>
-                            <!-- Contenido del formulario para lentes de sol -->
-                          </div>
-                          
-                          <div id="formulario-montura" style="display: none;">
-                            <h2>Formulario para Montura</h2>
-                            <!-- Contenido del formulario para montura -->
-                          </div>
+                        </form>
+                    </div>
 
-                          <script src="script.js"></script>
+                    //segundo formulario
+                    <div class="container mt-5 mx-4 col-lg-4" id="formulario-lentes" style="display: none;">
+                        <h5 style="color: black">Formulario para Lentes de Sol</h5>
+                        <form [formGroup]="gestionarproductoForm" (ngSubmit)="agregarMonturaForm()">
+                            <div class="mb-3 d-flex align-items-center">
+                                <div style="flex: 1;">
 
-                        <button class="btn btn-success float-end" style="margin-left: 10px;">Aceptar</button>
-                        <div class="class mb 3">
-                            <button routerLink="/dashboard-gerente/gestionar-producto"
-                                class="btn btn-secondary flat-start">Volver</button>
-                        </div>
-                    </form>
+                                    <label class="form-label label-text" style="margin-top: 10px;">Marca</label>
+                                    <input type="text" formControlName="codigo" class="form-control"
+                                        style="width: 350px;" placeholder="Escriba la marca de la montura...">
+                                    <div class="text-danger"
+                                        *ngIf="gestionarproductoForm.get('codigo')?.hasError('required') && gestionarproductoForm.get('codigo')?.touched">
+                                        <span>La marca de la montura <strong>es obligatorio</strong></span>
+                                    </div>
+
+                                    <label class="form-label label-text" style="margin-top: 10px;">Color</label>
+                                    <input type="text" formControlName="codigo" class="form-control"
+                                        style="width: 350px;" placeholder="Escriba el color de la montura...">
+                                    <div class="text-danger"
+                                        *ngIf="gestionarproductoForm.get('codigo')?.hasError('required') && gestionarproductoForm.get('codigo')?.touched">
+                                        <span>El color de la montura <strong>es obligatorio</strong></span>
+                                    </div>
+
+                                    <label class="form-label label-text" style="margin-top: 10px;">Género</label>
+                                    <div class="d-flex">
+                                    <div class="form-check me-3">
+                                        <input class="form-check-input" type="radio" formControlName="género"
+                                            id="hombre" value="Hombre">
+                                        <label class="radio-text form-check-label" for="hombre">
+                                            Hombre
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" formControlName="género" id="mujer"
+                                            value="Mujer">
+                                        <label class="radio-text form-check-label" for="mujer">
+                                            Mujer
+                                        </label>
+                                      </div>
+                                    </div>
+
+                                    <label class="form-label label-text" style="margin-top: 10px;">Forma</label>
+                                    <input type="string" formControlName="precio" class="form-control"
+                                        style="width: 350px;" placeholder="Escriba la forma de la montura...">
+                                    <div class="text-danger"
+                                        *ngIf="gestionarproductoForm.get('precio')?.hasError('required') && gestionarproductoForm.get('precio')?.touched">
+                                        <span>La forma de la montura <strong>es obligatorio</strong></span>
+                                    </div>
+
+                                    <label class="form-label label-text" style="margin-top: 10px;">Material</label>
+                                    <input type="string" formControlName="precio" class="form-control"
+                                        style="width: 350px;" placeholder="Escriba el material de la montura...">
+                                    <div class="text-danger"
+                                        *ngIf="gestionarproductoForm.get('precio')?.hasError('required') && gestionarproductoForm.get('precio')?.touched">
+                                        <span>El material de la montura <strong>es obligatorio</strong></span>
+                                    </div>
+                                </div>
+                                <!-- Contenedor para la imagen -->
+                                <div class="ml-10 mr-2 " style="margin-top: 100%; margin-left: 50px;">
+                                    <!-- Imagen -->
+                                    <img *ngIf="gestionarproductoForm.get('imagen')?.value"
+                                        [src]="gestionarproductoForm.get('imagen')?.value" class="img-fluid"
+                                        alt="Imagen de la montura" style="max-width: 100%;max-height: 100%;">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    //Tercer formulario
+
+                    <div class="container mt-5 mx-4 col-lg-4" id="formulario-lentes" style="display: none;">
+                        <h5 style="color: black">Formulario para Monturas</h5>
+                        <form [formGroup]="gestionarproductoForm" (ngSubmit)="agregarMonturaForm()">
+                            <div class="mb-3 d-flex align-items-center">
+                                <div style="flex: 1;">
+
+                                    <label class="form-label label-text" style="margin-top: 10px;">Marca</label>
+                                    <input type="text" formControlName="codigo" class="form-control"
+                                        style="width: 350px;" placeholder="Escriba la marca de la montura...">
+                                    <div class="text-danger"
+                                        *ngIf="gestionarproductoForm.get('codigo')?.hasError('required') && gestionarproductoForm.get('codigo')?.touched">
+                                        <span>La marca de la montura <strong>es obligatorio</strong></span>
+                                    </div>
+
+                                    <label class="form-label label-text" style="margin-top: 10px;">Género</label>
+                                    <div class="d-flex">
+                                    <div class="form-check me-3">
+                                        <input class="form-check-input" type="radio" formControlName="género"
+                                            id="hombre" value="Hombre">
+                                        <label class="radio-text form-check-label" for="hombre">
+                                            Hombre
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" formControlName="género" id="mujer"
+                                            value="Mujer">
+                                        <label class="radio-text form-check-label" for="mujer">
+                                            Mujer
+                                        </label>
+                                      </div>
+                                    </div>
+
+                                    <label class="form-label label-text" style="margin-top: 10px;">Material</label>
+                                    <input type="string" formControlName="precio" class="form-control"
+                                        style="width: 350px;" placeholder="Escriba el material de la montura...">
+                                    <div class="text-danger"
+                                        *ngIf="gestionarproductoForm.get('precio')?.hasError('required') && gestionarproductoForm.get('precio')?.touched">
+                                        <span>El material de la montura <strong>es obligatorio</strong></span>
+                                    </div>
+
+                                    <label class="form-label label-text" style="margin-top: 10px;">Forma</label>
+                                    <input type="string" formControlName="precio" class="form-control"
+                                        style="width: 350px;" placeholder="Escriba la forma de la montura...">
+                                    <div class="text-danger"
+                                        *ngIf="gestionarproductoForm.get('precio')?.hasError('required') && gestionarproductoForm.get('precio')?.touched">
+                                        <span>La forma de la montura <strong>es obligatorio</strong></span>
+                                    </div>
+
+                                    <label class="form-label label-text" style="margin-top: 10px;">Color</label>
+                                    <input type="text" formControlName="codigo" class="form-control"
+                                        style="width: 350px;" placeholder="Escriba el color de la montura...">
+                                    <div class="text-danger"
+                                        *ngIf="gestionarproductoForm.get('codigo')?.hasError('required') && gestionarproductoForm.get('codigo')?.touched">
+                                        <span>El color de la montura <strong>es obligatorio</strong></span>
+                                    </div>
+
+                                    <label class="form-label label-text" style="margin-top: 10px;">Color de Lente</label>
+                                    <input type="text" formControlName="codigo" class="form-control"
+                                        style="width: 350px;" placeholder="Escriba el color de lente de la montura...">
+                                    <div class="text-danger"
+                                        *ngIf="gestionarproductoForm.get('codigo')?.hasError('required') && gestionarproductoForm.get('codigo')?.touched">
+                                        <span>El color de lente de la montura <strong>es obligatorio</strong></span>
+                                    </div>
+
+                                    <label class="form-label label-text" style="margin-top: 10px;">Proteccion UV</label>
+                                    <input type="text" formControlName="codigo" class="form-control"
+                                        style="width: 350px;" placeholder="Escriba la proteccion UV de la montura...">
+                                    <div class="text-danger"
+                                        *ngIf="gestionarproductoForm.get('codigo')?.hasError('required') && gestionarproductoForm.get('codigo')?.touched">
+                                        <span>La proteccion UV de la montura <strong>es obligatorio</strong></span>
+                                    </div>
+
+                                </div>
+                                <!-- Contenedor para la imagen -->
+                                <div class="ml-10 mr-2 " style="margin-top: 100%; margin-left: 50px;">
+                                    <!-- Imagen -->
+                                    <img *ngIf="gestionarproductoForm.get('imagen')?.value"
+                                        [src]="gestionarproductoForm.get('imagen')?.value" class="img-fluid"
+                                        alt="Imagen de la montura" style="max-width: 100%;max-height: 100%;">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- End of Content -->
+
+
                 </div>
-                <!-- End of Content -->
-
             </div>
             <!-- End of Main Content -->
 

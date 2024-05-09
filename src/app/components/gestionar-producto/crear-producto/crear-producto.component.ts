@@ -18,7 +18,7 @@ export class CrearProductoComponent implements OnInit {
 
   id: string | null;
 
-  url = 'http://localhost:4000/api/crear-producto/ ' //https://shiny-tribble-rqj5r9gj7xwf5x55-4000.app.github.dev/api/rol/
+  url = 'http://localhost:4000/api/crear-producto/ ' //https://vigilant-acorn-q7777qjxj95jhx77v-4000.app.github.dev/api/crear-producto/
 
   constructor(private fb: FormBuilder,
     private toastr: ToastrService,
@@ -69,6 +69,38 @@ export class CrearProductoComponent implements OnInit {
     }
 
   }
+
+  agregarMonturaForm() {
+    const GESTIONARPRODUCTO: GestionarProducto = {
+    codigo: this.gestionarproductoForm.get('codigo')?.value,
+    tipoProducto: this.gestionarproductoForm.get('tipoProducto')?.value,
+    nombre: this.gestionarproductoForm.get('nombre')?.value,
+    precio: this.gestionarproductoForm.get('precio')?.value,
+    imagen: this.gestionarproductoForm.get('imagen')?.value,
+    }
+
+    if (this.id !== null) {
+      this._gestionarproductoService.editarGestionarProducto(this.id, GESTIONARPRODUCTO).subscribe(data => {
+        this.toastr.info('El producto fue actualizado con éxito!', 'Producto Actualizado!')
+        this.router.navigate(['/dashboard-gerente/gestionar-producto']);
+      }, error => {
+        console.log(error);
+        this.gestionarproductoForm.reset();
+      })
+    } else {
+      console.log(GESTIONARPRODUCTO);
+      this._gestionarproductoService.guardarGestionarProducto(GESTIONARPRODUCTO).subscribe(data => {
+        this.toastr.success('El producto fue registrado con éxito!', 'Producto Registrado!');
+        this.router.navigate(['/dashboard-gerente/gestionar-producto']);
+      }, error => {
+        console.log(error);
+        this.gestionarproductoForm.reset();
+      })
+    }
+
+  }
+
+
 
   esEditar() {
     if (this.id !== null) {
