@@ -9,6 +9,7 @@ import { MonturaService } from 'src/app/services/montura.service';
 import { LenteSolService } from 'src/app/services/lenteSol.service';
 import { Montura } from 'src/app/models/montura';
 import { LenteSol } from 'src/app/models/lenteSol';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-crear-producto',
@@ -26,7 +27,9 @@ export class CrearProductoComponent implements OnInit {
 
   id: string | null;
 
-  url = 'https://shiny-space-waddle-jjjjvrg5jjr35p57-4000.app.github.dev/api/'//'http://localhost:4000/api/crear-producto/ ' //https://vigilant-acorn-q7777qjxj95jhx77v-4000.app.github.dev/api/crear-producto/
+  marca: any[] = [];
+
+  url = 'http://localhost:4000/api/crear-marca/'; //http://localhost:4000/api/rol/
 
   constructor(private fb: FormBuilder,
     private toastr: ToastrService,
@@ -35,7 +38,8 @@ export class CrearProductoComponent implements OnInit {
     private _monturaService: MonturaService,
     private _lenteSolService: LenteSolService,
     private aRouter: ActivatedRoute,
-    private api: LoginService,) {
+    private api: LoginService,
+    private http: HttpClient) {
     this.gestionarproductoForm = this.fb.group({
       codigo: ['', Validators.required],
       tipoProducto: ['', Validators.required],
@@ -67,6 +71,18 @@ export class CrearProductoComponent implements OnInit {
 
   ngOnInit(): void {
     this.esEditar();
+    this.obtenerMarca();
+  }
+
+  obtenerMarca() {
+    this.http.get<any[]>(this.url).subscribe(
+      (marcas) => {
+        this.marca = marcas;
+      },
+      (error) => {
+        console.error('Error al obtener las marcas de los productos', error);
+      }
+    );
   }
 
   onItemChange(producto: string | null) {
@@ -75,6 +91,8 @@ export class CrearProductoComponent implements OnInit {
   }
 
   agregarGestionarProducto() {
+
+    
     const GESTIONARPRODUCTO: GestionarProducto = {
       codigo: this.gestionarproductoForm.get('codigo')?.value,
       tipoProducto: this.gestionarproductoForm.get('tipoProducto')?.value,
@@ -105,6 +123,12 @@ export class CrearProductoComponent implements OnInit {
   }
 
   agregarMonturaForm() {
+
+    if (this.gestionarproductoForm.invalid) {
+      this.toastr.error('Por favor, complete el formulario correctamente.', 'Error');
+      return;
+    }
+
     const MONTURA: Montura = {
     codigo: this.gestionarproductoForm.get('codigo')?.value,
     tipoProducto: this.gestionarproductoForm.get('tipoProducto')?.value,
@@ -122,8 +146,17 @@ export class CrearProductoComponent implements OnInit {
         this.toastr.info('El producto fue actualizado con éxito!', 'Producto Actualizado!')
         this.router.navigate(['/dashboard-gerente/gestionar-producto']);
       }, error => {
-        console.log(error);
-        this.gestionarproductoForm.reset();
+        if (error.error && error.error.msg) {
+          error.error.msg.forEach((errorMessage: string) => {
+            //const errorMessage = error.error.msg.join('\n');
+            this.toastr.error(errorMessage, 'Error');
+          });
+        } else {
+          console.log(error);
+          this.gestionarproductoForm.reset();
+        }
+        //console.log(error);
+        //this.gestionarproductoForm.reset();
       })
     } else {
       console.log(MONTURA);
@@ -131,13 +164,28 @@ export class CrearProductoComponent implements OnInit {
         this.toastr.success('El producto fue registrado con éxito!', 'Producto Registrado!');
         this.router.navigate(['/dashboard-gerente/gestionar-producto']);
       }, error => {
-        console.log(error);
-        this.gestionarproductoForm.reset();
+        if (error.error && error.error.msg) {
+          error.error.msg.forEach((errorMessage: string) => {
+            //const errorMessage = error.error.msg.join('\n');
+            this.toastr.error(errorMessage, 'Error');
+          });
+        } else {
+          console.log(error);
+          this.gestionarproductoForm.reset();
+        }
+        //console.log(error);
+        //this.gestionarproductoForm.reset();
       })
     }
   }
 
   agregarLenteSolForm() {
+
+    if (this.lenteSolForm.invalid) {
+      this.toastr.error('Por favor, complete el formulario correctamente.', 'Error');
+      return;
+    }
+
     const LENTESOL: LenteSol = {
     codigo: this.lenteSolForm.get('codigo')?.value,
     tipoProducto: this.lenteSolForm.get('tipoProducto')?.value,
@@ -157,8 +205,17 @@ export class CrearProductoComponent implements OnInit {
         this.toastr.info('El producto fue actualizado con éxito!', 'Producto Actualizado!')
         this.router.navigate(['/dashboard-gerente/gestionar-producto']);
       }, error => {
-        console.log(error);
-        this.gestionarproductoForm.reset();
+        if (error.error && error.error.msg) {
+          error.error.msg.forEach((errorMessage: string) => {
+            //const errorMessage = error.error.msg.join('\n');
+            this.toastr.error(errorMessage, 'Error');
+          });
+        } else {
+          console.log(error);
+          this.lenteSolForm.reset();
+        }
+        //console.log(error);
+        //this.gestionarproductoForm.reset();
       })
     } else {
       console.log(LENTESOL);
@@ -166,8 +223,17 @@ export class CrearProductoComponent implements OnInit {
         this.toastr.success('El producto fue registrado con éxito!', 'Producto Registrado!');
         this.router.navigate(['/dashboard-gerente/gestionar-producto']);
       }, error => {
-        console.log(error);
-        this.gestionarproductoForm.reset();
+        if (error.error && error.error.msg) {
+          error.error.msg.forEach((errorMessage: string) => {
+            //const errorMessage = error.error.msg.join('\n');
+            this.toastr.error(errorMessage, 'Error');
+          });
+        } else {
+          console.log(error);
+          this.lenteSolForm.reset();
+        }
+        //console.log(error);
+        //this.gestionarproductoForm.reset();
       })
     }
 

@@ -24,12 +24,10 @@ export class LunaService {
   }
 
   guardarLuna(luna: Luna): Observable<any> {
-    let direccion = this.url + 'crear-luna';
-    return this.http.post(direccion, luna);
+    return this.http.post(this.url, luna);
   }
   
   editarLuna(id: string, luna: Luna): Observable<any> {
-    let direccion = this.url + 'editar-marca/';
-    return this.http.put(direccion + id, luna);
+    return this.http.put(this.url + id, luna);
   }
 }

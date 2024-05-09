@@ -77,19 +77,19 @@
                 Producto
             </div>
 
-            <!-- Gestionar Gestionar Producto -->
+            <!-- Gestionar tipoProducto -->
             <li class="nav-item">
-                <a class="nav-link collapsed" routerLink="/dashboard-gerente/gestionar-producto" data-toggle="collapse">
-                    <i class="fa-solid fa-bag-shopping"></i>
-                    <span> Gestionar Productos</span>
+                <a class="nav-link collapsed" routerLink="/dashboard-gerente/tipoProducto" data-toggle="collapse">
+                    <i class="fa-brands fa-product-hunt"></i>
+                    <span> Tipo de Producto</span>
                 </a>
             </li>
 
-            <!-- Gestionar Monturas -->
+            <!-- Gestionar Producto -->
             <li class="nav-item">
-                <a class="nav-link collapsed" routerLink="/dashboard-gerente/montura" data-toggle="collapse">
-                    <i class="fa-solid fa-glasses"></i>
-                    <span> Monturas</span>
+                <a class="nav-link collapsed" routerLink="/dashboard-gerente/gestionar-producto" data-toggle="collapse">
+                    <i class="fa-solid fa-box-archive"></i>
+                    <span> Gestionar Producto</span>
                 </a>
             </li>
 
@@ -269,14 +269,13 @@
                                         <input type="text" formControlName="imagen" class="form-control"
                                             style="width: 350px;" placeholder="Ingrese la URL de la imagen...">
                                     </div>
-                           
+
                                     <label class="form-label label-text" style="margin-top: 10px;">Marca</label>
-                                    <input type="text" formControlName="marca" class="form-control"
-                                        style="width: 350px;" placeholder="Escriba la marca de la montura...">
-                                    <div class="text-danger"
-                                        *ngIf="lenteSolForm.get('marca')?.hasError('required') && lenteSolForm.get('marca')?.touched">
-                                        <span>La marca de la montura <strong>es obligatorio</strong></span>
-                                    </div>
+                                    <select formControlName="marca" class="form-select" style="width: 350px;">
+                                        <option disabled selected>Selecciona la marca...</option>
+                                        <option *ngFor="let marcas of marca" [value]="marcas.nombre">{{ marcas.nombre }}
+                                        </option>
+                                    </select>
 
                                     <label class="form-label label-text" style="margin-top: 10px;">Género</label>
                                     <div class="d-flex">
@@ -399,12 +398,11 @@
                                     </div>
 
                                     <label class="form-label label-text" style="margin-top: 10px;">Marca</label>
-                                    <input type="text" formControlName="marca" class="form-control"
-                                        style="width: 350px;" placeholder="Escriba la marca de la montura...">
-                                    <div class="text-danger"
-                                        *ngIf="gestionarproductoForm.get('marca')?.hasError('required') && gestionarproductoForm.get('marca')?.touched">
-                                        <span>La marca de la montura <strong>es obligatorio</strong></span>
-                                    </div>
+                                    <select formControlName="marca" class="form-select" style="width: 350px;">
+                                        <option disabled selected>Selecciona la marca...</option>
+                                        <option *ngFor="let marcas of marca" [value]="marcas.nombre">{{ marcas.nombre }}
+                                        </option>
+                                    </select>
 
                                     <label class="form-label label-text" style="margin-top: 10px;">Género</label>
                                     <div class="d-flex">

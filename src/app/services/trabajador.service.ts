@@ -26,13 +26,11 @@ export class TrabajadorService {
   }
 
   guardarTrabajador(trabajador: Trabajador): Observable<any> {
-    let direccion = this.url + 'crear-trabajador';
-    return this.http.post(direccion, trabajador);
+    return this.http.post(this.url, trabajador);
   }
 
   editarTrabajador(id: string, trabajador: Trabajador): Observable<any> {
-    let direccion = this.url + 'editar-trabajador';
-    return this.http.put(direccion + id, trabajador);
+    return this.http.put(this.url + id, trabajador);
   }
 
 }

@@ -24,12 +24,10 @@ export class TipoProductoService {
   }
 
   guardarTipoProducto(tipoProducto: TipoProducto): Observable<any> {
-    let direccion = this.url + 'crear-tipoProducto';
-    return this.http.post(direccion, tipoProducto);
+    return this.http.post(this.url, tipoProducto);
   }
 
   editarTipoProducto(id: string, tipoProducto: TipoProducto): Observable<any> {
-    let direccion = this.url + 'editar-tipoProducto';
-    return this.http.put(direccion + id, tipoProducto);
+    return this.http.put(this.url + id, tipoProducto);
   }
 }

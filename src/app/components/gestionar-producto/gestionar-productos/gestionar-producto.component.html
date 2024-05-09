@@ -77,19 +77,19 @@
                 Producto
             </div>
 
-            <!-- Gestionar Gestionar Producto -->
+            <!-- Gestionar tipoProducto -->
             <li class="nav-item">
-                <a class="nav-link collapsed" routerLink="/dashboard-gerente/gestionar-producto" data-toggle="collapse">
-                    <i class="fa-solid fa-bag-shopping"></i>
-                    <span> Gestionar Productos</span>
+                <a class="nav-link collapsed" routerLink="/dashboard-gerente/tipoProducto" data-toggle="collapse">
+                    <i class="fa-brands fa-product-hunt"></i>
+                    <span> Tipo de Producto</span>
                 </a>
             </li>
 
-            <!-- Gestionar Monturas -->
+            <!-- Gestionar Producto -->
             <li class="nav-item">
-                <a class="nav-link collapsed" routerLink="/dashboard-gerente/montura" data-toggle="collapse">
-                    <i class="fa-solid fa-glasses"></i>
-                    <span> Monturas</span>
+                <a class="nav-link collapsed" routerLink="/dashboard-gerente/gestionar-producto" data-toggle="collapse">
+                    <i class="fa-solid fa-box-archive"></i>
+                    <span> Gestionar Producto</span>
                 </a>
             </li>
 
@@ -189,7 +189,9 @@
                                         <th>Codigo</th>
                                         <th>Tipo de Producto</th>
                                         <th>Nombre</th>
-                                        <th>Precio</th>
+                                        <th>Marca</th>
+                                        <th>Color</th>
+                                        <th>Género</th>
                                         <th>Precio</th>
                                         <th>Acciones</th>
                                     </tr>
@@ -201,6 +203,8 @@
                                         <td>{{ montura.tipoProducto}}</td>
                                         <td>{{ montura.nombre }}</td>
                                         <td>{{ montura.marca }}</td>
+                                        <td>{{ montura.color }}</td>
+                                        <td>{{ montura.genero }}</td>
                                         <td>{{ montura.precio }}</td>
                                         <td>
                                             <i [routerLink]="['/dashboard-gerente/trabajador/editar-trabajador/', montura._id]" class="faw fa fa-edit text-primary"></i>
@@ -213,6 +217,8 @@
                                         <td>{{ lenteSol.tipoProducto}}</td>
                                         <td>{{ lenteSol.nombre }}</td>
                                         <td>{{ lenteSol.marca }}</td>
+                                        <td>{{ lenteSol.color }}</td>
+                                        <td>{{ lenteSol.genero }}</td>
                                         <td>{{ lenteSol.precio }}</td>
                                         <td>
                                             <i [routerLink]="['/dashboard-gerente/trabajador/editar-trabajador/', lenteSol._id]" class="faw fa fa-edit text-primary"></i>
@@ -221,7 +227,8 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <h5 style="text-align: start; margin-top: 10px;" *ngIf="listMontura.length == 0 || listLenteSol.length == 0">No hay productos para mostrar</h5>
+                            <h5 style="text-align: start; margin-top: 10px;" *ngIf="listMontura.length == 0">No hay monturas para mostrar</h5>
+                            <h5 style="text-align: start; margin-top: 10px;" *ngIf="listLenteSol.length == 0">No hay lentes de sol para mostrar</h5>
                         </div>
                     </div>
                 </div>

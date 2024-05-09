@@ -16,6 +16,7 @@ import { CrearMonturaComponent } from './components/monturas/crear-montura/crear
 import { CrearLunaComponent } from './components/lunas/crear-luna/crear-luna.component';
 import { CrearProductoComponent } from './components/gestionar-producto/crear-producto/crear-producto.component';
 import { CrearTipoProductoComponent } from './components/tipoProducto/crear-tipo-producto/crear-tipo-producto.component';
+import { TipoComponent } from './components/tipoProducto/tipo/tipo.component';
 
 
 const routes: Routes = [
@@ -29,8 +30,7 @@ const routes: Routes = [
   { path: 'dashboard-gerente/luna', component: LunaComponent},
   { path: 'dashboard-gerente/marca', component: MarcaComponent},
   { path: 'dashboard-gerente/gestionar-producto', component: GestionarProductoComponent},
-
-  { path: 'dashboard-gerente/tipoProducto', component: CrearTipoProductoComponent},
+  { path: 'dashboard-gerente/tipoProducto', component: TipoComponent},
   //--------------------------------------------CREAR--------------------------------------------
   { path: 'dashboard-gerente/rol/crear-rol', component: CrearRolComponent},
   { path: 'dashboard-gerente/rol/editar-rol/:id', component: CrearRolComponent},
@@ -46,6 +46,9 @@ const routes: Routes = [
 
   { path: 'dashboard-gerente/luna/crear-luna', component: CrearLunaComponent},
   { path: 'dashboard-gerente/luna/editar-luna/:id', component: CrearLunaComponent},
+
+  { path: 'dashboard-gerente/tipoProducto/crear-tipoProducto', component: CrearTipoProductoComponent},
+  { path: 'dashboard-gerente/tipoProducto/editar-tipoProducto/:id', component: CrearTipoProductoComponent},
 
   { path: 'dashboard-gerente/gestionar-producto/crear-producto', component: CrearProductoComponent},
   { path: 'dashboard-gerente/gestionar-producto/editar-gestionarproducto/:id', component: CrearProductoComponent},

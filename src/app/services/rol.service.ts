@@ -25,12 +25,10 @@ export class RolService {
   }
 
   guardarRol(rol: Rol): Observable<any> {
-    let direccion = this.url + 'crear-rol';
-    return this.http.post(direccion, rol);
+    return this.http.post(this.url, rol);
   }
 
   editarRol(id: string, rol: Rol): Observable<any> {
-    let direccion = this.url + 'editar-rol';
-    return this.http.put(direccion + id, rol);
+    return this.http.put(this.url + id, rol);
   }
 }

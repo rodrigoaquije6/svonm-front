@@ -26,13 +26,11 @@ export class MarcaService {
   }
 
   guardarMarca(marca: Marca): Observable<any> {
-    let direccion = this.url + 'crear-marca';
-    return this.http.post(direccion, marca);
+    return this.http.post(this.url, marca);
   }
 
   editarMarca(id: string, marca: Marca): Observable<any> {
-    let direccion = this.url + 'editar-marca';
-    return this.http.put(direccion + id, marca);
+    return this.http.put(this.url + id, marca);
   }
 
 }
