@@ -8,7 +8,7 @@ import { GestionarProducto } from '../models/gestionar-producto';
   providedIn: 'root'
 })
 export class GestionarProductoService {
-  url = 'https://vigilant-acorn-q7777qjxj95jhx77v-4000.app.github.dev/api/gestionar-producto/' //http://localhost:4000/api/gestionar-producto/ 
+  url = 'http://localhost:4000/api/gestionar-producto/' //http://localhost:4000/api/gestionar-producto/ 
 
   constructor(private http: HttpClient) { }
 
@@ -22,7 +22,6 @@ export class GestionarProductoService {
 
   eliminarGestionarProducto(id: string): Observable<any>{
     return this.http.delete(this.url + id);
-
   }
 
   guardarGestionarProducto(gestionarproducto: GestionarProducto): Observable<any> {

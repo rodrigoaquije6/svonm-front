@@ -6,7 +6,9 @@ import { ToastrService } from 'ngx-toastr';
 import { GestionarProducto } from 'src/app/models/gestionar-producto';
 import { GestionarProductoService } from 'src/app/services/gestionar-producto.service';
 import { MonturaService } from 'src/app/services/montura.service';
+import { LenteSolService } from 'src/app/services/lenteSol.service';
 import { Montura } from 'src/app/models/montura';
+import { LenteSol } from 'src/app/models/lenteSol';
 
 @Component({
   selector: 'app-crear-producto',
@@ -15,6 +17,8 @@ import { Montura } from 'src/app/models/montura';
 })
 export class CrearProductoComponent implements OnInit {
   gestionarproductoForm: FormGroup;
+
+  lenteSolForm: FormGroup;
 
   producto: string | null = "null";
 
@@ -29,6 +33,7 @@ export class CrearProductoComponent implements OnInit {
     private router: Router,
     private _gestionarproductoService: GestionarProductoService,
     private _monturaService: MonturaService,
+    private _lenteSolService: LenteSolService,
     private aRouter: ActivatedRoute,
     private api: LoginService,) {
     this.gestionarproductoForm = this.fb.group({
@@ -42,6 +47,21 @@ export class CrearProductoComponent implements OnInit {
       color: [''],
       forma: [''],
     })
+
+    this.lenteSolForm = this.fb.group({
+      codigo: ['', Validators.required],
+      tipoProducto: ['', Validators.required],
+      nombre: ['', Validators.required],
+      precio: ['', Validators.required],
+      imagen: ['', Validators.required],
+      marca: ['', Validators.required],
+      genero: [''],
+      color: [''],
+      forma: [''],
+      colorlente: [''],
+      protuv: [''],
+    })
+    
     this.id = this.aRouter.snapshot.paramMap.get('id')
   }
 
@@ -115,10 +135,43 @@ export class CrearProductoComponent implements OnInit {
         this.gestionarproductoForm.reset();
       })
     }
-
   }
 
+  agregarLenteSolForm() {
+    const LENTESOL: LenteSol = {
+    codigo: this.lenteSolForm.get('codigo')?.value,
+    tipoProducto: this.lenteSolForm.get('tipoProducto')?.value,
+    nombre: this.lenteSolForm.get('nombre')?.value,
+    precio: this.lenteSolForm.get('precio')?.value,
+    imagen: this.lenteSolForm.get('imagen')?.value,
+    marca: this.lenteSolForm.get('marca')?.value,
+    color: this.lenteSolForm.get('color')?.value,
+    genero: this.lenteSolForm.get('genero')?.value,
+    forma: this.lenteSolForm.get('forma')?.value,
+    colorlente: this.lenteSolForm.get('colorlente')?.value,
+    protuv: this.lenteSolForm.get('protuv')?.value,
+    }
 
+    if (this.id !== null) {
+      this._lenteSolService.editarLenteSol(this.id, LENTESOL).subscribe(data => {
+        this.toastr.info('El producto fue actualizado con éxito!', 'Producto Actualizado!')
+        this.router.navigate(['/dashboard-gerente/gestionar-producto']);
+      }, error => {
+        console.log(error);
+        this.gestionarproductoForm.reset();
+      })
+    } else {
+      console.log(LENTESOL);
+      this._lenteSolService.guardarLenteSol(LENTESOL).subscribe(data => {
+        this.toastr.success('El producto fue registrado con éxito!', 'Producto Registrado!');
+        this.router.navigate(['/dashboard-gerente/gestionar-producto']);
+      }, error => {
+        console.log(error);
+        this.gestionarproductoForm.reset();
+      })
+    }
+
+  }
 
   esEditar() {
     if (this.id !== null) {

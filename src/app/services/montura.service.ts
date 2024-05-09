@@ -7,7 +7,7 @@ import { Montura } from '../models/montura';
   providedIn: 'root'
 })
 export class MonturaService {
-  url: string = 'https://shiny-space-waddle-jjjjvrg5jjr35p57-4000.app.github.dev/api/montura/'; //'http://localhost:4000/api/montura/'
+  url: string = 'http://localhost:4000/api/montura/'; //'http://localhost:4000/api/montura/'
 
   constructor(private http: HttpClient) { }
 

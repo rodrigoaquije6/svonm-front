@@ -8,7 +8,7 @@ import { Marca } from '../models/marca';
 })
 export class MarcaService {
 
-  url = 'https://shiny-space-waddle-jjjjvrg5jjr35p57-4000.app.github.dev/api/'; //'http://localhost:4000/api/crear-marca/'
+  url = 'http://localhost:4000/api/crear-marca/'; //'http://localhost:4000/api/crear-marca/'
 
   constructor(private http: HttpClient) { }
 
