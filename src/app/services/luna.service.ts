@@ -7,7 +7,7 @@ import { Luna } from '../models/luna';
   providedIn: 'root'
 })
 export class LunaService {
-  url = 'http://localhost:4000/api/luna/'; //'http://localhost:4000/api/luna/' 
+  url = 'https://bug-free-telegram-wwv6475qj9536rj-4000.app.github.dev/api/luna/'; //'http://localhost:4000/api/luna/' 
 
   constructor(private http: HttpClient) { }
 

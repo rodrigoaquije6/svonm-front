@@ -7,7 +7,7 @@ import { Montura } from '../models/montura';
   providedIn: 'root'
 })
 export class MonturaService {
-  url: string = 'http://localhost:4000/api/montura/'; //'http://localhost:4000/api/montura/'
+  url: string = 'https://bug-free-telegram-wwv6475qj9536rj-4000.app.github.dev/api/montura/'; //'http://localhost:4000/api/montura/'
 
   constructor(private http: HttpClient) { }
 
