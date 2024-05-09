@@ -22,6 +22,8 @@ import { CrearMarcaComponent } from './components/marcas/crear-marca/crear-marca
 import { CrearLunaComponent } from './components/lunas/crear-luna/crear-luna.component';
 import { TipoComponent } from './components/tipoProducto/tipo/tipo.component';
 import { CrearTipoProductoComponent } from './components/tipoProducto/crear-tipo-producto/crear-tipo-producto.component';
+import { AlmacenComponent } from './components/gestionarAlmacen/almacen/almacen.component';
+import { EditarStockComponent } from './components/gestionarAlmacen/editar-stock/editar-stock.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,8 @@ import { CrearTipoProductoComponent } from './components/tipoProducto/crear-tipo
     CrearLunaComponent,
     TipoComponent,
     CrearTipoProductoComponent,
+    AlmacenComponent,
+    EditarStockComponent,
   ],
   imports: [
     BrowserModule,
