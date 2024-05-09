@@ -7,7 +7,7 @@ import { Montura } from '../models/montura';
   providedIn: 'root'
 })
 export class MonturaService {
-  url = 'https://shiny-space-waddle-jjjjvrg5jjr35p57-4000.app.github.dev/api/'; //'http://localhost:4000/api/montura/'
+  url: string = 'https://shiny-space-waddle-jjjjvrg5jjr35p57-4000.app.github.dev/api/montura/'; //'http://localhost:4000/api/montura/'
 
   constructor(private http: HttpClient) { }
 
@@ -24,12 +24,10 @@ export class MonturaService {
   }
 
   guardarMontura(montura: Montura): Observable<any> {
-    let direccion = this.url + 'crear-montura';
-    return this.http.post(direccion, montura);
+    return this.http.post(this.url, montura);
   }
 
   editarMontura(id: string, montura: Montura): Observable<any> {
-    let direccion = this.url + 'editar-montura';
     return this.http.put(this.url + id, montura);
   }
 

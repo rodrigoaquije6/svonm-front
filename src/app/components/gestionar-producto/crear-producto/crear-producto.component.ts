@@ -5,6 +5,8 @@ import { LoginService } from 'src/app/services/login.service';
 import { ToastrService } from 'ngx-toastr';
 import { GestionarProducto } from 'src/app/models/gestionar-producto';
 import { GestionarProductoService } from 'src/app/services/gestionar-producto.service';
+import { MonturaService } from 'src/app/services/montura.service';
+import { Montura } from 'src/app/models/montura';
 
 @Component({
   selector: 'app-crear-producto',
@@ -14,16 +16,19 @@ import { GestionarProductoService } from 'src/app/services/gestionar-producto.se
 export class CrearProductoComponent implements OnInit {
   gestionarproductoForm: FormGroup;
 
-  titulo = 'Crear producto'
+  producto: string | null = "null";
+
+  titulo = 'Crear producto'  
 
   id: string | null;
 
-  url = 'http://localhost:4000/api/crear-producto/ ' //https://vigilant-acorn-q7777qjxj95jhx77v-4000.app.github.dev/api/crear-producto/
+  url = 'https://shiny-space-waddle-jjjjvrg5jjr35p57-4000.app.github.dev/api/'//'http://localhost:4000/api/crear-producto/ ' //https://vigilant-acorn-q7777qjxj95jhx77v-4000.app.github.dev/api/crear-producto/
 
   constructor(private fb: FormBuilder,
     private toastr: ToastrService,
     private router: Router,
     private _gestionarproductoService: GestionarProductoService,
+    private _monturaService: MonturaService,
     private aRouter: ActivatedRoute,
     private api: LoginService,) {
     this.gestionarproductoForm = this.fb.group({
@@ -32,12 +37,21 @@ export class CrearProductoComponent implements OnInit {
       nombre: ['', Validators.required],
       precio: ['', Validators.required],
       imagen: ['', Validators.required],
+      marca: ['', Validators.required],
+      genero: [''],
+      color: [''],
+      forma: [''],
     })
     this.id = this.aRouter.snapshot.paramMap.get('id')
   }
 
   ngOnInit(): void {
     this.esEditar();
+  }
+
+  onItemChange(producto: string | null) {
+        console.log('Producto seleccionado:', producto);
+        this.producto = producto;
   }
 
   agregarGestionarProducto() {
@@ -71,16 +85,20 @@ export class CrearProductoComponent implements OnInit {
   }
 
   agregarMonturaForm() {
-    const GESTIONARPRODUCTO: GestionarProducto = {
+    const MONTURA: Montura = {
     codigo: this.gestionarproductoForm.get('codigo')?.value,
     tipoProducto: this.gestionarproductoForm.get('tipoProducto')?.value,
     nombre: this.gestionarproductoForm.get('nombre')?.value,
     precio: this.gestionarproductoForm.get('precio')?.value,
     imagen: this.gestionarproductoForm.get('imagen')?.value,
+    marca: this.gestionarproductoForm.get('marca')?.value,
+    color: this.gestionarproductoForm.get('color')?.value,
+    genero: this.gestionarproductoForm.get('genero')?.value,
+    forma: this.gestionarproductoForm.get('forma')?.value,
     }
 
     if (this.id !== null) {
-      this._gestionarproductoService.editarGestionarProducto(this.id, GESTIONARPRODUCTO).subscribe(data => {
+      this._monturaService.editarMontura(this.id, MONTURA).subscribe(data => {
         this.toastr.info('El producto fue actualizado con éxito!', 'Producto Actualizado!')
         this.router.navigate(['/dashboard-gerente/gestionar-producto']);
       }, error => {
@@ -88,8 +106,8 @@ export class CrearProductoComponent implements OnInit {
         this.gestionarproductoForm.reset();
       })
     } else {
-      console.log(GESTIONARPRODUCTO);
-      this._gestionarproductoService.guardarGestionarProducto(GESTIONARPRODUCTO).subscribe(data => {
+      console.log(MONTURA);
+      this._monturaService.guardarMontura(MONTURA).subscribe(data => {
         this.toastr.success('El producto fue registrado con éxito!', 'Producto Registrado!');
         this.router.navigate(['/dashboard-gerente/gestionar-producto']);
       }, error => {

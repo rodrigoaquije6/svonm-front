@@ -22,6 +22,7 @@ import { CrearMarcaComponent } from './components/marcas/crear-marca/crear-marca
 import { CrearLunaComponent } from './components/lunas/crear-luna/crear-luna.component';
 import { GestionarProductoComponent } from './components/gestionar-producto/gestionar-productos/gestionar-producto.component';
 import { CrearProductoComponent } from './components/gestionar-producto/crear-producto/crear-producto.component';
+import { CrearTipoProductoComponent } from './components/tipoProducto/crear-tipo-producto/crear-tipo-producto.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { CrearProductoComponent } from './components/gestionar-producto/crear-pr
     CrearLunaComponent,
     GestionarProductoComponent,
     CrearProductoComponent,
+    CrearTipoProductoComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,6 +53,10 @@ import { CrearProductoComponent } from './components/gestionar-producto/crear-pr
     ToastrModule.forRoot(),
     HttpClientModule
   ],
+  // exports: [
+  //   ReactiveFormsModule,
+  //   FormsModule,
+  // ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true }],
   bootstrap: [AppComponent]
 })

@@ -35,7 +35,7 @@ export class CrearMonturaComponent implements OnInit {
       marca: ['', Validators.required],
       nombre: ['', Validators.required],
       color: ['', Validators.required],
-      género:['', Validators.required],
+      genero:['', Validators.required],
       precio: ['', Validators.required],
       forma: ['', Validators.required],
       imagen: ['', Validators.required],
@@ -66,10 +66,11 @@ export class CrearMonturaComponent implements OnInit {
       marca: this.monturaForm.get('marca')?.value,
       nombre: this.monturaForm.get('nombre')?.value,
       color: this.monturaForm.get('color')?.value,
-      género: this.monturaForm.get('género')?.value,
+      genero: this.monturaForm.get('género')?.value,
       precio: this.monturaForm.get('precio')?.value,
       forma: this.monturaForm.get('forma')?.value,
       imagen: this.monturaForm.get('imagen')?.value,
+      tipoProducto: "Montura",
     }
 
     if (this.id !== null) {
@@ -104,7 +105,7 @@ export class CrearMonturaComponent implements OnInit {
           marca: data.marca,
           nombre: data.nombre,
           color: data.color,
-          género: data.género,
+          genero: data.genero,
           precio: data.precio,
           forma: data.forma,
           imagen: data.imagen,

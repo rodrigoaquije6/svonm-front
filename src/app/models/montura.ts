@@ -4,19 +4,21 @@ export class Montura {
     marca: string;
     nombre: string;
     color: string;
-    género: string;
+    genero: string;
     precio: number;
     forma: string;
     imagen: string;
+    tipoProducto: string;
 
-    constructor(nombre: string, marca: string, color: string, género: string, precio: number, forma: string, codigo: number, imagen: string) {
+    constructor(nombre: string, marca: string, color: string, genero: string, precio: number, forma: string, codigo: number, imagen: string, tipoProducto: string) {
         this.nombre = nombre
         this.marca = marca
         this.color = color
-        this.género = género
+        this.genero = genero
         this.precio = precio
         this.forma = forma
         this.codigo = codigo
         this.imagen = imagen
+        this.tipoProducto = tipoProducto
     }
 }

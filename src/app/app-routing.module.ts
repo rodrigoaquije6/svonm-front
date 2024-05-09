@@ -15,6 +15,7 @@ import { CrearMarcaComponent } from './components/marcas/crear-marca/crear-marca
 import { CrearMonturaComponent } from './components/monturas/crear-montura/crear-montura.component';
 import { CrearLunaComponent } from './components/lunas/crear-luna/crear-luna.component';
 import { CrearProductoComponent } from './components/gestionar-producto/crear-producto/crear-producto.component';
+import { CrearTipoProductoComponent } from './components/tipoProducto/crear-tipo-producto/crear-tipo-producto.component';
 
 
 const routes: Routes = [
@@ -29,7 +30,7 @@ const routes: Routes = [
   { path: 'dashboard-gerente/marca', component: MarcaComponent},
   { path: 'dashboard-gerente/gestionar-producto', component: GestionarProductoComponent},
 
-  { path: 'dashboard-gerente/tipoProducto', component: TipoComponent},
+  { path: 'dashboard-gerente/tipoProducto', component: CrearTipoProductoComponent},
   //--------------------------------------------CREAR--------------------------------------------
   { path: 'dashboard-gerente/rol/crear-rol', component: CrearRolComponent},
   { path: 'dashboard-gerente/rol/editar-rol/:id', component: CrearRolComponent},
