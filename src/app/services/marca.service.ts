@@ -8,7 +8,7 @@ import { Marca } from '../models/marca';
 })
 export class MarcaService {
 
-  url = 'http://localhost:4000/api/crear-marca/' //https://shiny-tribble-rqj5r9gj7xwf5x55-4000.app.github.dev/api/crear-marca/
+  url = 'https://shiny-space-waddle-jjjjvrg5jjr35p57-4000.app.github.dev/api/'; //'http://localhost:4000/api/crear-marca/'
 
   constructor(private http: HttpClient) { }
 
@@ -26,11 +26,13 @@ export class MarcaService {
   }
 
   guardarMarca(marca: Marca): Observable<any> {
-    return this.http.post(this.url, marca);
+    let direccion = this.url + 'crear-marca';
+    return this.http.post(direccion, marca);
   }
 
   editarMarca(id: string, marca: Marca): Observable<any> {
-    return this.http.put(this.url + id, marca);
+    let direccion = this.url + 'editar-marca';
+    return this.http.put(direccion + id, marca);
   }
 
 }

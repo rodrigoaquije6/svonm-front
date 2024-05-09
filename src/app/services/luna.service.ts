@@ -7,7 +7,7 @@ import { Luna } from '../models/luna';
   providedIn: 'root'
 })
 export class LunaService {
-  url = 'http://localhost:4000/api/luna/' //https://shiny-tribble-rqj5r9gj7xwf5x55-4000.app.github.dev/api/luna/
+  url = 'https://shiny-space-waddle-jjjjvrg5jjr35p57-4000.app.github.dev/api/'; //'http://localhost:4000/api/luna/' 
 
   constructor(private http: HttpClient) { }
 
@@ -24,10 +24,12 @@ export class LunaService {
   }
 
   guardarLuna(luna: Luna): Observable<any> {
-    return this.http.post(this.url, luna);
+    let direccion = this.url + 'crear-luna';
+    return this.http.post(direccion, luna);
   }
   
   editarLuna(id: string, luna: Luna): Observable<any> {
-    return this.http.put(this.url + id, luna);
+    let direccion = this.url + 'editar-marca/';
+    return this.http.put(direccion + id, luna);
   }
 }

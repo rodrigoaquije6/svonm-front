@@ -7,7 +7,7 @@ import { Rol } from '../models/rol';
   providedIn: 'root'
 })
 export class RolService {
-  url = 'http://localhost:4000/api/rol/'
+  url = 'https://shiny-space-waddle-jjjjvrg5jjr35p57-4000.app.github.dev/api/'; //'http://localhost:4000/api/rol/'
   
   constructor(private http: HttpClient) { }
 
@@ -25,10 +25,12 @@ export class RolService {
   }
 
   guardarRol(rol: Rol): Observable<any> {
-    return this.http.post(this.url, rol);
+    let direccion = this.url + 'crear-rol';
+    return this.http.post(direccion, rol);
   }
 
   editarRol(id: string, rol: Rol): Observable<any> {
-    return this.http.put(this.url + id, rol);
+    let direccion = this.url + 'editar-rol';
+    return this.http.put(direccion + id, rol);
   }
 }

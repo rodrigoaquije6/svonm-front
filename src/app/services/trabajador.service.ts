@@ -8,7 +8,7 @@ import { Trabajador } from '../models/trabajador';
   providedIn: 'root'
 })
 export class TrabajadorService {
-  url = 'http://localhost:4000/api/trabajador/' //https://shiny-tribble-rqj5r9gj7xwf5x55-4000.app.github.dev/api/trabajador/
+  url = 'https://shiny-space-waddle-jjjjvrg5jjr35p57-4000.app.github.dev/api/'; //'http://localhost:4000/api/trabajador/'
 
   constructor(private http: HttpClient) { }
 
@@ -26,11 +26,13 @@ export class TrabajadorService {
   }
 
   guardarTrabajador(trabajador: Trabajador): Observable<any> {
-    return this.http.post(this.url, trabajador);
+    let direccion = this.url + 'crear-trabajador';
+    return this.http.post(direccion, trabajador);
   }
 
   editarTrabajador(id: string, trabajador: Trabajador): Observable<any> {
-    return this.http.put(this.url + id, trabajador);
+    let direccion = this.url + 'editar-trabajador';
+    return this.http.put(direccion + id, trabajador);
   }
 
 }

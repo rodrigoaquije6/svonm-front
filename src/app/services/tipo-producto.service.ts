@@ -7,7 +7,7 @@ import { TipoProducto } from '../models/tipoProducto';
   providedIn: 'root'
 })
 export class TipoProductoService {
-  url = 'http://localhost:4000/api/tipoProducto/' //
+  url = 'https://shiny-space-waddle-jjjjvrg5jjr35p57-4000.app.github.dev/api/'; //'http://localhost:4000/api/tipoProducto/' //
 
   constructor(private http: HttpClient) { }
 
@@ -24,10 +24,12 @@ export class TipoProductoService {
   }
 
   guardarTipoProducto(tipoProducto: TipoProducto): Observable<any> {
-    return this.http.post(this.url, tipoProducto);
+    let direccion = this.url + 'crear-tipoProducto';
+    return this.http.post(direccion, tipoProducto);
   }
 
   editarTipoProducto(id: string, tipoProducto: TipoProducto): Observable<any> {
-    return this.http.put(this.url + id, tipoProducto);
+    let direccion = this.url + 'editar-tipoProducto';
+    return this.http.put(direccion + id, tipoProducto);
   }
 }
