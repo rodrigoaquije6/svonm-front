@@ -16,7 +16,7 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="montura.component.css" rel="stylesheet">
+    <link href="gestionar-producto.component.css" rel="stylesheet">
 
 </head>
 
@@ -84,7 +84,7 @@
                     <span> Gestionar Productos</span>
                 </a>
             </li>
-
+            
             <!-- Gestionar Monturas -->
             <li class="nav-item">
                 <a class="nav-link collapsed" routerLink="/dashboard-gerente/montura" data-toggle="collapse">
@@ -155,7 +155,7 @@
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                    <span class="span-text mx-3">GESTIONAR MONTURA</span>
+                    <span class="span-text mx-3">GESTIONAR PRODUCTO</span>
 
 
                     <!-- Topbar Navbar -->
@@ -177,47 +177,46 @@
                 <div class="container mt-5">
                     <div class="row">
                         <div class="col-lg-11 offser-lg-2">
-                            <button class="btn btn-success float-end"routerLink="/dashboard-gerente/montura/crear-montura">
+                            <button class="btn btn-success float-end" routerLink="/dashboard-gerente/gestionar-producto/crear-producto">
                                 Agregar
                                 <i class="fa-solid fa-plus"></i>
                             </button>
-
-                            <table *ngIf="listMontura.length > 0" class="table table-striped mx-5 mt-5 text-center">
+                            <table *ngIf="listGestionarProducto.length > 0" class="table table-striped mx-5 mt-5 text-center">
                                 <thead>
                                     <tr>
                                         <th>Codigo</th>
-                                        <th>Marca</th>
+                                        <th>Tipo del Producto</th>
                                         <th>Nombre</th>
-                                        <th>Color</th>
                                         <th>Precio</th>
-                                        <th>Acción</th>
+                                        <th>Imagen</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let montura of listMontura">
+
+                                    <tr *ngFor="let gestionarproducto of listGestionarProducto">                                    
                                         <td>
-                                            {{montura.codigo}}
+                                            {{gestionarproducto.codigo}}
                                         </td>
                                         <td>
-                                            {{montura.marca}}
+                                            {{gestionarproducto.tipoProducto}}                                          
                                         </td>
                                         <td>
-                                            {{montura.nombre}}
+                                            {{gestionarproducto.nombre}}                                     
                                         </td>
                                         <td>
-                                            {{montura.color}}
+                                            {{gestionarproducto.precio}}                              
                                         </td>
                                         <td>
-                                            {{montura.precio}}
-                                         </td>
+                                            {{gestionarproducto.imagen}}                              
+                                        </td>
                                         <td>
-                                            <i [routerLink]="['/dashboard-gerente/montura/editar-montura/', montura._id]" class="faw fa fa-edit text-primary"></i>
-                                            <i (click)="eliminarMontura(montura._id)" class='faw fa-solid fa-trash text-danger'></i>
+                                            <i [routerLink]="['/dashboard-gerente/trabajador/editar-gestionarproducto/', gestionarproducto._id]" class="faw fa fa-edit text-primary"></i>
+                                            <i (click)="eliminarProducto(gestionarproducto._id)" class='faw fa-solid fa-trash text-danger'></i>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
-                            <h5 style="text-align: start; margin-top: 10px;" *ngIf="listMontura.length == 0">No hay monturas para mostrar</h5>
+                            <h5 style="text-align: start; margin-top: 10px;" *ngIf="listGestionarProducto.length == 0">No hay Producto para mostrar</h5>
                         </div>
                     </div>
                 </div>

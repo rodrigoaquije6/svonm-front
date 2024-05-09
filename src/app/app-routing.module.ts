@@ -8,13 +8,14 @@ import { RolComponent } from './components/roles/rol/rol.component';
 import { MonturaComponent } from './components/monturas/montura/montura.component';
 import { LunaComponent } from './components/lunas/luna/luna.component';
 import { MarcaComponent } from './components/marcas/marca/marca.component';
+import { GestionarProductoComponent } from './components/gestionar-producto/gestionar-productos/gestionar-producto.component';
 import { CrearRolComponent } from './components/roles/crear-rol/crear-rol.component';
 import { CrearTrabajadorComponent } from './components/trabajador/crear-trabajador/crear-trabajador.component';
 import { CrearMarcaComponent } from './components/marcas/crear-marca/crear-marca.component';
 import { CrearMonturaComponent } from './components/monturas/crear-montura/crear-montura.component';
 import { CrearLunaComponent } from './components/lunas/crear-luna/crear-luna.component';
-import { TipoComponent } from './components/tipoProducto/tipo/tipo.component';
-import { CrearTipoProductoComponent } from './components/tipoProducto/crear-tipo-producto/crear-tipo-producto.component';
+import { CrearProductoComponent } from './components/gestionar-producto/crear-producto/crear-producto.component';
+
 
 const routes: Routes = [
   { path: '', component: LoginComponent},
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'dashboard-gerente/montura', component: MonturaComponent},
   { path: 'dashboard-gerente/luna', component: LunaComponent},
   { path: 'dashboard-gerente/marca', component: MarcaComponent},
+  { path: 'dashboard-gerente/gestionar-producto', component: GestionarProductoComponent},
 
   { path: 'dashboard-gerente/tipoProducto', component: TipoComponent},
   //--------------------------------------------CREAR--------------------------------------------
@@ -44,9 +46,9 @@ const routes: Routes = [
   { path: 'dashboard-gerente/luna/crear-luna', component: CrearLunaComponent},
   { path: 'dashboard-gerente/luna/editar-luna/:id', component: CrearLunaComponent},
 
-  { path: 'dashboard-gerente/tipoProducto/crear-tipoProducto', component: CrearTipoProductoComponent},
-  { path: 'dashboard-gerente/tipoProducto/editar-tipoProducto/:id', component: CrearTipoProductoComponent},
-
+  { path: 'dashboard-gerente/gestionar-producto/crear-producto', component: CrearProductoComponent},
+  { path: 'dashboard-gerente/gestionar-producto/editar-gestionarproducto/:id', component: CrearProductoComponent},
+  
   { path: '**', redirectTo: '', pathMatch: 'full' }
 ];  
 

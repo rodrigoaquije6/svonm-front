@@ -20,8 +20,8 @@ import { TokenInterceptorService } from './interceptors/token-interceptor.servic
 import { CrearMonturaComponent } from './components/monturas/crear-montura/crear-montura.component';
 import { CrearMarcaComponent } from './components/marcas/crear-marca/crear-marca.component';
 import { CrearLunaComponent } from './components/lunas/crear-luna/crear-luna.component';
-import { TipoComponent } from './components/tipoProducto/tipo/tipo.component';
-import { CrearTipoProductoComponent } from './components/tipoProducto/crear-tipo-producto/crear-tipo-producto.component';
+import { GestionarProductoComponent } from './components/gestionar-producto/gestionar-productos/gestionar-producto.component';
+import { CrearProductoComponent } from './components/gestionar-producto/crear-producto/crear-producto.component';
 
 @NgModule({
   declarations: [
@@ -39,8 +39,8 @@ import { CrearTipoProductoComponent } from './components/tipoProducto/crear-tipo
     CrearMonturaComponent,
     CrearMarcaComponent,
     CrearLunaComponent,
-    TipoComponent,
-    CrearTipoProductoComponent,
+    GestionarProductoComponent,
+    CrearProductoComponent,
   ],
   imports: [
     BrowserModule,
