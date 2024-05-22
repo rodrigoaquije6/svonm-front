@@ -207,7 +207,7 @@
                                         <td>{{ montura.genero }}</td>
                                         <td>{{ montura.precio }}</td>
                                         <td>
-                                            <i [routerLink]="['/dashboard-gerente/trabajador/editar-trabajador/', montura._id]" class="faw fa fa-edit text-primary"></i>
+                                            <i [routerLink]="['/dashboard-gerente/gestionar-producto/editar-montura/', montura._id]" class="faw fa fa-edit text-primary"></i>
                                             <i (click)="eliminarMontura(montura._id)" class='faw fa-solid fa-trash text-danger'></i>
                                         </td>
                                     </tr>
@@ -221,7 +221,7 @@
                                         <td>{{ lenteSol.genero }}</td>
                                         <td>{{ lenteSol.precio }}</td>
                                         <td>
-                                            <i [routerLink]="['/dashboard-gerente/trabajador/editar-trabajador/', lenteSol._id]" class="faw fa fa-edit text-primary"></i>
+                                            <i [routerLink]="['/dashboard-gerente/gestionar-producto/editar-lente-sol/', lenteSol._id]" class="faw fa fa-edit text-primary"></i>
                                             <i (click)="eliminarLenteSol(lenteSol._id)" class='faw fa-solid fa-trash text-danger'></i>
                                         </td>
                                     </tr>

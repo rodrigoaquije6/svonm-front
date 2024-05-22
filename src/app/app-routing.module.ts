@@ -17,6 +17,8 @@ import { CrearLunaComponent } from './components/lunas/crear-luna/crear-luna.com
 import { CrearProductoComponent } from './components/gestionar-producto/crear-producto/crear-producto.component';
 import { CrearTipoProductoComponent } from './components/tipoProducto/crear-tipo-producto/crear-tipo-producto.component';
 import { TipoComponent } from './components/tipoProducto/tipo/tipo.component';
+import { EditarMonturaComponent } from './components/gestionar-producto/editar-montura/editar-montura.component';
+import { EditarLenteSolComponent } from './components/gestionar-producto/editar-lenteSol/editar-lente-sol.component';
 
 
 const routes: Routes = [
@@ -35,8 +37,8 @@ const routes: Routes = [
   { path: 'dashboard-gerente/rol/crear-rol', component: CrearRolComponent},
   { path: 'dashboard-gerente/rol/editar-rol/:id', component: CrearRolComponent},
 
-  { path: 'dashboard-gerente/montura/crear-montura', component: CrearMonturaComponent},
-  { path: 'dashboard-gerente/montura/editar-montura/:id', component: CrearMonturaComponent},
+  //{ path: 'dashboard-gerente/montura/crear-montura', component: CrearMonturaComponent},
+  //{ path: 'dashboard-gerente/montura/editar-montura/:id', component: CrearMonturaComponent},
 
   { path: 'dashboard-gerente/marca/crear-marca', component: CrearMarcaComponent},
   { path: 'dashboard-gerente/marca/editar-marca/:id', component: CrearMarcaComponent},
@@ -51,8 +53,9 @@ const routes: Routes = [
   { path: 'dashboard-gerente/tipoProducto/editar-tipoProducto/:id', component: CrearTipoProductoComponent},
 
   { path: 'dashboard-gerente/gestionar-producto/crear-producto', component: CrearProductoComponent},
-  { path: 'dashboard-gerente/gestionar-producto/editar-gestionarproducto/:id', component: CrearProductoComponent},
-  
+  { path: 'dashboard-gerente/gestionar-producto/editar-montura/:id', component: EditarMonturaComponent},
+  { path: 'dashboard-gerente/gestionar-producto/editar-lente-sol/:id', component: EditarLenteSolComponent},
+
   { path: '**', redirectTo: '', pathMatch: 'full' }
 ];  
 

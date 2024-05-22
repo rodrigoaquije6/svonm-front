@@ -24,6 +24,8 @@ import { GestionarProductoComponent } from './components/gestionar-producto/gest
 import { CrearProductoComponent } from './components/gestionar-producto/crear-producto/crear-producto.component';
 import { CrearTipoProductoComponent } from './components/tipoProducto/crear-tipo-producto/crear-tipo-producto.component';
 import { TipoComponent } from './components/tipoProducto/tipo/tipo.component';
+import { EditarMonturaComponent } from './components/gestionar-producto/editar-montura/editar-montura.component';
+import { EditarLenteSolComponent } from './components/gestionar-producto/editar-lenteSol/editar-lente-sol.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +47,8 @@ import { TipoComponent } from './components/tipoProducto/tipo/tipo.component';
     CrearProductoComponent,
     TipoComponent,
     CrearTipoProductoComponent,
+    EditarMonturaComponent,
+    EditarLenteSolComponent,
   ],
   imports: [
     BrowserModule,
