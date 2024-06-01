@@ -23,6 +23,8 @@ import { CrearLunaComponent } from './components/lunas/crear-luna/crear-luna.com
 import { GestionarProductoComponent } from './components/gestionar-producto/gestionar-productos/gestionar-producto.component';
 import { CrearProductoComponent } from './components/gestionar-producto/crear-producto/crear-producto.component';
 import { CrearTipoProductoComponent } from './components/tipoProducto/crear-tipo-producto/crear-tipo-producto.component';
+import { RegistrarVentaComponent } from './components/venta/registrar-venta/registrar-venta.component';
+import { VentaComponent } from './components/venta/venta/venta.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,8 @@ import { CrearTipoProductoComponent } from './components/tipoProducto/crear-tipo
     GestionarProductoComponent,
     CrearProductoComponent,
     CrearTipoProductoComponent,
+    RegistrarVentaComponent,
+    VentaComponent,
   ],
   imports: [
     BrowserModule,
