@@ -182,53 +182,32 @@
                                 Agregar
                                 <i class="fa-solid fa-plus"></i>
                             </button>
-                            <table *ngIf="listMontura.length > 0 || listLenteSol.length > 0"
-                                class="table table-striped mx-5 mt-5 text-center">
+                            <table *ngIf="listProducto.length > 0" class="table table-striped mx-5 mt-5 text-center">
                                 <thead>
                                     <tr>
                                         <th>Codigo</th>
                                         <th>Tipo de Producto</th>
                                         <th>Nombre</th>
                                         <th>Marca</th>
-                                        <th>Color</th>
-                                        <th>Género</th>
                                         <th>Precio</th>
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <!-- Iterar sobre la lista de Monturas -->
-                                    <tr *ngFor="let montura of listMontura">
-                                        <td>{{ montura.codigo }}</td>
-                                        <td>{{ montura.tipoProducto}}</td>
-                                        <td>{{ montura.nombre }}</td>
-                                        <td>{{ montura.marca }}</td>
-                                        <td>{{ montura.color }}</td>
-                                        <td>{{ montura.genero }}</td>
-                                        <td>{{ montura.precio }}</td>
+                                    <tr *ngFor="let producto of listProducto">
+                                        <td>{{ producto.codigo }}</td>
+                                        <td>{{ producto.tipoProducto.nombre }}</td>
+                                        <td>{{ producto.nombre }}</td>
+                                        <td>{{ producto.marca.nombre }}</td>
+                                        <td>{{ producto.precio }}</td>
                                         <td>
-                                            <i [routerLink]="['/dashboard-gerente/gestionar-producto/editar-montura/', montura._id]" class="faw fa fa-edit text-primary"></i>
-                                            <i (click)="eliminarMontura(montura._id)" class='faw fa-solid fa-trash text-danger'></i>
-                                        </td>
-                                    </tr>
-                                    <!-- Iterar sobre la lista de Lentes de Sol -->
-                                    <tr *ngFor="let lenteSol of listLenteSol">
-                                        <td>{{ lenteSol.codigo }}</td>
-                                        <td>{{ lenteSol.tipoProducto}}</td>
-                                        <td>{{ lenteSol.nombre }}</td>
-                                        <td>{{ lenteSol.marca }}</td>
-                                        <td>{{ lenteSol.color }}</td>
-                                        <td>{{ lenteSol.genero }}</td>
-                                        <td>{{ lenteSol.precio }}</td>
-                                        <td>
-                                            <i [routerLink]="['/dashboard-gerente/gestionar-producto/editar-lente-sol/', lenteSol._id]" class="faw fa fa-edit text-primary"></i>
-                                            <i (click)="eliminarLenteSol(lenteSol._id)" class='faw fa-solid fa-trash text-danger'></i>
+                                            <i class="faw fa fa-edit text-primary"></i>
+                                            <i class='faw fa-solid fa-trash text-danger'></i>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
-                            <h5 style="text-align: start; margin-top: 10px;" *ngIf="listMontura.length == 0">No hay monturas para mostrar</h5>
-                            <h5 style="text-align: start; margin-top: 10px;" *ngIf="listLenteSol.length == 0">No hay lentes de sol para mostrar</h5>
+                            <h5 style="text-align: start; margin-top: 10px;" *ngIf="listProducto.length == 0">No hay productos para mostrar</h5>
                         </div>
                     </div>
                 </div>

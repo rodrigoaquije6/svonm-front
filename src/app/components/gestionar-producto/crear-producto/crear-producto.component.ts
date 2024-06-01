@@ -3,13 +3,14 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
 import { ToastrService } from 'ngx-toastr';
-import { GestionarProducto } from 'src/app/models/gestionar-producto';
-import { GestionarProductoService } from 'src/app/services/gestionar-producto.service';
+import { Producto } from 'src/app/models/producto';
+import { ProductoService } from 'src/app/services/producto.service';
 import { MonturaService } from 'src/app/services/montura.service';
 import { LenteSolService } from 'src/app/services/lenteSol.service';
 import { Montura } from 'src/app/models/montura';
 import { LenteSol } from 'src/app/models/lenteSol';
 import { HttpClient } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-crear-producto',
@@ -17,65 +18,57 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./crear-producto.component.css']
 })
 export class CrearProductoComponent implements OnInit {
-  gestionarproductoForm: FormGroup;
+  productoForm: FormGroup;
 
-  lenteSolForm: FormGroup;
+  producto: string | null = null;
 
-  producto: string | null = "null";
-
-  titulo = 'Crear producto'  
+  titulo = 'Crear producto'
 
   id: string | null;
 
   marca: any[] = [];
 
-  url = 'https://bug-free-telegram-wwv6475qj9536rj-4000.app.github.dev/api/crear-marca/'; //http://localhost:4000/api/rol/
+  tipoP: any[] = [];
+
+  urlMarca = 'http://localhost:4000/api/crear-marca/';
+
+  urlTipo = 'http://localhost:4000/api/tipoProducto/';
 
   constructor(private fb: FormBuilder,
     private toastr: ToastrService,
     private router: Router,
-    private _gestionarproductoService: GestionarProductoService,
+    private _productoService: ProductoService,
     private _monturaService: MonturaService,
     private _lenteSolService: LenteSolService,
     private aRouter: ActivatedRoute,
     private api: LoginService,
     private http: HttpClient) {
-    this.gestionarproductoForm = this.fb.group({
+    // Formulario común para todos los productos
+    this.productoForm = this.fb.group({
       codigo: ['', Validators.required],
       tipoProducto: ['', Validators.required],
       nombre: ['', Validators.required],
       precio: ['', Validators.required],
-      imagen: ['', Validators.required],
+      imagen: [''],
       marca: ['', Validators.required],
-      genero: [''],
       color: [''],
-      forma: [''],
-    })
-
-    this.lenteSolForm = this.fb.group({
-      codigo: ['', Validators.required],
-      tipoProducto: ['', Validators.required],
-      nombre: ['', Validators.required],
-      precio: ['', Validators.required],
-      imagen: ['', Validators.required],
-      marca: ['', Validators.required],
       genero: [''],
-      color: [''],
       forma: [''],
       colorlente: [''],
-      protuv: [''],
-    })
-    
+      protuv: ['']
+    });
+
     this.id = this.aRouter.snapshot.paramMap.get('id')
   }
 
   ngOnInit(): void {
     this.esEditar();
     this.obtenerMarca();
+    this.obtenerTipoProducto();
   }
 
   obtenerMarca() {
-    this.http.get<any[]>(this.url).subscribe(
+    this.http.get<any[]>(this.urlMarca).subscribe(
       (marcas) => {
         this.marca = marcas;
       },
@@ -85,179 +78,90 @@ export class CrearProductoComponent implements OnInit {
     );
   }
 
+  obtenerTipoProducto() {
+    this.http.get<any[]>(this.urlTipo).subscribe(
+      (tipoPr) => {
+        this.tipoP = tipoPr;
+      },
+      (error) => {
+        console.error('Error al obtener los tipos de productos', error);
+      }
+    );
+  }
+
   onItemChange(producto: string | null) {
-        console.log('Producto seleccionado:', producto);
-        this.producto = producto;
+    this.producto = producto;
   }
 
-  agregarGestionarProducto() {
-
-    
-    const GESTIONARPRODUCTO: GestionarProducto = {
-      codigo: this.gestionarproductoForm.get('codigo')?.value,
-      tipoProducto: this.gestionarproductoForm.get('tipoProducto')?.value,
-      nombre: this.gestionarproductoForm.get('nombre')?.value,
-      precio: this.gestionarproductoForm.get('precio')?.value,
-      imagen: this.gestionarproductoForm.get('imagen')?.value,
+  agregarProducto() {
+    // Obtener los valores del formulario
+    const productoData = this.productoForm.value;
+  
+    // Crear un nuevo producto con los datos del formulario
+    const producto: any = {
+      codigo: productoData.codigo,
+      tipoProducto: productoData.tipoProducto,
+      nombre: productoData.nombre,
+      precio: productoData.precio,
+      imagen: productoData.imagen,
+      marca: productoData.marca
+    };
+  
+    // Verificar el tipo de producto y asignar los atributos específicos
+    if (productoData.tipoProducto === 'Montura') {
+      // Asignar los atributos específicos de Montura
+      producto.color = productoData.color;
+      producto.genero = productoData.genero;
+      producto.forma = productoData.forma;
+    } else if (productoData.tipoProducto === 'Lentes de sol') {
+      // Asignar los atributos específicos de Lentes de sol
+      producto.color = productoData.color;
+      producto.genero = productoData.genero;
+      producto.forma = productoData.forma;
+      producto.colorlente = productoData.colorlente;
+      producto.protuv = productoData.protuv;
     }
-
-    if (this.id !== null) {
-      this._gestionarproductoService.editarGestionarProducto(this.id, GESTIONARPRODUCTO).subscribe(data => {
-        this.toastr.info('El producto fue actualizado con éxito!', 'Producto Actualizado!')
-        this.router.navigate(['/dashboard-gerente/gestionar-producto']);
-      }, error => {
-        console.log(error);
-        this.gestionarproductoForm.reset();
-      })
-    } else {
-      console.log(GESTIONARPRODUCTO);
-      this._gestionarproductoService.guardarGestionarProducto(GESTIONARPRODUCTO).subscribe(data => {
-        this.toastr.success('El producto fue registrado con éxito!', 'Producto Registrado!');
-        this.router.navigate(['/dashboard-gerente/gestionar-producto']);
-      }, error => {
-        console.log(error);
-        this.gestionarproductoForm.reset();
-      })
-    }
-
-  }
-
-  agregarMonturaForm() {
-
-    if (this.gestionarproductoForm.invalid) {
-      this.toastr.error('Por favor, complete el formulario correctamente.', 'Error');
-      return;
-    }
-
-    const MONTURA: Montura = {
-    codigo: this.gestionarproductoForm.get('codigo')?.value,
-    tipoProducto: this.gestionarproductoForm.get('tipoProducto')?.value,
-    nombre: this.gestionarproductoForm.get('nombre')?.value,
-    precio: this.gestionarproductoForm.get('precio')?.value,
-    imagen: this.gestionarproductoForm.get('imagen')?.value,
-    marca: this.gestionarproductoForm.get('marca')?.value,
-    color: this.gestionarproductoForm.get('color')?.value,
-    genero: this.gestionarproductoForm.get('genero')?.value,
-    forma: this.gestionarproductoForm.get('forma')?.value,
-    }
-
-    if (this.id !== null) {
-      this._monturaService.editarMontura(this.id, MONTURA).subscribe(data => {
-        this.toastr.info('El producto fue actualizado con éxito!', 'Producto Actualizado!')
-        this.router.navigate(['/dashboard-gerente/gestionar-producto']);
-      }, error => {
-        if (error.error && error.error.msg) {
-          error.error.msg.forEach((errorMessage: string) => {
-            //const errorMessage = error.error.msg.join('\n');
-            this.toastr.error(errorMessage, 'Error');
-          });
+  
+    // Llamar al servicio para guardar el producto
+    this._productoService.guardarProducto(producto).subscribe({
+      next: (data) => {
+        if (productoData.tipoProducto === 'Montura') {
+          this.toastr.success('La montura fue registrada con éxito!', 'Montura Registrada!');
+        } else if (productoData.tipoProducto === 'Lentes de sol') {
+          this.toastr.success('Los lentes de sol fueron registrados con éxito!', 'Lentes de sol Registrados!');
         } else {
-          console.log(error);
-          this.gestionarproductoForm.reset();
+          this.toastr.success('El producto fue registrado con éxito!', 'Producto Registrado!');
         }
-        //console.log(error);
-        //this.gestionarproductoForm.reset();
-      })
-    } else {
-      console.log(MONTURA);
-      this._monturaService.guardarMontura(MONTURA).subscribe(data => {
-        this.toastr.success('El producto fue registrado con éxito!', 'Producto Registrado!');
         this.router.navigate(['/dashboard-gerente/gestionar-producto']);
-      }, error => {
-        if (error.error && error.error.msg) {
-          error.error.msg.forEach((errorMessage: string) => {
-            //const errorMessage = error.error.msg.join('\n');
-            this.toastr.error(errorMessage, 'Error');
-          });
-        } else {
-          console.log(error);
-          this.gestionarproductoForm.reset();
-        }
-        //console.log(error);
-        //this.gestionarproductoForm.reset();
-      })
-    }
+      },
+      error: (error) => {
+        console.error('Error al registrar el producto:', error);
+        this.toastr.error('Hubo un error al registrar el producto.', 'Error');
+        this.productoForm.reset();
+      }
+    });
   }
 
-  agregarLenteSolForm() {
 
-    if (this.lenteSolForm.invalid) {
-      this.toastr.error('Por favor, complete el formulario correctamente.', 'Error');
-      return;
-    }
-
-    const LENTESOL: LenteSol = {
-    codigo: this.lenteSolForm.get('codigo')?.value,
-    tipoProducto: this.lenteSolForm.get('tipoProducto')?.value,
-    nombre: this.lenteSolForm.get('nombre')?.value,
-    precio: this.lenteSolForm.get('precio')?.value,
-    imagen: this.lenteSolForm.get('imagen')?.value,
-    marca: this.lenteSolForm.get('marca')?.value,
-    color: this.lenteSolForm.get('color')?.value,
-    genero: this.lenteSolForm.get('genero')?.value,
-    forma: this.lenteSolForm.get('forma')?.value,
-    colorlente: this.lenteSolForm.get('colorlente')?.value,
-    protuv: this.lenteSolForm.get('protuv')?.value,
-    }
-
-    if (this.id !== null) {
-      this._lenteSolService.editarLenteSol(this.id, LENTESOL).subscribe(data => {
-        this.toastr.info('El producto fue actualizado con éxito!', 'Producto Actualizado!')
-        this.router.navigate(['/dashboard-gerente/gestionar-producto']);
-      }, error => {
-        if (error.error && error.error.msg) {
-          error.error.msg.forEach((errorMessage: string) => {
-            //const errorMessage = error.error.msg.join('\n');
-            this.toastr.error(errorMessage, 'Error');
-          });
-        } else {
-          console.log(error);
-          this.lenteSolForm.reset();
-        }
-        //console.log(error);
-        //this.gestionarproductoForm.reset();
+esEditar() {
+  if (this.id !== null) {
+    this.titulo = 'Editar Producto';
+    this._productoService.obtenerProducto(this.id).subscribe(data => {
+      this.productoForm.setValue({
+        codigo: data.codigo,
+        tipoProducto: data.tipoProducto,
+        nombre: data.nombre,
+        precio: data.precio,
+        imagen: data.imagen
       })
-    } else {
-      console.log(LENTESOL);
-      this._lenteSolService.guardarLenteSol(LENTESOL).subscribe(data => {
-        this.toastr.success('El producto fue registrado con éxito!', 'Producto Registrado!');
-        this.router.navigate(['/dashboard-gerente/gestionar-producto']);
-      }, error => {
-        if (error.error && error.error.msg) {
-          error.error.msg.forEach((errorMessage: string) => {
-            //const errorMessage = error.error.msg.join('\n');
-            this.toastr.error(errorMessage, 'Error');
-          });
-        } else {
-          console.log(error);
-          this.lenteSolForm.reset();
-        }
-        //console.log(error);
-        //this.gestionarproductoForm.reset();
-      })
-    }
-
+    })
   }
+}
 
-  esEditar() {
-    if (this.id !== null) {
-      this.titulo = 'Editar Producto';
-      this._gestionarproductoService.obtenerGestionarProducto(this.id).subscribe(data => {
-        this.gestionarproductoForm.setValue({
-          codigo: data.codigo,
-          tipoProducto: data.tipoProducto,
-          nombre: data.nombre,
-          precio: data.precio,
-          imagen: data.imagen
-        })
-      })
-    }
-  }
+isLoggedIn: boolean = this.api.isLogged();
 
-  isLoggedIn: boolean = this.api.isLogged();
-
-  onClickLogout() {
-    localStorage.removeItem('token');
-    this.router.navigate(['login']);
-  }
+onClickLogout() {
+  localStorage.removeItem('token');
+  this.router.navigate(['login']);
+}
 }

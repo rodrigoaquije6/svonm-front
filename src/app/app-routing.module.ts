@@ -5,14 +5,12 @@ import { DashboardGerenteComponent } from './components/dashboard-gerente/dashbo
 import { DashboardTrabajadorComponent } from './components/dashboard-trabajador/dashboard-trabajador.component';
 import { TrabajadorComponent } from './components/trabajador/trabajadores/trabajador.component';
 import { RolComponent } from './components/roles/rol/rol.component';
-import { MonturaComponent } from './components/monturas/montura/montura.component';
 import { LunaComponent } from './components/lunas/luna/luna.component';
 import { MarcaComponent } from './components/marcas/marca/marca.component';
 import { GestionarProductoComponent } from './components/gestionar-producto/gestionar-productos/gestionar-producto.component';
 import { CrearRolComponent } from './components/roles/crear-rol/crear-rol.component';
 import { CrearTrabajadorComponent } from './components/trabajador/crear-trabajador/crear-trabajador.component';
 import { CrearMarcaComponent } from './components/marcas/crear-marca/crear-marca.component';
-import { CrearMonturaComponent } from './components/monturas/crear-montura/crear-montura.component';
 import { CrearLunaComponent } from './components/lunas/crear-luna/crear-luna.component';
 import { CrearProductoComponent } from './components/gestionar-producto/crear-producto/crear-producto.component';
 import { CrearTipoProductoComponent } from './components/tipoProducto/crear-tipo-producto/crear-tipo-producto.component';
@@ -28,7 +26,6 @@ const routes: Routes = [
   { path: 'dashboard-trabajador', component: DashboardTrabajadorComponent},
   { path: 'dashboard-gerente/trabajador', component: TrabajadorComponent},
   { path: 'dashboard-gerente/rol', component: RolComponent},
-  { path: 'dashboard-gerente/montura', component: MonturaComponent},
   { path: 'dashboard-gerente/luna', component: LunaComponent},
   { path: 'dashboard-gerente/marca', component: MarcaComponent},
   { path: 'dashboard-gerente/gestionar-producto', component: GestionarProductoComponent},

@@ -7,7 +7,7 @@ import { LenteSol } from '../models/lenteSol';
   providedIn: 'root'
 })
 export class LenteSolService {
-  url: string = 'https://bug-free-telegram-wwv6475qj9536rj-4000.app.github.dev/api/lenteSol/'; //'http://localhost:4000/api/lenteSol/'
+  url: string = 'http://localhost:4000/api/lenteSol/'; //'http://localhost:4000/api/lenteSol/'
 
   constructor(private http: HttpClient) { }
 

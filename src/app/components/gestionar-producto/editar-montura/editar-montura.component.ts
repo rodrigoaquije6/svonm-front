@@ -13,7 +13,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./editar-montura.component.css']
 })
 export class EditarMonturaComponent implements OnInit {
-  gestionarproductoForm: FormGroup;
+  productoForm: FormGroup;
 
   producto: string | null = "null";
 
@@ -30,7 +30,7 @@ export class EditarMonturaComponent implements OnInit {
     private aRouter: ActivatedRoute,
     private api: LoginService,
     private http: HttpClient) {
-    this.gestionarproductoForm = this.fb.group({
+    this.productoForm = this.fb.group({
       codigo: ['', Validators.required],
       tipoProducto: ['', Validators.required],
       nombre: ['', Validators.required],
@@ -68,21 +68,17 @@ export class EditarMonturaComponent implements OnInit {
 
   agregarMonturaForm() {
 
-    if (this.gestionarproductoForm.invalid) {
+    if (this.productoForm.invalid) {
       this.toastr.error('Por favor, complete el formulario correctamente.', 'Error');
       return;
     }
 
     const MONTURA: Montura = {
-    codigo: this.gestionarproductoForm.get('codigo')?.value,
-    tipoProducto: this.gestionarproductoForm.get('tipoProducto')?.value,
-    nombre: this.gestionarproductoForm.get('nombre')?.value,
-    precio: this.gestionarproductoForm.get('precio')?.value,
-    imagen: this.gestionarproductoForm.get('imagen')?.value,
-    marca: this.gestionarproductoForm.get('marca')?.value,
-    color: this.gestionarproductoForm.get('color')?.value,
-    genero: this.gestionarproductoForm.get('genero')?.value,
-    forma: this.gestionarproductoForm.get('forma')?.value,
+      productoId: this.productoForm.get('productoId')?.value,
+      color: this.productoForm.get('color')?.value,
+      genero: this.productoForm.get('genero')?.value,
+      forma: this.productoForm.get('forma')?.value,
+      
     }
 
     if (this.id !== null) {
@@ -97,7 +93,7 @@ export class EditarMonturaComponent implements OnInit {
           });
         } else {
           console.log(error);
-          this.gestionarproductoForm.reset();
+          this.productoForm.reset();
         }
         //console.log(error);
         //this.gestionarproductoForm.reset();
@@ -115,7 +111,7 @@ export class EditarMonturaComponent implements OnInit {
           });
         } else {
           console.log(error);
-          this.gestionarproductoForm.reset();
+          this.productoForm.reset();
         }
         //console.log(error);
         //this.gestionarproductoForm.reset();
@@ -126,7 +122,7 @@ export class EditarMonturaComponent implements OnInit {
   esEditar() {
     if (this.id !== null) {
       this._monturaService.obtenerMontura(this.id).subscribe(data => {
-        this.gestionarproductoForm.setValue({
+        this.productoForm.setValue({
           codigo: data.codigo,
           tipoProducto: data.tipoProducto,
           nombre: data.nombre,

@@ -7,7 +7,7 @@ import { TipoProducto } from '../models/tipoProducto';
   providedIn: 'root'
 })
 export class TipoProductoService {
-  url = 'https://bug-free-telegram-wwv6475qj9536rj-4000.app.github.dev/api/tipoProducto/'; //'http://localhost:4000/api/tipoProducto/' //
+  url = 'http://localhost:4000/api/tipoProducto/'; //'http://localhost:4000/api/tipoProducto/' //
 
   constructor(private http: HttpClient) { }
 

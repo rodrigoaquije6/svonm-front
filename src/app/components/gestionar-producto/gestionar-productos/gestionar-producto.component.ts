@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { GestionarProducto } from 'src/app/models/gestionar-producto';
+import { Producto } from 'src/app/models/producto';
 import { ToastrService } from 'ngx-toastr';
-import { GestionarProductoService } from 'src/app/services/gestionar-producto.service';
-import { Router } from '@angular/router';//este import no debería ir si usaramos un componente header, explicación más abajo
-import { LoginService } from 'src/app/services/login.service';//este import no debería ir si usaramos un componente header, explicación más abajo
+import { ProductoService } from 'src/app/services/producto.service';
+import { Router } from '@angular/router';
+import { LoginService } from 'src/app/services/login.service';
 import { MonturaService } from 'src/app/services/montura.service';
 import { LenteSolService } from 'src/app/services/lenteSol.service';
 import { Montura } from 'src/app/models/montura';
@@ -21,7 +21,7 @@ export class GestionarProductoComponent {
 
   listLenteSol: LenteSol[] = [];
 
-  constructor(private _gestionarproductoService: GestionarProductoService,
+  constructor(private _productoService: ProductoService,
               private toastr: ToastrService,
               private api: LoginService,
               private router: Router,
@@ -29,8 +29,18 @@ export class GestionarProductoComponent {
               private _lenteSolService: LenteSolService) { }
 
   ngOnInit(): void {
+    this.obtenerProductos();
     this.obtenerLenteSol();
     this.obtenerMontura();
+  }
+
+  obtenerProductos(){
+    this._productoService.getProductos().subscribe(data => {
+      console.log(data);
+      this.listProducto = data;
+    }, error => {
+      console.log(error);
+    })
   }
 
   obtenerMontura() {

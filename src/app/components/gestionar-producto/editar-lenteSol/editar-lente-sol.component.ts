@@ -77,17 +77,12 @@ export class EditarLenteSolComponent implements OnInit {
     }
 
     const LENTESOL: LenteSol = {
-    codigo: this.lenteSolForm.get('codigo')?.value,
-    tipoProducto: this.lenteSolForm.get('tipoProducto')?.value,
-    nombre: this.lenteSolForm.get('nombre')?.value,
-    precio: this.lenteSolForm.get('precio')?.value,
-    imagen: this.lenteSolForm.get('imagen')?.value,
-    marca: this.lenteSolForm.get('marca')?.value,
-    color: this.lenteSolForm.get('color')?.value,
-    genero: this.lenteSolForm.get('genero')?.value,
-    forma: this.lenteSolForm.get('forma')?.value,
-    colorlente: this.lenteSolForm.get('colorlente')?.value,
-    protuv: this.lenteSolForm.get('protuv')?.value,
+      productoId: this.lenteSolForm.get('productoId')?.value,
+      genero: this.lenteSolForm.get('genero')?.value,
+      forma: this.lenteSolForm.get('forma')?.value,
+      color: this.lenteSolForm.get('color')?.value,
+      colorLente: this.lenteSolForm.get('colorLente')?.value,
+      protuv: this.lenteSolForm.get('protuv')?.value,
     }
 
     if (this.id !== null) {
