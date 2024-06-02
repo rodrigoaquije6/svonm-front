@@ -5,18 +5,15 @@ import { DashboardGerenteComponent } from './components/dashboard-gerente/dashbo
 import { DashboardTrabajadorComponent } from './components/dashboard-trabajador/dashboard-trabajador.component';
 import { TrabajadorComponent } from './components/trabajador/trabajadores/trabajador.component';
 import { RolComponent } from './components/roles/rol/rol.component';
-import { MonturaComponent } from './components/monturas/montura/montura.component';
 import { LunaComponent } from './components/lunas/luna/luna.component';
 import { MarcaComponent } from './components/marcas/marca/marca.component';
+import { GestionarProductoComponent } from './components/gestionar-producto/gestionar-productos/gestionar-producto.component';
 import { CrearRolComponent } from './components/roles/crear-rol/crear-rol.component';
 import { CrearTrabajadorComponent } from './components/trabajador/crear-trabajador/crear-trabajador.component';
 import { CrearMarcaComponent } from './components/marcas/crear-marca/crear-marca.component';
-import { CrearMonturaComponent } from './components/monturas/crear-montura/crear-montura.component';
 import { CrearLunaComponent } from './components/lunas/crear-luna/crear-luna.component';
-import { TipoComponent } from './components/tipoProducto/tipo/tipo.component';
+import { CrearProductoComponent } from './components/gestionar-producto/crear-producto/crear-producto.component';
 import { CrearTipoProductoComponent } from './components/tipoProducto/crear-tipo-producto/crear-tipo-producto.component';
-import { AlmacenComponent } from './components/gestionarAlmacen/almacen/almacen.component';
-import { EditarStockComponent } from './components/gestionarAlmacen/editar-stock/editar-stock.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent},
@@ -25,18 +22,13 @@ const routes: Routes = [
   { path: 'dashboard-trabajador', component: DashboardTrabajadorComponent},
   { path: 'dashboard-gerente/trabajador', component: TrabajadorComponent},
   { path: 'dashboard-gerente/rol', component: RolComponent},
-  { path: 'dashboard-gerente/montura', component: MonturaComponent},
   { path: 'dashboard-gerente/luna', component: LunaComponent},
-  { path: 'dashboard-gerente/almacen', component: AlmacenComponent},
-  
+  { path: 'dashboard-gerente/marca', component: MarcaComponent},
 
   { path: 'dashboard-gerente/tipoProducto', component: TipoComponent},
   //--------------------------------------------CREAR--------------------------------------------
   { path: 'dashboard-gerente/rol/crear-rol', component: CrearRolComponent},
   { path: 'dashboard-gerente/rol/editar-rol/:id', component: CrearRolComponent},
-
-  { path: 'dashboard-gerente/montura/crear-montura', component: CrearMonturaComponent},
-  { path: 'dashboard-gerente/montura/editar-montura/:id', component: CrearMonturaComponent},
 
   { path: 'dashboard-gerente/marca/crear-marca', component: CrearMarcaComponent},
   { path: 'dashboard-gerente/marca/editar-marca/:id', component: CrearMarcaComponent},
@@ -49,9 +41,6 @@ const routes: Routes = [
 
   { path: 'dashboard-gerente/tipoProducto/crear-tipoProducto', component: CrearTipoProductoComponent},
   { path: 'dashboard-gerente/tipoProducto/editar-tipoProducto/:id', component: CrearTipoProductoComponent},
-
-  { path: 'dashboard-gerente/almacen/editar-stock/:id', component: EditarStockComponent},
-
 
   { path: '**', redirectTo: '', pathMatch: 'full' }
 ];  

@@ -16,7 +16,7 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="montura.component.css" rel="stylesheet">
+    <link href="editar-otro.component.css" rel="stylesheet">
 
 </head>
 
@@ -87,17 +87,9 @@
 
             <!-- Gestionar Producto -->
             <li class="nav-item">
-                <a class="nav-link collapsed" routerLink="/dashboard-gerente/producto" data-toggle="collapse">
+                <a class="nav-link collapsed" routerLink="/dashboard-gerente/gestionar-producto" data-toggle="collapse">
                     <i class="fa-solid fa-box-archive"></i>
                     <span> Gestionar Producto</span>
-                </a>
-            </li>
-
-            <!-- Gestionar Monturas -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" routerLink="/dashboard-gerente/montura" data-toggle="collapse">
-                    <i class="fa-solid fa-glasses"></i>
-                    <span> Monturas</span>
                 </a>
             </li>
 
@@ -156,14 +148,13 @@
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
-
+        <div id="content-wrapper">
             <!-- Main Content -->
             <div id="content">
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                    <span class="span-text mx-3">GESTIONAR MONTURA</span>
+                    <span class="span-text mx-3">EDITAR PRODUCTO</span>
 
 
                     <!-- Topbar Navbar -->
@@ -181,61 +172,75 @@
                 </nav>
                 <!-- End of Topbar -->
 
-                <!-- Table -->
-                <div class="container mt-5">
-                    <div class="row">
-                        <div class="col-lg-11 offser-lg-2">
-                            <button class="btn btn-success float-end"routerLink="/dashboard-gerente/montura/crear-montura">
-                                Agregar
-                                <i class="fa-solid fa-plus"></i>
-                            </button>
+                <!-- Content -->
+                <div class="container mt-5 mx-4 col-lg-4">
+                    <form [formGroup]="productoForm" (ngSubmit)="agregarProducto()">
+                        <div class="mb-3 d-flex align-items-center">
+                            <div style="flex: 1;">
+                                <div style="flex: 1;">
+                                    <input type="hidden" formControlName="tipoProducto">
+                                    <label class="form-label label-text">Codigo</label>
+                                    <input type="text" formControlName="codigo" class="form-control"
+                                        style="width: 350px;" placeholder="Escriba el codigo del producto...">
+                                    <div class="text-danger"
+                                        *ngIf="productoForm.get('codigo')?.hasError('required') && productoForm.get('codigo')?.touched">
+                                        <span>El codigo del producto <strong>es obligatorio</strong></span>
+                                    </div>
 
-                            <table *ngIf="listMontura.length > 0" class="table table-striped mx-5 mt-5 text-center">
-                                <thead>
-                                    <tr>
-                                        <th>Codigo</th>
-                                        <th>Marca</th>
-                                        <th>Nombre</th>
-                                        <th>Color</th>
-                                        <th>Precio</th>
-                                        <th>Acción</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="let montura of listMontura">
-                                        <td>
-                                            {{montura.codigo}}
-                                        </td>
-                                        <td>
-                                            {{montura.marca}}
-                                        </td>
-                                        <td>
-                                            {{montura.nombre}}
-                                        </td>
-                                        <td>
-                                            {{montura.color}}
-                                        </td>
-                                        <td>
-                                            {{montura.precio}}
-                                         </td>
-                                        <td>
-                                            <i [routerLink]="['/dashboard-gerente/montura/editar-montura/', montura._id]" class="faw fa fa-edit text-primary"></i>
-                                            <i (click)="eliminarMontura(montura._id)" class='faw fa-solid fa-trash text-danger'></i>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <h5 style="text-align: start; margin-top: 10px;" *ngIf="listMontura.length == 0">No hay monturas para mostrar</h5>
+                                    <label class="form-label label-text" style="margin-top: 10px;">Nombre</label>
+                                    <input type="text" formControlName="nombre" class="form-control"
+                                        style="width: 350px;" placeholder="Escriba el nombre del producto...">
+                                    <div class="text-danger"
+                                        *ngIf="productoForm.get('nombre')?.hasError('required') && productoForm.get('nombre')?.touched">
+                                        <span>El nombre del producto <strong>es obligatorio</strong></span>
+                                    </div>
+
+                                    <label class="form-label label-text" style="margin-top: 10px;">Precio</label>
+                                    <input type="number" formControlName="precio" class="form-control"
+                                        style="width: 350px;" placeholder="Escriba el precio del producto...">
+                                    <div class="text-danger"
+                                        *ngIf="productoForm.get('precio')?.hasError('required') && productoForm.get('precio')?.touched">
+                                        <span>El precio del producto <strong>es obligatorio</strong></span>
+                                    </div>
+
+                                    <label class="form-label label-text" style="margin-top: 10px;">Imagen</label>
+                                    <input type="text" formControlName="imagen" class="form-control"
+                                        style="width: 350px;" placeholder="Ingrese la URL de la imagen...">
+                                </div>
+
+                                <label class="form-label label-text" style="margin-top: 10px;">Marca</label>
+                                <select formControlName="marca" class="form-select" style="width: 350px;">
+                                    <option disabled selected>Selecciona la marca...</option>
+                                    <option *ngFor="let marcas of marca" [value]="marcas.nombre">{{ marcas.nombre }}
+                                    </option>
+                                </select>
+                            </div>
+                            <!-- Contenedor para la imagen -->
+                            <div class="ml-10 mr-2 " style="margin-top: 100%; margin-left: 50px;">
+                                <!-- Imagen -->
+                                <img *ngIf="productoForm.get('imagen')?.value" [src]="productoForm.get('imagen')?.value"
+                                    class="img-fluid" alt="Imagen de la montura"
+                                    style="max-width: 100%;max-height: 100%;">
+                            </div>
                         </div>
-                    </div>
+                        <button class="btn btn-success float-end"
+                            style="margin-left: 10px; margin-top: 35px;">Aceptar</button>
+                        <div class="class mb 3">
+                            <button routerLink="/dashboard-gerente/gestionar-producto" style="margin-top: 35px;"
+                                class="btn btn-secondary flat-start">Volver</button>
+                        </div>
+                    </form>
                 </div>
-                <!-- End of Table -->
+                <!-- End of Content -->
+
 
             </div>
+
             <!-- End of Main Content -->
+            <div style="height: 100px;"></div> <!-- Espacio en blanco -->
 
             <!-- Footer -->
-            <footer class="sticky-footer bg-white">
+            <footer class="footer sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
                         <span>Óptica Nuevo Mundo &copy; 2024</span>
@@ -243,7 +248,6 @@
                 </div>
             </footer>
             <!-- End of Footer -->
-
         </div>
         <!-- End of Content Wrapper -->
 

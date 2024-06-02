@@ -10,20 +10,17 @@ import { DashboardTrabajadorComponent } from './components/dashboard-trabajador/
 import { LoginComponent } from './components/login/login.component';
 import { TrabajadorComponent } from './components/trabajador/trabajadores/trabajador.component';
 import { RolComponent } from './components/roles/rol/rol.component';
-import { MonturaComponent } from './components/monturas/montura/montura.component';
 import { LunaComponent } from './components/lunas/luna/luna.component';
 import { MarcaComponent } from './components/marcas/marca/marca.component';
 import { CrearRolComponent } from './components/roles/crear-rol/crear-rol.component';
 import { CrearTrabajadorComponent } from './components/trabajador/crear-trabajador/crear-trabajador.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TokenInterceptorService } from './interceptors/token-interceptor.service.service';
-import { CrearMonturaComponent } from './components/monturas/crear-montura/crear-montura.component';
 import { CrearMarcaComponent } from './components/marcas/crear-marca/crear-marca.component';
 import { CrearLunaComponent } from './components/lunas/crear-luna/crear-luna.component';
-import { TipoComponent } from './components/tipoProducto/tipo/tipo.component';
+import { GestionarProductoComponent } from './components/gestionar-producto/gestionar-productos/gestionar-producto.component';
+import { CrearProductoComponent } from './components/gestionar-producto/crear-producto/crear-producto.component';
 import { CrearTipoProductoComponent } from './components/tipoProducto/crear-tipo-producto/crear-tipo-producto.component';
-import { AlmacenComponent } from './components/gestionarAlmacen/almacen/almacen.component';
-import { EditarStockComponent } from './components/gestionarAlmacen/editar-stock/editar-stock.component';
 
 @NgModule({
   declarations: [
@@ -33,18 +30,16 @@ import { EditarStockComponent } from './components/gestionarAlmacen/editar-stock
     LoginComponent,
     TrabajadorComponent,
     RolComponent,
-    MonturaComponent,
     LunaComponent,
     MarcaComponent,
     CrearRolComponent,
     CrearTrabajadorComponent,
-    CrearMonturaComponent,
     CrearMarcaComponent,
     CrearLunaComponent,
+    GestionarProductoComponent,
+    CrearProductoComponent,
     TipoComponent,
     CrearTipoProductoComponent,
-    AlmacenComponent,
-    EditarStockComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,6 +50,10 @@ import { EditarStockComponent } from './components/gestionarAlmacen/editar-stock
     ToastrModule.forRoot(),
     HttpClientModule
   ],
+  // exports: [
+  //   ReactiveFormsModule,
+  //   FormsModule,
+  // ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true }],
   bootstrap: [AppComponent]
 })

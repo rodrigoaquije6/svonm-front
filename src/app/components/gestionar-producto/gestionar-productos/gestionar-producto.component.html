@@ -16,7 +16,7 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="crear-luna.component.css" rel="stylesheet">
+    <link href="gestionar-producto.component.css" rel="stylesheet">
 
 </head>
 
@@ -76,7 +76,7 @@
             <div class="sidebar-heading">
                 Producto
             </div>
-            
+
             <!-- Gestionar tipoProducto -->
             <li class="nav-item">
                 <a class="nav-link collapsed" routerLink="/dashboard-gerente/tipoProducto" data-toggle="collapse">
@@ -155,7 +155,7 @@
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                    <span class="span-text mx-3">{{titulo | uppercase}}</span>
+                    <span class="span-text mx-3">GESTIONAR PRODUCTO</span>
 
 
                     <!-- Topbar Navbar -->
@@ -173,36 +173,46 @@
                 </nav>
                 <!-- End of Topbar -->
 
-                <!-- Content -->
-                <div class="container mt-5 mx-4 col-lg-4">
-                    <form [formGroup]="lunaForm" (ngSubmit)="agregarLuna()">
-                        <div class="mb-3 d-flex align-items-end">
-                            <div style="flex: 1;">
-                                <label class="form-label label-text">Material</label>
-                                <input type="text" formControlName="material" class="form-control" style="width: 350px;"
-                                    placeholder="Escriba el material de la luna..">
-                                <div class="text-danger"
-                                    *ngIf="lunaForm.get('material')?.hasError('required') && lunaForm.get('material')?.touched">
-                                    <span>El material de la luna <strong>es obligatorio</strong></span>
-                                </div>
-
-                                <label class="form-label label-text" style="margin-top: 10px;">Precio</label>
-                                <input type="number" formControlName="precio" class="form-control" style="width: 350px;"
-                                    placeholder="Escriba el precio de la luna..">
-                                <div class="text-danger"
-                                    *ngIf="lunaForm.get('precio')?.hasError('required') && lunaForm.get('precio')?.touched">
-                                    <span>El precio de la luna <strong>es obligatorio</strong></span>
-                                </div>
-                            </div>
-                            <button class="btn btn-success float-end" style="margin-left: 10px;">Aceptar</button>
+                <!-- Table -->
+                <div class="container mt-5">
+                    <div class="row">
+                        <div class="col-lg-11 offser-lg-2">
+                            <button class="btn btn-success float-end"
+                                routerLink="/dashboard-gerente/gestionar-producto/crear-producto">
+                                Agregar
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                            <table *ngIf="listProducto.length > 0" class="table table-striped mx-5 mt-5 text-center">
+                                <thead>
+                                    <tr>
+                                        <th>Codigo</th>
+                                        <th>Tipo de Producto</th>
+                                        <th>Nombre</th>
+                                        <th>Marca</th>
+                                        <th>Precio</th>
+                                        <th>Estado</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let producto of listProducto">
+                                        <td>{{ producto.codigo }}</td>
+                                        <td>{{ producto.tipoProducto.nombre }}</td>
+                                        <td>{{ producto.nombre }}</td>
+                                        <td>{{ producto.marca.nombre }}</td>
+                                        <td>{{ producto.precio }}</td>
+                                        <td>{{ producto.estado }}</td>
+                                        <td>
+                                            <i class="faw fa fa-edit text-primary" (click)="editarProducto(producto)"></i>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <h5 style="text-align: start; margin-top: 10px;" *ngIf="listProducto.length == 0">No hay productos para mostrar</h5>
                         </div>
-                        <div class="class mb 3">
-                            <button routerLink="/dashboard-gerente/luna"
-                                class="btn btn-secondary flat-start">Volver</button>
-                        </div>
-                    </form>
+                    </div>
                 </div>
-                <!-- End of Content -->
+                <!-- End of Table -->
 
             </div>
             <!-- End of Main Content -->
@@ -239,4 +249,5 @@
     <!-- Page level custom scripts -->
     <script src="js/demo/chart-area-demo.js"></script>
     <script src="js/demo/chart-pie-demo.js"></script>
+
 </body>

@@ -54,7 +54,7 @@ export class CrearTipoProductoComponent implements OnInit {
         if (error.error && error.error.msg) {
           error.error.msg.forEach((errorMessage: string) => {
             //const errorMessage = error.error.msg.join('\n');
-            this.toastr.info(errorMessage, 'Error');
+            this.toastr.error(errorMessage, 'Error');
           });
         } else {
           console.log(error);

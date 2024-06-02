@@ -16,7 +16,7 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="crear-luna.component.css" rel="stylesheet">
+    <link href="editar-montura.component.css" rel="stylesheet">
 
 </head>
 
@@ -76,7 +76,7 @@
             <div class="sidebar-heading">
                 Producto
             </div>
-            
+
             <!-- Gestionar tipoProducto -->
             <li class="nav-item">
                 <a class="nav-link collapsed" routerLink="/dashboard-gerente/tipoProducto" data-toggle="collapse">
@@ -148,14 +148,13 @@
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
-
+        <div id="content-wrapper">
             <!-- Main Content -->
             <div id="content">
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                    <span class="span-text mx-3">{{titulo | uppercase}}</span>
+                    <span class="span-text mx-3">EDITAR MONTURA</span>
 
 
                     <!-- Topbar Navbar -->
@@ -175,40 +174,114 @@
 
                 <!-- Content -->
                 <div class="container mt-5 mx-4 col-lg-4">
-                    <form [formGroup]="lunaForm" (ngSubmit)="agregarLuna()">
-                        <div class="mb-3 d-flex align-items-end">
+                    <form [formGroup]="productoForm" (ngSubmit)="agregarMonturaForm()">
+                        <div class="mb-3 d-flex align-items-center">
                             <div style="flex: 1;">
-                                <label class="form-label label-text">Material</label>
-                                <input type="text" formControlName="material" class="form-control" style="width: 350px;"
-                                    placeholder="Escriba el material de la luna..">
-                                <div class="text-danger"
-                                    *ngIf="lunaForm.get('material')?.hasError('required') && lunaForm.get('material')?.touched">
-                                    <span>El material de la luna <strong>es obligatorio</strong></span>
+                                <div style="flex: 1;">
+                                    <input type="hidden" formControlName="tipoProducto">
+                                    <label class="form-label label-text">Codigo</label>
+                                    <input type="text" formControlName="codigo" class="form-control"
+                                        style="width: 350px;" placeholder="Escriba el codigo del producto...">
+                                    <div class="text-danger"
+                                        *ngIf="productoForm.get('codigo')?.hasError('required') && productoForm.get('codigo')?.touched">
+                                        <span>El codigo del producto <strong>es obligatorio</strong></span>
+                                    </div>
+
+                                    <label class="form-label label-text" style="margin-top: 10px;">Nombre</label>
+                                    <input type="text" formControlName="nombre" class="form-control"
+                                        style="width: 350px;" placeholder="Escriba el nombre del producto...">
+                                    <div class="text-danger"
+                                        *ngIf="productoForm.get('nombre')?.hasError('required') && productoForm.get('nombre')?.touched">
+                                        <span>El nombre del producto <strong>es obligatorio</strong></span>
+                                    </div>
+
+                                    <label class="form-label label-text" style="margin-top: 10px;">Precio</label>
+                                    <input type="number" formControlName="precio" class="form-control"
+                                        style="width: 350px;" placeholder="Escriba el precio del producto...">
+                                    <div class="text-danger"
+                                        *ngIf="productoForm.get('precio')?.hasError('required') && productoForm.get('precio')?.touched">
+                                        <span>El precio del producto <strong>es obligatorio</strong></span>
+                                    </div>
+
+                                    <label class="form-label label-text" style="margin-top: 10px;">Imagen</label>
+                                    <input type="text" formControlName="imagen" class="form-control"
+                                        style="width: 350px;" placeholder="Ingrese la URL de la imagen...">
                                 </div>
 
-                                <label class="form-label label-text" style="margin-top: 10px;">Precio</label>
-                                <input type="number" formControlName="precio" class="form-control" style="width: 350px;"
-                                    placeholder="Escriba el precio de la luna..">
+                                <label class="form-label label-text" style="margin-top: 10px;">Marca</label>
+                                <select formControlName="marca" class="form-select" style="width: 350px;">
+                                    <option disabled selected>Selecciona la marca...</option>
+                                    <option *ngFor="let marcas of marca" [value]="marcas.nombre">{{ marcas.nombre }}
+                                    </option>
+                                </select>
+
+                                <label class="form-label label-text" style="margin-top: 10px;">Género</label>
+                                <div class="d-flex">
+                                    <div class="form-check me-3">
+                                        <input class="form-check-input" type="radio" formControlName="genero"
+                                            id="hombre" value="Hombre">
+                                        <label class="radio-text form-check-label" for="hombre">
+                                            Hombre
+                                        </label>
+                                    </div>
+                                    <div class="form-check me-3">
+                                        <input class="form-check-input" type="radio" formControlName="genero" id="mujer"
+                                            value="Mujer">
+                                        <label class="radio-text form-check-label" for="mujer">
+                                            Mujer
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" formControlName="genero"
+                                            id="unisex" value="Unisex">
+                                        <label class="radio-text form-check-label" for="unisex">
+                                            Unisex
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <label class="form-label label-text" style="margin-top: 10px;">Forma</label>
+                                <input type="string" formControlName="forma" class="form-control" style="width: 350px;"
+                                    placeholder="Escriba la forma de la montura...">
                                 <div class="text-danger"
-                                    *ngIf="lunaForm.get('precio')?.hasError('required') && lunaForm.get('precio')?.touched">
-                                    <span>El precio de la luna <strong>es obligatorio</strong></span>
+                                    *ngIf="productoForm.get('forma')?.hasError('required') && productoForm.get('forma')?.touched">
+                                    <span>La forma de la montura <strong>es obligatorio</strong></span>
+                                </div>
+
+                                <label class="form-label label-text" style="margin-top: 10px;">Color</label>
+                                <input type="text" formControlName="color" class="form-control" style="width: 350px;"
+                                    placeholder="Escriba el color de la montura...">
+                                <div class="text-danger"
+                                    *ngIf="productoForm.get('color')?.hasError('required') && productoForm.get('color')?.touched">
+                                    <span>El color de la montura <strong>es obligatorio</strong></span>
                                 </div>
                             </div>
-                            <button class="btn btn-success float-end" style="margin-left: 10px;">Aceptar</button>
+                            <!-- Contenedor para la imagen -->
+                            <div class="ml-10 mr-2 " style="margin-top: 100%; margin-left: 50px;">
+                                <!-- Imagen -->
+                                <img *ngIf="productoForm.get('imagen')?.value" [src]="productoForm.get('imagen')?.value"
+                                    class="img-fluid" alt="Imagen de la montura"
+                                    style="max-width: 100%;max-height: 100%;">
+                            </div>
                         </div>
+                        <button class="btn btn-success float-end"
+                            style="margin-left: 10px; margin-top: 35px;">Aceptar</button>
                         <div class="class mb 3">
-                            <button routerLink="/dashboard-gerente/luna"
+                            <button routerLink="/dashboard-gerente/gestionar-producto" style="margin-top: 35px;"
                                 class="btn btn-secondary flat-start">Volver</button>
                         </div>
                     </form>
                 </div>
                 <!-- End of Content -->
 
+
             </div>
+
             <!-- End of Main Content -->
+            <div style="height: 100px;"></div> <!-- Espacio en blanco -->
 
             <!-- Footer -->
-            <footer class="sticky-footer bg-white">
+            <footer class="footer sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
                         <span>Óptica Nuevo Mundo &copy; 2024</span>
@@ -216,7 +289,6 @@
                 </div>
             </footer>
             <!-- End of Footer -->
-
         </div>
         <!-- End of Content Wrapper -->
 
@@ -239,4 +311,5 @@
     <!-- Page level custom scripts -->
     <script src="js/demo/chart-area-demo.js"></script>
     <script src="js/demo/chart-pie-demo.js"></script>
+
 </body>
