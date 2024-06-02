@@ -190,6 +190,7 @@
                                         <th>Nombre</th>
                                         <th>Marca</th>
                                         <th>Precio</th>
+                                        <th>Estado</th>
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>
@@ -200,9 +201,9 @@
                                         <td>{{ producto.nombre }}</td>
                                         <td>{{ producto.marca.nombre }}</td>
                                         <td>{{ producto.precio }}</td>
+                                        <td>{{ producto.estado }}</td>
                                         <td>
-                                            <i class="faw fa fa-edit text-primary"></i>
-                                            <i class='faw fa-solid fa-trash text-danger'></i>
+                                            <i class="faw fa fa-edit text-primary" (click)="editarProducto(producto)"></i>
                                         </td>
                                     </tr>
                                 </tbody>

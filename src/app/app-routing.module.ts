@@ -17,6 +17,7 @@ import { CrearTipoProductoComponent } from './components/tipoProducto/crear-tipo
 import { TipoComponent } from './components/tipoProducto/tipo/tipo.component';
 import { EditarMonturaComponent } from './components/gestionar-producto/editar-montura/editar-montura.component';
 import { EditarLenteSolComponent } from './components/gestionar-producto/editar-lenteSol/editar-lente-sol.component';
+import { EditarOtroComponent } from './components/gestionar-producto/editar-otro/editar-otro.component';
 
 
 const routes: Routes = [
@@ -34,9 +35,6 @@ const routes: Routes = [
   { path: 'dashboard-gerente/rol/crear-rol', component: CrearRolComponent},
   { path: 'dashboard-gerente/rol/editar-rol/:id', component: CrearRolComponent},
 
-  //{ path: 'dashboard-gerente/montura/crear-montura', component: CrearMonturaComponent},
-  //{ path: 'dashboard-gerente/montura/editar-montura/:id', component: CrearMonturaComponent},
-
   { path: 'dashboard-gerente/marca/crear-marca', component: CrearMarcaComponent},
   { path: 'dashboard-gerente/marca/editar-marca/:id', component: CrearMarcaComponent},
 
@@ -52,6 +50,7 @@ const routes: Routes = [
   { path: 'dashboard-gerente/gestionar-producto/crear-producto', component: CrearProductoComponent},
   { path: 'dashboard-gerente/gestionar-producto/editar-montura/:id', component: EditarMonturaComponent},
   { path: 'dashboard-gerente/gestionar-producto/editar-lente-sol/:id', component: EditarLenteSolComponent},
+  { path: 'dashboard-gerente/gestionar-producto/editar-otro/:id', component: EditarOtroComponent},
 
   { path: '**', redirectTo: '', pathMatch: 'full' }
 ];  

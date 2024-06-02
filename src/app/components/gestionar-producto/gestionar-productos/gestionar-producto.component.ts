@@ -16,11 +16,7 @@ import { LenteSol } from 'src/app/models/lenteSol';
 })
 export class GestionarProductoComponent {
   listProducto: any[] = [];
-
-  listMontura: Montura[] = [];
-
-  listLenteSol: LenteSol[] = [];
-
+  
   constructor(private _productoService: ProductoService,
               private toastr: ToastrService,
               private api: LoginService,
@@ -30,8 +26,6 @@ export class GestionarProductoComponent {
 
   ngOnInit(): void {
     this.obtenerProductos();
-    this.obtenerLenteSol();
-    this.obtenerMontura();
   }
 
   obtenerProductos(){
@@ -43,41 +37,24 @@ export class GestionarProductoComponent {
     })
   }
 
-  obtenerMontura() {
-    this._monturaService.getMontura().subscribe(data => {
-      console.log(data);
-      this.listMontura = data;
-    }, error => {
-      console.log(error);
-    })
+  editarProducto(producto: any) {
+    let ruta: string;
+
+    switch (producto.tipoProducto.nombre) {
+      case 'Montura':
+        ruta = `/dashboard-gerente/gestionar-producto/editar-montura/${producto._id}`;
+        break;
+      case 'Lentes de sol':
+        ruta = `/dashboard-gerente/gestionar-producto/editar-lente-sol/${producto._id}`;
+        break;
+      default:
+        ruta = `/dashboard-gerente/gestionar-producto/editar-otro/${producto._id}`;
+        break;
+    }
+
+    this.router.navigate([ruta]);
   }
 
-  obtenerLenteSol() {
-    this._lenteSolService.getLenteSol().subscribe(data => {
-      console.log(data);
-      this.listLenteSol = data;
-    }, error => {
-      console.log(error);
-    })
-  }
-
-  eliminarMontura(id: any) {
-    this._monturaService.eliminarMontura(id).subscribe(data => {
-      this.toastr.info('El Producto fue eliminado con éxito!', 'Producto Eliminado!')
-      this.obtenerMontura();
-    }, error => {
-      console.log(error);
-    })
-  }
-
-  eliminarLenteSol(id: any) {
-    this._lenteSolService.eliminarLenteSol(id).subscribe(data => {
-      this.toastr.info('El Producto fue eliminado con éxito!', 'Producto Eliminado!')
-      this.obtenerLenteSol();
-    }, error => {
-      console.log(error);
-    })
-  }
 
   isLoggedIn: boolean = this.api.isLogged();
 

@@ -51,6 +51,7 @@ export class CrearProductoComponent implements OnInit {
       precio: ['', Validators.required],
       imagen: [''],
       marca: ['', Validators.required],
+      estado: ['Activo'],
       color: [''],
       genero: [''],
       forma: [''],
@@ -62,7 +63,7 @@ export class CrearProductoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.esEditar();
+    //this.esEditar();
     this.obtenerMarca();
     this.obtenerTipoProducto();
   }
@@ -104,7 +105,8 @@ export class CrearProductoComponent implements OnInit {
       nombre: productoData.nombre,
       precio: productoData.precio,
       imagen: productoData.imagen,
-      marca: productoData.marca
+      marca: productoData.marca,
+      estado: productoData.estado
     };
   
     // Verificar el tipo de producto y asignar los atributos específicos
@@ -142,21 +144,41 @@ export class CrearProductoComponent implements OnInit {
     });
   }
 
-
-esEditar() {
-  if (this.id !== null) {
-    this.titulo = 'Editar Producto';
-    this._productoService.obtenerProducto(this.id).subscribe(data => {
-      this.productoForm.setValue({
-        codigo: data.codigo,
-        tipoProducto: data.tipoProducto,
-        nombre: data.nombre,
-        precio: data.precio,
-        imagen: data.imagen
-      })
-    })
-  }
-}
+  /*esEditar() {
+    if (this.id !== null) {
+      this.titulo = 'Editar Producto';
+      this._productoService.obtenerProducto(this.id).subscribe(data => {
+        const productoFormValues: any = {
+          codigo: data.codigo,
+          tipoProducto: data.tipoProducto,
+          nombre: data.nombre,
+          precio: data.precio,
+          imagen: data.imagen,
+          marca: data.marca,
+          color: '',
+          genero: '',
+          forma: '',
+          colorlente: '',
+          protuv: ''
+        };
+  
+        // Asignar los atributos específicos dependiendo del tipo de producto
+        if (data.tipoProducto === 'Montura') {
+          productoFormValues.color = data.color;
+          productoFormValues.genero = data.genero;
+          productoFormValues.forma = data.forma;
+        } else if (data.tipoProducto === 'Lentes de sol') {
+          productoFormValues.color = data.color;
+          productoFormValues.genero = data.genero;
+          productoFormValues.forma = data.forma;
+          productoFormValues.colorlente = data.colorlente;
+          productoFormValues.protuv = data.protuv;
+        }
+  
+        this.productoForm.setValue(productoFormValues);
+      });
+    }
+  }*/
 
 isLoggedIn: boolean = this.api.isLogged();
 

@@ -16,7 +16,7 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="editar-lente-sol.component.css" rel="stylesheet">
+    <link href="editar-otro.component.css" rel="stylesheet">
 
 </head>
 
@@ -154,7 +154,7 @@
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                    <span class="span-text mx-3">EDITAR LENTE DE SOL</span>
+                    <span class="span-text mx-3">EDITAR PRODUCTO</span>
 
 
                     <!-- Topbar Navbar -->
@@ -174,15 +174,16 @@
 
                 <!-- Content -->
                 <div class="container mt-5 mx-4 col-lg-4">
-                    <form class="mt-3" [formGroup]="lenteSolForm" (ngSubmit)="agregarLenteSolForm()">
+                    <form [formGroup]="productoForm" (ngSubmit)="agregarProducto()">
                         <div class="mb-3 d-flex align-items-center">
                             <div style="flex: 1;">
                                 <div style="flex: 1;">
+                                    <input type="hidden" formControlName="tipoProducto">
                                     <label class="form-label label-text">Codigo</label>
                                     <input type="text" formControlName="codigo" class="form-control"
                                         style="width: 350px;" placeholder="Escriba el codigo del producto...">
                                     <div class="text-danger"
-                                        *ngIf="lenteSolForm.get('codigo')?.hasError('required') && lenteSolForm.get('codigo')?.touched">
+                                        *ngIf="productoForm.get('codigo')?.hasError('required') && productoForm.get('codigo')?.touched">
                                         <span>El codigo del producto <strong>es obligatorio</strong></span>
                                     </div>
 
@@ -190,7 +191,7 @@
                                     <input type="text" formControlName="nombre" class="form-control"
                                         style="width: 350px;" placeholder="Escriba el nombre del producto...">
                                     <div class="text-danger"
-                                        *ngIf="lenteSolForm.get('nombre')?.hasError('required') && lenteSolForm.get('nombre')?.touched">
+                                        *ngIf="productoForm.get('nombre')?.hasError('required') && productoForm.get('nombre')?.touched">
                                         <span>El nombre del producto <strong>es obligatorio</strong></span>
                                     </div>
 
@@ -198,7 +199,7 @@
                                     <input type="number" formControlName="precio" class="form-control"
                                         style="width: 350px;" placeholder="Escriba el precio del producto...">
                                     <div class="text-danger"
-                                        *ngIf="lenteSolForm.get('precio')?.hasError('required') && lenteSolForm.get('precio')?.touched">
+                                        *ngIf="productoForm.get('precio')?.hasError('required') && productoForm.get('precio')?.touched">
                                         <span>El precio del producto <strong>es obligatorio</strong></span>
                                     </div>
 
@@ -213,79 +214,11 @@
                                     <option *ngFor="let marcas of marca" [value]="marcas.nombre">{{ marcas.nombre }}
                                     </option>
                                 </select>
-
-                                <label class="form-label label-text" style="margin-top: 10px;">Género</label>
-                                <div class="d-flex">
-                                    <div class="form-check me-3">
-                                        <input class="form-check-input" type="radio" formControlName="genero"
-                                            id="hombre" value="Hombre">
-                                        <label class="radio-text form-check-label" for="hombre">
-                                            Hombre
-                                        </label>
-                                    </div>
-                                    <div class="form-check me-3">
-                                        <input class="form-check-input" type="radio" formControlName="genero" id="mujer"
-                                            value="Mujer">
-                                        <label class="radio-text form-check-label" for="mujer">
-                                            Mujer
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" formControlName="genero"
-                                            id="unisex" value="Unisex">
-                                        <label class="radio-text form-check-label" for="unisex">
-                                            Unisex
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <label class="form-label label-text" style="margin-top: 10px;">Forma</label>
-                                <input type="string" formControlName="forma" class="form-control" style="width: 350px;"
-                                    placeholder="Escriba la forma de la montura...">
-                                <div class="text-danger"
-                                    *ngIf="lenteSolForm.get('forma')?.hasError('required') && lenteSolForm.get('forma')?.touched">
-                                    <span>La forma de la montura <strong>es obligatorio</strong></span>
-                                </div>
-
-                                <label class="form-label label-text" style="margin-top: 10px;">Color</label>
-                                <input type="text" formControlName="color" class="form-control" style="width: 350px;"
-                                    placeholder="Escriba el color de la montura...">
-                                <div class="text-danger"
-                                    *ngIf="lenteSolForm.get('color')?.hasError('required') && lenteSolForm.get('color')?.touched">
-                                    <span>El color de la montura <strong>es obligatorio</strong></span>
-                                </div>
-
-                                <label class="form-label label-text" style="margin-top: 10px;">Color de
-                                    Lente</label>
-                                <input type="text" formControlName="colorlente" class="form-control"
-                                    style="width: 350px;" placeholder="Escriba el color de lente de la montura...">
-                                <div class="text-danger"
-                                    *ngIf="lenteSolForm.get('colorlente')?.hasError('required') && lenteSolForm.get('colorlente')?.touched">
-                                    <span>El color de lente de la montura <strong>es obligatorio</strong></span>
-                                </div>
-
-                                <label class="form-label label-text" style="margin-top: 10px;">Protección UV</label>
-                                <div class="d-flex">
-                                    <div class="form-check me-3">
-                                        <input class="form-check-input" type="radio" formControlName="protuv" id="si"
-                                            value="Si">
-                                        <label class="radio-text form-check-label" for="si">
-                                            Si
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" formControlName="protuv" id="no"
-                                            value="No">
-                                        <label class="radio-text form-check-label" for="no">
-                                            No
-                                        </label>
-                                    </div>
-                                </div>
                             </div>
                             <!-- Contenedor para la imagen -->
                             <div class="ml-10 mr-2 " style="margin-top: 100%; margin-left: 50px;">
                                 <!-- Imagen -->
-                                <img *ngIf="lenteSolForm.get('imagen')?.value" [src]="lenteSolForm.get('imagen')?.value"
+                                <img *ngIf="productoForm.get('imagen')?.value" [src]="productoForm.get('imagen')?.value"
                                     class="img-fluid" alt="Imagen de la montura"
                                     style="max-width: 100%;max-height: 100%;">
                             </div>
@@ -315,7 +248,6 @@
                 </div>
             </footer>
             <!-- End of Footer -->
-
         </div>
         <!-- End of Content Wrapper -->
 
