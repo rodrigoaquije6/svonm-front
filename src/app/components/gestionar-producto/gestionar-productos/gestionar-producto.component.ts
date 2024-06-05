@@ -16,6 +16,10 @@ import { LenteSol } from 'src/app/models/lenteSol';
 })
 export class GestionarProductoComponent {
   listProducto: any[] = [];
+
+  listProductoOriginal: Producto[] = [];
+
+  terminoBusqueda: string = '';
   
   constructor(private _productoService: ProductoService,
               private toastr: ToastrService,
@@ -28,13 +32,21 @@ export class GestionarProductoComponent {
     this.obtenerProductos();
   }
 
-  obtenerProductos(){
-    this._productoService.getProductos().subscribe(data => {
+  obtenerProductos() {
+    this._productoService.getProductos().subscribe((data: Producto[]) => {
       console.log(data);
-      this.listProducto = data;
+      this.listProducto = data.filter(producto =>
+        producto.codigo.toLowerCase().includes(this.terminoBusqueda.toLowerCase()) ||
+        producto.nombre.toLowerCase().includes(this.terminoBusqueda.toLowerCase())
+      );
     }, error => {
       console.log(error);
-    })
+    });
+  }
+
+  limpiarBusqueda() {
+    this.terminoBusqueda = '';
+    this.obtenerProductos();
   }
 
   editarProducto(producto: any) {

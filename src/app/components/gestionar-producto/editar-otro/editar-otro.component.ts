@@ -21,7 +21,7 @@ export class EditarOtroComponent implements OnInit {
 
   marca: any[] = [];
 
-  url = 'http://localhost:4000/api/crear-marca/'; //http://localhost:4000/api/rol/
+  url = 'https://bug-free-telegram-wwv6475qj9536rj-4000.app.github.dev/api/crear-marca/'; //http://localhost:4000/api/rol/
 
   constructor(private fb: FormBuilder,
     private toastr: ToastrService,
@@ -129,27 +129,20 @@ export class EditarOtroComponent implements OnInit {
           precio: data.precio,
           imagen: data.imagen,
           marca: data.marca,
-          estado: data.estado
+          estado: data.estado,
+          color: '', // Establecer valores predeterminados
+          genero: '', // Establecer valores predeterminados
+          forma: '', // Establecer valores predeterminados
+          colorlente: '', // Establecer valores predeterminados
+          protuv: '' // Establecer valores predeterminados
         };
-  
-        // Verificar el tipo de producto y asignar los atributos específicos
-        if (data.tipoProducto === 'Montura') {
-          formularioData.color = data.color || ''; // Establecer valores predeterminados en caso de que no existan
-          formularioData.genero = data.genero || ''; // Establecer valores predeterminados en caso de que no existan
-          formularioData.forma = data.forma || ''; // Establecer valores predeterminados en caso de que no existan
-        } else if (data.tipoProducto === 'Lentes de sol') {
-          formularioData.color = data.color || ''; // Establecer valores predeterminados en caso de que no existan
-          formularioData.genero = data.genero || ''; // Establecer valores predeterminados en caso de que no existan
-          formularioData.forma = data.forma || ''; // Establecer valores predeterminados en caso de que no existan
-          formularioData.colorlente = data.colorlente || ''; // Establecer valores predeterminados en caso de que no existan
-          formularioData.protuv = data.protuv || ''; // Establecer valores predeterminados en caso de que no existan
-        }
   
         // Asignar valores al formulario
         this.productoForm.setValue(formularioData);
       })
     }
   }
+  
   isLoggedIn: boolean = this.api.isLogged();
 
   onClickLogout() {
