@@ -77,11 +77,19 @@
                 Producto
             </div>
 
-            <!-- Gestionar Monturas -->
+            <!-- Gestionar tipoProducto -->
             <li class="nav-item">
-                <a class="nav-link collapsed" routerLink="/dashboard-gerente/montura" data-toggle="collapse">
-                    <i class="fa-solid fa-glasses"></i>
-                    <span> Monturas</span>
+                <a class="nav-link collapsed" routerLink="/dashboard-gerente/tipoProducto" data-toggle="collapse">
+                    <i class="fa-brands fa-product-hunt"></i>
+                    <span> Tipo de Producto</span>
+                </a>
+            </li>
+
+            <!-- Gestionar Producto -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" routerLink="/dashboard-gerente/gestionar-producto" data-toggle="collapse">
+                    <i class="fa-solid fa-box-archive"></i>
+                    <span> Gestionar Producto</span>
                 </a>
             </li>
 
@@ -147,15 +155,15 @@
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                    <span class="span-text mx-3">CREAR ROL</span>
+                    <span class="span-text mx-3">{{titulo | uppercase}}</span>
 
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
                         <!-- Nav Item - User Information -->
-                        <li class="nav-item ">
-                            <a class="nav-link" routerLink="/login">
+                        <li class="nav-item" *ngIf="isLoggedIn" (click)="onClickLogout()">
+                            <a class="nav-link" href="">
                                 <i class="fa-solid fa-right-from-bracket" style="color: #ff000d;"></i>
                             </a>
                         </li>
@@ -177,7 +185,7 @@
                                     <span>El nombre del rol <strong>es obligatorio</strong></span>
                                 </div>
                             </div>
-                            <button class="btn btn-success float-end" style="margin-left: 10px;">Agregar</button>
+                            <button class="btn btn-success float-end" style="margin-left: 10px;">Aceptar</button>
                         </div>
                         <div class="class mb 3">
                             <button routerLink="/dashboard-gerente/rol" class="btn btn-secondary flat-start">Volver</button>

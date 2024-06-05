@@ -1,0 +1,315 @@
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <title>Dashboard-gerente</title>
+
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="editar-montura.component.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- Sidebar - Logo -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" routerLink="/dashboard-gerente">
+
+                <div class="sidebar-brand-icon">
+                    <i class="fa-solid fa-glasses"></i>
+                </div>
+                <div class="sidebar-brand-text mx-1">Óptica Nuevo Mundo</div>
+            </a>
+
+            <!-- Divisor -->
+            <hr class="sidebar-divider my-0">
+            <li class="nav-item active">
+                <a class="nav-link">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span></a>
+            </li>
+
+            <!-- Divisor -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading Trabajador-->
+            <div class="sidebar-heading">
+                Trabajador
+            </div>
+
+            <!-- Gestionar Trabajador -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" routerLink="/dashboard-gerente/trabajador" data-toggle="collapse">
+                    <i class="fa-solid fa-briefcase"></i>
+                    <span> Gestionar Trabajador</span>
+                </a>
+            </li>
+
+            <!-- Gestionar Roles -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" routerLink="/dashboard-gerente/rol" data-toggle="collapse">
+                    <i class="fa-solid fa-sheet-plastic"></i>
+                    <span> Gestionar Roles</span>
+                </a>
+            </li>
+
+            <!-- Divisor -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading Producto-->
+            <div class="sidebar-heading">
+                Producto
+            </div>
+
+            <!-- Gestionar tipoProducto -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" routerLink="/dashboard-gerente/tipoProducto" data-toggle="collapse">
+                    <i class="fa-brands fa-product-hunt"></i>
+                    <span> Tipo de Producto</span>
+                </a>
+            </li>
+
+            <!-- Gestionar Producto -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" routerLink="/dashboard-gerente/gestionar-producto" data-toggle="collapse">
+                    <i class="fa-solid fa-box-archive"></i>
+                    <span> Gestionar Producto</span>
+                </a>
+            </li>
+
+            <!-- Gestionar Lunas -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" routerLink="/dashboard-gerente/luna" data-toggle="collapse">
+                    <i class="fa-regular fa-eye"></i>
+                    <span> Lunas</span>
+                </a>
+            </li>
+
+            <!-- Gestionar Marca -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" routerLink="/dashboard-gerente/marca" data-toggle="collapse">
+                    <i class="fa-regular fa-copyright"></i>
+                    <span> Marcas</span>
+                </a>
+            </li>
+
+            <!-- Divisor -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading Catálogo-->
+            <div class="sidebar-heading">
+                Catálogo
+            </div>
+
+            <!-- Gestionar Catálogo -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" routerLink="/dashboard-gerente/catalogo" data-toggle="collapse">
+                    <i class="fa-solid fa-book"></i>
+                    <span> Gestionar Catálogo</span>
+                </a>
+            </li>
+
+            <!-- Divisor -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading Almacén-->
+            <div class="sidebar-heading">
+                Almacén
+            </div>
+
+            <!-- Gestionar Almacén -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" routerLink="/dashboard-gerente/almacen" data-toggle="collapse">
+                    <i class="fa-solid fa-box"></i>
+                    <span> Gestionar Almacén</span>
+                </a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+        </ul>
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper">
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                    <span class="span-text mx-3">EDITAR MONTURA</span>
+
+
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item" *ngIf="isLoggedIn" (click)="onClickLogout()">
+                            <a class="nav-link" href="">
+                                <i class="fa-solid fa-right-from-bracket" style="color: #ff000d;"></i>
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </nav>
+                <!-- End of Topbar -->
+
+                <!-- Content -->
+                <div class="container mt-5 mx-4 col-lg-4">
+                    <form [formGroup]="productoForm" (ngSubmit)="agregarMonturaForm()">
+                        <div class="mb-3 d-flex align-items-center">
+                            <div style="flex: 1;">
+                                <div style="flex: 1;">
+                                    <input type="hidden" formControlName="tipoProducto">
+                                    <label class="form-label label-text">Codigo</label>
+                                    <input type="text" formControlName="codigo" class="form-control"
+                                        style="width: 350px;" placeholder="Escriba el codigo del producto...">
+                                    <div class="text-danger"
+                                        *ngIf="productoForm.get('codigo')?.hasError('required') && productoForm.get('codigo')?.touched">
+                                        <span>El codigo del producto <strong>es obligatorio</strong></span>
+                                    </div>
+
+                                    <label class="form-label label-text" style="margin-top: 10px;">Nombre</label>
+                                    <input type="text" formControlName="nombre" class="form-control"
+                                        style="width: 350px;" placeholder="Escriba el nombre del producto...">
+                                    <div class="text-danger"
+                                        *ngIf="productoForm.get('nombre')?.hasError('required') && productoForm.get('nombre')?.touched">
+                                        <span>El nombre del producto <strong>es obligatorio</strong></span>
+                                    </div>
+
+                                    <label class="form-label label-text" style="margin-top: 10px;">Precio</label>
+                                    <input type="number" formControlName="precio" class="form-control"
+                                        style="width: 350px;" placeholder="Escriba el precio del producto...">
+                                    <div class="text-danger"
+                                        *ngIf="productoForm.get('precio')?.hasError('required') && productoForm.get('precio')?.touched">
+                                        <span>El precio del producto <strong>es obligatorio</strong></span>
+                                    </div>
+
+                                    <label class="form-label label-text" style="margin-top: 10px;">Imagen</label>
+                                    <input type="text" formControlName="imagen" class="form-control"
+                                        style="width: 350px;" placeholder="Ingrese la URL de la imagen...">
+                                </div>
+
+                                <label class="form-label label-text" style="margin-top: 10px;">Marca</label>
+                                <select formControlName="marca" class="form-select" style="width: 350px;">
+                                    <option disabled selected>Selecciona la marca...</option>
+                                    <option *ngFor="let marcas of marca" [value]="marcas.nombre">{{ marcas.nombre }}
+                                    </option>
+                                </select>
+
+                                <label class="form-label label-text" style="margin-top: 10px;">Género</label>
+                                <div class="d-flex">
+                                    <div class="form-check me-3">
+                                        <input class="form-check-input" type="radio" formControlName="genero"
+                                            id="hombre" value="Hombre">
+                                        <label class="radio-text form-check-label" for="hombre">
+                                            Hombre
+                                        </label>
+                                    </div>
+                                    <div class="form-check me-3">
+                                        <input class="form-check-input" type="radio" formControlName="genero" id="mujer"
+                                            value="Mujer">
+                                        <label class="radio-text form-check-label" for="mujer">
+                                            Mujer
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" formControlName="genero"
+                                            id="unisex" value="Unisex">
+                                        <label class="radio-text form-check-label" for="unisex">
+                                            Unisex
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <label class="form-label label-text" style="margin-top: 10px;">Forma</label>
+                                <input type="string" formControlName="forma" class="form-control" style="width: 350px;"
+                                    placeholder="Escriba la forma de la montura...">
+                                <div class="text-danger"
+                                    *ngIf="productoForm.get('forma')?.hasError('required') && productoForm.get('forma')?.touched">
+                                    <span>La forma de la montura <strong>es obligatorio</strong></span>
+                                </div>
+
+                                <label class="form-label label-text" style="margin-top: 10px;">Color</label>
+                                <input type="text" formControlName="color" class="form-control" style="width: 350px;"
+                                    placeholder="Escriba el color de la montura...">
+                                <div class="text-danger"
+                                    *ngIf="productoForm.get('color')?.hasError('required') && productoForm.get('color')?.touched">
+                                    <span>El color de la montura <strong>es obligatorio</strong></span>
+                                </div>
+                            </div>
+                            <!-- Contenedor para la imagen -->
+                            <div class="ml-10 mr-2 " style="margin-top: 100%; margin-left: 50px;">
+                                <!-- Imagen -->
+                                <img *ngIf="productoForm.get('imagen')?.value" [src]="productoForm.get('imagen')?.value"
+                                    class="img-fluid" alt="Imagen de la montura"
+                                    style="max-width: 100%;max-height: 100%;">
+                            </div>
+                        </div>
+                        <button class="btn btn-success float-end"
+                            style="margin-left: 10px; margin-top: 35px;">Aceptar</button>
+                        <div class="class mb 3">
+                            <button routerLink="/dashboard-gerente/gestionar-producto" style="margin-top: 35px;"
+                                class="btn btn-secondary flat-start">Volver</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- End of Content -->
+
+
+            </div>
+
+            <!-- End of Main Content -->
+            <div style="height: 100px;"></div> <!-- Espacio en blanco -->
+
+            <!-- Footer -->
+            <footer class="footer sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Óptica Nuevo Mundo &copy; 2024</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="vendor/chart.js/Chart.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="js/demo/chart-area-demo.js"></script>
+    <script src="js/demo/chart-pie-demo.js"></script>
+
+</body>

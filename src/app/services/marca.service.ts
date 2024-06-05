@@ -8,12 +8,16 @@ import { Marca } from '../models/marca';
 })
 export class MarcaService {
 
-  url = 'http://localhost:4000/api/crear-marca/'
+  url = 'http://localhost:4000/api/crear-marca/'; //'http://localhost:4000/api/crear-marca/'
 
   constructor(private http: HttpClient) { }
 
   getMarcas(): Observable<any> {
     return this.http.get(this.url);
+  }
+
+  obtenerMarca(id: string): Observable<any> {
+    return this.http.get(this.url + id);
   }
 
   eliminarMarca(id: string): Observable<any>{
@@ -25,5 +29,8 @@ export class MarcaService {
     return this.http.post(this.url, marca);
   }
 
+  editarMarca(id: string, marca: Marca): Observable<any> {
+    return this.http.put(this.url + id, marca);
+  }
 
 }

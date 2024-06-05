@@ -77,11 +77,19 @@
                 Producto
             </div>
 
-            <!-- Gestionar Monturas -->
+            <!-- Gestionar tipoProducto -->
             <li class="nav-item">
-                <a class="nav-link collapsed" routerLink="/dashboard-gerente/montura" data-toggle="collapse">
-                    <i class="fa-solid fa-glasses"></i>
-                    <span> Monturas</span>
+                <a class="nav-link collapsed" routerLink="/dashboard-gerente/tipoProducto" data-toggle="collapse">
+                    <i class="fa-brands fa-product-hunt"></i>
+                    <span> Tipo de Producto</span>
+                </a>
+            </li>
+
+            <!-- Gestionar Producto -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" routerLink="/dashboard-gerente/gestionar-producto" data-toggle="collapse">
+                    <i class="fa-solid fa-box-archive"></i>
+                    <span> Gestionar Producto</span>
                 </a>
             </li>
 
@@ -154,8 +162,8 @@
                     <ul class="navbar-nav ml-auto">
 
                         <!-- Nav Item - User Information -->
-                        <li class="nav-item ">
-                            <a class="nav-link" routerLink="/login">
+                        <li class="nav-item" *ngIf="isLoggedIn" (click)="onClickLogout()">
+                            <a class="nav-link" href="">
                                 <i class="fa-solid fa-right-from-bracket" style="color: #ff000d;"></i>
                             </a>
                         </li>
@@ -181,48 +189,14 @@
                                         <th>Acción</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <!--<tr>
-                                        <td>
-                                            <p>1</p>
-                                        </td>
-                                        <td>
-                                            Ray-Ban
-                                        </td>
-                                        <td>
-                                            <i class='faw fa-solid fa-trash text-danger'></i>
-                                        </td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <p>2</p>
-                                        </td>
-                                        <td>
-                                            Oaklaey
-                                        </td>
-                                        <td>
-                                            <i class='faw fa-solid fa-trash text-danger'></i>
-                                        </td>
-
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <p>3</p>
-                                        </td>
-                                        <td>
-                                            Arnette
-                                        </td>
-                                        <td>
-                                            <i class='faw fa-solid fa-trash text-danger'></i>
-                                        </td>
-                                    </tr>!-->
+                                <tbody>                    
                                     <tr *ngFor="let marca of listMarcas">
                                         
                                         <td>
                                             {{marca.nombre}}
                                         </td>
                                         <td>
+                                            <i [routerLink]="['/dashboard-gerente/marca/editar-marca/', marca._id]" class="faw fa fa-edit text-primary"></i>
                                             <i (click)= "eliminarMarca(marca._id)"class='faw fa-solid fa-trash text-danger'></i>
                                         </td>
                                     </tr>
