@@ -22,7 +22,7 @@ export class CrearProductoComponent implements OnInit {
 
   id: string | null;
 
-  url = 'https://shiny-space-waddle-jjjjvrg5jjr35p57-4000.app.github.dev/api/'//'http://localhost:4000/api/crear-producto/ ' //https://vigilant-acorn-q7777qjxj95jhx77v-4000.app.github.dev/api/crear-producto/
+  url = 'https://bug-free-telegram-wwv6475qj9536rj-4000.app.github.dev/api/'//'http://localhost:4000/api/crear-producto/ ' //https://vigilant-acorn-q7777qjxj95jhx77v-4000.app.github.dev/api/crear-producto/
 
   constructor(private fb: FormBuilder,
     private toastr: ToastrService,

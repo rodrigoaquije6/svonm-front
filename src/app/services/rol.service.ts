@@ -7,7 +7,7 @@ import { Rol } from '../models/rol';
   providedIn: 'root'
 })
 export class RolService {
-  url = 'https://shiny-space-waddle-jjjjvrg5jjr35p57-4000.app.github.dev/api/'; //'http://localhost:4000/api/rol/'
+  url = 'https://bug-free-telegram-wwv6475qj9536rj-4000.app.github.dev/api/'; //'http://localhost:4000/api/rol/'
   
   constructor(private http: HttpClient) { }
 

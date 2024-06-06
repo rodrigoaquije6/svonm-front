@@ -39,7 +39,7 @@ export class RegistrarVentaComponent implements OnInit{
   id: string | null;
 
   marca: any[] = [];
-  url = 'https://shiny-tribble-rqj5r9gj7xwf5x55-4000.app.github.dev/api/crear-marca/'; //http://localhost:4000/api/crear-marca/
+  url = 'https://bug-free-telegram-wwv6475qj9536rj-4000.app.github.dev/api/crear-marca/'; //http://localhost:4000/api/crear-marca/
 
   constructor(
     private productService: ProductoService,

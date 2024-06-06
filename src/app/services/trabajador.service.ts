@@ -8,7 +8,7 @@ import { Trabajador } from '../models/trabajador';
   providedIn: 'root'
 })
 export class TrabajadorService {
-  url = 'https://shiny-space-waddle-jjjjvrg5jjr35p57-4000.app.github.dev/api/'; //'http://localhost:4000/api/trabajador/'
+  url = 'https://bug-free-telegram-wwv6475qj9536rj-4000.app.github.dev/api/'; //'http://localhost:4000/api/trabajador/'
 
   constructor(private http: HttpClient) { }
 
