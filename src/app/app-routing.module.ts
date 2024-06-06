@@ -7,6 +7,7 @@ import { TrabajadorComponent } from './components/trabajador/trabajadores/trabaj
 import { RolComponent } from './components/roles/rol/rol.component';
 import { LunaComponent } from './components/lunas/luna/luna.component';
 import { MarcaComponent } from './components/marcas/marca/marca.component';
+import { AlmacenComponent } from './components/gestionarAlmacen/almacen/almacen.component';
 import { GestionarProductoComponent } from './components/gestionar-producto/gestionar-productos/gestionar-producto.component';
 import { CrearRolComponent } from './components/roles/crear-rol/crear-rol.component';
 import { CrearTrabajadorComponent } from './components/trabajador/crear-trabajador/crear-trabajador.component';
@@ -18,7 +19,7 @@ import { TipoComponent } from './components/tipoProducto/tipo/tipo.component';
 import { EditarMonturaComponent } from './components/gestionar-producto/editar-montura/editar-montura.component';
 import { EditarLenteSolComponent } from './components/gestionar-producto/editar-lenteSol/editar-lente-sol.component';
 import { EditarOtroComponent } from './components/gestionar-producto/editar-otro/editar-otro.component';
-
+import { CatalogoComponent } from './components/gestionarCatalogo/catalogo/catalogo.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent},
@@ -30,6 +31,9 @@ const routes: Routes = [
   { path: 'dashboard-gerente/luna', component: LunaComponent},
   { path: 'dashboard-gerente/marca', component: MarcaComponent},
   { path: 'dashboard-gerente/gestionar-producto', component: GestionarProductoComponent},
+  { path: 'dashboard-gerente/tipoProducto', component: TipoComponent},
+  { path: 'dashboard-gerente/almacen', component: AlmacenComponent},
+  { path: 'dashboard-gerente/catalogo', component: CatalogoComponent},
   { path: 'dashboard-gerente/tipoProducto', component: TipoComponent},
   //--------------------------------------------CREAR--------------------------------------------
   { path: 'dashboard-gerente/rol/crear-rol', component: CrearRolComponent},
@@ -51,7 +55,8 @@ const routes: Routes = [
   { path: 'dashboard-gerente/gestionar-producto/editar-montura/:id', component: EditarMonturaComponent},
   { path: 'dashboard-gerente/gestionar-producto/editar-lente-sol/:id', component: EditarLenteSolComponent},
   { path: 'dashboard-gerente/gestionar-producto/editar-otro/:id', component: EditarOtroComponent},
-
+  { path: 'dashboard-gerente/gestionar-producto/editar/:id', component: EditarOtroComponent},
+  
   { path: '**', redirectTo: '', pathMatch: 'full' }
 ];  
 

@@ -25,7 +25,9 @@ import { TipoComponent } from './components/tipoProducto/tipo/tipo.component';
 import { EditarMonturaComponent } from './components/gestionar-producto/editar-montura/editar-montura.component';
 import { EditarLenteSolComponent } from './components/gestionar-producto/editar-lenteSol/editar-lente-sol.component';
 import { EditarOtroComponent } from './components/gestionar-producto/editar-otro/editar-otro.component';
-
+import { AlmacenComponent } from './components/gestionarAlmacen/almacen/almacen.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CatalogoComponent } from './components/gestionarCatalogo/catalogo/catalogo.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,6 +49,8 @@ import { EditarOtroComponent } from './components/gestionar-producto/editar-otro
     EditarMonturaComponent,
     EditarLenteSolComponent,
     EditarOtroComponent,
+    AlmacenComponent,
+    CatalogoComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +59,8 @@ import { EditarOtroComponent } from './components/gestionar-producto/editar-otro
     FormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
   // exports: [
   //   ReactiveFormsModule,
