@@ -16,7 +16,7 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="crear-marca.component.css" rel="stylesheet">
+    <link href="montura.component.css" rel="stylesheet">
 
 </head>
 
@@ -147,7 +147,7 @@
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                    <span class="span-text mx-3">{{titulo | uppercase}}</span>
+                    <span class="span-text mx-3">GESTIONAR MONTURA</span>
 
 
                     <!-- Topbar Navbar -->
@@ -165,28 +165,55 @@
                 </nav>
                 <!-- End of Topbar -->
 
-                <!-- Content -->
-                <div class="container mt-5 mx-4 col-lg-4">
-                    <form class="mt-3" [formGroup]="crearmarcaForm" (ngSubmit)="agregarMarca()">
-                        <div class="mb-3 d-flex align-items-end">
-                            <div style="flex: 1;">
-                                <label class="form-label label-text">Marca</label>
-                                <input type="text" formControlName="nombre" class="form-control" style="width: 350px;"
-                                    placeholder="Escriba el nombre de la marca...">
-                                <div class="text-danger"
-                                    *ngIf="crearmarcaForm.get('nombre')?.hasError('required') && crearmarcaForm.get('nombre')?.touched">
-                                    <span> Ingresar nombre de la marca <strong> es obligatorio </strong></span>
-                                </div>
-                            </div>
-                            <button class="btn btn-success float-end" style="margin-left: 10px;">Aceptar</button>
-                        </div>
-                        <div class="class mb 3">
-                            <button routerLink="/dashboard-gerente/marca" class="btn btn-secondary flat-start">Volver</button>
-                        </div>
-                    </form>
-                </div>
+                <!-- Table -->
+                <div class="container mt-5">
+                    <div class="row">
+                        <div class="col-lg-11 offser-lg-2">
+                            <button class="btn btn-success float-end"routerLink="/dashboard-gerente/montura/crear-montura">
+                                Agregar
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
 
-                <!-- End of Content -->
+                            <table *ngIf="listMontura.length > 0" class="table table-striped mx-5 mt-5 text-center">
+                                <thead>
+                                    <tr>
+                                        <th>Codigo</th>
+                                        <th>Marca</th>
+                                        <th>Nombre</th>
+                                        <th>Color</th>
+                                        <th>Precio</th>
+                                        <th>Acción</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let montura of listMontura">
+                                        <td>
+                                            {{montura.codigo}}
+                                        </td>
+                                        <td>
+                                            {{montura.marca}}
+                                        </td>
+                                        <td>
+                                            {{montura.nombre}}
+                                        </td>
+                                        <td>
+                                            {{montura.color}}
+                                        </td>
+                                        <td>
+                                            {{montura.precio}}
+                                         </td>
+                                        <td>
+                                            <i [routerLink]="['/dashboard-gerente/montura/editar-montura/', montura._id]" class="faw fa fa-edit text-primary"></i>
+                                            <i (click)="eliminarMontura(montura._id)" class='faw fa-solid fa-trash text-danger'></i>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <h5 style="text-align: start; margin-top: 10px;" *ngIf="listMontura.length == 0">No hay monturas para mostrar</h5>
+                        </div>
+                    </div>
+                </div>
+                <!-- End of Table -->
 
             </div>
             <!-- End of Main Content -->
@@ -205,6 +232,7 @@
         <!-- End of Content Wrapper -->
 
     </div>
+    <!-- End of Page Wrapper -->
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>

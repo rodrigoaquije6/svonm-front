@@ -8,7 +8,7 @@ import { Trabajador } from '../models/trabajador';
   providedIn: 'root'
 })
 export class TrabajadorService {
-  url = 'http://localhost:4000/api/trabajador/'; //'http://localhost:4000/api/trabajador/'
+  url = 'http://localhost:4000/api/trabajador/' //http://localhost:4000/api/trabajador/
 
   constructor(private http: HttpClient) { }
 

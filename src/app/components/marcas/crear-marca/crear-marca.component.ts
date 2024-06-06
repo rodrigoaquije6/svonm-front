@@ -38,13 +38,11 @@ export class CrearMarcaComponent implements OnInit {
 
   agregarMarca() {
 
-    if (this.crearmarcaForm.invalid) {
-      this.toastr.error('Por favor, complete el formulario correctamente.', 'Error');
-      return;
-    }
 
     const MARCA: Marca = {
+
       nombre: this.crearmarcaForm.get('nombre')?.value
+
     }
 
     if (this.id !== null) {
@@ -53,17 +51,8 @@ export class CrearMarcaComponent implements OnInit {
         this.toastr.info('La marca fue actualizada con éxito!', 'Marca Actualizada!')
         this.router.navigate(['/dashboard-gerente/marca']);
       }, error => {
-        if (error.error && error.error.msg) {
-          error.error.msg.forEach((errorMessage: string) => {
-            //const errorMessage = error.error.msg.join('\n');
-            this.toastr.error(errorMessage, 'Error');
-          });
-        } else {
-          console.log(error);
-          this.crearmarcaForm.reset();
-        }
-        //console.log(error);
-        //this.crearmarcaForm.reset();
+        console.log(error);
+        this.crearmarcaForm.reset();
       })
 
     } else {
@@ -73,17 +62,8 @@ export class CrearMarcaComponent implements OnInit {
         this.toastr.success('La marca fue registrada con éxito!', 'Marca registrada!')
         this.router.navigate(['/dashboard-gerente/marca'])
       }, error => {
-        if (error.error && error.error.msg) {
-          error.error.msg.forEach((errorMessage: string) => {
-            //const errorMessage = error.error.msg.join('\n');
-            this.toastr.error(errorMessage, 'Error');
-          });
-        } else {
-          console.log(error);
-          this.crearmarcaForm.reset();
-        }
-        //console.log(error);
-        //this.crearmarcaForm.reset();
+        console.log(error);
+        this.crearmarcaForm.reset();
       })
     }
   }
@@ -103,7 +83,7 @@ export class CrearMarcaComponent implements OnInit {
 
   onClickLogout(){
     localStorage.removeItem('token');
-    localStorage.removeItem('marca');
+    localStorage.removeItem('rol');
     this.router.navigate(['login']);
   }
 }

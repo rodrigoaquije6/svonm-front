@@ -48,7 +48,7 @@ export class MarcaComponent implements OnInit {
 
   onClickLogout(){
     localStorage.removeItem('token');
-    localStorage.removeItem('marca');
+    localStorage.removeItem('rol');
     this.router.navigate(['login']);
   }
 

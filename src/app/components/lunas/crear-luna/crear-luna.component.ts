@@ -37,11 +37,6 @@ export class CrearLunaComponent implements OnInit {
 
   agregarLuna() {
 
-    if (this.lunaForm.invalid) {
-      this.toastr.error('Por favor, complete el formulario correctamente.', 'Error');
-      return;
-    }
-
     const LUNA: Luna = {
       material: this.lunaForm.get('material')?.value,
       precio: this.lunaForm.get('precio')?.value,
@@ -53,18 +48,10 @@ export class CrearLunaComponent implements OnInit {
         this.toastr.info('La luna fue actualizada con éxito!', 'Luna Actualizada!')
         this.router.navigate(['/dashboard-gerente/luna']);
       }, error => {
-        if (error.error && error.error.msg) {
-          error.error.msg.forEach((errorMessage: string) => {
-            //const errorMessage = error.error.msg.join('\n');
-            this.toastr.error(errorMessage, 'Error');
-          });
-        } else {
-          console.log(error);
-          this.lunaForm.reset();
-        }
-        //console.log(error);
-        //this.lunaForm.reset();
+        console.log(error);
+        this.lunaForm.reset();
       })
+
     } else {
       //agregamos luna
       console.log(LUNA);
@@ -72,17 +59,8 @@ export class CrearLunaComponent implements OnInit {
         this.toastr.success('La luna fue registrada con éxito!', 'Luna Registrada!');
         this.router.navigate(['/dashboard-gerente/luna']);
       }, error => {
-        if (error.error && error.error.msg) {
-          error.error.msg.forEach((errorMessage: string) => {
-            //const errorMessage = error.error.msg.join('\n');
-            this.toastr.error(errorMessage, 'Error');
-          });
-        } else {
-          console.log(error);
-          this.lunaForm.reset();
-        }
-        //console.log(error);
-        //this.lunaForm.reset();
+        console.log(error);
+        this.lunaForm.reset();
       })
     }
   }
@@ -101,9 +79,9 @@ export class CrearLunaComponent implements OnInit {
 
   isLoggedIn: boolean = this.api.isLogged();
 
-  onClickLogout() {
+  onClickLogout(){
     localStorage.removeItem('token');
-    localStorage.removeItem('luna');
+    localStorage.removeItem('rol');
     this.router.navigate(['login']);
   }
 

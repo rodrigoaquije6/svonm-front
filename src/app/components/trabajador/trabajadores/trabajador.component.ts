@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Trabajador } from 'src/app/models/trabajador';
 import { ToastrService } from 'ngx-toastr';
 import { TrabajadorService } from 'src/app/services/trabajador.service';
@@ -10,7 +10,7 @@ import { LoginService } from 'src/app/services/login.service';//este import no d
   templateUrl: './trabajador.component.html',
   styleUrls: ['./trabajador.component.css']
 })
-export class TrabajadorComponent implements OnInit{
+export class TrabajadorComponent {
   listTrabajador: Trabajador[] = [];
 
   constructor(private _trabajadorService: TrabajadorService,
@@ -44,7 +44,7 @@ export class TrabajadorComponent implements OnInit{
 
   onClickLogout(){
     localStorage.removeItem('token');
-    localStorage.removeItem('trabajador');
+    localStorage.removeItem('rol');
     this.router.navigate(['login']);
   }
 

@@ -1,14 +1,22 @@
 export class Montura {
     _id?: number;
-    productoId: string;
+    codigo: number;
+    marca: string;
+    nombre: string;
     color: string;
-    genero: string;
+    género: string;
+    precio: number;
     forma: string;
+    imagen: string;
 
-    constructor(productoId: string, color: string, genero: string, forma: string) {
-        this.productoId = productoId;
-        this.color = color;
-        this.genero = genero;
-        this.forma = forma;
+    constructor(nombre: string, marca: string, color: string, género: string, precio: number, forma: string, codigo: number, imagen: string) {
+        this.nombre = nombre
+        this.marca = marca
+        this.color = color
+        this.género = género
+        this.precio = precio
+        this.forma = forma
+        this.codigo = codigo
+        this.imagen = imagen
     }
 }

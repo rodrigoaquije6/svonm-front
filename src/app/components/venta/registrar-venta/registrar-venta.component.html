@@ -1,0 +1,459 @@
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <title>Dashboard-gerente</title> 
+
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="registrar-venta.component.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- Sidebar - Logo -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" routerLink="/dashboard-trabajador">
+                <div class="sidebar-brand-icon">
+                    <i class="fa-solid fa-glasses"></i>
+                </div>
+                <div class="sidebar-brand-text mx-1">Óptica Nuevo Mundo</div>
+            </a>
+
+            <!-- Divisor -->
+            <hr class="sidebar-divider my-0">
+            <li class="nav-item active">
+                <a class="nav-link">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span></a>
+            </li>
+
+            <!-- Divisor -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading Cita-->
+            <div class="sidebar-heading">
+                Cita
+            </div>
+
+            <!-- Gestionar Cita -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" routerLink="#" data-toggle="collapse">
+                    <i class="fa-solid fa-calendar-check"></i>
+                    <span>Gestionar Cita</span>
+                </a>
+            </li>
+
+            <!-- Divisor -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading Venta-->
+            <div class="sidebar-heading">
+                Venta
+            </div>
+
+            <!-- Gestionar Venta -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" routerLink="/dashboard-trabajador/venta" data-toggle="collapse">
+                    <i class="fa-solid fa-dollar-sign"></i>
+                    <span>Gestionar Venta</span>
+                </a>
+            </li>
+
+             <!-- Seguimiento de Venta -->
+             <li class="nav-item">
+                <a class="nav-link collapsed" routerLink="#" data-toggle="collapse">
+                    <i class="fa-solid fa-person-walking"></i>
+                    <span>Seguimiento de Venta</span>
+                </a>
+            </li>
+
+            <!-- Divisor -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading Cliente-->
+            <div class="sidebar-heading">
+                Cliente
+            </div>
+
+            <!-- Gestionar Cliente -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" routerLink="#" data-toggle="collapse">
+                    <i class="fa-solid fa-user"></i>
+                    <span>Gestionar Clientes</span>
+                </a>
+            </li>
+
+            <!-- Historial Cliente -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" routerLink="#" data-toggle="collapse">
+                    <i class="fa-solid fa-book-medical"></i>
+                    <span>Historial de Clientes</span>
+                </a>
+            </li>
+
+            <!-- Divisor -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading Producto-->
+            <div class="sidebar-heading">
+                Producto
+            </div>
+
+            <!-- Visualizar Stock -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" routerLink="#" data-toggle="collapse">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <span>Visualizar Stock</span>
+                </a>
+            </li>
+
+            <!-- Divisor -->
+            <hr class="sidebar-divider">
+
+        </ul>
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                    <span class="span-text mx-3">REGISTRAR VENTA</span>
+
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item"> <!-- *ngIf="isLoggedIn" (click)="onClickLogout()" -->
+                            <a class="nav-link" routerLink="/login" >
+                                <i class="fa-solid fa-right-from-bracket" style="color: #ff000d;"></i>
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </nav>
+
+                <!-- End of Topbar -->
+
+                <!-- CONTENT -->
+                <div class="container mt-5 mx-4">
+                    <form action="">
+                        <div class="mb-3 d-flex align-items-end">
+                            <div class="arreglo-orden">
+                                <div style="flex: 1;">
+                                    <div class="arreglo-orden">
+                                    <label class="form-label label-text"> Nombre </label>
+                                    <input type="text" style="width: 300px;" 
+                                        placeholder="Escriba el Nombre">
+                                    </div>
+                                    <div class="arreglo-orden">
+                                    <label class="form-label label-text"> Fecha </label>
+                                    <input type="date" style="width: 150px;" 
+                                        placeholder="Fecha de Venta">
+                                    </div>
+                                    <div class="arreglo-orden">
+                                    <label class="form-label label-text"> Celular </label>
+                                    <input type="text" style="width: 200px;" 
+                                        placeholder="Numero de Celular">
+                                    </div>
+                                </div>
+                                <div style="flex: 1;">
+                                    <div class="arreglo-orden">
+                                    <label class="form-label label-text"> Direccion </label>
+                                    <input type="text" style="width: 300px;" 
+                                        placeholder="Ingresar Direccion">
+                                    </div>
+                                    <div class="arreglo-orden">
+                                    <label class="form-label label-text"> Telefono </label>
+                                    <input type="text" style="width: 200px;" 
+                                        placeholder="Numero de Telefono">
+                                    </div>
+                                </div>
+                                <div style="flex: 1; margin-top: 10px;">
+                                    <div class="arreglo-orden">
+                                    <label class="form-label label-text">  </label>
+                                    <label style="margin-top: 10px;">Ojo Derecho</label>
+                                    <label style="margin-top: 10px;">Ojo Izquierdo</label>
+                                    </div>
+                                    <div class="arreglo-orden">
+                                    <label class="form-label label-text" style="margin-left: 23px;"> Esfera </label>
+                                    <input type="text" style="width: 100px;">
+                                    <input type="text" style="width: 100px; margin-top: 3px;">
+                                    </div>
+                                    <div class="arreglo-orden">
+                                    <label class="form-label label-text" style="margin-left: 18px;"> Cilindro </label>
+                                    <input type="text" style="width: 100px;">
+                                    <input type="text" style="width: 100px; margin-top: 3px;">
+                                    </div>
+                                    <div class="arreglo-orden">
+                                    <label class="form-label label-text" style="margin-left: 36px;"> Eje </label>
+                                    <input type="text" style="width: 100px;">
+                                    <input type="text" style="width: 100px; margin-top: 3px;">
+                                    </div>
+                                    <div class="arreglo-orden">
+                                    <label class="form-label label-text" style="margin-left: 11px;"> A/V Lejos </label>
+                                    <input type="text" style="width: 100px;">
+                                    <input type="text" style="width: 100px; margin-top: 3px;">
+                                    </div>
+                                    <div class="arreglo-orden">
+                                    <label class="form-label label-text" style="margin-left: 9px;"> A/V Cerca </label>
+                                    <input type="text" style="width: 100px;">
+                                    <input type="text" style="width: 100px; margin-top: 3px;">
+                                    </div>
+                                </div>
+                                <div style="flex: 1;">
+                                    <div class="arreglo-orden">
+                                    <label class="form-label label-text">  </label>
+                                    <label style="margin-top: 10px;">Ojo Derecho</label>
+                                    <label style="margin-top: 10px;">Ojo Izquierdo</label>
+                                    </div>
+                                    <div class="arreglo-orden">
+                                    <label class="form-label label-text" style="margin-left: 29px;"> Add. </label>
+                                    <input type="text" style="width: 100px;">
+                                    <input type="text" style="width: 100px; margin-top: 3px;">
+                                    </div>
+                                    <div class="arreglo-orden">
+                                    <label class="form-label label-text" style="margin-left: 23px;"> Altura </label>
+                                    <input type="text" style="width: 100px;">
+                                    <input type="text" style="width: 100px; margin-top: 3px;">
+                                    </div>
+                                    <div class="arreglo-orden">
+                                    <label class="form-label label-text" style="margin-left: 25px;"> Curva </label>
+                                    <input type="text" style="width: 100px;">
+                                    <input type="text" style="width: 100px; margin-top: 3px;">
+                                    </div>
+                                    <div class="arreglo-orden">
+                                    <label class="form-label label-text" style="margin-left: 11px;"> DIP Lejos </label>
+                                    <input type="text" style="width: 100px;">
+                                    </div>
+                                    <div class="arreglo-orden">
+                                    <label class="form-label label-text" style="margin-left: 9px;"> DIP Cerca </label>
+                                    <input type="text" style="width: 100px;">
+                                    </div>
+                                </div>
+                                <div style="flex: 1; margin-top: 10px; ">
+                                    <label class="form-label label-text" style="margin-right: 105px;">  </label>
+                                    <label class="form-label label-text" style="margin-top: 10px;">Tipo de lunas</label>
+                                    <select formControlName="rol" class="form-select" style="width: 350px;">
+                                        <option disabled selected>Selecciona la luna...</option>
+                                        <option *ngFor="let lunas of luna" [value]="lunas.material">{{ lunas.material }}</option>
+                                    </select>
+                                </div>
+                                <form [formGroup]="registrarventaForm">
+                                <div style="flex: 1; margin-top: 10px; ">
+                                    <label class="form-label label-text" style="margin-right: 105px;">  </label>
+                                    <label class="form-label label-text" style="margin-top: 10px;">Precio</label>
+                                    <select formControlName="rol" class="form-select" style="width: 350px;">
+                                        <option disabled selected>Selecciona el Precio...</option>
+                                        <option *ngFor="let lunas of luna" [value]="lunas.precio">{{ lunas.precio }}</option>
+                                    </select>
+                                </div>
+                                <div class="arreglo-orden">
+                                    <label class="form-label label-text"> Precio de Luna </label>
+                                    <input type="number" style="width: 150px;" id="precioLuna" formControlName="precioLuna"
+                                        placeholder="S/" required>
+                                    </div>
+                                </form>
+                                <div style="flex: 1;">
+                                    <label class="form-label label-text" 
+                                    style="margin-right: 105px; margin-top: 30px;"> MONTURA </label>
+                                </div>
+                                <div>
+                                    <div class="arreglo-orden">
+                                    <label class="form-label label-text" style="margin-left: 23px;"> Código </label>
+                                    <input type="text" style="width: 100px;">
+                                    <input type="text" style="width: 100px; margin-top: 3px;">
+                                    <input type="text" style="width: 100px; margin-top: 3px;">
+                                    </div>
+                                    <div class="arreglo-orden">
+                                    <label class="form-label label-text" style="margin-left: 25px;"> Marca </label>
+                                    <input type="text" style="width: 100px;">
+                                    <input type="text" style="width: 100px; margin-top: 3px;">
+                                    <input type="text" style="width: 100px; margin-top: 3px;">
+                                    </div>
+                                    <div class="arreglo-orden">
+                                    <label class="form-label label-text" style="margin-left: 20px;"> Modelo </label>
+                                    <input type="text" style="width: 100px;">
+                                    <input type="text" style="width: 100px; margin-top: 3px;">
+                                    <input type="text" style="width: 100px; margin-top: 3px;">
+                                    </div>
+                                    <div class="arreglo-orden">
+                                    <label class="form-label label-text" style="margin-left: 28px;"> Color </label>
+                                    <input type="text" style="width: 100px;">
+                                    <input type="text" style="width: 100px; margin-top: 3px;">
+                                    <input type="text" style="width: 100px; margin-top: 3px;">
+                                    </div>
+                                    <div class="arreglo-orden">
+                                    <label class="form-label label-text" style="margin-left: 18px;"> Tamaño </label>
+                                    <input type="text" style="width: 100px;">
+                                    <input type="text" style="width: 100px; margin-top: 3px;">
+                                    <input type="text" style="width: 100px; margin-top: 3px;">
+                                    </div>
+                                    <div class="arreglo-orden">
+                                    <label class="form-label label-text" style="margin-left: 18px; margin-bottom: 16px;">  </label>
+                                    <input type="text" style="width: 100px;" placeholder="S/">
+                                    <input type="text" style="width: 100px; margin-top: 3px;" placeholder="S/">
+                                    <input type="text" style="width: 100px; margin-top: 3px;" placeholder="S/">
+                                    </div>
+                                </div>
+                                <div style="flex: 1;">
+                                    <label class="form-label label-text" 
+                                    style="margin-right: 105px; margin-top: 30px;"> TRATAMIENTO </label>
+                                </div>
+                                <div style="flex: 1;">
+                                    <div class="arreglo-orden">
+                                        <div style="flex: 1;">
+                                            <label class="form-label label-text" style="width: 150px;"> UV </label>
+                                            <input type="checkbox" style="width: 30px; margin-right: 10px;">
+                                        </div>
+                                        <div style="flex: 1;">
+                                            <label class="form-label label-text" style="width: 150px;"> Antirayas </label>
+                                            <input type="checkbox" style="width: 30px; margin-right: 10px;">
+                                        </div>
+                                        <div style="flex: 1;">
+                                            <label class="form-label label-text" style="width: 150px;"> Blue Protect </label>
+                                            <input type="checkbox" style="width: 30px; margin-right: 10px;">
+                                        </div>
+                                        <div style="flex: 1;">
+                                            <label class="form-label label-text" style="width: 150px;"> Blue Defense </label>
+                                            <input type="checkbox" style="width: 30px; margin-right: 10px;">
+                                        </div>
+                                        <div style="flex: 1;">
+                                            <label class="form-label label-text" style="width: 150px;"> Fotocromático </label>
+                                            <input type="checkbox" style="width: 30px; margin-right: 10px;">
+                                        </div>
+                                    </div>
+                                    <div class="arreglo-orden" style="margin-left: 150px;">
+                                        <div style="flex: 1;">
+                                            <label class="form-label label-text" style="width: 150px;"> Life </label>
+                                            <input type="checkbox" style="width: 30px; margin-right: 10px;">
+                                        </div>
+                                        <div style="flex: 1;">
+                                            <label class="form-label label-text" style="width: 150px;"> Transition </label>
+                                            <input type="checkbox" style="width: 30px; margin-right: 10px;">
+                                        </div>
+                                        <div style="flex: 1;">
+                                            <label class="form-label label-text" style="width: 150px;"> Color </label>
+                                            <input type="checkbox" style="width: 30px; margin-right: 10px;">
+                                        </div>
+                                        <div style="flex: 1;">
+                                            <label class="form-label label-text" style="width: 150px;"> Reduccion </label>
+                                            <input type="checkbox" style="width: 30px; margin-right: 10px;">
+                                        </div>
+                                        <div style="flex: 1;">
+                                            <label class="form-label label-text" style="width: 150px;"> Alto Índice </label>
+                                            <input type="checkbox" style="width: 30px; margin-right: 10px;">
+                                        </div>
+                                    </div>
+                                    <div style="flex: 1;">
+                                        <div class="arreglo-orden">
+                                        <label class="form-label label-text"> Observaciones </label>
+                                        <input type="text" style="width: 500px;" 
+                                            placeholder="Ingresar Observaciones">
+                                        </div>
+                                    </div>
+                                    <div style="flex: 1;">
+                                        <div class="arreglo-orden">
+                                        <label class="form-label label-text"> Optómetra </label>
+                                        <input type="text" style="width: 200px;" 
+                                            placeholder="Nombre Optómetra">
+                                        </div>
+                                        <div class="arreglo-orden">
+                                        <label class="form-label label-text"> Fecha de Entrega </label>
+                                        <input type="date" style="width: 150px;" 
+                                            placeholder="Fecha de Entrega">
+                                        </div>
+                                        <div class="arreglo-orden">
+                                            <label class="form-label label-text"> Vendedor(a) </label>
+                                            <input type="text" style="width: 200px;" 
+                                                placeholder="Nombre Vendedor">
+                                        </div>
+                                    </div>
+
+                                    <form [formGroup]="registrarventaForm">
+                                    <div style="flex: 1; margin-top: 20px;">
+                                        <div class="arreglo-orden">
+                                        <label class="form-label label-text"> TOTAL </label>
+                                        <input style="width: 200px;" type="number" id="precioTotal" formControlName="precioTotal" 
+                                        placeholder="S/" readonly>
+                                        </div>
+                                        <div class="arreglo-orden">
+                                        <label class="form-label label-text"> A CUENTA </label>
+                                        <input type="number" style="width: 150px;" id="A_Cuenta" formControlName="A_Cuenta"
+                                            placeholder="S/" required>
+                                        </div>
+                                        <div class="arreglo-orden">
+                                            <label class="form-label label-text"> SALDO </label>
+                                            <input type="number" style="width: 200px;" id="Saldo" formControlName="Saldo" 
+                                            placeholder="S/" readonly>
+                                        </div>
+                                    </div>
+                                    </form>                                      
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!-- End of Content -->
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Óptica Nuevo Mundo &copy; 2024</span>
+                    </div>
+                </div>
+            </footer>
+
+            <!-- End of Footer -->
+
+        </div>
+
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="vendor/chart.js/Chart.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="js/demo/chart-area-demo.js"></script>
+    <script src="js/demo/chart-pie-demo.js"></script>
+
+</body>
