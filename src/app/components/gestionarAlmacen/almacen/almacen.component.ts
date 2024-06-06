@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Rol } from 'src/app/models/rol';
 import { Router } from '@angular/router';//este import no debería ir si usaramos un componente header, explicación más abajo
 import { LoginService } from 'src/app/services/login.service';//este import no debería ir si usaramos un componente header, explicación más abajo
 import { Almacen } from 'src/app/models/almacen';
-import { AlmacenService} from 'src/app/services/almacen.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AlmacenService } from 'src/app/services/almacen.service';
+import { ProductoService } from 'src/app/services/producto.service';
 
 declare var bootstrap: any; // Declarar la variable bootstrap
 
@@ -14,36 +17,108 @@ declare var bootstrap: any; // Declarar la variable bootstrap
   styleUrls: ['./almacen.component.css']
 })
 export class AlmacenComponent implements OnInit{
-  listAlmacen: Almacen[] = [];
+  listAlmacen: any[] = [];
+  listId: any[]=[];
+  listProducto: any[]=[]
+  TituloModal: string="";
+  CodigoModal: string="";
+  id: string = "";
+  stock:number = 0;
 
   constructor(private _almacenService: AlmacenService,
+              private _prouctoService: ProductoService,
               private toastr: ToastrService,
-              private api: LoginService, 
+              private api: LoginService,
+              private modalService: NgbModal,
               private router: Router) { }
 
   ngOnInit(): void {
-    //lista de prueba
-    this.listAlmacen=[
-       {_id:1, codigo:"0AN7237U",nombre:"Arnette A-Volution", tipo:"Lentes de sol", stock:15},
-       {_id:2, codigo:"0AN7241U",nombre:"Arnette A.T.", tipo:"Lentes", stock:8},
-       {_id:3, codigo:"0OX5076",nombre:"OakleySway Bar 0.5", tipo:"Lentes de sol Negros", stock:10}
-    ]
+    this.obtenerAlmacen();
   }
 
   obtenerAlmacen() {
-    this._almacenService.getAlmacen().subscribe(data => {
-      console.log(data);
-      this.listAlmacen = data;
+    this._prouctoService.getProductos().subscribe(data => {
+                  
+      console.log(this._prouctoService);
+        this.listProducto = data;
+        
+        console.log(this.listProducto);
+        this._almacenService.getAlmacen().subscribe(data => {
+        
+          console.log(this._almacenService);
+            this.listId = data;
+            console.log(this.listId);
+            this.bind();
+            console.log(this.listAlmacen);
+            
+          }, error => {
+            console.log(error);
+          })
+
+      }, error => {
+        console.log(error);
+        
+      })
+  }
+
+  bind() {
+    // Creamos un nuevo array donde almacenaremos los resultados
+    this.listAlmacen = this.listProducto.map((obj, indice) => {
+        // Creamos una copia del objeto original para no modificar el array original directamente
+        let nuevoObjeto = { ...obj };
+
+        // Si el índice es válido en el array listId, reemplazamos el primer campo (_id)
+        if (indice < this.listId.length) {
+            nuevoObjeto._id = this.listId[indice]._id; // Aquí reemplazamos el campo _id
+         }
+
+        return nuevoObjeto;
+    });
+    this.addStocktoAlmacen();
+}
+
+addStocktoAlmacen() {
+  // Asumiendo que listAlmacen y listId tienen la misma longitud
+  this.listAlmacen.forEach((almacen, index) => {
+      almacen.stock = this.listId[index].stock;
+  });
+}
+
+
+  open(content: any, nombre:string, codigo:string, stock:number, id:string) {
+    this.TituloModal = nombre;
+    this.CodigoModal = codigo;
+    this.stock = stock;
+    this.id = id;
+    this.modalService.open(content, { centered: true });
+  }
+
+  editarStock(){
+    
+    const almacen: Almacen = {
+      stock: this.stock
+    }
+
+    console.log(this.id);
+    this._almacenService.editarStock(this.id, almacen).subscribe(data => {
+      this.toastr.info('El stock fue actualizado con éxito!', 'stock Actualizado!')
+      this.obtenerAlmacen();
     }, error => {
-      console.log(error);
+      if (error.error && error.error.msg) {
+        error.error.msg.forEach((errorMessage: string) => {
+          this.toastr.error(errorMessage, 'Error');
+        });
+      } else {
+        console.log(error);
+      }
     })
   }
 
-  isLoggedIn: boolean = this.api.isLogged();
 
-  onClickLogout(){
+  isLoggedIn: boolean = this.api.isLogged();
+  onClickLogout() {
     localStorage.removeItem('token');
-    localStorage.removeItem('almacen');
     this.router.navigate(['login']);
   }
+ 
 }

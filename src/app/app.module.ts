@@ -21,7 +21,13 @@ import { CrearLunaComponent } from './components/lunas/crear-luna/crear-luna.com
 import { GestionarProductoComponent } from './components/gestionar-producto/gestionar-productos/gestionar-producto.component';
 import { CrearProductoComponent } from './components/gestionar-producto/crear-producto/crear-producto.component';
 import { CrearTipoProductoComponent } from './components/tipoProducto/crear-tipo-producto/crear-tipo-producto.component';
-
+import { TipoComponent } from './components/tipoProducto/tipo/tipo.component';
+import { EditarMonturaComponent } from './components/gestionar-producto/editar-montura/editar-montura.component';
+import { EditarLenteSolComponent } from './components/gestionar-producto/editar-lenteSol/editar-lente-sol.component';
+import { EditarOtroComponent } from './components/gestionar-producto/editar-otro/editar-otro.component';
+import { AlmacenComponent } from './components/gestionarAlmacen/almacen/almacen.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CatalogoComponent } from './components/gestionarCatalogo/catalogo/catalogo.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,6 +46,11 @@ import { CrearTipoProductoComponent } from './components/tipoProducto/crear-tipo
     CrearProductoComponent,
     TipoComponent,
     CrearTipoProductoComponent,
+    EditarMonturaComponent,
+    EditarLenteSolComponent,
+    EditarOtroComponent,
+    AlmacenComponent,
+    CatalogoComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +59,8 @@ import { CrearTipoProductoComponent } from './components/tipoProducto/crear-tipo
     FormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
   // exports: [
   //   ReactiveFormsModule,

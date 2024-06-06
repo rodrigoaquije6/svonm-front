@@ -7,7 +7,7 @@ import { Almacen } from '../models/almacen';
   providedIn: 'root'
 })
 export class AlmacenService {
-  url = 'http://localhost:4000/api/almacen/' //https://shiny-tribble-rqj5r9gj7xwf5x55-4000.app.github.dev/api/luna/
+  url = 'http://localhost:4000/api/almacen/'; //'http://localhost:4000/api/Almacen/' 
 
   constructor(private http: HttpClient) { }
 
@@ -15,11 +15,7 @@ export class AlmacenService {
     return this.http.get(this.url);
   }
 
-  obtenerAlmacen(id: string): Observable<any> {
-    return this.http.get(this.url + id);
-  }
-
-  editarLuna(id: string, almacen: Almacen): Observable<any> {
-    return this.http.put(this.url + id, almacen);
+  editarStock(id:string,Almacen: Almacen): Observable<any> {
+    return this.http.put(this.url+id, Almacen);
   }
 }

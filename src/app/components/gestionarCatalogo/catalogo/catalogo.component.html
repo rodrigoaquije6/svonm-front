@@ -16,7 +16,7 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="editar-stock.component.css" rel="stylesheet">
+    <link href="catalogo.component.css" rel="stylesheet">
 
 </head>
 
@@ -87,7 +87,7 @@
 
             <!-- Gestionar Producto -->
             <li class="nav-item">
-                <a class="nav-link collapsed" routerLink="/dashboard-gerente/producto" data-toggle="collapse">
+                <a class="nav-link collapsed" routerLink="/dashboard-gerente/gestionar-producto" data-toggle="collapse">
                     <i class="fa-solid fa-box-archive"></i>
                     <span> Gestionar Producto</span>
                 </a>
@@ -164,15 +164,15 @@
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                    <span class="span-text mx-3">CREAR STOCK</span>
+                    <span class="span-text mx-3">GESTIONAR CATALOGO</span>
 
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
                         <!-- Nav Item - User Information -->
-                        <li class="nav-item"><!---->
-                            <a class="nav-link" href="">
+                        <li class="nav-item ">
+                            <a class="nav-link" routerLink="/login">
                                 <i class="fa-solid fa-right-from-bracket" style="color: #ff000d;"></i>
                             </a>
                         </li>
@@ -182,45 +182,45 @@
                 </nav>
                 <!-- End of Topbar -->
 
+                <!-- Table -->
+                <div class="container mt-5">
+                    <div class="row">
+                        <div class="card-body text-center">
+                            <span>LISTADO DE PRODUCTOS</span>
+                            <table class="table table-striped mt-5">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Codigo</th>
+                                        <th scope="col">Tipo</th>
+                                        <th scope="col">Nombre</th>
+                                        <th scope="col">Precio</th>
+                                        <th scope="col">Marca</th>
+                                        <th scope="col">Estado</th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let producto of listCatalogo">
+                                        <td>{{ producto.codigo }}</td>
+                                        <td>{{ producto.tipoProducto.nombre }}</td>
+                                        <td>{{ producto.nombre }}</td>
+                                        <td>{{ producto.marca.nombre }}</td>
+                                        <td>{{ producto.precio }}</td>
+                                        <td>{{ producto.estado }}</td>
+                                        <td>
+                                            <i [routerLink]="['/dashboard-gerente/catalogo']"
+                                            class="fa-solid {{producto.icon}} text-primary" style="cursor: pointer;"
+                                                (click)="editarEstado(producto._id, producto.estado)"></i>
+                                        </td>
+                                    </tr>
 
-                <!-- Content -->
-                <div class="container mt-5 mx-4 col-lg-4">
-                    <form [formGroup]="almacenForm">
-                        <div class="mb-3 d-flex align-items-end">
-                            <div style="flex: 1;">
-                                <label class="form-label label-text">Codigo</label>
-                                <input type="text" formControlName="codigo" class="form-control" style="width: 350px;" readonly>
-                                <label class="form-label label-text">Nombre</label>
-                                <input type="text" formControlName="nombre" class="form-control" style="width: 350px;" readonly>
-                                <label class="form-label label-text">Tipo</label>
-                                <input type="text" formControlName="tipo" class="form-control" style="width: 350px;" readonly>
-                                <label class="form-label label-text">Codigo</label>
-                                <input type="text" formControlName="codigo" class="form-control" style="width: 350px;" readonly>
-
-                                <label class="form-label label-text" style="margin-top: 10px;">Stock</label>
-                                <input type="number" formControlName="stock" class="form-control" style="width: 350px;">
-                                <div class="text-danger"
-                                    *ngIf="almacenForm.get('stock')?.hasError('required') && almacenForm.get('stock')?.touched">
-                                    <span>El stock del producto <strong>es obligatorio</strong></span>
-                                </div>
-                            </div>
-                            <button class="btn btn-success float-end" style="margin-left: 10px;">Aceptar</button>
+                                </tbody>
+                            </table>
                         </div>
-                        <div class="class mb 3">
-                            <button routerLink="/dashboard-gerente/almacen"
-                                class="btn btn-secondary flat-start">Volver</button>
-                        </div>
-                    </form>
+                    </div>
                 </div>
-                <!-- End of Content -->
-
             </div>
             <!-- End of Main Content -->
-
-
-
-
-
 
             <!-- Footer -->
             <footer class="sticky-footer bg-white">
@@ -237,7 +237,6 @@
 
     </div>
     <!-- End of Page Wrapper -->
-
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

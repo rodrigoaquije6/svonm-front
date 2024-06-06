@@ -87,7 +87,7 @@
 
             <!-- Gestionar Producto -->
             <li class="nav-item">
-                <a class="nav-link collapsed" routerLink="/dashboard-gerente/producto" data-toggle="collapse">
+                <a class="nav-link collapsed" routerLink="/dashboard-gerente/gestionar-producto" data-toggle="collapse">
                     <i class="fa-solid fa-box-archive"></i>
                     <span> Gestionar Producto</span>
                 </a>
@@ -206,14 +206,14 @@
                                             {{p.nombre}}
                                         </td>
                                         <td>
-                                            {{p.codigo}}
+                                            {{p.tipoProducto.nombre}}
                                         </td>
                                         <td>
                                             {{p.stock}}
                                         </td>
                                         <td>
-                                            <i [routerLink]="['/dashboard-gerente/almacen/editar-stock/', p._id]"
-                                            class="fa-solid fa-magnifying-glass-plus text-primary" style="cursor: pointer;"></i>
+                                            <i class="fas fa-edit" (click)="open(content, p.nombre, p.codigo, p.stock, p._id)"
+                                                style="cursor: pointer;color:#0c63ed"></i>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -223,11 +223,26 @@
                 </div>
                 <!-- End of Table -->
 
+                <ng-template #content let-modal>
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modal-basic-title">{{CodigoModal}}-{{TituloModal}}</h4>
+                        <button type="button" class="btn-close" aria-label="Close"
+                            (click)="modal.dismiss('Cross click')"></button>
+                    </div>
+                    <div class="modal-body">
+                        <label class="form-label label-text">Stock</label>
+                        <input type="text" [(ngModel)]="stock" class="form-control" style="width: 350px;">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary"
+                            (click)="modal.close('Save click')">Cerrar</button>
+                        <button type="button" class="btn btn-primary" (click)="editarStock()" (click)="modal.close('Save click')">Guardar</button>
+                    </div>
+                </ng-template>
+                <!--End Modal-->
+
             </div>
             <!-- End of Main Content -->
-
-
-
 
             <!-- Footer -->
             <footer class="sticky-footer bg-white">
@@ -244,7 +259,6 @@
 
     </div>
     <!-- End of Page Wrapper -->
-
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
