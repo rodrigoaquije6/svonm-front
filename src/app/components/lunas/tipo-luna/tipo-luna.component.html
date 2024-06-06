@@ -16,7 +16,7 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="luna.component.css" rel="stylesheet">
+    <link href="tipo-luna.component.css" rel="stylesheet">
 
 </head>
 
@@ -147,7 +147,7 @@
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                    <span class="span-text mx-3">GESTIONAR LUNA</span>
+                    <span class="span-text mx-3">{{titulo | uppercase}}</span>
 
 
                     <!-- Topbar Navbar -->
@@ -165,103 +165,37 @@
                 </nav>
                 <!-- End of Topbar -->
 
-                <!-- Table -->
-                <div class="container mt-5">
-                    <div class="row">
-                        <div class="col-lg-11 offser-lg-2">
-                            <button class="btn btn-success float-end" routerLink="/dashboard-gerente/luna/crear-luna">
-                                Agregar
-                                <i class="fa-solid fa-plus"></i>
-                            </button>
-                            <table *ngIf="listLunas.length > 0" class="table table-striped mx-5 mt-5 text-center">
-                                <thead>
-                                    <tr>
-                                        <th>Material</th>
-                                        <th>Precio</th>
-                                        <th>Acción</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="let luna of listLunas">
-                                        <td>
-                                            {{luna.material}}
-                                        </td>
-                                        <td>
-                                            {{luna.precio}}
-                                        </td>
-                                        <td>
-                                            <i [routerLink]="['/dashboard-gerente/luna/editar-luna/', luna._id]" class="faw fa fa-edit text-primary"></i>
-                                            <i (click)="eliminarLuna(luna._id)" class='faw fa-solid fa-trash text-danger'></i>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <h5 style="text-align: start; margin-top: 10px;" *ngIf="listLunas.length == 0">No hay lunas para mostrar</h5>
-                            <button class="btn btn-success float-end" routerLink="/dashboard-gerente/luna/tipo-luna">
-                                Agregar
-                                <i class="fa-solid fa-plus"></i>
-                            </button>
-                            <table *ngIf="listNombreLuna.length > 0" class="table table-striped mx-5 mt-5 text-center">
-                                <thead>
-                                    <tr>
-                                        <th>Tipo de luna </th>
-                                        <th>Precio</th>
-                                        <th>Acción</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="let luna of listNombreLuna">
-                                        <td>
-                                            {{luna.tipoluna}}
-                                        </td>
-                                        <td>
-                                            {{luna.preciodeluna}}
-                                        </td>
-                                        <td>
-                                            <i [routerLink]="['/dashboard-gerente/luna/editar-tipo-luna/', luna._id]" class="faw fa fa-edit text-primary"></i>
-                                            <i (click)="eliminarLuna(luna._id)" class='faw fa-solid fa-trash text-danger'></i>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                <!-- Content -->
+                <div class="container mt-5 mx-4 col-lg-4">
+                    <form [formGroup]="NombreLunaForm" (ngSubmit)="agregarTipoLuna()">
+                        <div class="mb-3 d-flex align-items-end">
+                            <div style="flex: 1;">
+                                <label class="form-label label-text">Tipo Luna</label>
+                                <input type="text" formControlName="material" class="form-control" style="width: 350px;"
+                                    placeholder="Escriba el tipo de la luna..">
+                                <div class="text-danger"
+                                    *ngIf="NombreLunaForm.get('tipoluna')?.hasError('required') && NombreLunaForm.get('tipoluna')?.touched">
+                                    <span>El tipo luna <strong>es obligatorio</strong></span>
+                                </div>
+
+                                <label class="form-label label-text" style="margin-top: 10px;">Precio</label>
+                                <input type="number" formControlName="precio" class="form-control" style="width: 350px;"
+                                    placeholder="Escriba el precio de la luna..">
+                                <div class="text-danger"
+                                    *ngIf="NombreLunaForm.get('precio')?.hasError('required') && NombreLunaForm.get('precio')?.touched">
+                                    <span>El precio del tipo luna <strong>es obligatorio</strong></span>
+                                </div>
+                            </div>
+                            <button class="btn btn-success float-end" style="margin-left: 10px;">Aceptar</button>
                         </div>
-                    </div>
-                </div>
-                <!-- End of Table -->
-                <div class="container mt-5">
-                    <div class="row">
-                        <div class="col-lg-11 offser-lg-2">
-                            <button class="btn btn-success float-end" routerLink="/dashboard-gerente/luna/tipo-luna">
-                                Agregar
-                                <i class="fa-solid fa-plus"></i>
-                            </button>
-                            <table *ngIf="listNombreLuna.length > 0" class="table table-striped mx-5 mt-5 text-center">
-                                <thead>
-                                    <tr>
-                                        <th>Tipo de luna </th>
-                                        <th>Precio</th>
-                                        <th>Acción</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="let Luna of listNombreLuna">
-                                        <td>
-                                            {{luna.tipoluna}
-                                        </td>
-                                        <td>
-                                            {{luna.preciodeluna}}
-                                        </td>
-                                        <td>
-                                            <i [routerLink]="['/dashboard-gerente/luna/editar-luna/', tipoluna._id]" class="faw fa fa-edit text-primary"></i>
-                                            <i (click)="eliminarTipoLuna(tipoluna._id)" class='faw fa-solid fa-trash text-danger'></i>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <h5 style="text-align: start; margin-top: 10px;" *ngIf="listNombreLuna.length == 0">No hay tipo de luna para mostrar</h5>
+                        <div class="class mb 3">
+                            <button routerLink="/dashboard-gerente/luna"
+                                class="btn btn-secondary flat-start">Volver</button>
                         </div>
-                    </div>
+                    </form>
                 </div>
+                <!-- End of Content -->
+
             </div>
             <!-- End of Main Content -->
 
@@ -297,5 +231,4 @@
     <!-- Page level custom scripts -->
     <script src="js/demo/chart-area-demo.js"></script>
     <script src="js/demo/chart-pie-demo.js"></script>
-
 </body>

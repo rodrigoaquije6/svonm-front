@@ -8,7 +8,7 @@ import { Producto } from '../models/producto';
   providedIn: 'root'
 })
 export class ProductoService {
-  url = 'http://localhost:4000/api/producto/' //http://localhost:4000/api/gestionar-producto/ 
+  url = 'https://orange-trout-6qxgj5ppjrg2gp5-4000.app.github.dev/api/gestionar-producto/' //http://localhost:4000/api/gestionar-producto/ 
 
   constructor(private http: HttpClient) { }
 

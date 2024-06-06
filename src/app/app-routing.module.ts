@@ -16,6 +16,7 @@ import { CrearTrabajadorComponent } from './components/trabajador/crear-trabajad
 import { CrearMarcaComponent } from './components/marcas/crear-marca/crear-marca.component';
 import { CrearMonturaComponent } from './components/monturas/crear-montura/crear-montura.component';
 import { CrearLunaComponent } from './components/lunas/crear-luna/crear-luna.component';
+import { TipoLunaComponent } from './components/lunas/tipo-luna/tipo-luna.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent},
@@ -46,6 +47,9 @@ const routes: Routes = [
 
   { path: 'dashboard-gerente/luna/crear-luna', component: CrearLunaComponent},
   { path: 'dashboard-gerente/luna/editar-luna/:id', component: CrearLunaComponent},
+
+  { path: 'dashboard-gerente/luna/tipo-luna', component: TipoLunaComponent},
+  { path: 'dashboard-gerente/luna/editar-tipo-luna/:id', component: TipoLunaComponent},
   
   { path: '**', redirectTo: '', pathMatch: 'full' }
 ];  

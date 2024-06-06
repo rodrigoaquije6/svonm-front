@@ -1,15 +1,15 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { CrearLunaComponent } from './crear-luna.component';
+import { TipoLunaComponent } from './tipo-luna.component';
 
-describe('CrearLunaComponent', () => {
-  let component: CrearLunaComponent;
-  let fixture: ComponentFixture<CrearLunaComponent>;
+describe('TipoLunaComponent', () => {
+  let component: TipoLunaComponent;
+  let fixture: ComponentFixture<TipoLunaComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [CrearLunaComponent]
+      declarations: [TipoLunaComponent]
     });
-    fixture = TestBed.createComponent(CrearLunaComponent);
+    fixture = TestBed.createComponent(TipoLunaComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

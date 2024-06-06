@@ -8,7 +8,7 @@ import { Venta } from '../models/venta';
   providedIn: 'root'
 })
 export class VentaService {
-  url = 'http://localhost:4000/api/venta/' //https://laughing-disco-69999gqpq94w245x6-4000.app.github.dev/api/venta/
+  url = 'https://orange-trout-6qxgj5ppjrg2gp5-4000.app.github.dev/api/venta/' //https://laughing-disco-69999gqpq94w245x6-4000.app.github.dev/api/venta/
 
   constructor(private http: HttpClient) { }
 
