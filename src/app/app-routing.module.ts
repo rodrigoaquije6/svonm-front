@@ -16,6 +16,8 @@ import { CrearMonturaComponent } from './components/monturas/crear-montura/crear
 import { CrearLunaComponent } from './components/lunas/crear-luna/crear-luna.component';
 import { CrearProductoComponent } from './components/gestionar-producto/crear-producto/crear-producto.component';
 import { CrearTipoProductoComponent } from './components/tipoProducto/crear-tipo-producto/crear-tipo-producto.component';
+import { VentaComponent } from './components/venta/venta/venta.component';
+import { RegistrarVentaComponent } from './components/venta/registrar-venta/registrar-venta.component'
 
 
 const routes: Routes = [
@@ -29,6 +31,8 @@ const routes: Routes = [
   { path: 'dashboard-gerente/luna', component: LunaComponent},
   { path: 'dashboard-gerente/marca', component: MarcaComponent},
   { path: 'dashboard-gerente/gestionar-producto', component: GestionarProductoComponent},
+  { path: 'dashboard-trabajador/venta', component: VentaComponent},
+  { path: 'dashboard-trabajador/venta/registrar-venta', component: RegistrarVentaComponent},
 
   { path: 'dashboard-gerente/tipoProducto', component: CrearTipoProductoComponent},
   //--------------------------------------------CREAR--------------------------------------------
