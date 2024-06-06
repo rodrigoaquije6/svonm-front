@@ -21,7 +21,7 @@ export class CrearTrabajadorComponent implements OnInit {
 
   rol: any[] = [];
 
-  url = 'http://localhost:4000/api/rol/'; //http://localhost:4000/api/rol/
+  url = 'https://bug-free-telegram-wwv6475qj9536rj-4000.app.github.dev/api/rol/'; //http://localhost:4000/api/rol/
 
   constructor(private fb: FormBuilder,
     private toastr: ToastrService,
