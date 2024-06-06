@@ -3,12 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
 import { ToastrService } from 'ngx-toastr';
-import { Producto } from 'src/app/models/producto';
 import { ProductoService } from 'src/app/services/producto.service';
-import { MonturaService } from 'src/app/services/montura.service';
-import { LenteSolService } from 'src/app/services/lenteSol.service';
-import { Montura } from 'src/app/models/montura';
-import { LenteSol } from 'src/app/models/lenteSol';
 import { HttpClient } from '@angular/common/http';
 
 
@@ -30,16 +25,14 @@ export class CrearProductoComponent implements OnInit {
 
   tipoP: any[] = [];
 
-  urlMarca = 'https://bug-free-telegram-wwv6475qj9536rj-4000.app.github.dev/api/crear-marca/';
+  urlMarca = 'http://localhost:4000/api/crear-marca/';
 
-  urlTipo = 'https://bug-free-telegram-wwv6475qj9536rj-4000.app.github.dev/api/tipoProducto/';
+  urlTipo = 'http://localhost:4000/api/tipoProducto/';
 
   constructor(private fb: FormBuilder,
     private toastr: ToastrService,
     private router: Router,
     private _productoService: ProductoService,
-    private _monturaService: MonturaService,
-    private _lenteSolService: LenteSolService,
     private aRouter: ActivatedRoute,
     private api: LoginService,
     private http: HttpClient) {

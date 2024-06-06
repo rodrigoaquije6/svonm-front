@@ -4,10 +4,6 @@ import { ToastrService } from 'ngx-toastr';
 import { ProductoService } from 'src/app/services/producto.service';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
-import { MonturaService } from 'src/app/services/montura.service';
-import { LenteSolService } from 'src/app/services/lenteSol.service';
-import { Montura } from 'src/app/models/montura';
-import { LenteSol } from 'src/app/models/lenteSol';
 
 @Component({
   selector: 'app-gestionar-producto',
@@ -24,9 +20,7 @@ export class GestionarProductoComponent {
   constructor(private _productoService: ProductoService,
               private toastr: ToastrService,
               private api: LoginService,
-              private router: Router,
-              private _monturaService: MonturaService,
-              private _lenteSolService: LenteSolService) { }
+              private router: Router) { }
 
   ngOnInit(): void {
     this.obtenerProductos();

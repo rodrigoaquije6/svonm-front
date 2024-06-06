@@ -21,7 +21,7 @@ export class EditarOtroComponent implements OnInit {
 
   marca: any[] = [];
 
-  url = 'https://bug-free-telegram-wwv6475qj9536rj-4000.app.github.dev/api/crear-marca/'; //http://localhost:4000/api/rol/
+  url = 'http://localhost:4000/api/crear-marca/'; //http://localhost:4000/api/rol/
 
   constructor(private fb: FormBuilder,
     private toastr: ToastrService,
@@ -44,13 +44,12 @@ export class EditarOtroComponent implements OnInit {
       colorlente: [''],
       protuv: ['']
     })
-
     this.id = this.aRouter.snapshot.paramMap.get('id')
   }
 
   ngOnInit(): void {
-    this.esEditar();
     this.obtenerMarca();
+    this.esEditar();
   }
 
   obtenerMarca() {
@@ -128,13 +127,13 @@ export class EditarOtroComponent implements OnInit {
           nombre: data.nombre,
           precio: data.precio,
           imagen: data.imagen,
-          marca: data.marca,
+          marca: data.marca.nombre,
           estado: data.estado,
           color: '', // Establecer valores predeterminados
-          genero: '', // Establecer valores predeterminados
-          forma: '', // Establecer valores predeterminados
-          colorlente: '', // Establecer valores predeterminados
-          protuv: '' // Establecer valores predeterminados
+          genero: '',
+          forma: '', 
+          colorlente: '',
+          protuv: ''
         };
   
         // Asignar valores al formulario
