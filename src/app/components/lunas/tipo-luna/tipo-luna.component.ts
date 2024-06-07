@@ -3,17 +3,16 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';//este import no debería ir si usaramos un componente header, explicación más abajo
 import { ToastrService } from 'ngx-toastr';
-import { Luna, NombreLuna } from 'src/app/models/luna';
+import { NombreLuna } from 'src/app/models/luna';
 import { LunaService } from 'src/app/services/luna.service';
 
 @Component({
-  selector: 'app-crear-luna',
+  selector: 'app-tipo-luna',
   templateUrl: './tipo-luna.component.html',
   styleUrls: ['./tipo-luna.component.css']
 })
 export class TipoLunaComponent implements OnInit {
   NombreLunaForm: FormGroup;
-
   titulo = 'Crear Tipo de Luna';
 
   id: string | null;

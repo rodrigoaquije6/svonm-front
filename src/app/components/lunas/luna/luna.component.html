@@ -190,78 +190,53 @@
                                             {{luna.precio}}
                                         </td>
                                         <td>
-                                            <i [routerLink]="['/dashboard-gerente/luna/editar-luna/', luna._id]" class="faw fa fa-edit text-primary"></i>
-                                            <i (click)="eliminarLuna(luna._id)" class='faw fa-solid fa-trash text-danger'></i>
+                                            <i [routerLink]="['/dashboard-gerente/luna/editar-luna/', luna._id]"
+                                                class="faw fa fa-edit text-primary"></i>
+                                            <i (click)="eliminarLuna(luna._id)"
+                                                class='faw fa-solid fa-trash text-danger'></i>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
-                            <h5 style="text-align: start; margin-top: 10px;" *ngIf="listLunas.length == 0">No hay lunas para mostrar</h5>
-                            <button class="btn btn-success float-end" routerLink="/dashboard-gerente/luna/tipo-luna">
-                                Agregar
-                                <i class="fa-solid fa-plus"></i>
-                            </button>
-                            <table *ngIf="listNombreLuna.length > 0" class="table table-striped mx-5 mt-5 text-center">
-                                <thead>
-                                    <tr>
-                                        <th>Tipo de luna </th>
-                                        <th>Precio</th>
-                                        <th>Acción</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="let luna of listNombreLuna">
-                                        <td>
-                                            {{luna.tipoluna}}
-                                        </td>
-                                        <td>
-                                            {{luna.preciodeluna}}
-                                        </td>
-                                        <td>
-                                            <i [routerLink]="['/dashboard-gerente/luna/editar-tipo-luna/', luna._id]" class="faw fa fa-edit text-primary"></i>
-                                            <i (click)="eliminarLuna(luna._id)" class='faw fa-solid fa-trash text-danger'></i>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <h5 style="text-align: start; margin-top: 10px;" *ngIf="listLunas.length == 0">No hay lunas
+                                para mostrar</h5>
+                        </div>
+                        <div class="col-lg-11 offser-lg-2">
+                        <button class="btn btn-success float-end" routerLink="/dashboard-gerente/luna/tipo-luna">
+                            Agregar
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                        <table *ngIf="listNombreLuna.length > 0" class="table table-striped mx-5 mt-5 text-center">
+                            <thead>
+                                <tr>
+                                    <th>Tipo de luna </th>
+                                    <th>Precio</th>
+                                    <th>Acción</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let luna of listNombreLuna">
+                                    <td>
+                                        {{luna.tipoluna}}
+                                    </td>
+                                    <td>
+                                        {{luna.preciodeluna}}
+                                    </td>
+                                    <td>
+                                        <i [routerLink]="['/dashboard-gerente/luna/editar-tipo-luna/', luna._id]"
+                                            class="faw fa fa-edit text-primary"></i>
+                                        <i (click)="eliminarLuna(luna._id)"
+                                            class='faw fa-solid fa-trash text-danger'></i>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <h5 style="text-align: start; margin-top: 10px;" *ngIf="listNombreLuna.length == 0">No hay tipo
+                            de luna para mostrar</h5>
                         </div>
                     </div>
                 </div>
                 <!-- End of Table -->
-                <div class="container mt-5">
-                    <div class="row">
-                        <div class="col-lg-11 offser-lg-2">
-                            <button class="btn btn-success float-end" routerLink="/dashboard-gerente/luna/tipo-luna">
-                                Agregar
-                                <i class="fa-solid fa-plus"></i>
-                            </button>
-                            <table *ngIf="listNombreLuna.length > 0" class="table table-striped mx-5 mt-5 text-center">
-                                <thead>
-                                    <tr>
-                                        <th>Tipo de luna </th>
-                                        <th>Precio</th>
-                                        <th>Acción</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="let Luna of listNombreLuna">
-                                        <td>
-                                            {{luna.tipoluna}
-                                        </td>
-                                        <td>
-                                            {{luna.preciodeluna}}
-                                        </td>
-                                        <td>
-                                            <i [routerLink]="['/dashboard-gerente/luna/editar-luna/', tipoluna._id]" class="faw fa fa-edit text-primary"></i>
-                                            <i (click)="eliminarTipoLuna(tipoluna._id)" class='faw fa-solid fa-trash text-danger'></i>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <h5 style="text-align: start; margin-top: 10px;" *ngIf="listNombreLuna.length == 0">No hay tipo de luna para mostrar</h5>
-                        </div>
-                    </div>
-                </div>
             </div>
             <!-- End of Main Content -->
 

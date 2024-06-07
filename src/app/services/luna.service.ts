@@ -8,7 +8,7 @@ import { NombreLuna } from '../models/luna';
   providedIn: 'root'
 })
 export class LunaService {
-  url = 'https://orange-trout-6qxgj5ppjrg2gp5-4000.app.github.dev/api/luna/' //http://localhost:4000/api/luna/
+  url = 'https://ubiquitous-barnacle-jjjjj5vgvr6qf5949-4000.app.github.dev/api/luna/' //http://localhost:4000/api/luna/
 
   constructor(private http: HttpClient) { }
 

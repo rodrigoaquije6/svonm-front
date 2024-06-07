@@ -23,6 +23,7 @@ import { TokenInterceptorService } from './interceptors/token-interceptor.servic
 import { CrearMonturaComponent } from './components/monturas/crear-montura/crear-montura.component';
 import { CrearMarcaComponent } from './components/marcas/crear-marca/crear-marca.component';
 import { CrearLunaComponent } from './components/lunas/crear-luna/crear-luna.component';
+import { TipoLunaComponent } from './components/lunas/tipo-luna/tipo-luna.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { CrearLunaComponent } from './components/lunas/crear-luna/crear-luna.com
     CrearMonturaComponent,
     CrearMarcaComponent,
     CrearLunaComponent,
+    TipoLunaComponent,
   ],
   imports: [
     BrowserModule,
