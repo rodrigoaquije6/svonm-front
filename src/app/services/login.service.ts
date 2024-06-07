@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class LoginService {
 
-  url: string = 'https://bug-free-telegram-wwv6475qj9536rj-4000.app.github.dev/api/'; //'http://localhost:4000/api/'; 
+  url: string = 'https://ominous-trout-9764j6j7x5pp3pvv6-4000.app.github.dev/api/'; //'http://localhost:4000/api/'; 
 
   constructor(private http: HttpClient) { }
 

@@ -7,7 +7,7 @@ import { Almacen } from '../models/almacen';
   providedIn: 'root'
 })
 export class AlmacenService {
-  url = 'https://bug-free-telegram-wwv6475qj9536rj-4000.app.github.dev/api/almacen/'; //'http://localhost:4000/api/Almacen/' 
+  url = 'https://ominous-trout-9764j6j7x5pp3pvv6-4000.app.github.dev/api/almacen/'; //'http://localhost:4000/api/Almacen/' 
 
   constructor(private http: HttpClient) { }
 

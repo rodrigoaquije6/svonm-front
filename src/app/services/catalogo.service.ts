@@ -8,7 +8,7 @@ import { Catalogo } from '../models/catalogo';
   providedIn: 'root'
 })
 export class CatalogoService {
-  url = 'https://bug-free-telegram-wwv6475qj9536rj-4000.app.github.dev/api/catalogo/' 
+  url = 'https://ominous-trout-9764j6j7x5pp3pvv6-4000.app.github.dev/api/catalogo/' 
 
   constructor(private http: HttpClient) { }
 

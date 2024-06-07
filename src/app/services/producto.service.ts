@@ -8,7 +8,7 @@ import { Producto } from '../models/producto';
   providedIn: 'root'
 })
 export class ProductoService {
-  url = 'https://bug-free-telegram-wwv6475qj9536rj-4000.app.github.dev/api/producto/' //http://localhost:4000/api/gestionar-producto/ 
+  url = 'https://ominous-trout-9764j6j7x5pp3pvv6-4000.app.github.dev/api/producto/' //http://localhost:4000/api/gestionar-producto/ 
 
   constructor(private http: HttpClient) { }
 
