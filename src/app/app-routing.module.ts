@@ -20,10 +20,14 @@ import { EditarMonturaComponent } from './components/gestionar-producto/editar-m
 import { EditarLenteSolComponent } from './components/gestionar-producto/editar-lenteSol/editar-lente-sol.component';
 import { EditarOtroComponent } from './components/gestionar-producto/editar-otro/editar-otro.component';
 import { CatalogoComponent } from './components/gestionarCatalogo/catalogo/catalogo.component';
+import { VentaComponent } from './components/venta/venta/venta.component';
+import { RegistrarVentaComponent } from './components/venta/registrar-venta/registrar-venta.component'
+
 
 const routes: Routes = [
   { path: '', component: LoginComponent},
   { path: 'login', component: LoginComponent},
+  //DASHBOARD-GERENTE
   { path: 'dashboard-gerente', component: DashboardGerenteComponent},
   { path: 'dashboard-trabajador', component: DashboardTrabajadorComponent},
   { path: 'dashboard-gerente/trabajador', component: TrabajadorComponent},
@@ -35,7 +39,10 @@ const routes: Routes = [
   { path: 'dashboard-gerente/almacen', component: AlmacenComponent},
   { path: 'dashboard-gerente/catalogo', component: CatalogoComponent},
   { path: 'dashboard-gerente/tipoProducto', component: TipoComponent},
-  //--------------------------------------------CREAR--------------------------------------------
+  //DASHBOARD-TRABAJADOR
+  { path: 'dashboard-trabajador/venta', component: VentaComponent},
+
+  //------------------------------------------GESTIONAR------------------------------------------
   { path: 'dashboard-gerente/rol/crear-rol', component: CrearRolComponent},
   { path: 'dashboard-gerente/rol/editar-rol/:id', component: CrearRolComponent},
 
@@ -56,6 +63,8 @@ const routes: Routes = [
   { path: 'dashboard-gerente/gestionar-producto/editar-lente-sol/:id', component: EditarLenteSolComponent},
   { path: 'dashboard-gerente/gestionar-producto/editar-otro/:id', component: EditarOtroComponent},
   { path: 'dashboard-gerente/gestionar-producto/editar/:id', component: EditarOtroComponent},
+
+  { path: 'dashboard-trabajador/venta/registrar-venta', component: RegistrarVentaComponent},
   
   { path: '**', redirectTo: '', pathMatch: 'full' }
 ];  

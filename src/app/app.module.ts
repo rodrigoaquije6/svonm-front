@@ -28,6 +28,9 @@ import { EditarOtroComponent } from './components/gestionar-producto/editar-otro
 import { AlmacenComponent } from './components/gestionarAlmacen/almacen/almacen.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CatalogoComponent } from './components/gestionarCatalogo/catalogo/catalogo.component';
+import { RegistrarVentaComponent } from './components/venta/registrar-venta/registrar-venta.component';
+import { VentaComponent } from './components/venta/venta/venta.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,7 +53,9 @@ import { CatalogoComponent } from './components/gestionarCatalogo/catalogo/catal
     EditarLenteSolComponent,
     EditarOtroComponent,
     AlmacenComponent,
-    CatalogoComponent
+    CatalogoComponent,
+    RegistrarVentaComponent,
+    VentaComponent,
   ],
   imports: [
     BrowserModule,
