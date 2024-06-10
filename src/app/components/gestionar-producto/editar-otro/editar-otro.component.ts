@@ -75,6 +75,8 @@ export class EditarOtroComponent implements OnInit {
       precio: productoData.precio,
       imagen: productoData.imagen,
       marca: productoData.marca,
+      stock: productoData.stock,
+      stockMinimo: productoData.stockMinimo,
       estado: productoData.estado
     };
 
@@ -128,6 +130,8 @@ export class EditarOtroComponent implements OnInit {
           precio: data.precio,
           imagen: data.imagen,
           marca: data.marca.nombre,
+          stock: data.stock,
+          stockMinimo: data.stockMinimo,
           estado: data.estado,
           color: '', // Establecer valores predeterminados
           genero: '',

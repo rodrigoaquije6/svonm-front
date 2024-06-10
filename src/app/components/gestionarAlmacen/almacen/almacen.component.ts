@@ -8,6 +8,7 @@ import { Almacen } from 'src/app/models/almacen';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AlmacenService } from 'src/app/services/almacen.service';
 import { ProductoService } from 'src/app/services/producto.service';
+import { Producto } from 'src/app/models/producto';
 
 declare var bootstrap: any; // Declarar la variable bootstrap
 
@@ -16,109 +17,50 @@ declare var bootstrap: any; // Declarar la variable bootstrap
   templateUrl: './almacen.component.html',
   styleUrls: ['./almacen.component.css']
 })
-export class AlmacenComponent implements OnInit{
+export class AlmacenComponent implements OnInit {
   listAlmacen: any[] = [];
-  listId: any[]=[];
-  listProducto: any[]=[]
-  TituloModal: string="";
-  CodigoModal: string="";
+  listId: any[] = [];
+  listProducto: any[] = []
+  TituloModal: string = "";
+  CodigoModal: string = "";
+  terminoBusqueda: string = '';
+
   id: string = "";
-  stock:number = 0;
+  stock: number = 0;
 
   constructor(private _almacenService: AlmacenService,
-              private _prouctoService: ProductoService,
-              private toastr: ToastrService,
-              private api: LoginService,
-              private modalService: NgbModal,
-              private router: Router) { }
+    private _productoService: ProductoService,
+    private toastr: ToastrService,
+    private api: LoginService,
+    private modalService: NgbModal,
+    private router: Router) { }
 
   ngOnInit(): void {
-    this.obtenerAlmacen();
+    this.obtenerProductos();
   }
 
-  obtenerAlmacen() {
-    this._prouctoService.getProductos().subscribe(data => {
-                  
-      console.log(this._prouctoService);
-        this.listProducto = data;
-        
-        console.log(this.listProducto);
-        this._almacenService.getAlmacen().subscribe(data => {
-        
-          console.log(this._almacenService);
-            this.listId = data;
-            console.log(this.listId);
-            this.bind();
-            console.log(this.listAlmacen);
-            
-          }, error => {
-            console.log(error);
-          })
-
-      }, error => {
-        console.log(error);
-        
-      })
-  }
-
-  bind() {
-    // Creamos un nuevo array donde almacenaremos los resultados
-    this.listAlmacen = this.listProducto.map((obj, indice) => {
-        // Creamos una copia del objeto original para no modificar el array original directamente
-        let nuevoObjeto = { ...obj };
-
-        // Si el índice es válido en el array listId, reemplazamos el primer campo (_id)
-        if (indice < this.listId.length) {
-            nuevoObjeto._id = this.listId[indice]._id; // Aquí reemplazamos el campo _id
-         }
-
-        return nuevoObjeto;
-    });
-    this.addStocktoAlmacen();
-}
-
-addStocktoAlmacen() {
-  // Asumiendo que listAlmacen y listId tienen la misma longitud
-  this.listAlmacen.forEach((almacen, index) => {
-      almacen.stock = this.listId[index].stock;
-  });
-}
-
-
-  open(content: any, nombre:string, codigo:string, stock:number, id:string) {
-    this.TituloModal = nombre;
-    this.CodigoModal = codigo;
-    this.stock = stock;
-    this.id = id;
-    this.modalService.open(content, { centered: true });
-  }
-
-  editarStock(){
-    
-    const almacen: Almacen = {
-      stock: this.stock
-    }
-
-    console.log(this.id);
-    this._almacenService.editarStock(this.id, almacen).subscribe(data => {
-      this.toastr.info('El stock fue actualizado con éxito!', 'stock Actualizado!')
-      this.obtenerAlmacen();
+  obtenerProductos() {
+    this._productoService.getProductos().subscribe((data: Producto[]) => {
+        console.log(data);
+        this.listProducto = data.filter(producto =>
+            (producto.estado === 'Activo') && 
+            (producto.codigo.toLowerCase().includes(this.terminoBusqueda.toLowerCase()) ||
+            producto.nombre.toLowerCase().includes(this.terminoBusqueda.toLowerCase()))
+        );
     }, error => {
-      if (error.error && error.error.msg) {
-        error.error.msg.forEach((errorMessage: string) => {
-          this.toastr.error(errorMessage, 'Error');
-        });
-      } else {
         console.log(error);
-      }
-    })
-  }
+    });
+}
 
+  limpiarBusqueda() {
+    this.terminoBusqueda = '';
+    this.obtenerProductos();
+  }
 
   isLoggedIn: boolean = this.api.isLogged();
   onClickLogout() {
     localStorage.removeItem('token');
     this.router.navigate(['login']);
   }
- 
+
 }

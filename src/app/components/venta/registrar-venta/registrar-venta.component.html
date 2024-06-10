@@ -217,13 +217,13 @@
                                     <label class="form-label label-text" style="margin-right: 20px;">Material:</label>
                                     <label class="form-label label-text">Policarbonato</label>
                                     <input type="radio" value="Policarbonato" formControlName="matLuna"
-                                        style="width: 30px; margin-right: 10px;" (change)="updateMatLuna($event)">
+                                        style="width: 30px; margin-right: 10px;">
                                     <label class="form-label label-text">Resina</label>
                                     <input type="radio" value="Resina" formControlName="matLuna"
-                                        style="width: 30px; margin-right: 10px;" (change)="updateMatLuna($event)">
+                                        style="width: 30px; margin-right: 10px;">
                                     <label class="form-label label-text">Cristal</label>
                                     <input type="radio" value="Cristal" formControlName="matLuna"
-                                        style="width: 30px; margin-right: 10px;" (change)="updateMatLuna($event)">
+                                        style="width: 30px; margin-right: 10px;">
                                 </div>
                                 <div style="flex: 1;">
                                     <div class="arreglo-orden">
@@ -304,16 +304,16 @@
                                     <label class="form-label label-text" style="margin-right: 20px;">Tipo:</label>
                                     <label class="form-label label-text"> Monofocal </label>
                                     <input type="radio" value="Monofocal" formControlName="tipoLuna"
-                                        style="width: 30px; margin-right: 10px;" (change)="updateTipoLuna($event)">
+                                        style="width: 30px; margin-right: 10px;">
                                     <label class="form-label label-text"> Bifocal </label>
                                     <input type="radio" value="Bifocal" formControlName="tipoLuna"
-                                        style="width: 30px; margin-right: 10px;" (change)="updateTipoLuna($event)">
+                                        style="width: 30px; margin-right: 10px;">
                                     <label class="form-label label-text"> Progresivo </label>
                                     <input type="radio" value="Progresivo" formControlName="tipoLuna"
-                                        style="width: 30px; margin-right: 13px;" (change)="updateTipoLuna($event)">
+                                        style="width: 30px; margin-right: 13px;">
                                     <label class="form-label label-text"> Lentes de Contacto </label>
                                     <input type="radio" value="Lentes de Contacto" formControlName="tipoLuna"
-                                        style="width: 30px; margin-right: 10px;" (change)="updateTipoLuna($event)">
+                                        style="width: 30px; margin-right: 10px;">
                                     <!--<label class="form-label label-text"
                                         style="margin-right: 20px; margin-top: 30px;">S/.:</label>
                                     <input type="text" formControlName="precioLuna" style="width: 100px;">-->
@@ -322,9 +322,34 @@
                                     <div style="flex: 1;">
                                         <label class="form-label label-text"
                                             style="margin-right: 20px; margin-top: 30px;">PRODUCTO</label>
-                                        <button class="btn btn-success btn-sm" style="margin-right: 5px;"
-                                            (click)="openModal(content)">+</button>
-
+                                            <select class="form-control" style="width: 300px;" >
+                                                <option *ngFor="let producto of productos" [ngValue]="producto.id">{{ producto.nombre }}</option>
+                                            </select>
+                                            <div style="display: flex; flex-wrap: wrap; margin-left: 20px; margin-top: 20px;">
+                                                <div style="margin-right: 20px;">
+                                                    <label for="codigo" class="form-label label-text">Código:</label>
+                                                    <input type="text" id="codigo" class="form-control" style="width: 100px;"  disabled>
+                                                </div>
+                                                <div style="margin-right: 20px;">
+                                                    <label for="nombre" class="form-label label-text">Nombre:</label>
+                                                    <input type="text" id="nombre" class="form-control" style="width: 300px;"  disabled>
+                                                </div>
+                                                <div style="margin-right: 20px;">
+                                                    <label for="precio" class="form-label label-text">Precio:</label>
+                                                    <input type="text" id="precio" class="form-control" style="width: 100px;" disabled>
+                                                </div>
+                                                <div style="margin-right: 20px;">
+                                                    <label for="stock" class="form-label label-text">Stock:</label>
+                                                    <input type="text" id="stock" class="form-control" style="width: 100px;" disabled>
+                                                </div>
+                                                <div style="margin-right: 20px;">
+                                                    <label for="cantidad" class="form-label label-text">Cantidad:</label>
+                                                    <input type="text" id="cantidad" class="form-control" style="width: 100px;">
+                                                </div>
+                                                <div>
+                                                    <button class="btn btn-success btn-sm" style="margin-left: 40px; margin-top: 30px;" >Agregar</button>
+                                                </div>
+                                            </div>
                                         <!-- Lista de productos seleccionados -->
                                         <div *ngIf="productosSeleccionados.length > 0" style="margin-top: 20px;">
                                             <table class="table table-striped text-center" style="width: fit-content;">
@@ -334,6 +359,7 @@
                                                         <th>Nombre</th>
                                                         <th>Precio</th>
                                                         <th>Cantidad</th>
+                                                        <th>Total</th>
                                                         <th>Acciones</th>
                                                     </tr>
                                                 </thead>
@@ -342,7 +368,9 @@
                                                         <td>{{ producto.codigo }}</td>
                                                         <td>{{ producto.nombre }}</td>
                                                         <td>{{ producto.precio }}</td>
-                                                        <td><input type="number" [(ngModel)]="producto.cantidad" class="form-control" style="width: 90px;"></td>
+                                                        <td><input type="number" [(ngModel)]="producto.cantidad"
+                                                                class="form-control" style="width: 90px;"></td>
+                                                        <td>{{ producto.total }}</td>
                                                         <td><button class="btn btn-danger btn-sm"
                                                                 (click)="quitarProducto(producto)">-</button></td>
                                                     </tr>
@@ -350,74 +378,8 @@
                                             </table>
                                         </div>
                                     </div>
-
-                                    <!-- Modal -->
-                                    <ng-template #content let-modal>
-                                        <div class="modal-header">
-                                            <h4 class="modal-title" id="modal-basic-title">Seleccionar Productos</h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            <!-- Lista de productos desde la base de datos en formato tabla -->
-                                            <table class="table table-striped text-center" style="width: fit-content;">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Código</th>
-                                                        <th>Nombre</th>
-                                                        <th>Precio</th>
-                                                        <th>Acción</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr *ngFor="let producto of productos">
-                                                        <td>{{ producto.codigo }}</td>
-                                                        <td>{{ producto.nombre }}</td>
-                                                        <td>{{ producto.precio }}</td>
-                                                        <td><button class="btn btn-success btn-sm"
-                                                                (click)="agregarProducto(producto)">+</button>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
-                                                (click)="modal.dismiss('Cancelar')">Cerrar</button>
-                                        </div>
-                                    </ng-template>
-                                    <!-- <div class="arreglo-orden">
-                                    <label class="form-label label-text" style="margin-left: 23px;"> Código </label>
-                                    </div>
-                                    <div class="arreglo-orden">
-                                    <label class="form-label label-text" style="margin-left: 25px;"> Marca </label>
-                                    <input type="text" style="width: 100px;">
-                                    <input type="text" style="width: 100px; margin-top: 3px;">
-                                    <input type="text" style="width: 100px; margin-top: 3px;">
-                                    </div>
-                                    <div class="arreglo-orden">
-                                    <label class="form-label label-text" style="margin-left: 20px;"> Modelo </label>
-                                    <input type="text" style="width: 100px;">
-                                    <input type="text" style="width: 100px; margin-top: 3px;">
-                                    <input type="text" style="width: 100px; margin-top: 3px;">
-                                    </div>
-                                    <div class="arreglo-orden">
-                                    <label class="form-label label-text" style="margin-left: 28px;"> Color </label>
-                                    <input type="text" style="width: 100px;">
-                                    <input type="text" style="width: 100px; margin-top: 3px;">
-                                    <input type="text" style="width: 100px; margin-top: 3px;">
-                                    </div>
-                                    <div class="arreglo-orden">
-                                    <label class="form-label label-text" style="margin-left: 18px;"> Tamaño </label>
-                                    <input type="text" style="width: 100px;">
-                                    <input type="text" style="width: 100px; margin-top: 3px;">
-                                    <input type="text" style="width: 100px; margin-top: 3px;">
-                                    </div>
-                                    <div class="arreglo-orden">
-                                    <label class="form-label label-text" style="margin-left: 18px; margin-bottom: 16px;">  </label>
-                                    <input type="text" style="width: 100px;" placeholder="S/">
-                                    <input type="text" style="width: 100px; margin-top: 3px;" placeholder="S/">
-                                    <input type="text" style="width: 100px; margin-top: 3px;" placeholder="S/">
-                                    </div> -->
                                 </div>
+
                                 <div style="flex: 1;">
                                     <label class="form-label label-text" style="margin-right: 105px; margin-top: 30px;">
                                         TRATAMIENTO </label>
@@ -427,8 +389,7 @@
                                         <div style="flex: 1;" *ngFor="let option of tratamientosOptions">
                                             <label class="form-label label-text" style="width: 150px;"> {{ option.nombre
                                                 }} </label>
-                                            <input type="checkbox" style="width: 30px; margin-right: 10px;"
-                                                (change)="updateCheckboxValues(option, $event)">
+                                            <input type="checkbox" style="width: 30px; margin-right: 10px;">
                                         </div>
                                     </div>
                                 </div>

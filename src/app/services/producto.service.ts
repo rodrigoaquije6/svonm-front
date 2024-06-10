@@ -25,8 +25,11 @@ export class ProductoService {
   }
 
   editarProducto(id: string, producto: Producto): Observable<any> {
-    console.log('ID del producto:', id);
-    console.log('Datos del producto:', producto);
     return this.http.put(this.url + id, producto);
+  }
+
+  editarEstadoProducto(id: string, nuevoEstado: string) {
+    const url = `${this.url}${id}/estado`;
+    return this.http.put(url, { estado: nuevoEstado });
   }
 }

@@ -11,16 +11,17 @@ import { LoginService } from 'src/app/services/login.service';
   styleUrls: ['./gestionar-producto.component.css']
 })
 export class GestionarProductoComponent {
+
   listProducto: any[] = [];
 
   listProductoOriginal: Producto[] = [];
 
   terminoBusqueda: string = '';
-  
+
   constructor(private _productoService: ProductoService,
-              private toastr: ToastrService,
-              private api: LoginService,
-              private router: Router) { }
+    private toastr: ToastrService,
+    private api: LoginService,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.obtenerProductos();
@@ -59,6 +60,25 @@ export class GestionarProductoComponent {
     }
 
     this.router.navigate([ruta]);
+  }
+
+  toggleEstadoProducto(producto: Producto): void {
+    if (!producto || !producto._id) {
+      console.error('El producto no está definido o no tiene un ID válido.');
+      return;
+    }
+
+    const nuevoEstado = (producto.estado === 'Activo') ? 'Inactivo' : 'Activo';
+
+    this._productoService.editarEstadoProducto(producto._id.toString(), nuevoEstado).subscribe(
+      () => {
+        console.log('Estado del producto actualizado correctamente');
+        producto.estado = nuevoEstado;
+      },
+      (error) => {
+        console.error('Error al actualizar el estado del producto:', error);
+      }
+    );
   }
 
 

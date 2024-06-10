@@ -7,6 +7,7 @@ import { LoginService } from 'src/app/services/login.service';
 import { VentaService } from 'src/app/services/venta.service';
 import { ProductoService } from 'src/app/services/producto.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Producto } from 'src/app/models/producto';
 
 @Component({
   selector: 'app-registrar-venta',
@@ -14,9 +15,9 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./registrar-venta.component.css']
 })
 export class RegistrarVentaComponent implements OnInit {
-
+  //clienteForm: FormGroup;
   ventaForm: FormGroup;
-  productosForm: FormGroup;
+  //detalleVentaForm: FormGroup;
 
   tratamientosOptions: { nombre: string, precio: number }[] = [
     { nombre: 'UV', precio: 10 },
@@ -33,8 +34,9 @@ export class RegistrarVentaComponent implements OnInit {
   tratamientosSelected: { nombre: string, precio: number }[] = [];
 
   productos: any[] = [];
-  productosSeleccionados: any[] = []; // To store selected products
-
+  productosSeleccionados: any[] = [];
+  selectedProduct: any;
+  cantidad: number = 1;
   titulo = 'Crear venta';
 
   id: string | null;
@@ -43,7 +45,7 @@ export class RegistrarVentaComponent implements OnInit {
   url = 'http://localhost:4000/api/crear-marca/'; //http://localhost:4000/api/crear-marca/
 
   constructor(
-    private productService: ProductoService,
+    private _productoService: ProductoService,
     private fb: FormBuilder,
     private fbProducto: FormBuilder,
     private toastr: ToastrService,
@@ -90,32 +92,28 @@ export class RegistrarVentaComponent implements OnInit {
       conSeguimiento: [true, Validators.required],
       tratamientos: [],
       productos: []
-    })
-    this.id = this.aRouter.snapshot.paramMap.get('id')
-    this.productosForm = this.fbProducto.group({
-      rows: this.fbProducto.array([])
-    })
+    });
+    this.id = this.aRouter.snapshot.paramMap.get('id');
   }
 
   ngOnInit(): void {
-    //this.productService.getProducto();
-    //this.esEditar();
+    this.obtenerProductos();
   }
 
-  /*obtenerProductos() {
-    this.http.get<any[]>(this.url).subscribe(
-      (productos) => {
-        this.products = productos;
+  obtenerProductos() {
+    this._productoService.getProductos().subscribe(
+      (productos: Producto[]) => {
+        this.productos = productos; // Asigna los productos obtenidos del servicio al array del componente
       },
       (error) => {
         console.error('Error al obtener los productos:', error);
       }
     );
-  }*/
+  }
 
   openModal(content: any) {
     // Cargar la lista de productos desde tu base de datos
-    this.productService.getProductos().subscribe((productos) => {
+    this._productoService.getProductos().subscribe((productos) => {
       this.productos = productos;
     });
 
@@ -129,10 +127,6 @@ export class RegistrarVentaComponent implements OnInit {
     });
   }
 
-  agregarProducto(producto: any) {
-    // Agregar el producto seleccionado a la lista de productos seleccionados
-    this.productosSeleccionados.push(producto);
-  }
 
   quitarProducto(producto: any) {
     // Encuentra el índice del producto en la lista de productos seleccionados
@@ -143,33 +137,9 @@ export class RegistrarVentaComponent implements OnInit {
     }
   }
 
-  get rows(): FormArray {
-    return this.productosForm?.get('rows') as FormArray;
+  calcularTotal(producto: any) {
+    producto.total = producto.precio * producto.cantidad;
   }
-
-  createRow(): FormGroup {
-    return this.fbProducto.group({
-      inputField: [''], // Initialize with a default value
-    });
-  }
-  addRow(): void {
-    const newFormGroup = this.fbProducto.group({
-      codigo: '',
-      tipoProducto: '',
-      nombre: '',
-      precio: '',
-      imagen: '',
-      marca: '',
-      fechaCreacion: '',
-    });
-    this.rows.push(newFormGroup); // Initialize with a default value
-  }
-  removeLastRow(): void {
-    if (this.rows.length > 0) {
-      this.rows.removeAt(this.rows.length - 1);
-    }
-  }
-
 
 
   updateConSeguimiento(event: any) {

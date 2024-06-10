@@ -44,6 +44,8 @@ export class CrearProductoComponent implements OnInit {
       precio: ['', Validators.required],
       imagen: [''],
       marca: ['', Validators.required],
+      stock: [0],
+      stockMinimo: [2],
       estado: ['Activo'],
       color: [''],
       genero: [''],
@@ -99,6 +101,8 @@ export class CrearProductoComponent implements OnInit {
       precio: productoData.precio,
       imagen: productoData.imagen,
       marca: productoData.marca,
+      stock: productoData.stock,
+      stockMinimo: productoData.stockMinimo,
       estado: productoData.estado
     };
   

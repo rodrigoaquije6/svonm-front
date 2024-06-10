@@ -164,7 +164,7 @@
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                    <span class="span-text mx-3">GESTIONAR ALMACÉN</span>
+                    <span class="span-text mx-3">VISUALIZAR STOCK DE PRODUCTO</span>
 
 
                     <!-- Topbar Navbar -->
@@ -185,61 +185,34 @@
                 <!-- Table -->
                 <div class="container mt-5">
                     <div class="row">
-                        <div class="card-body text-center">
-                            <span>LISTADO DE PRODUCTOS</span>
-                            <table class="table table-striped mt-5">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Codigo</th>
-                                        <th scope="col">Nombre</th>
-                                        <th scope="col">Tipo</th>
-                                        <th scope="col">Stock (und.)</th>
-                                        <th scope="col"></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="let p of listAlmacen">
-                                        <td>
-                                            {{p.codigo}}
-                                        </td>
-                                        <td>
-                                            {{p.nombre}}
-                                        </td>
-                                        <td>
-                                            {{p.tipoProducto.nombre}}
-                                        </td>
-                                        <td>
-                                            {{p.stock}}
-                                        </td>
-                                        <td>
-                                            <i class="fas fa-edit" (click)="open(content, p.nombre, p.codigo, p.stock, p._id)"
-                                                style="cursor: pointer;color:#0c63ed"></i>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                            <div class="col-lg-11 offser-lg-2">
+                                <input type="text" class="form-control" style="width: 350px;" [(ngModel)]="terminoBusqueda" (keyup)="obtenerProductos()" placeholder="Buscar producto...">                               
+                                <table *ngIf="listProducto.length > 0" class="table table-striped mx-5 mt-5 text-center">
+                                    <thead>
+                                        <tr>
+                                            <th>Codigo</th>
+                                            <th>Tipo de Producto</th>
+                                            <th>Nombre</th>
+                                            <th>Marca</th>
+                                            <th>Stock</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let producto of listProducto">
+                                            <td>{{ producto.codigo }}</td>
+                                            <td>{{ producto.tipoProducto.nombre }}</td>
+                                            <td>{{ producto.nombre }}</td>
+                                            <td>{{ producto.marca.nombre }}</td>
+                                            <td>{{ producto.stock }}</td>                                     
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <h5 style="text-align: start; margin-top: 10px;" *ngIf="listProducto.length == 0">No hay
+                                    productos para mostrar</h5>
+                            </div>
                     </div>
                 </div>
-                <!-- End of Table -->
-
-                <ng-template #content let-modal>
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="modal-basic-title">{{CodigoModal}}-{{TituloModal}}</h4>
-                        <button type="button" class="btn-close" aria-label="Close"
-                            (click)="modal.dismiss('Cross click')"></button>
-                    </div>
-                    <div class="modal-body">
-                        <label class="form-label label-text">Stock</label>
-                        <input type="text" [(ngModel)]="stock" class="form-control" style="width: 350px;">
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary"
-                            (click)="modal.close('Save click')">Cerrar</button>
-                        <button type="button" class="btn btn-primary" (click)="editarStock()" (click)="modal.close('Save click')">Guardar</button>
-                    </div>
-                </ng-template>
-                <!--End Modal-->
+                <!-- End of Table -->  
 
             </div>
             <!-- End of Main Content -->
