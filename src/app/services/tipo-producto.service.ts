@@ -7,7 +7,7 @@ import { TipoProducto } from '../models/tipoProducto';
   providedIn: 'root'
 })
 export class TipoProductoService {
-  url = 'https://orange-trout-6qxgj5ppjrg2gp5-4000.app.github.dev/api/tipoProducto/'; //'http://localhost:4000/api/tipoProducto/' //
+  url = 'https://humble-spork-76j9g5xx4pgfpv7v-4000.app.github.dev/api/tipoProducto/'; //'http://localhost:4000/api/tipoProducto/' //
 
   constructor(private http: HttpClient) { }
 

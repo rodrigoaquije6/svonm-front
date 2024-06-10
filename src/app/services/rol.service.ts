@@ -7,7 +7,7 @@ import { Rol } from '../models/rol';
   providedIn: 'root'
 })
 export class RolService {
-  url = 'https://orange-trout-6qxgj5ppjrg2gp5-4000.app.github.dev/api/rol/' //http://localhost:4000/api/rol/
+  url = 'https://humble-spork-76j9g5xx4pgfpv7v-4000.app.github.dev/api/rol/' //http://localhost:4000/api/rol/
 
   constructor(private http: HttpClient) { }
 

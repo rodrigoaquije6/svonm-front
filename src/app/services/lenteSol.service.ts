@@ -7,7 +7,7 @@ import { LenteSol } from '../models/lenteSol';
   providedIn: 'root'
 })
 export class LenteSolService {
-  url: string = 'http://localhost:4000/api/lenteSol/'; //'http://localhost:4000/api/lenteSol/'
+  url: string = 'https://humble-spork-76j9g5xx4pgfpv7v-4000.app.github.de/api/lenteSol/'; //'http://localhost:4000/api/lenteSol/'
 
   constructor(private http: HttpClient) { }
 

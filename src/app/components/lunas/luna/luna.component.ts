@@ -4,6 +4,7 @@ import { Rol } from 'src/app/models/rol';
 import { Router } from '@angular/router';//este import no debería ir si usaramos un componente header, explicación más abajo
 import { LoginService } from 'src/app/services/login.service';//este import no debería ir si usaramos un componente header, explicación más abajo
 import { Luna } from 'src/app/models/luna';
+import { TipoLunaService } from 'src/app/services/tipo-luna.service';
 import { LunaService } from 'src/app/services/luna.service';
 import { NombreLuna } from 'src/app/models/luna';
 
@@ -20,6 +21,7 @@ export class LunaComponent implements OnInit {
   listNombreLuna: NombreLuna[] = [];
 
   constructor(private _lunaService: LunaService,
+              private _tipolunaService: TipoLunaService,
               private toastr: ToastrService,
               private api: LoginService, 
               private router: Router) { }
@@ -45,11 +47,10 @@ export class LunaComponent implements OnInit {
     }, error => {
       console.log(error);
     })
-  
   }
 
   obtenerNombreLuna() {
-    this._lunaService.getNombreLuna().subscribe(data => {
+    this._tipolunaService.getNombreLuna().subscribe(data => {
       console.log(data);
       this.listNombreLuna = data;
     }, error => {
@@ -58,13 +59,12 @@ export class LunaComponent implements OnInit {
   }
 
   eliminarNombreLuna(id: any) {
-    this._lunaService.eliminarNombreLuna(id).subscribe(data => {
+    this._tipolunaService.eliminarNombreLuna(id).subscribe(data => {
       this.toastr.info('El Nombre luna fue eliminada con éxito!', 'Nombre luna Eliminada!')
       this.obtenerNombreLuna();
     }, error => {
       console.log(error);
     })
-  
   }
 
   

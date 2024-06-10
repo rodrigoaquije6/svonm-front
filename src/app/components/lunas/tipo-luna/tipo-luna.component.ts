@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';//este import no debería ir si usaramos un componente header, explicación más abajo
 import { ToastrService } from 'ngx-toastr';
 import { NombreLuna } from 'src/app/models/luna';
-import { LunaService } from 'src/app/services/luna.service';
+import { TipoLunaService } from 'src/app/services/tipo-luna.service';
 
 @Component({
   selector: 'app-tipo-luna',
@@ -21,7 +21,7 @@ export class TipoLunaComponent implements OnInit {
     private toastr: ToastrService,
     private router: Router,
     private aRouter: ActivatedRoute,
-    private _lunaService: LunaService,
+    private _tipolunaService: TipoLunaService,
     private api: LoginService,) {
     this.NombreLunaForm = this.fb.group({
       tipoluna: ['', Validators.required],
@@ -43,7 +43,7 @@ export class TipoLunaComponent implements OnInit {
 
     if (this.id !== null) {
       //editamos luna
-      this._lunaService.editarNombreLuna(this.id, NombreLuna).subscribe(data => {
+      this._tipolunaService.editarNombreLuna(this.id, NombreLuna).subscribe(data => {
         this.toastr.info('El tipo de luna fue actualizada con éxito!', 'Tipo Luna Actualizada!')
         this.router.navigate(['/dashboard-gerente/luna']);
       }, error => {
@@ -54,7 +54,7 @@ export class TipoLunaComponent implements OnInit {
     } else {
       //agregamos luna
       console.log(NombreLuna);
-      this._lunaService.guardarNombreLuna(NombreLuna).subscribe(data => {
+      this._tipolunaService.guardarNombreLuna(NombreLuna).subscribe(data => {
         this.toastr.success('El tipo de luna fue registrada con éxito!', 'Tipo Luna Registrada!');
         this.router.navigate(['/dashboard-gerente/luna']);
       }, error => {
@@ -67,7 +67,7 @@ export class TipoLunaComponent implements OnInit {
   esEditar() {
     if (this.id !== null) {
       this.titulo = 'Editar tipo de Luna';
-      this._lunaService.obtenerLuna(this.id).subscribe(data => {
+      this._tipolunaService.obtenerNombreLuna(this.id).subscribe(data => {
         this.NombreLunaForm.setValue({
           tipoluna: data.tipoluna,
           preciodeluna: data.preciodeluna,

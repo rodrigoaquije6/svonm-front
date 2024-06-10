@@ -8,7 +8,7 @@ import { Trabajador } from '../models/trabajador';
   providedIn: 'root'
 })
 export class TrabajadorService {
-  url = 'https://orange-trout-6qxgj5ppjrg2gp5-4000.app.github.dev/api/trabajador/' //http://localhost:4000/api/trabajador/
+  url = 'https://humble-spork-76j9g5xx4pgfpv7v-4000.app.github.dev/api/trabajador/' //http://localhost:4000/api/trabajador/
 
   constructor(private http: HttpClient) { }
 
