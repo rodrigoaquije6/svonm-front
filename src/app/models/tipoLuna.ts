@@ -1,5 +1,5 @@
-export class Tratamiento {
-    id?: number;
+export class TipoLuna {
+    _id?: number;
     nombre: string;
     precio: number;
     estado: string;

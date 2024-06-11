@@ -7,11 +7,11 @@ import { Venta } from '../models/venta';
   providedIn: 'root'
 })
 export class VentaService {
-  url: string = 'https://shiny-space-waddle-jjjjvrg5jjr35p57-4000.app.github.dev/api/venta/'; //'http://localhost:4000/api/montura/'
+  url = 'http://localhost:4000/api/venta/'; //'http://localhost:4000/api/venta/'
 
   constructor(private http: HttpClient) { }
 
-  getVenta(): Observable<any> {
+  getVentas(): Observable<any> {
     return this.http.get(this.url);
   }
 

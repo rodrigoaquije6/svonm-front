@@ -1,116 +1,90 @@
-import { Producto } from "./producto";
-import { Tratamiento } from "./tratamiento";
-
 export class Venta {
     _id?: number;
-    nombreCliente:string;
-    fechaVenta:string;
-    celCliente:string;
-    dirCliente:string;
-    fijCliente:string;
-    corrCliente:string;
-    odEsfera:string;
-    odCilindro:string;
-    odEje:string;
-    odAVLejos:string;
-    odAVCerca:string;
-    oiEsfera:string;
-    oiCilindro:string;
-    oiEje:string;
-    oiAVLejos:string;
-    oiAVCerca:string;
-    odAdd:string;
-    odAltura:string;
-    odCurva:string;
-    oiAdd:string;
-    oiAltura:string;
-    oiCurva:string;
-    DipLejos:string;
-    DipCerca:string;
-    observaciones:string;
-    optometra:string;
-    fechaEntrega:string;
-    vendedor:string;
-    total:string;
-    acuenta:string;
-    saldo:string;
-    tipoLuna:string;
-    matLuna:string;
-    conSeguimiento:boolean;
-    tratamientos:Tratamiento[];
-    productos:Producto[];
+    codigo: string;
+  oDEsfera?: string;
+  oDCilindro?: string;
+  oDEje?: string;
+  oDAvLejos?: string;
+  oDAvCerca?: string;
+  oDAdd?: number;
+  oDAltura?: number;
+  oDCurva?: number;
+  oIEsfera?: string;
+  oICilindro?: string;
+  oIEje?: string;
+  oIAvLejos?: string;
+  oIAvCerca?: string;
+  oIAdd?: number;
+  oIAltura?: number;
+  oICurva?: number;
+  dipLejos?: number;
+  dipCerca?: number;
+  observacion: string;
+  aCuenta: number;
+  saldo: number;
+  total: number;
+  estado?: string;
+  idCliente: string;
+  idTrabajador: string;
+  idTipoLuna?: string;
+  idMaterialLuna?: string;
 
-    constructor(nombreCliente:string,
-        fechaVenta:string,
-        celCliente:string,
-        dirCliente:string,
-        fijCliente:string,
-        corrCliente:string,
-        odEsfera:string,
-        odCilindro:string,
-        odEje:string,
-        odAVLejos:string,
-        odAVCerca:string,
-        oiEsfera:string,
-        oiCilindro:string,
-        oiEje:string,
-        oiAVLejos:string,
-        oiAVCerca:string,
-        odAdd:string,
-        odAltura:string,
-        odCurva:string,
-        oiAdd:string,
-        oiAltura:string,
-        oiCurva:string,
-        DipLejos:string,
-        DipCerca:string,
-        observaciones:string,
-        optometra:string,
-        fechaEntrega:string,
-        vendedor:string,
-        total:string,
-        acuenta:string,
-        saldo:string,
-        tipoLuna:string,
-        matLuna:string,
-        conSeguimiento:boolean,
-        tratamientos:Tratamiento[],
-        productos:Producto[]) {
-            this.nombreCliente = nombreCliente,
-            this.fechaVenta = fechaVenta,
-            this.celCliente = celCliente,
-            this.dirCliente = dirCliente,
-            this.fijCliente = fijCliente,
-            this.corrCliente = corrCliente,
-            this.odEsfera = odEsfera,
-            this.odCilindro = odCilindro,
-            this.odEje = odEje,
-            this.odAVLejos = odAVLejos,
-            this.odAVCerca = odAVCerca,
-            this.oiEsfera = oiEsfera,
-            this.oiCilindro = oiCilindro,
-            this.oiEje = oiEje,
-            this.oiAVLejos = oiAVLejos,
-            this.oiAVCerca = oiAVCerca,
-            this.odAdd = odAdd,
-            this.odAltura = odAltura,
-            this.odCurva = odCurva,
-            this.oiAdd = oiAdd,
-            this.oiAltura = oiAltura,
-            this.oiCurva = oiCurva,
-            this.DipLejos = DipLejos,
-            this.DipCerca = DipCerca,
-            this.observaciones = observaciones,
-            this.optometra = optometra,
-            this.fechaEntrega = fechaEntrega,
-            this.vendedor = vendedor,
-            this.total = total,
-            this.acuenta = acuenta,
-            this.saldo = saldo,
-            this.tipoLuna = tipoLuna,
-            this.matLuna = matLuna,
-            this.conSeguimiento = conSeguimiento,
-            this.tratamientos = tratamientos,
-            this.productos = productos
-    }
+  constructor(codigo: string,
+    observacion: string,
+    aCuenta: number,
+    saldo: number,
+    total: number,
+    idCliente: string,
+    idTrabajador: string,
+    oDEsfera?: string,
+    oDCilindro?: string,
+    oDEje?: string,
+    oDAvLejos?: string,
+    oDAvCerca?: string,
+    oDAdd?: number,
+    oDAltura?: number,
+    oDCurva?: number,
+    oIEsfera?: string,
+    oICilindro?: string,
+    oIEje?: string,
+    oIAvLejos?: string,
+    oIAvCerca?: string,
+    oIAdd?: number,
+    oIAltura?: number,
+    oICurva?: number,
+    dipLejos?: number,
+    dipCerca?: number,
+    estado?: string,
+    idTipoLuna?: string,
+    idMaterialLuna?: string
+  ) {
+    this.codigo = codigo;
+    this.oDEsfera = oDEsfera;
+    this.oDCilindro = oDCilindro;
+    this.oDEje = oDEje;
+    this.oDAvLejos = oDAvLejos;
+    this.oDAvCerca = oDAvCerca;
+    this.oDAdd = oDAdd;
+    this.oDAltura = oDAltura;
+    this.oDCurva = oDCurva;
+    this.oIEsfera = oIEsfera;
+    this.oICilindro = oICilindro;
+    this.oIEje = oIEje;
+    this.oIAvLejos = oIAvLejos;
+    this.oIAvCerca = oIAvCerca;
+    this.oIAdd = oIAdd;
+    this.oIAltura = oIAltura;
+    this.oICurva = oICurva;
+    this.dipLejos = dipLejos;
+    this.dipCerca = dipCerca;
+    this.observacion = observacion;
+    this.aCuenta = aCuenta;
+    this.saldo = saldo;
+    this.total = total;
+    this.estado = estado;
+    this.idCliente = idCliente;
+    this.idTrabajador = idTrabajador;
+    this.idTipoLuna = idTipoLuna;
+    this.idMaterialLuna = idMaterialLuna;
+  }
 }

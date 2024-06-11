@@ -369,3 +369,27 @@ footer.sticky-footer .copyright {
   margin-right: 10px;
   margin-top: 10px;
 }
+
+.tratamientos-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.tratamiento-item {
+  display: flex;
+  align-items: center;
+}
+
+.radio-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.radio-item {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+}
