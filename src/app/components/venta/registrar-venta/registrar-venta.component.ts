@@ -280,7 +280,7 @@ export class RegistrarVentaComponent implements OnInit {
         // Actualizar el formulario de venta con el nuevo producto agregado
         const detalleVentaArray = this.ventaForm.get('productosAgregados') as FormArray;
         detalleVentaArray.push(this.fb.group({
-          idProducto: this.selectedProduct._id,
+          _id: this.selectedProduct._id,
           cantidad: this.cantidad,
           total: total
         }));
@@ -400,7 +400,7 @@ export class RegistrarVentaComponent implements OnInit {
 
     // Agregar tratamientos al detalle de tratamiento
     const tratamientosDetalle = this.tratamientosSeleccionados.map(tratamiento => ({
-      idTratamiento: tratamiento._id
+      _id: tratamiento._id
     }));
     ventaData.tratamientosAgregados = tratamientosDetalle;
 
@@ -414,6 +414,7 @@ export class RegistrarVentaComponent implements OnInit {
         detalleVentaArray.clear();
       },
       (error) => {
+        console.error('Error al hacer la solicitud POST:', error);
         this.toastr.error('Ocurrió un error al guardar la venta. Por favor, inténtalo de nuevo más tarde.', 'Error');
       }
     );

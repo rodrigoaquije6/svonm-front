@@ -38,6 +38,8 @@ export class EditarLenteSolComponent implements OnInit {
       precio: ['', Validators.required],
       imagen: ['', Validators.required],
       marca: ['', Validators.required],
+      stock: [''],
+      stockMinimo: [''],
       estado: ['', Validators.required],
       genero: ['', Validators.required],
       color: ['', Validators.required],

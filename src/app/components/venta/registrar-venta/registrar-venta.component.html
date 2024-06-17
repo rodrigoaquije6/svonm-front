@@ -160,7 +160,7 @@
 
                 <!-- CONTENT -->
                 <div class="container mx-4">
-                    <form [formGroup]="ventaForm">
+                    <form [formGroup]="ventaForm" (ngSubmit)="guardarVenta()">
                         <div class="mb-3 d-flex align-items-end">
                             <div class="arreglo-orden">
                                 <div style="flex: 1;">
@@ -168,7 +168,7 @@
                                         <label class="form-label label-text" style="margin-right: 20px; margin-top: 8px;">CLIENTE</label>
                                         <button class="btn btn-success btn-sm" style="height: auto; margin-right: 5px;" (click)="openModal(addClienteModal)">+</button>
                                     </div>
-                                    <select class="form-select" style="width: 400px;margin-top: 20px;" formControlName="idCliente" (change)="onClienteChange($event)">
+                                    <select formControlName="idCliente" class="form-select" style="width: 400px;margin-top: 20px;" (change)="onClienteChange($event)">
                                         <option value="" disabled selected>Seleccionar cliente...</option>
                                         <option *ngFor="let cliente of clientes" [value]="cliente._id"> {{cliente.dni}} - {{ cliente.nombres }} {{ cliente.apellidos }}</option>
                                     </select>
@@ -346,18 +346,18 @@
                                             <div
                                                 style="display: flex; flex-wrap: wrap; margin-left: 20px; margin-top: 20px;">
                                                 <div style="margin-right: 20px;">
-                                                    <label for="stock" class="form-label label-text">Código:</label>
-                                                    <input type="text" id="stock" class="form-control" style="width: 100px;"
+                                                    <label for="codigo" class="form-label label-text">Código:</label>
+                                                    <input type="text" id="codigo" class="form-control" style="width: 100px;"
                                                         [value]="selectedProduct?.codigo" disabled>
                                                 </div>
                                                 <div style="margin-right: 20px;">
-                                                    <label for="stock" class="form-label label-text">Nombre:</label>
-                                                    <input type="text" id="stock" class="form-control" style="width: 270px;"
+                                                    <label for="nombre" class="form-label label-text">Nombre:</label>
+                                                    <input type="text" id="nombre" class="form-control" style="width: 270px;"
                                                         [value]="selectedProduct?.nombre" disabled>
                                                 </div>
                                                 <div style="margin-right: 20px;">
-                                                    <label for="stock" class="form-label label-text">Precio:</label>
-                                                    <input type="text" id="stock" class="form-control" style="width: 100px;"
+                                                    <label for="precio" class="form-label label-text">Precio:</label>
+                                                    <input type="text" id="precio" class="form-control" style="width: 100px;"
                                                         [value]="selectedProduct?.precio" disabled>
                                                 </div>
                                                 <div style="margin-right: 20px;">
@@ -398,7 +398,7 @@
                                                             <td>{{ producto.precio }}</td>
                                                             <td>{{ producto.stock }}</td>
                                                             <td>{{ producto.cantidad }}</td>
-                                                            <td>{{ producto.total }}</td>
+                                                            <td>{{ producto.total }} </td>
                                                             <td><button class="btn btn-danger btn-sm"
                                                                     (click)="quitarProducto(i)">x</button></td>
                                                         </tr>
@@ -460,7 +460,7 @@
                             </div>
                         </div>
                         <button type="submit" class="btn btn-success float-end"
-                            style="margin-left: 10px; margin-top: 20px;" (click)="guardarVenta()">Aceptar</button>
+                            style="margin-left: 10px; margin-top: 20px;">Aceptar</button>
                         <div class="class mb 3">
                             <button routerLink="/dashboard-trabajador/venta"
                                 class="btn btn-secondary flat-start" style="margin-top: 20px;margin-bottom: 40px;">Volver</button>

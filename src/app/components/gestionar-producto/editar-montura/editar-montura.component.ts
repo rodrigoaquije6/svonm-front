@@ -36,6 +36,8 @@ export class EditarMonturaComponent implements OnInit {
       precio: ['', Validators.required],
       imagen: ['', Validators.required],
       marca: ['', Validators.required],
+      stock: [''],
+      stockMinimo: [''],
       estado: ['', Validators.required],
       color: ['', Validators.required],
       genero: ['', Validators.required],

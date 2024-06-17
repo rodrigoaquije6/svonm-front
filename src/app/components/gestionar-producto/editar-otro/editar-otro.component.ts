@@ -37,6 +37,8 @@ export class EditarOtroComponent implements OnInit {
       precio: ['', Validators.required],
       imagen: ['', Validators.required],
       marca: ['', Validators.required],
+      stock: [''],
+      stockMinimo: [''],
       estado: ['', Validators.required],
       color: [''],
       genero: [''],
