@@ -7,7 +7,7 @@ import { TipoLuna } from '../models/tipoLuna';
   providedIn: 'root'
 })
 export class TipoLunaService {
-  url = 'http://localhost:4000/api/tipoLuna/'; //'http://localhost:4000/api/tipoLuna/'
+  url = 'https://probable-space-waddle-v6666v95jxvpfxgq5-4000.app.github.dev/api/tipoLuna/'; //'http://localhost:4000/api/tipoLuna/'
 
   constructor(private http: HttpClient) { }
 

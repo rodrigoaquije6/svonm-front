@@ -7,7 +7,7 @@ import { Tratamiento } from '../models/tratamiento';
   providedIn: 'root'
 })
 export class TratamientoService {
-  url = 'http://localhost:4000/api/tratamiento/'; //'http://localhost:4000/api/tratamiento/'
+  url = 'https://probable-space-waddle-v6666v95jxvpfxgq5-4000.app.github.dev/api/tratamiento/'; //'http://localhost:4000/api/tratamiento/'
 
   constructor(private http: HttpClient) { }
 

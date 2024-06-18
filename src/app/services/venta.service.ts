@@ -7,7 +7,7 @@ import { Venta } from '../models/venta';
   providedIn: 'root'
 })
 export class VentaService {
-  url = 'http://localhost:4000/api/venta/'; //'http://localhost:4000/api/venta/'
+  url = 'https://probable-space-waddle-v6666v95jxvpfxgq5-4000.app.github.dev/api/venta/'; //'http://localhost:4000/api/venta/'
 
   constructor(private http: HttpClient) { }
 

@@ -7,7 +7,7 @@ import { Rol } from '../models/rol';
   providedIn: 'root'
 })
 export class RolService {
-  url = 'http://localhost:4000/api/rol/'; //'http://localhost:4000/api/rol/'
+  url = 'https://probable-space-waddle-v6666v95jxvpfxgq5-4000.app.github.dev/api/rol/'; //'http://localhost:4000/api/rol/'
   
   constructor(private http: HttpClient) { }
 

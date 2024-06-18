@@ -7,7 +7,7 @@ import { TipoProducto } from '../models/tipoProducto';
   providedIn: 'root'
 })
 export class TipoProductoService {
-  url = 'http://localhost:4000/api/tipoProducto/'; //'http://localhost:4000/api/tipoProducto/' //
+  url = 'https://probable-space-waddle-v6666v95jxvpfxgq5-4000.app.github.dev/api/tipoProducto/'; //'http://localhost:4000/api/tipoProducto/' //
 
   constructor(private http: HttpClient) { }
 

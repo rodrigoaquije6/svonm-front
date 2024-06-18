@@ -8,7 +8,7 @@ import { Trabajador } from '../models/trabajador';
   providedIn: 'root'
 })
 export class TrabajadorService {
-  url = 'http://localhost:4000/api/trabajador/'; //'http://localhost:4000/api/trabajador/'
+  url = 'https://probable-space-waddle-v6666v95jxvpfxgq5-4000.app.github.dev/api/trabajador/'; //'http://localhost:4000/api/trabajador/'
 
   constructor(private http: HttpClient) { }
 
