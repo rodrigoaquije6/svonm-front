@@ -3,16 +3,15 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Venta } from '../models/venta';
 
-
 @Injectable({
   providedIn: 'root'
 })
 export class VentaService {
-  url = 'http://localhost:4000/api/venta/' //https://laughing-disco-69999gqpq94w245x6-4000.app.github.dev/api/venta/
+  url = 'http://localhost:4000/api/venta/'; //'http://localhost:4000/api/venta/'
 
   constructor(private http: HttpClient) { }
 
-  getVenta(): Observable<any> {
+  getVentas(): Observable<any> {
     return this.http.get(this.url);
   }
 
@@ -22,7 +21,6 @@ export class VentaService {
 
   eliminarVenta(id: string): Observable<any>{
     return this.http.delete(this.url + id);
-
   }
 
   guardarVenta(venta: Venta): Observable<any> {

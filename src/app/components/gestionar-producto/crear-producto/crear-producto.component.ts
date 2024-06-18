@@ -3,12 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
 import { ToastrService } from 'ngx-toastr';
-import { Producto } from 'src/app/models/producto';
 import { ProductoService } from 'src/app/services/producto.service';
-import { MonturaService } from 'src/app/services/montura.service';
-import { LenteSolService } from 'src/app/services/lenteSol.service';
-import { Montura } from 'src/app/models/montura';
-import { LenteSol } from 'src/app/models/lenteSol';
 import { HttpClient } from '@angular/common/http';
 
 
@@ -38,8 +33,6 @@ export class CrearProductoComponent implements OnInit {
     private toastr: ToastrService,
     private router: Router,
     private _productoService: ProductoService,
-    private _monturaService: MonturaService,
-    private _lenteSolService: LenteSolService,
     private aRouter: ActivatedRoute,
     private api: LoginService,
     private http: HttpClient) {
@@ -51,6 +44,8 @@ export class CrearProductoComponent implements OnInit {
       precio: ['', Validators.required],
       imagen: [''],
       marca: ['', Validators.required],
+      stock: [0],
+      stockMinimo: [2],
       estado: ['Activo'],
       color: [''],
       genero: [''],
@@ -106,6 +101,8 @@ export class CrearProductoComponent implements OnInit {
       precio: productoData.precio,
       imagen: productoData.imagen,
       marca: productoData.marca,
+      stock: productoData.stock,
+      stockMinimo: productoData.stockMinimo,
       estado: productoData.estado
     };
   

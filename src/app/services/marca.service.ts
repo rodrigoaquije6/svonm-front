@@ -8,7 +8,7 @@ import { Marca } from '../models/marca';
 })
 export class MarcaService {
 
-  url = 'http://localhost:4000/api/crear-marca/' //http://localhost:4000/api/crear-marca/
+  url = 'http://localhost:4000/api/crear-marca/'; //'http://localhost:4000/api/crear-marca/'
 
   constructor(private http: HttpClient) { }
 

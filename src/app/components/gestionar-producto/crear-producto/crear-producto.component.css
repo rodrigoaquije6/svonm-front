@@ -365,7 +365,7 @@
   }
 
   .container-form{
-    width: 100%;
+    width: 80%;
     display: flex !important;
     flex-flow: column wrap  !important;
   }

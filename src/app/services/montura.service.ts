@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+/*import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Montura } from '../models/montura';
@@ -7,7 +7,7 @@ import { Montura } from '../models/montura';
   providedIn: 'root'
 })
 export class MonturaService {
-  url = 'http://localhost:4000/api/montura/' //http://localhost:4000/api/montura/
+  url: string = 'http://localhost:4000/api/montura/'; //'http://localhost:4000/api/montura/'
 
   constructor(private http: HttpClient) { }
 
@@ -31,4 +31,4 @@ export class MonturaService {
     return this.http.put(this.url + id, montura);
   }
 
-}
+}*/

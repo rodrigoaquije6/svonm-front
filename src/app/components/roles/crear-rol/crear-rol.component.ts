@@ -36,6 +36,11 @@ export class CrearRolComponent implements OnInit {
 
   agregarRol() {
 
+    if (this.rolForm.invalid) {
+      this.toastr.error('Por favor, complete el formulario correctamente.', 'Error');
+      return;
+    }
+
     const ROL: Rol = {
       nombre: this.rolForm.get('nombre')?.value
     }
@@ -46,8 +51,17 @@ export class CrearRolComponent implements OnInit {
         this.toastr.info('El rol fue actualizado con éxito!', 'Rol Actualizado!')
         this.router.navigate(['/dashboard-gerente/rol']);
       }, error => {
-        console.log(error);
-        this.rolForm.reset();
+        if (error.error && error.error.msg) {
+          error.error.msg.forEach((errorMessage: string) => {
+            //const errorMessage = error.error.msg.join('\n');
+            this.toastr.error(errorMessage, 'Error');
+          });
+        } else {
+          console.log(error);
+          this.rolForm.reset();
+        }
+        //console.log(error);
+        //this.rolForm.reset();
       })
 
     } else {
@@ -57,8 +71,17 @@ export class CrearRolComponent implements OnInit {
         this.toastr.success('El rol fue registrado con éxito!', 'Rol Registrado!');
         this.router.navigate(['/dashboard-gerente/rol']);
       }, error => {
-        console.log(error);
-        this.rolForm.reset();
+        if (error.error && error.error.msg) {
+          error.error.msg.forEach((errorMessage: string) => {
+            //const errorMessage = error.error.msg.join('\n');
+            this.toastr.error(errorMessage, 'Error');
+          });
+        } else {
+          console.log(error);
+          this.rolForm.reset();
+        }
+        //console.log(error);
+        //this.rolForm.reset();
       })
     }
   }
@@ -76,7 +99,7 @@ export class CrearRolComponent implements OnInit {
 
   isLoggedIn: boolean = this.api.isLogged();
 
-  onClickLogout(){
+  onClickLogout() {
     localStorage.removeItem('token');
     localStorage.removeItem('rol');
     this.router.navigate(['login']);

@@ -3,9 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
 import { ToastrService } from 'ngx-toastr';
-import { LenteSolService } from 'src/app/services/lenteSol.service';
 import { LenteSol } from 'src/app/models/lenteSol';
 import { HttpClient } from '@angular/common/http';
+import { ProductoService } from 'src/app/services/producto.service';
 
 @Component({
   selector: 'app-editar-lente-sol',
@@ -14,7 +14,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class EditarLenteSolComponent implements OnInit {
 
-  lenteSolForm: FormGroup;
+  productoForm: FormGroup;
 
   producto: string | null = "null";
 
@@ -22,29 +22,31 @@ export class EditarLenteSolComponent implements OnInit {
 
   marca: any[] = [];
 
-  url = 'https://bug-free-telegram-wwv6475qj9536rj-4000.app.github.dev/api/crear-marca/'; //http://localhost:4000/api/rol/
+  url = 'http://localhost:4000/api/crear-marca/'; //http://localhost:4000/api/rol/
 
   constructor(private fb: FormBuilder,
     private toastr: ToastrService,
     private router: Router,
-    private _lenteSolService: LenteSolService,
+    private _productoService: ProductoService,
     private aRouter: ActivatedRoute,
     private api: LoginService,
     private http: HttpClient) {
-    this.lenteSolForm = this.fb.group({
+    this.productoForm = this.fb.group({
       codigo: ['', Validators.required],
       tipoProducto: ['', Validators.required],
       nombre: ['', Validators.required],
       precio: ['', Validators.required],
       imagen: ['', Validators.required],
       marca: ['', Validators.required],
-      genero: [''],
-      color: [''],
-      forma: [''],
-      colorlente: [''],
-      protuv: [''],
+      stock: [''],
+      stockMinimo: [''],
+      estado: ['', Validators.required],
+      genero: ['', Validators.required],
+      color: ['', Validators.required],
+      forma: ['', Validators.required],
+      colorlente: ['', Validators.required],
+      protuv: ['', Validators.required],
     })
-
     this.id = this.aRouter.snapshot.paramMap.get('id')
   }
 
@@ -64,81 +66,76 @@ export class EditarLenteSolComponent implements OnInit {
     );
   }
 
-  onItemChange(producto: string | null) {
-        console.log('Producto seleccionado:', producto);
-        this.producto = producto;
-  }
+  agregarProducto() {
+    // Obtener los valores del formulario
+    const productoData = this.productoForm.value;
 
-  agregarLenteSolForm() {
+    // Crear un nuevo producto con los datos del formulario
+    const producto: any = {
+      codigo: productoData.codigo,
+      tipoProducto: productoData.tipoProducto,
+      nombre: productoData.nombre,
+      precio: productoData.precio,
+      imagen: productoData.imagen,
+      marca: productoData.marca,
+      stock: productoData.stock,
+      stockMinimo: productoData.stockMinimo,
+      estado: productoData.estado,
+      genero: productoData.genero,
+      forma: productoData.forma,
+      color: productoData.color,
+      colorlente: productoData.colorlente,
+      protuv: productoData.protuv
+    };
 
-    if (this.lenteSolForm.invalid) {
-      this.toastr.error('Por favor, complete el formulario correctamente.', 'Error');
-      return;
-    }
-
-    const LENTESOL: LenteSol = {
-      productoId: this.lenteSolForm.get('productoId')?.value,
-      genero: this.lenteSolForm.get('genero')?.value,
-      forma: this.lenteSolForm.get('forma')?.value,
-      color: this.lenteSolForm.get('color')?.value,
-      colorLente: this.lenteSolForm.get('colorLente')?.value,
-      protuv: this.lenteSolForm.get('protuv')?.value,
-    }
-
+    // Llamar al servicio para guardar el producto
     if (this.id !== null) {
-      this._lenteSolService.editarLenteSol(this.id, LENTESOL).subscribe(data => {
-        this.toastr.info('El producto fue actualizado con éxito!', 'Producto Actualizado!')
-        this.router.navigate(['/dashboard-gerente/gestionar-producto']);
-      }, error => {
-        if (error.error && error.error.msg) {
-          error.error.msg.forEach((errorMessage: string) => {
-            //const errorMessage = error.error.msg.join('\n');
-            this.toastr.error(errorMessage, 'Error');
-          });
-        } else {
-          console.log(error);
-          this.lenteSolForm.reset();
+      this._productoService.editarProducto(this.id, producto).subscribe({
+        next: () => {
+          if (productoData.tipoProducto.nombre === 'Montura') {
+            this.toastr.success('La montura fue registrada con éxito!', 'Montura Registrada!');
+          } else if (productoData.tipoProducto.nombre === 'Lentes de sol') {
+            this.toastr.success('Los lentes de sol fueron registrados con éxito!', 'Lentes de sol Registrados!');
+          } else {
+            this.toastr.success('El producto fue registrado con éxito!', 'Producto Registrado!');
+          }
+          this.router.navigate(['/dashboard-gerente/gestionar-producto']);
+        },
+        error: (error) => {
+          console.error('Error al registrar el producto:', error);
+          this.toastr.error('Hubo un error al registrar el producto.', 'Error');
+          this.productoForm.reset();
         }
-        //console.log(error);
-        //this.gestionarproductoForm.reset();
-      })
+      });
     } else {
-      console.log(LENTESOL);
-      this._lenteSolService.guardarLenteSol(LENTESOL).subscribe(data => {
-        this.toastr.success('El producto fue registrado con éxito!', 'Producto Registrado!');
-        this.router.navigate(['/dashboard-gerente/gestionar-producto']);
-      }, error => {
-        if (error.error && error.error.msg) {
-          error.error.msg.forEach((errorMessage: string) => {
-            //const errorMessage = error.error.msg.join('\n');
-            this.toastr.error(errorMessage, 'Error');
-          });
-        } else {
-          console.log(error);
-          this.lenteSolForm.reset();
-        }
-        //console.log(error);
-        //this.gestionarproductoForm.reset();
-      })
+      this.toastr.error('No existe este producto', 'Error');
     }
   }
 
   esEditar() {
     if (this.id !== null) {
-      this._lenteSolService.obtenerLenteSol(this.id).subscribe(data => {
-        this.lenteSolForm.setValue({
+      this._productoService.obtenerProducto(this.id).subscribe(data => {
+        console.log(data);
+        // Crear un objeto para los valores del formulario
+        const formularioData: any = {
           codigo: data.codigo,
           tipoProducto: data.tipoProducto,
           nombre: data.nombre,
           precio: data.precio,
           imagen: data.imagen,
-          marca: data.marca,
+          marca: data.marca.nombre,
+          stock: data.stock,
+          stockMinimo: data.stockMinimo,
+          estado: data.estado,
           color: data.color,
           genero: data.genero,
           forma: data.forma,
           colorlente: data.colorlente,
           protuv: data.protuv,
-        })
+        };
+
+        // Asignar valores al formulario
+        this.productoForm.setValue(formularioData);
       })
     }
   }

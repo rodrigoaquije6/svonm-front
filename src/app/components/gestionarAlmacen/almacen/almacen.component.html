@@ -16,7 +16,7 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="crear-montura.component.css" rel="stylesheet">
+    <link href="almacen.component.css" rel="stylesheet">
 
 </head>
 
@@ -76,6 +76,22 @@
             <div class="sidebar-heading">
                 Producto
             </div>
+
+            <!-- Gestionar tipoProducto -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" routerLink="/dashboard-gerente/tipoProducto" data-toggle="collapse">
+                    <i class="fa-brands fa-product-hunt"></i>
+                    <span> Tipo de Producto</span>
+                </a>
+            </li>
+
+            <!-- Gestionar Producto -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" routerLink="/dashboard-gerente/gestionar-producto" data-toggle="collapse">
+                    <i class="fa-solid fa-box-archive"></i>
+                    <span> Gestionar Producto</span>
+                </a>
+            </li>
 
             <!-- Gestionar Monturas -->
             <li class="nav-item">
@@ -142,20 +158,21 @@
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
 
+
             <!-- Main Content -->
             <div id="content">
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                    <span class="span-text mx-3">{{titulo | uppercase}}</span>
+                    <span class="span-text mx-3">VISUALIZAR STOCK DE PRODUCTO</span>
 
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
                         <!-- Nav Item - User Information -->
-                        <li class="nav-item" *ngIf="isLoggedIn" (click)="onClickLogout()">
-                            <a class="nav-link" href="">
+                        <li class="nav-item ">
+                            <a class="nav-link" routerLink="/login">
                                 <i class="fa-solid fa-right-from-bracket" style="color: #ff000d;"></i>
                             </a>
                         </li>
@@ -165,97 +182,37 @@
                 </nav>
                 <!-- End of Topbar -->
 
-                <!-- Content -->
-                <div class="container mt-5 mx-4 col-lg-4">
-                    <form [formGroup]="monturaForm" (ngSubmit)="agregarMontura()">
-                        <div class="mb-3 d-flex align-items-center">
-                            <div style="flex: 1;">
-                                <label class="form-label label-text">Codigo</label>
-                                <input type="text" formControlName="codigo" class="form-control" style="width: 350px;"
-                                    placeholder="Escriba el codigo de la montura...">
-                                <div class="text-danger"
-                                    *ngIf="monturaForm.get('codigo')?.hasError('required') && monturaForm.get('codigo')?.touched">
-                                    <span>El codigo de la montura <strong>es obligatorio</strong></span>
-                                </div>
-
-                                <label class="form-label label-text" style="margin-top: 10px;">Marca</label>
-                                <select formControlName="marca" class="form-select" style="width: 350px;">
-                                    <option disabled selected>Selecciona una marca...</option>
-                                    <option *ngFor="let marcas of marca" [value]="marcas.nombre">{{ marcas.nombre }}
-                                    </option>
-                                </select>
-
-                                <label class="form-label label-text" style="margin-top: 10px;">Nombre</label>
-                                <input type="text" formControlName="nombre" class="form-control" style="width: 350px;"
-                                    placeholder="Escriba el nombre de la montura...">
-                                <div class="text-danger"
-                                    *ngIf="monturaForm.get('nombre')?.hasError('required') && monturaForm.get('nombre')?.touched">
-                                    <span>El nombre de la montura <strong>es obligatorio</strong></span>
-                                </div>
-
-                                <label class="form-label label-text" style="margin-top: 10px;">Color</label>
-                                <input type="text" formControlName="color" class="form-control" style="width: 350px;"
-                                    placeholder="Escriba el color de la montura...">
-                                <div class="text-danger"
-                                    *ngIf="monturaForm.get('color')?.hasError('required') && monturaForm.get('color')?.touched">
-                                    <span>El color de la montura <strong>es obligatorio</strong></span>
-                                </div>
-
-                                <label class="form-label label-text" style="margin-top: 10px;">Género</label>
-                                <div class="d-flex">
-                                    <div class="form-check me-3">
-                                        <input class="form-check-input" type="radio" formControlName="género"
-                                            id="hombre" value="Hombre">
-                                        <label class="radio-text form-check-label" for="hombre">
-                                            Hombre
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" formControlName="género" id="mujer"
-                                            value="Mujer">
-                                        <label class="radio-text form-check-label" for="mujer">
-                                            Mujer
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <label class="form-label label-text" style="margin-top: 10px;">Precio</label>
-                                <input type="number" formControlName="precio" class="form-control" style="width: 350px;"
-                                    placeholder="Escriba el precio de la montura...">
-                                <div class="text-danger"
-                                    *ngIf="monturaForm.get('precio')?.hasError('required') && monturaForm.get('precio')?.touched">
-                                    <span>El precio de la montura <strong>es obligatorio</strong></span>
-                                </div>
-
-                                <label class="form-label label-text" style="margin-top: 10px;">Forma</label>
-                                <input type="text" formControlName="forma" class="form-control" style="width: 350px;"
-                                    placeholder="Escriba el color de la montura...">
-                                <div class="text-danger"
-                                    *ngIf="monturaForm.get('forma')?.hasError('required') && monturaForm.get('forma')?.touched">
-                                    <span>La forma de la montura <strong>es obligatoria</strong></span>
-                                </div>
-
-                                <label class="form-label label-text" style="margin-top: 10px;">Imagen</label>
-                                <input type="text" formControlName="imagen" class="form-control" style="width: 350px;"
-                                    placeholder="Ingrese la URL de la imagen...">
+                <!-- Table -->
+                <div class="container mt-5">
+                    <div class="row">
+                            <div class="col-lg-11 offser-lg-2">
+                                <input type="text" class="form-control" style="width: 350px;" [(ngModel)]="terminoBusqueda" (keyup)="obtenerProductos()" placeholder="Buscar producto...">                               
+                                <table *ngIf="listProducto.length > 0" class="table table-striped mx-5 mt-5 text-center">
+                                    <thead>
+                                        <tr>
+                                            <th>Codigo</th>
+                                            <th>Tipo de Producto</th>
+                                            <th>Nombre</th>
+                                            <th>Marca</th>
+                                            <th>Stock</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let producto of listProducto">
+                                            <td>{{ producto.codigo }}</td>
+                                            <td>{{ producto.tipoProducto.nombre }}</td>
+                                            <td>{{ producto.nombre }}</td>
+                                            <td>{{ producto.marca.nombre }}</td>
+                                            <td>{{ producto.stock }}</td>                                     
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <h5 style="text-align: start; margin-top: 10px;" *ngIf="listProducto.length == 0">No hay
+                                    productos para mostrar</h5>
                             </div>
-                            <!-- Contenedor para la imagen -->
-                            <div class="ml-10 mr-2 " style="margin-top: 100%; margin-left: 50px;">
-                                <!-- Imagen -->
-                                <img *ngIf="monturaForm.get('imagen')?.value" [src]="monturaForm.get('imagen')?.value"
-                                    class="img-fluid" alt="Imagen de la montura"
-                                    style="max-width: 100%;max-height: 100%;">
-                            </div>
-                        </div>
-
-                        <button class="btn btn-success float-end" style="margin-left: 10px;">Aceptar</button>
-                        <div class="class mb 3">
-                            <button routerLink="/dashboard-gerente/montura"
-                                class="btn btn-secondary flat-start">Volver</button>
-                        </div>
-                    </form>
+                    </div>
                 </div>
-                <!-- End of Content -->
+                <!-- End of Table -->  
 
             </div>
             <!-- End of Main Content -->
@@ -275,7 +232,6 @@
 
     </div>
     <!-- End of Page Wrapper -->
-
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -292,5 +248,4 @@
     <!-- Page level custom scripts -->
     <script src="js/demo/chart-area-demo.js"></script>
     <script src="js/demo/chart-pie-demo.js"></script>
-
 </body>

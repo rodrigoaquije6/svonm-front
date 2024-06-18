@@ -3,9 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
 import { ToastrService } from 'ngx-toastr';
-import { MonturaService } from 'src/app/services/montura.service';
-import { Montura } from 'src/app/models/montura';
 import { HttpClient } from '@angular/common/http';
+import { ProductoService } from 'src/app/services/producto.service';
 
 @Component({
   selector: 'app-editar-montura',
@@ -21,12 +20,12 @@ export class EditarMonturaComponent implements OnInit {
 
   marca: any[] = [];
 
-  url = 'https://bug-free-telegram-wwv6475qj9536rj-4000.app.github.dev/api/crear-marca/'; //http://localhost:4000/api/rol/
+  url = 'http://localhost:4000/api/crear-marca/'; //http://localhost:4000/api/rol/
 
   constructor(private fb: FormBuilder,
     private toastr: ToastrService,
     private router: Router,
-    private _monturaService: MonturaService,
+    private _productoService: ProductoService,
     private aRouter: ActivatedRoute,
     private api: LoginService,
     private http: HttpClient) {
@@ -37,17 +36,21 @@ export class EditarMonturaComponent implements OnInit {
       precio: ['', Validators.required],
       imagen: ['', Validators.required],
       marca: ['', Validators.required],
-      genero: [''],
-      color: [''],
-      forma: [''],
+      stock: [''],
+      stockMinimo: [''],
+      estado: ['', Validators.required],
+      color: ['', Validators.required],
+      genero: ['', Validators.required],
+      forma: ['', Validators.required],
+      colorlente: [''],
+      protuv: ['']
     })
-
     this.id = this.aRouter.snapshot.paramMap.get('id')
   }
 
   ngOnInit(): void {
-    this.esEditar();
     this.obtenerMarca();
+    this.esEditar();
   }
 
   obtenerMarca() {
@@ -61,78 +64,74 @@ export class EditarMonturaComponent implements OnInit {
     );
   }
 
-  onItemChange(producto: string | null) {
-        console.log('Producto seleccionado:', producto);
-        this.producto = producto;
-  }
+  agregarProducto() {
+    // Obtener los valores del formulario
+    const productoData = this.productoForm.value;
 
-  agregarMonturaForm() {
+    // Crear un nuevo producto con los datos del formulario
+    const producto: any = {
+      codigo: productoData.codigo,
+      tipoProducto: productoData.tipoProducto,
+      nombre: productoData.nombre,
+      precio: productoData.precio,
+      imagen: productoData.imagen,
+      marca: productoData.marca,
+      stock: productoData.stock,
+      stockMinimo: productoData.stockMinimo,
+      estado: productoData.estado,
+      color: productoData.color,
+      genero: productoData.genero,
+      forma: productoData.forma,
+    };
 
-    if (this.productoForm.invalid) {
-      this.toastr.error('Por favor, complete el formulario correctamente.', 'Error');
-      return;
-    }
-
-    const MONTURA: Montura = {
-      productoId: this.productoForm.get('productoId')?.value,
-      color: this.productoForm.get('color')?.value,
-      genero: this.productoForm.get('genero')?.value,
-      forma: this.productoForm.get('forma')?.value,
-      
-    }
-
+    // Llamar al servicio para guardar el producto
     if (this.id !== null) {
-      this._monturaService.editarMontura(this.id, MONTURA).subscribe(data => {
-        this.toastr.info('El producto fue actualizado con éxito!', 'Producto Actualizado!')
-        this.router.navigate(['/dashboard-gerente/gestionar-producto']);
-      }, error => {
-        if (error.error && error.error.msg) {
-          error.error.msg.forEach((errorMessage: string) => {
-            //const errorMessage = error.error.msg.join('\n');
-            this.toastr.error(errorMessage, 'Error');
-          });
-        } else {
-          console.log(error);
+      this._productoService.editarProducto(this.id, producto).subscribe({
+        next: (data) => {
+          if (productoData.tipoProducto === 'Montura') {
+            this.toastr.success('La montura fue registrada con éxito!', 'Montura Registrada!');
+          } else if (productoData.tipoProducto === 'Lentes de sol') {
+            this.toastr.success('Los lentes de sol fueron registrados con éxito!', 'Lentes de sol Registrados!');
+          } else {
+            this.toastr.success('El producto fue registrado con éxito!', 'Producto Registrado!');
+          }
+          this.router.navigate(['/dashboard-gerente/gestionar-producto']);
+        },
+        error: (error) => {
+          console.error('Error al registrar el producto:', error);
+          this.toastr.error('Hubo un error al registrar el producto.', 'Error');
           this.productoForm.reset();
         }
-        //console.log(error);
-        //this.gestionarproductoForm.reset();
-      })
+      });
     } else {
-      console.log(MONTURA);
-      this._monturaService.guardarMontura(MONTURA).subscribe(data => {
-        this.toastr.success('El producto fue registrado con éxito!', 'Producto Registrado!');
-        this.router.navigate(['/dashboard-gerente/gestionar-producto']);
-      }, error => {
-        if (error.error && error.error.msg) {
-          error.error.msg.forEach((errorMessage: string) => {
-            //const errorMessage = error.error.msg.join('\n');
-            this.toastr.error(errorMessage, 'Error');
-          });
-        } else {
-          console.log(error);
-          this.productoForm.reset();
-        }
-        //console.log(error);
-        //this.gestionarproductoForm.reset();
-      })
+      this.toastr.error('No existe este producto', 'Error');
     }
   }
 
   esEditar() {
     if (this.id !== null) {
-      this._monturaService.obtenerMontura(this.id).subscribe(data => {
-        this.productoForm.setValue({
+      this._productoService.obtenerProducto(this.id).subscribe(data => {
+        console.log(data);
+        // Crear un objeto para los valores del formulario
+        const formularioData: any = {
           codigo: data.codigo,
           tipoProducto: data.tipoProducto,
           nombre: data.nombre,
           precio: data.precio,
           imagen: data.imagen,
-          marca: data.marca,
+          marca: data.marca.nombre,
+          stock: data.stock,
+          stockMinimo: data.stockMinimo,
+          estado: data.estado,
           color: data.color,
           genero: data.genero,
-          forma: data.forma
-        })
+          forma: data.forma, 
+          colorlente: '', 
+          protuv: ''
+        };
+  
+        // Asignar valores al formulario
+        this.productoForm.setValue(formularioData);
       })
     }
   }

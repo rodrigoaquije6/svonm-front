@@ -37,6 +37,8 @@ export class EditarOtroComponent implements OnInit {
       precio: ['', Validators.required],
       imagen: ['', Validators.required],
       marca: ['', Validators.required],
+      stock: [''],
+      stockMinimo: [''],
       estado: ['', Validators.required],
       color: [''],
       genero: [''],
@@ -44,13 +46,12 @@ export class EditarOtroComponent implements OnInit {
       colorlente: [''],
       protuv: ['']
     })
-
     this.id = this.aRouter.snapshot.paramMap.get('id')
   }
 
   ngOnInit(): void {
-    this.esEditar();
     this.obtenerMarca();
+    this.esEditar();
   }
 
   obtenerMarca() {
@@ -76,6 +77,8 @@ export class EditarOtroComponent implements OnInit {
       precio: productoData.precio,
       imagen: productoData.imagen,
       marca: productoData.marca,
+      stock: productoData.stock,
+      stockMinimo: productoData.stockMinimo,
       estado: productoData.estado
     };
 
@@ -128,28 +131,23 @@ export class EditarOtroComponent implements OnInit {
           nombre: data.nombre,
           precio: data.precio,
           imagen: data.imagen,
-          marca: data.marca,
-          estado: data.estado
+          marca: data.marca.nombre,
+          stock: data.stock,
+          stockMinimo: data.stockMinimo,
+          estado: data.estado,
+          color: '', // Establecer valores predeterminados
+          genero: '',
+          forma: '', 
+          colorlente: '',
+          protuv: ''
         };
-  
-        // Verificar el tipo de producto y asignar los atributos específicos
-        if (data.tipoProducto === 'Montura') {
-          formularioData.color = data.color || ''; // Establecer valores predeterminados en caso de que no existan
-          formularioData.genero = data.genero || ''; // Establecer valores predeterminados en caso de que no existan
-          formularioData.forma = data.forma || ''; // Establecer valores predeterminados en caso de que no existan
-        } else if (data.tipoProducto === 'Lentes de sol') {
-          formularioData.color = data.color || ''; // Establecer valores predeterminados en caso de que no existan
-          formularioData.genero = data.genero || ''; // Establecer valores predeterminados en caso de que no existan
-          formularioData.forma = data.forma || ''; // Establecer valores predeterminados en caso de que no existan
-          formularioData.colorlente = data.colorlente || ''; // Establecer valores predeterminados en caso de que no existan
-          formularioData.protuv = data.protuv || ''; // Establecer valores predeterminados en caso de que no existan
-        }
   
         // Asignar valores al formulario
         this.productoForm.setValue(formularioData);
       })
     }
   }
+  
   isLoggedIn: boolean = this.api.isLogged();
 
   onClickLogout() {
