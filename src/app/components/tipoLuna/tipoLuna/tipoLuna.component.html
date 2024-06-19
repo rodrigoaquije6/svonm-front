@@ -16,7 +16,7 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="trabajador.component.css" rel="stylesheet">
+    <link href="tipoLuna.component.css" rel="stylesheet">
 
 </head>
 
@@ -171,7 +171,7 @@
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                    <span class="span-text mx-3">GESTIONAR TRABAJADOR</span>
+                    <span class="span-text mx-3">GESTIONAR TIPO DE LUNA</span>
 
 
                     <!-- Topbar Navbar -->
@@ -193,43 +193,39 @@
                 <div class="container mt-5">
                     <div class="row">
                         <div class="col-lg-11 offser-lg-2">
-                            <button class="btn btn-success float-end" routerLink="/dashboard-gerente/trabajador/crear-trabajador">
+                            <button class="btn btn-success float-end" routerLink="/dashboard-gerente/tipoLuna/crear-tipo-luna">
                                 Agregar
                                 <i class="fa-solid fa-plus"></i>
                             </button>
-                            <table *ngIf="listTrabajador.length > 0" class="table table-striped mx-5 mt-5 text-center">
+                            <table *ngIf="listTipoLuna.length > 0" class="table table-striped mx-5 mt-5 text-center">
                                 <thead>
                                     <tr>
-                                        <th>DNI</th>
                                         <th>Nombre</th>
-                                        <th>Rol</th>
+                                        <th>Precio</th>
                                         <th>Estado</th>
                                         <th>Acción</th>
                                     </tr>
                                 </thead>
                                 <tbody>
 
-                                    <tr *ngFor="let trabajador of listTrabajador">                                    
+                                    <tr *ngFor="let tipoLuna of listTipoLuna">                                    
                                         <td>
-                                            {{trabajador.dni}}
+                                            {{tipoLuna.nombre}}                                          
                                         </td>
                                         <td>
-                                            {{trabajador.nombre}}                                          
+                                            {{tipoLuna.precio}}                                     
                                         </td>
                                         <td>
-                                            {{trabajador.rol}}                                     
+                                            {{tipoLuna.estado}}                              
                                         </td>
                                         <td>
-                                            {{trabajador.estado}}                              
-                                        </td>
-                                        <td>
-                                            <i [routerLink]="['/dashboard-gerente/trabajador/editar-trabajador/', trabajador._id]" class="faw fa fa-edit text-primary"></i>
-                                            <i (click)="eliminarTrabajador(trabajador._id)" class='faw fa-solid fa-trash text-danger'></i>
+                                            <i [routerLink]="['/dashboard-gerente/tipoLuna/editar-tipo-luna/', tipoLuna._id]" class="faw fa fa-edit text-primary"></i>
+                                            <i (click)="eliminarTipoluna(tipoLuna._id)" class='faw fa-solid fa-trash text-danger'></i>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
-                            <h5 style="text-align: start; margin-top: 10px;" *ngIf="listTrabajador.length == 0">No hay trabajadores para mostrar</h5>
+                            <h5 style="text-align: start; margin-top: 10px;" *ngIf="listTipoLuna.length == 0">No hay tipo de lunas para mostrar</h5>
                         </div>
                     </div>
                 </div>

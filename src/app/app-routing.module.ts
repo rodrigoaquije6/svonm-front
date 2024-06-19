@@ -22,7 +22,10 @@ import { EditarOtroComponent } from './components/gestionar-producto/editar-otro
 import { CatalogoComponent } from './components/gestionarCatalogo/catalogo/catalogo.component';
 import { VentaComponent } from './components/venta/venta/venta.component';
 import { RegistrarVentaComponent } from './components/venta/registrar-venta/registrar-venta.component'
-
+import { TratamientoComponent } from './components/tratamiento/tratamiento/tratamiento.component';
+import { CrearTratamientoComponent } from './components/tratamiento/crear-tratamiento/crear-tratamiento.component';
+import { TipoLunaComponent } from './components/tipoLuna/tipoLuna/tipoLuna.component';
+import { CrearTipoLunaComponent } from './components/tipoLuna/crear-tipo-luna/crear-tipo-luna.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent},
@@ -39,6 +42,9 @@ const routes: Routes = [
   { path: 'dashboard-gerente/almacen', component: AlmacenComponent},
   { path: 'dashboard-gerente/catalogo', component: CatalogoComponent},
   { path: 'dashboard-gerente/tipoProducto', component: TipoComponent},
+  { path: 'dashboard-gerente/tratamiento', component: TratamientoComponent},
+  { path: 'dashboard-gerente/tipoLuna', component: TipoLunaComponent},
+
   //DASHBOARD-TRABAJADOR
   { path: 'dashboard-trabajador/venta', component: VentaComponent},
 
@@ -54,6 +60,12 @@ const routes: Routes = [
 
   { path: 'dashboard-gerente/luna/crear-luna', component: CrearLunaComponent},
   { path: 'dashboard-gerente/luna/editar-luna/:id', component: CrearLunaComponent},
+
+  { path: 'dashboard-gerente/tratamiento/crear-tratamiento', component: CrearTratamientoComponent},
+  { path: 'dashboard-gerente/tratamiento/editar-tratamiento/:id', component: CrearTratamientoComponent},
+  
+  { path: 'dashboard-gerente/tipoLuna/crear-tipo-luna', component: CrearTipoLunaComponent},
+  { path: 'dashboard-gerente/tipoLuna/editar-tipo-luna/:id', component: CrearTipoLunaComponent},
 
   { path: 'dashboard-gerente/tipoProducto/crear-tipoProducto', component: CrearTipoProductoComponent},
   { path: 'dashboard-gerente/tipoProducto/editar-tipoProducto/:id', component: CrearTipoProductoComponent},

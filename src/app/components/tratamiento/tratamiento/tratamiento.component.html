@@ -16,7 +16,7 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="trabajador.component.css" rel="stylesheet">
+    <link href="tratamiento.component.css" rel="stylesheet">
 
 </head>
 
@@ -104,7 +104,7 @@
             <!-- Gestionar Tipo de Lunas -->
             <li class="nav-item">
                 <a class="nav-link collapsed" routerLink="/dashboard-gerente/tipoLuna" data-toggle="collapse">
-                    <i class="fa-solid fa-solid fa-glasses"></i>
+                    <i class="fa-solid fa-glasses"></i>
                     <span> Tipo de Luna </span>
                 </a>
             </li>
@@ -171,7 +171,7 @@
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                    <span class="span-text mx-3">GESTIONAR TRABAJADOR</span>
+                    <span class="span-text mx-3">GESTIONAR TRATAMIENTO</span>
 
 
                     <!-- Topbar Navbar -->
@@ -193,43 +193,39 @@
                 <div class="container mt-5">
                     <div class="row">
                         <div class="col-lg-11 offser-lg-2">
-                            <button class="btn btn-success float-end" routerLink="/dashboard-gerente/trabajador/crear-trabajador">
+                            <button class="btn btn-success float-end" routerLink="/dashboard-gerente/tratamiento/crear-tratamiento">
                                 Agregar
                                 <i class="fa-solid fa-plus"></i>
                             </button>
-                            <table *ngIf="listTrabajador.length > 0" class="table table-striped mx-5 mt-5 text-center">
+                            <table *ngIf="listTratamiento.length > 0" class="table table-striped mx-5 mt-5 text-center">
                                 <thead>
                                     <tr>
-                                        <th>DNI</th>
                                         <th>Nombre</th>
-                                        <th>Rol</th>
+                                        <th>Precio</th>
                                         <th>Estado</th>
                                         <th>Acción</th>
                                     </tr>
                                 </thead>
                                 <tbody>
 
-                                    <tr *ngFor="let trabajador of listTrabajador">                                    
+                                    <tr *ngFor="let tratamiento of listTratamiento">                                    
                                         <td>
-                                            {{trabajador.dni}}
+                                            {{tratamiento.nombre}}                                          
                                         </td>
                                         <td>
-                                            {{trabajador.nombre}}                                          
+                                            {{tratamiento.precio}}                                     
                                         </td>
                                         <td>
-                                            {{trabajador.rol}}                                     
+                                            {{tratamiento.estado}}                              
                                         </td>
                                         <td>
-                                            {{trabajador.estado}}                              
-                                        </td>
-                                        <td>
-                                            <i [routerLink]="['/dashboard-gerente/trabajador/editar-trabajador/', trabajador._id]" class="faw fa fa-edit text-primary"></i>
-                                            <i (click)="eliminarTrabajador(trabajador._id)" class='faw fa-solid fa-trash text-danger'></i>
+                                            <i [routerLink]="['/dashboard-gerente/tratamiento/editar-tratamiento/', tratamiento._id]" class="faw fa fa-edit text-primary"></i>
+                                            <i (click)="eliminarTratamiento(tratamiento._id)" class='faw fa-solid fa-trash text-danger'></i>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
-                            <h5 style="text-align: start; margin-top: 10px;" *ngIf="listTrabajador.length == 0">No hay trabajadores para mostrar</h5>
+                            <h5 style="text-align: start; margin-top: 10px;" *ngIf="listTratamiento.length == 0">No hay tratamientos para mostrar</h5>
                         </div>
                     </div>
                 </div>

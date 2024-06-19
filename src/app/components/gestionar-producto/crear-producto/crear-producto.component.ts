@@ -25,9 +25,9 @@ export class CrearProductoComponent implements OnInit {
 
   tipoP: any[] = [];
 
-  urlMarca = 'http://localhost:4000/api/crear-marca/';
+  urlMarca = 'https://zany-space-sniffle-q7777qjxj76q397q-4200.app.github.dev/api/crear-marca/';
 
-  urlTipo = 'http://localhost:4000/api/tipoProducto/';
+  urlTipo = 'https://zany-space-sniffle-q7777qjxj76q397q-4200.app.github.dev/api/tipoProducto/';
 
   constructor(private fb: FormBuilder,
     private toastr: ToastrService,

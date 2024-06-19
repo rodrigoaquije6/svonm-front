@@ -16,7 +16,7 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="trabajador.component.css" rel="stylesheet">
+    <link href="crear-tipo-luna.component.css" rel="stylesheet">
 
 </head>
 
@@ -101,14 +101,6 @@
                 </a>
             </li>
 
-            <!-- Gestionar Tipo de Lunas -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" routerLink="/dashboard-gerente/tipoLuna" data-toggle="collapse">
-                    <i class="fa-solid fa-solid fa-glasses"></i>
-                    <span> Tipo de Luna </span>
-                </a>
-            </li>
-
             <!-- Gestionar Tratamientos -->
             <li class="nav-item">
                 <a class="nav-link collapsed" routerLink="/dashboard-gerente/tratamiento" data-toggle="collapse">
@@ -171,7 +163,7 @@
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                    <span class="span-text mx-3">GESTIONAR TRABAJADOR</span>
+                    <span class="span-text mx-3">{{titulo | uppercase}}</span>
 
 
                     <!-- Topbar Navbar -->
@@ -189,51 +181,44 @@
                 </nav>
                 <!-- End of Topbar -->
 
-                <!-- Table -->
-                <div class="container mt-5">
-                    <div class="row">
-                        <div class="col-lg-11 offser-lg-2">
-                            <button class="btn btn-success float-end" routerLink="/dashboard-gerente/trabajador/crear-trabajador">
-                                Agregar
-                                <i class="fa-solid fa-plus"></i>
-                            </button>
-                            <table *ngIf="listTrabajador.length > 0" class="table table-striped mx-5 mt-5 text-center">
-                                <thead>
-                                    <tr>
-                                        <th>DNI</th>
-                                        <th>Nombre</th>
-                                        <th>Rol</th>
-                                        <th>Estado</th>
-                                        <th>Acción</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
+                <!-- Content -->
+                <div class="container mt-5 mx-4 col-lg-4">
+                    <form [formGroup]="tipoLunaForm" (ngSubmit)="agregarTipoLuna()">
+                        <div class="mb-3 d-flex align-items-end">
+                            <div style="flex: 1;">
+                                <label class="form-label label-text" style="margin-top: 10px;">Nombre</label>
+                                <input type="text" formControlName="nombre" class="form-control" style="width: 350px;"
+                                    placeholder="Escriba el nombre del tipo de luna...">
+                                <div class="text-danger"
+                                    *ngIf="tipoLunaForm.get('nombre')?.hasError('required') && tipoLunaForm.get('nombre')?.touched">
+                                    <span>El nombre del tipo de luna <strong>es obligatorio</strong></span>
+                                </div>
 
-                                    <tr *ngFor="let trabajador of listTrabajador">                                    
-                                        <td>
-                                            {{trabajador.dni}}
-                                        </td>
-                                        <td>
-                                            {{trabajador.nombre}}                                          
-                                        </td>
-                                        <td>
-                                            {{trabajador.rol}}                                     
-                                        </td>
-                                        <td>
-                                            {{trabajador.estado}}                              
-                                        </td>
-                                        <td>
-                                            <i [routerLink]="['/dashboard-gerente/trabajador/editar-trabajador/', trabajador._id]" class="faw fa fa-edit text-primary"></i>
-                                            <i (click)="eliminarTrabajador(trabajador._id)" class='faw fa-solid fa-trash text-danger'></i>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <h5 style="text-align: start; margin-top: 10px;" *ngIf="listTrabajador.length == 0">No hay trabajadores para mostrar</h5>
+                                <label class="form-label label-text" style="margin-top: 10px;">Precio</label>
+                                <input type="number" formControlName="precio" class="form-control" style="width: 350px;"
+                                    placeholder="Escriba el precio del tipo de luna...">
+                                <div class="text-danger"
+                                    *ngIf="tipoLunaForm.get('precio')?.hasError('required') && tipoLunaForm.get('precio')?.touched">
+                                    <span>El precio del tipo de luna <strong>es obligatorio</strong></span>
+                                </div>
+
+                                <label class="form-label label-text" style="margin-top: 10px;">Estado</label>
+                                <select formControlName="estado" class="form-select" style="width: 350px;">
+                                    <option disabled selected>Selecciona el estado...</option>
+                                    <option value="Activo">Activo</option>
+                                    <option value="Inactivo">Inactivo</option>
+                                </select>
+
+                            </div>
+                            <button class="btn btn-success float-end" style="margin-left: 10px;">Aceptar</button>
                         </div>
-                    </div>
+                        <div class="class mb 3">
+                            <button routerLink="/dashboard-gerente/tipoLuna"
+                                class="btn btn-secondary flat-start">Volver</button>
+                        </div>
+                    </form>
                 </div>
-                <!-- End of Table -->
+                <!-- End of Content -->
 
             </div>
             <!-- End of Main Content -->
@@ -272,3 +257,4 @@
     <script src="js/demo/chart-pie-demo.js"></script>
 
 </body>
+

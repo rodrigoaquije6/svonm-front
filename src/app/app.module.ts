@@ -30,6 +30,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CatalogoComponent } from './components/gestionarCatalogo/catalogo/catalogo.component';
 import { RegistrarVentaComponent } from './components/venta/registrar-venta/registrar-venta.component';
 import { VentaComponent } from './components/venta/venta/venta.component';
+import { TipoLunaComponent } from './components/tipoLuna/tipoLuna/tipoLuna.component';
+import { CrearTipoLunaComponent } from './components/tipoLuna/crear-tipo-luna/crear-tipo-luna.component';
+import { TratamientoComponent } from './components/tratamiento/tratamiento/tratamiento.component';
+import { CrearTratamientoComponent } from './components/tratamiento/crear-tratamiento/crear-tratamiento.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +60,10 @@ import { VentaComponent } from './components/venta/venta/venta.component';
     CatalogoComponent,
     RegistrarVentaComponent,
     VentaComponent,
+    TipoLunaComponent,
+    CrearTipoLunaComponent,
+    TratamientoComponent,
+    CrearTratamientoComponent,
   ],
   imports: [
     BrowserModule,
