@@ -157,16 +157,47 @@
 
                 <!-- End of Topbar -->
 
-                <!-- TABLE -->
+                <!-- Table -->
                 <div class="container mt-5">
                     <div class="row">
                         <div class="col-lg-11 offser-lg-2">
+                            <input type="text" class="form-control" style="width: 350px;" [(ngModel)]="terminoBusqueda"
+                                (keyup)="obtenerVentas()" placeholder="Buscar venta...">
                             <button class="btn btn-success float-end" routerLink="/dashboard-trabajador/venta/registrar-venta">
-                                Registrar Venta
+                                Agregar
+                                <i class="fa-solid fa-plus"></i>
                             </button>
+                            <table *ngIf="listVenta.length > 0" class="table table-striped mx-5 mt-5 text-center">
+                                <thead>
+                                    <tr>
+                                        <th>Codigo</th>
+                                        <th>Cliente</th>
+                                        <th>Fecha</th>
+                                        <th>Estado</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let venta of listVenta">
+                                        <td>{{ venta.venta.codigo }}</td>
+                                        <td>{{ venta.venta.idCliente.nombres }} {{ venta.venta.idCliente.apellidos }}</td>
+                                        <td>{{ venta.venta.fechaCreacion | date:'dd-MM-yyyy'}}</td>
+                                        <td>{{ venta.venta.estado }}</td>
+                                        <td>
+                                            <i [routerLink]="['/dashboard-trabajador/venta/registrar-editar/:id/', venta._id]" class="faw fa fa-edit text-primary"></i>
+                                            <!--<i class="fas" [ngClass]="{'fa-eye': producto.estado === 'Activo', 'fa-eye-slash': producto.estado === 'Inactivo', 
+                                                'text-success': producto.estado === 'Activo', 'text-danger': producto.estado === 'Inactivo'}" (click)="toggleEstadoProducto(producto)">
+                                            </i> -->
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <h5 style="text-align: start; margin-top: 10px;" *ngIf="listVenta.length == 0">No hay
+                                ventas para mostrar</h5>
                         </div>
                     </div>
                 </div>
+                <!-- End of Table -->
 
             </div>
             <!-- End of Main Content -->

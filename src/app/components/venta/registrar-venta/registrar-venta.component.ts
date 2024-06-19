@@ -94,7 +94,7 @@ export class RegistrarVentaComponent implements OnInit {
       aCuenta: ['', Validators.required],
       saldo: ['', Validators.required],
       total: ['', Validators.required],
-      estado: ['Activo'],
+      estado: ['En fabricación'],
       idCliente: ['', Validators.required],
       idTrabajador: ['661f922817a3412bdbe33107', Validators.required],
       idTipoLuna: '',

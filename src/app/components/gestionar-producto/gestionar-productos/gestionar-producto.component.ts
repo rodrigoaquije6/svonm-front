@@ -81,7 +81,6 @@ export class GestionarProductoComponent {
     );
   }
 
-
   isLoggedIn: boolean = this.api.isLogged();
 
   onClickLogout() {

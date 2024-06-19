@@ -30,6 +30,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CatalogoComponent } from './components/gestionarCatalogo/catalogo/catalogo.component';
 import { RegistrarVentaComponent } from './components/venta/registrar-venta/registrar-venta.component';
 import { VentaComponent } from './components/venta/venta/venta.component';
+import { ComprasComponent } from './components/compra/compras/compras.component';
+import { RegistrarCompraComponent } from './components/compra/registrar-compra/registrar-compra.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +58,8 @@ import { VentaComponent } from './components/venta/venta/venta.component';
     CatalogoComponent,
     RegistrarVentaComponent,
     VentaComponent,
+    ComprasComponent,
+    RegistrarCompraComponent,
   ],
   imports: [
     BrowserModule,

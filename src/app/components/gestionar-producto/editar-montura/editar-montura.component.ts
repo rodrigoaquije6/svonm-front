@@ -20,7 +20,11 @@ export class EditarMonturaComponent implements OnInit {
 
   marca: any[] = [];
 
-  url = 'http://localhost:4000/api/crear-marca/'; //http://localhost:4000/api/rol/
+  proveedor: any[] = [];
+
+  urlMarca = 'http://localhost:4000/api/crear-marca/';
+
+  urlProveedor = 'http://localhost:4000/api/proveedor/'; 
 
   constructor(private fb: FormBuilder,
     private toastr: ToastrService,
@@ -36,6 +40,7 @@ export class EditarMonturaComponent implements OnInit {
       precio: ['', Validators.required],
       imagen: ['', Validators.required],
       marca: ['', Validators.required],
+      proveedor: ['', Validators.required],
       stock: [''],
       stockMinimo: [''],
       estado: ['', Validators.required],
@@ -49,17 +54,29 @@ export class EditarMonturaComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.obtenerProveedor();
     this.obtenerMarca();
     this.esEditar();
   }
 
   obtenerMarca() {
-    this.http.get<any[]>(this.url).subscribe(
+    this.http.get<any[]>(this.urlMarca).subscribe(
       (marcas) => {
         this.marca = marcas;
       },
       (error) => {
         console.error('Error al obtener las marcas de los productos', error);
+      }
+    );
+  }
+
+  obtenerProveedor() {
+    this.http.get<any[]>(this.urlProveedor).subscribe(
+      (proveedores) => {
+        this.proveedor = proveedores;
+      },
+      (error) => {
+        console.error('Error al obtener los proveedores de los productos', error);
       }
     );
   }
@@ -76,6 +93,7 @@ export class EditarMonturaComponent implements OnInit {
       precio: productoData.precio,
       imagen: productoData.imagen,
       marca: productoData.marca,
+      proveedor: productoData.proveedor,
       stock: productoData.stock,
       stockMinimo: productoData.stockMinimo,
       estado: productoData.estado,
@@ -120,6 +138,7 @@ export class EditarMonturaComponent implements OnInit {
           precio: data.precio,
           imagen: data.imagen,
           marca: data.marca.nombre,
+          proveedor: data.proveedor.nombre,
           stock: data.stock,
           stockMinimo: data.stockMinimo,
           estado: data.estado,

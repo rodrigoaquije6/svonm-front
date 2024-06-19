@@ -226,6 +226,13 @@
                                                 marcas.nombre }}
                                             </option>
                                         </select>
+                                        <label class="form-label label-text" style="margin-top: 10px;">Proveedor</label>
+                                        <select formControlName="proveedor" class="form-select" style="width: 350px;">
+                                            <option disabled selected>Selecciona el proveedor...</option>
+                                            <option *ngFor="let proveedores of proveedor" [value]="proveedores.nombre">{{
+                                                proveedores.nombre }}
+                                            </option>
+                                        </select>
                                     </div>
                                     <!-- Contenedor para la imagen -->
                                     <div class="ml-10 mr-2 " style="margin-top: 20%; margin-left: 50px;">
@@ -360,6 +367,13 @@
                                                 </label>
                                             </div>
                                         </div>
+                                        <label class="form-label label-text" style="margin-top: 10px;">Proveedor</label>
+                                        <select formControlName="proveedor" class="form-select" style="width: 350px;">
+                                            <option disabled selected>Selecciona el proveedor...</option>
+                                            <option *ngFor="let proveedores of proveedor" [value]="proveedores.nombre">{{
+                                                proveedores.nombre }}
+                                            </option>
+                                        </select>
                                     </div>
                                     <!-- Contenedor para la imagen -->
                                     <div class="ml-10 mr-2 " style="margin-top: 100%; margin-left: 50px;">
@@ -464,6 +478,14 @@
                                             *ngIf="productoForm.get('color')?.hasError('required') && productoForm.get('color')?.touched">
                                             <span>El color de la montura <strong>es obligatorio</strong></span>
                                         </div>
+
+                                        <label class="form-label label-text" style="margin-top: 10px;">Proveedor</label>
+                                        <select formControlName="proveedor" class="form-select" style="width: 350px;">
+                                            <option disabled selected>Selecciona el proveedor...</option>
+                                            <option *ngFor="let proveedores of proveedor" [value]="proveedores.nombre">{{
+                                                proveedores.nombre }}
+                                            </option>
+                                        </select>
                                     </div>
                                     <!-- Contenedor para la imagen -->
                                     <div class="ml-10 mr-2 " style="margin-top: 100%; margin-left: 50px;">

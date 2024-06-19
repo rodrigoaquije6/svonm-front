@@ -195,6 +195,7 @@
                                         <th>Nombre</th>
                                         <th>Marca</th>
                                         <th>Precio</th>
+                                        <th>Proveedor</th>
                                         <th>Estado</th>
                                         <th>Acciones</th>
                                     </tr>
@@ -206,6 +207,7 @@
                                         <td>{{ producto.nombre }}</td>
                                         <td>{{ producto.marca.nombre }}</td>
                                         <td>{{ producto.precio }}</td>
+                                        <td>{{ producto.proveedor.nombre }}</td>
                                         <td>{{ producto.estado }}</td>
                                         <td>
                                             <i class="faw fa fa-edit text-primary" (click)="editarProducto(producto)"></i>

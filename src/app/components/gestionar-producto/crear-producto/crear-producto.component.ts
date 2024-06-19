@@ -23,9 +23,13 @@ export class CrearProductoComponent implements OnInit {
 
   marca: any[] = [];
 
+  proveedor: any[] = [];
+
   tipoP: any[] = [];
 
   urlMarca = 'http://localhost:4000/api/crear-marca/';
+
+  urlProveedor = 'http://localhost:4000/api/proveedor/';
 
   urlTipo = 'http://localhost:4000/api/tipoProducto/';
 
@@ -44,6 +48,7 @@ export class CrearProductoComponent implements OnInit {
       precio: ['', Validators.required],
       imagen: [''],
       marca: ['', Validators.required],
+      proveedor: ['', Validators.required],
       stock: [0],
       stockMinimo: [2],
       estado: ['Activo'],
@@ -58,7 +63,7 @@ export class CrearProductoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    //this.esEditar();
+    this.obtenerProveedor();
     this.obtenerMarca();
     this.obtenerTipoProducto();
   }
@@ -70,6 +75,17 @@ export class CrearProductoComponent implements OnInit {
       },
       (error) => {
         console.error('Error al obtener las marcas de los productos', error);
+      }
+    );
+  }
+
+  obtenerProveedor() {
+    this.http.get<any[]>(this.urlProveedor).subscribe(
+      (proveedores) => {
+        this.proveedor = proveedores;
+      },
+      (error) => {
+        console.error('Error al obtener el proveedor de los productos', error);
       }
     );
   }
@@ -101,6 +117,7 @@ export class CrearProductoComponent implements OnInit {
       precio: productoData.precio,
       imagen: productoData.imagen,
       marca: productoData.marca,
+      proveedor : productoData.proveedor,
       stock: productoData.stock,
       stockMinimo: productoData.stockMinimo,
       estado: productoData.estado
@@ -140,42 +157,6 @@ export class CrearProductoComponent implements OnInit {
       }
     });
   }
-
-  /*esEditar() {
-    if (this.id !== null) {
-      this.titulo = 'Editar Producto';
-      this._productoService.obtenerProducto(this.id).subscribe(data => {
-        const productoFormValues: any = {
-          codigo: data.codigo,
-          tipoProducto: data.tipoProducto,
-          nombre: data.nombre,
-          precio: data.precio,
-          imagen: data.imagen,
-          marca: data.marca,
-          color: '',
-          genero: '',
-          forma: '',
-          colorlente: '',
-          protuv: ''
-        };
-  
-        // Asignar los atributos específicos dependiendo del tipo de producto
-        if (data.tipoProducto === 'Montura') {
-          productoFormValues.color = data.color;
-          productoFormValues.genero = data.genero;
-          productoFormValues.forma = data.forma;
-        } else if (data.tipoProducto === 'Lentes de sol') {
-          productoFormValues.color = data.color;
-          productoFormValues.genero = data.genero;
-          productoFormValues.forma = data.forma;
-          productoFormValues.colorlente = data.colorlente;
-          productoFormValues.protuv = data.protuv;
-        }
-  
-        this.productoForm.setValue(productoFormValues);
-      });
-    }
-  }*/
 
 isLoggedIn: boolean = this.api.isLogged();
 
