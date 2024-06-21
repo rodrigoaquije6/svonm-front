@@ -160,7 +160,7 @@
 
                 <!-- CONTENT -->
                 <div class="container mx-4">
-                    <form [formGroup]="ingresoForm">
+                    <form [formGroup]="ingresoForm" (ngSubmit)="guardarIngreso()">
                         <div class="mb-3 d-flex align-items-end">
                             <div class="arreglo-orden">
                                 <div style="flex: 1;">
@@ -214,10 +214,11 @@
                                         <div style="flex: 1;">
                                             <label class="form-label label-text"
                                                 style="margin-right: 20px; margin-top: 30px;">PRODUCTO</label>
-                                            <select class="form-select" style="width: 300px;" formControlName="idProducto" 
-                                                (change)="onProveedorChange($event)">
+                                            <select class="form-select" style="width: 300px;"
+                                                formControlName="idProducto" (change)="onProductoChange($event)">
                                                 <option value="" disabled selected>Seleccione un producto...</option>
-                                                <option *ngFor="let producto of productos" [value]="producto._id">{{
+                                                <option *ngFor="let producto of productosFiltrados"
+                                                    [value]="producto._id">{{
                                                     producto.nombre }}</option>
                                             </select>
                                             <div
@@ -239,8 +240,7 @@
                                                         class="form-label label-text">Cantidad:</label>
                                                     <input type="number" id="cantidad" class="form-control"
                                                         formControlName="cantidad" style="width: 100px;"
-                                                        [(ngModel)]="cantidad"
-                                                        (ngModelChange)="calcularTotal(selectedProduct)">
+                                                        [(ngModel)]="cantidad">
                                                 </div>
                                                 <div>
                                                     <button class="btn btn-success btn-sm"
@@ -264,41 +264,12 @@
                                                     <tbody>
                                                         <tr *ngFor="let producto of productosAgregados; let i = index">
                                                             <td><button class="btn btn-danger btn-sm"
-                                                                (click)="quitarProducto(i)">x</button></td>
+                                                                    (click)="quitarProducto(i)">x</button></td>
                                                             <td>{{ producto.codigo }}</td>
                                                             <td>{{ producto.nombre }}</td>
                                                             <td>{{ producto.precio }}</td>
                                                             <td>{{ producto.cantidad }}</td>
-                                                            <td>{{ producto.total }} </td>       
-                                                        </tr>
-                                                        <!-- Fila de resumen -->
-                                                        <tr>
-                                                            <td colspan="5" style="text-align: right;">
-                                                                <strong>Subtotal:</strong></td>
-                                                            <td>{{ subtotal }}</td>
-                                                            <td></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td colspan="5" style="text-align: right;"><strong>Descuento
-                                                                    (%):</strong></td>
-                                                            <td><input type="number" class="form-control" style="width: 100px;"
-                                                                    [(ngModel)]="descuento"
-                                                                    (ngModelChange)="calcularTotales()"></td>
-                                                            <td></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td colspan="5" style="text-align: right;"><strong>Impuesto
-                                                                    (%):</strong></td>
-                                                            <td><input type="number" class="form-control" style="width: 100px;"
-                                                                    [(ngModel)]="impuesto"
-                                                                    (ngModelChange)="calcularTotales()"></td>
-                                                            <td></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td colspan="5" style="text-align: right;">
-                                                                <strong>Total:</strong></td>
-                                                            <td>{{ total }}</td>
-                                                            <td></td>
+                                                            <td>{{ producto.total }} </td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -307,8 +278,47 @@
                                     </div>
                                 </form>
 
+                                <!-- Formulario de Totales -->
+                                <div style="display: flex; justify-content: flex-end;">
+                                    <div style="display: flex; justify-content: flex-end;">
+                                        <table class="table table-striped text-center">
+                                            <tbody>
+                                                <tr>
+                                                    <td colspan="6" style="text-align: right;">
+                                                        <strong>Subtotal: S/.</strong>
+                                                    </td>
+                                                    <td><input type="number" class="form-control text-end text-center"
+                                                            style="width: 90px;" formControlName="subtotal" readonly>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="6" style="text-align: right;"><strong>Descuento
+                                                            (%):</strong></td>
+                                                    <td><input type="number" class="form-control text-end text-center"
+                                                            style="width: 90px;" formControlName="descuento"
+                                                            (input)="calcularTotal()"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="6" style="text-align: right;"><strong>Impuesto
+                                                            (%):</strong></td>
+                                                    <td><input type="number" class="form-control text-end text-center"
+                                                            style="width: 90px;" formControlName="impuesto"
+                                                            (input)="calcularTotal()"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="6" style="text-align: right;">
+                                                        <strong>Total: S/.</strong>
+                                                    </td>
+                                                    <td><input type="number" class="form-control text-end text-center"
+                                                            style="width: 90px;" formControlName="total" readonly></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
                                 <!-- OBSERVACION -->
-                                <div style="flex: 1; margin-top: 20px;">
+                                <div style="flex: 1;">
                                     <div class="arreglo-orden">
                                         <label class="form-label label-text">Observaciones</label>
                                         <textarea class="form-control" style="width: 500px; height: 100px;"
@@ -319,8 +329,17 @@
                                 <div style="flex: 1;margin-top: 20px;">
                                     <div class="arreglo-orden">
                                         <label class="form-label label-text">Vendedor(a)</label>
-                                        <input type="text" class="form-control" style="width: 200px;"
+                                        <input type="text" class="form-control" style="width: 200px;margin-right: 40px;"
                                             formControlName="idTrabajador" placeholder="Nombre Vendedor" readonly>
+                                    </div>
+                                    <div class="arreglo-orden">
+                                        <label class="form-label label-text">Fecha de Entrega Estimada</label>
+                                        <input type="date" class="form-control" style="width: 200px;"
+                                            formControlName="fechaEntregaEstimada"
+                                            placeholder="Ingrese fecha estimada...">
+                                        <div style="margin-top: 10px;" *ngIf="ingresoForm.get('fechaEntregaEstimada')?.hasError('fechaInvalida')">
+                                            <span class="text-danger">Seleccione una fecha válida <strong>(no anterior a hoy ni más de 14 días).</strong></span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

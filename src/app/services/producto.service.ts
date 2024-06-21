@@ -32,4 +32,8 @@ export class ProductoService {
     const url = `${this.url}${id}/estado`;
     return this.http.put(url, { estado: nuevoEstado });
   }
+
+  obtenerProductosPorProveedor(idProveedor: string): Observable<any> {
+    return this.http.get(`${this.url}proveedor/${idProveedor}`);
+  }
 }

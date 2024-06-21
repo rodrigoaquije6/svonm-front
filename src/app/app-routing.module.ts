@@ -41,9 +41,10 @@ const routes: Routes = [
   { path: 'dashboard-gerente/almacen', component: AlmacenComponent},
   { path: 'dashboard-gerente/catalogo', component: CatalogoComponent},
   { path: 'dashboard-gerente/tipoProducto', component: TipoComponent},
+  { path: 'dashboard-gerente/ingresos', component: ComprasComponent},
+
   //DASHBOARD-TRABAJADOR
   { path: 'dashboard-trabajador/venta', component: VentaComponent},
-  { path: 'dashboard-trabajador/ingresos', component: ComprasComponent},
 
   //------------------------------------------GESTIONAR------------------------------------------
   //DASHBOARD-GERENTE
@@ -68,13 +69,13 @@ const routes: Routes = [
   { path: 'dashboard-gerente/gestionar-producto/editar-otro/:id', component: EditarOtroComponent},
   { path: 'dashboard-gerente/gestionar-producto/editar/:id', component: EditarOtroComponent},
 
+  { path: 'dashboard-gerente/ingresos/registrar-ingreso', component: RegistrarCompraComponent},
+  { path: 'dashboard-gerente/ingresos/editar-ingreso/:id', component: RegistrarCompraComponent},
+
   //DASHBOARD-TRABAJADOR
   { path: 'dashboard-trabajador/venta/registrar-venta', component: RegistrarVentaComponent},
   { path: 'dashboard-trabajador/venta/editar-venta/:id', component: RegistrarVentaComponent},
 
-  { path: 'dashboard-trabajador/ingresos/registrar-ingreso', component: RegistrarCompraComponent},
-  { path: 'dashboard-trabajador/ingresos/editar-ingreso/:id', component: RegistrarCompraComponent},
-  
   { path: '**', redirectTo: '', pathMatch: 'full' }
 ];  
 

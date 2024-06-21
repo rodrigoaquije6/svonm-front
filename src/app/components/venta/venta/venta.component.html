@@ -171,8 +171,9 @@
                                 <thead>
                                     <tr>
                                         <th>Codigo</th>
+                                        <th>DNI</th>
                                         <th>Cliente</th>
-                                        <th>Fecha</th>
+                                        <th>Fecha de Registro</th>
                                         <th>Estado</th>
                                         <th>Acciones</th>
                                     </tr>
@@ -180,6 +181,7 @@
                                 <tbody>
                                     <tr *ngFor="let venta of listVenta">
                                         <td>{{ venta.venta.codigo }}</td>
+                                        <td>{{ venta.venta.idCliente.dni }}</td>
                                         <td>{{ venta.venta.idCliente.nombres }} {{ venta.venta.idCliente.apellidos }}</td>
                                         <td>{{ venta.venta.fechaCreacion | date:'dd-MM-yyyy'}}</td>
                                         <td>{{ venta.venta.estado }}</td>

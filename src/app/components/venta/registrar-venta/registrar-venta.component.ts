@@ -258,13 +258,23 @@ export class RegistrarVentaComponent implements OnInit {
     console.log('Producto seleccionado:', this.selectedProduct);
 
     if (this.selectedProduct) {
-      this.cantidad = 1;
+      this.cantidad = 0;
     }
   }
 
   agregarProducto() {
     // Verificar si se ha seleccionado un producto y la cantidad es válida
     if (this.selectedProduct && this.cantidad > 0) {
+      // Verificar si el producto ya ha sido agregado
+      const productoExistente = this.productosAgregados.find(producto => producto._id === this.selectedProduct?._id);
+      if (productoExistente) {
+        this.toastr.warning('El producto ya ha sido agregado. Si deseas modificar la cantidad, elimínalo y agrégalo nuevamente.', 'Advertencia');
+        this.detalleVentaForm.reset();
+        this.selectedProduct = undefined;
+        this.cantidad = 0;
+        return;
+      }
+  
       // Verificar si la cantidad ingresada es menor o igual al stock disponible
       if (this.cantidad <= this.selectedProduct.stock) {
         // Calcular el total del producto multiplicando la cantidad por el precio
@@ -286,6 +296,7 @@ export class RegistrarVentaComponent implements OnInit {
         }));
   
         // Limpiar el producto seleccionado y la cantidad después de agregar
+        this.detalleVentaForm.reset();
         this.selectedProduct = undefined;
         this.cantidad = 0;
   
@@ -294,9 +305,11 @@ export class RegistrarVentaComponent implements OnInit {
         this.calcularTotalGeneral();
       } else {
         this.toastr.error('La cantidad ingresada supera el stock disponible para este producto.', 'Error');
+        this.cantidad = 0;
       }
     } else {
       this.toastr.error('Por favor, seleccione un producto y asegúrese de ingresar una cantidad válida.', 'Error');
+      this.cantidad = 0;
     }
   }
 
@@ -407,6 +420,7 @@ export class RegistrarVentaComponent implements OnInit {
     this._ventaService.guardarVenta(ventaData).subscribe(
       (data) => {
         this.toastr.success('La venta ha sido registrada exitosamente.', 'Venta Registrada');
+        this.router.navigate(['/dashboard-trabajador/venta']);
         // Limpiar los formularios y los campos después de guardar la venta
         this.ventaForm.reset();
         this.productosAgregados = [];
