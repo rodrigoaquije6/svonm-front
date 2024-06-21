@@ -13,7 +13,7 @@ export class TrabajadorService {
   constructor(private http: HttpClient) { }
 
   getTrabajador(): Observable<any> {
-    return this.http.get(this.url);
+    return this.http.get(this.url + 'trabajador');
   }
 
   obtenerTrabajador(id: string): Observable<any> {
@@ -26,12 +26,12 @@ export class TrabajadorService {
   }
 
   guardarTrabajador(trabajador: Trabajador): Observable<any> {
-    let direccion = this.url + 'crear-trabajador';
+    let direccion = this.url + 'trabajador';
     return this.http.post(direccion, trabajador);
   }
 
   editarTrabajador(id: string, trabajador: Trabajador): Observable<any> {
-    let direccion = this.url + 'editar-trabajador';
+    let direccion = this.url + 'trabajador';
     return this.http.put(direccion + id, trabajador);
   }
 

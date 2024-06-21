@@ -195,16 +195,16 @@
 
                                     <tr *ngFor="let trabajador of listTrabajador">                                    
                                         <td>
-                                            {{trabajador.dni}}
+                                            {{trabajador.user_dni}}
                                         </td>
                                         <td>
-                                            {{trabajador.nombre}}                                          
+                                            {{trabajador.pnombre}}                                          
                                         </td>
                                         <td>
-                                            {{trabajador.rol}}                                     
+                                            {{trabajador.role}}                                     
                                         </td>
                                         <td>
-                                            {{trabajador.estado}}                              
+                                            {{trabajador.isActive}}                              
                                         </td>
                                         <td>
                                             <i [routerLink]="['/dashboard-gerente/trabajador/editar-trabajador/', trabajador._id]" class="faw fa fa-edit text-primary"></i>

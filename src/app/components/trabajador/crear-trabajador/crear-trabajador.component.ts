@@ -6,6 +6,7 @@ import { LoginService } from 'src/app/services/login.service';
 import { ToastrService } from 'ngx-toastr';
 import { Trabajador } from 'src/app/models/trabajador';
 import { TrabajadorService } from 'src/app/services/trabajador.service';
+import { RolService } from 'src/app/services/rol.service';
 
 @Component({
   selector: 'app-crear-trabajador',
@@ -24,6 +25,7 @@ export class CrearTrabajadorComponent implements OnInit {
   url = 'https://shiny-tribble-rqj5r9gj7xwf5x55-4000.app.github.dev/api/crear-marca/'; //http://localhost:4000/api/rol/
 
   constructor(private fb: FormBuilder,
+    private _rol: RolService,
     private toastr: ToastrService,
     private router: Router,
     private _trabajadorService: TrabajadorService,
@@ -31,10 +33,18 @@ export class CrearTrabajadorComponent implements OnInit {
     private api: LoginService,
     private http: HttpClient) {
     this.trabajadorForm = this.fb.group({
-      dni: ['', Validators.required],
-      nombre: ['', Validators.required],
-      rol: ['', Validators.required],
-      estado: ['', Validators.required],
+      user_dni: ['', Validators.required],
+      role: ['', Validators.required],
+      pnombre: ['', Validators.required],
+      snombre: '',
+      apellidop: ['', Validators.required],
+      apellidom: ['', Validators.required],
+      username: ['', Validators.required],
+      password: ['', Validators.required],
+      celular: ['', Validators.required],
+      fecha_nac: ['', Validators.required],
+      email: ['', Validators.required],
+      isActive: ['', Validators.required],
     })
     this.id = this.aRouter.snapshot.paramMap.get('id')
   }
@@ -45,14 +55,15 @@ export class CrearTrabajadorComponent implements OnInit {
   }
 
   obtenerRol() {
-    this.http.get<any[]>(this.url).subscribe(
+    this._rol.getRoles().subscribe(
       (roles) => {
         this.rol = roles;
       },
       (error) => {
-        console.error('Error al obtener los tipos de productos:', error);
+        console.error('Error al obtener los roles', error);
       }
-    );
+    );;
+
   }
 
   agregarTrabajador() {
@@ -63,10 +74,18 @@ export class CrearTrabajadorComponent implements OnInit {
     }
 
     const TRABAJADOR: Trabajador = {
-      dni: this.trabajadorForm.get('dni')?.value,
-      nombre: this.trabajadorForm.get('nombre')?.value,
-      rol: this.trabajadorForm.get('rol')?.value,
-      estado: this.trabajadorForm.get('estado')?.value
+      user_dni: this.trabajadorForm.get('user_dni')?.value,
+      role: this.trabajadorForm.get('role')?.value,
+      pnombre: this.trabajadorForm.get('pnombre')?.value,
+      snombre: this.trabajadorForm.get('snombre')?.value,
+      apellidop: this.trabajadorForm.get('apellidop')?.value,
+      apellidom: this.trabajadorForm.get('apellidom')?.value,
+      username: this.trabajadorForm.get('username')?.value,
+      password: this.trabajadorForm.get('password')?.value,
+      celular: this.trabajadorForm.get('celular')?.value,
+      fecha_nac: this.trabajadorForm.get('fecha_nac')?.value,
+      email: this.trabajadorForm.get('email')?.value,
+      isActive: this.trabajadorForm.get('isActive')?.value,
     }
 
     if (this.id !== null) {

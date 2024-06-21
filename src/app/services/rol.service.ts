@@ -12,7 +12,7 @@ export class RolService {
   constructor(private http: HttpClient) { }
 
   getRoles(): Observable<any> {
-    return this.http.get(this.url);
+    return this.http.get(this.url + 'rol');
   }
 
   obtenerRol(id: string): Observable<any> {
@@ -25,7 +25,7 @@ export class RolService {
   }
 
   guardarRol(rol: Rol): Observable<any> {
-    let direccion = this.url + 'crear-rol';
+    let direccion = this.url + 'rol';
     return this.http.post(direccion, rol);
   }
 
