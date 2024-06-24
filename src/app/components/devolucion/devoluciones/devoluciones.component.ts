@@ -29,7 +29,7 @@ export class DevolucionesComponent {
       if (data && data.ventasConDetalles) {
         // Filtrar por estado 'Finalizada' y 'Devuelto'
         const ventasFiltradas = data.ventasConDetalles.filter((venta: any) =>
-          venta.venta.estado === 'Finalizada' || venta.venta.estado === 'Devuelto'
+          venta.venta.estado === 'Finalizada' || venta.venta.estado === 'Cambio Solicitado' || venta.venta.estado === 'Reembolsada'
         );
 
         // Filtrar por término de búsqueda

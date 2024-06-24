@@ -7,11 +7,11 @@ import { LoginService } from 'src/app/services/login.service';
 import { VentaService } from 'src/app/services/venta.service';
 
 @Component({
-  selector: 'app-venta',
-  templateUrl: './venta.component.html',
-  styleUrls: ['./venta.component.css']
+  selector: 'app-ventas',
+  templateUrl: './ventas.component.html',
+  styleUrls: ['./ventas.component.css']
 })
-export class VentaComponent {
+export class VentasComponent {
   listVenta: any[] = [];
 
   listProductoOriginal: Venta[] = [];
@@ -40,14 +40,13 @@ export class VentaComponent {
           (venta.venta.codigo.toLowerCase().includes(this.terminoBusqueda.toLowerCase()) ||
             venta.venta.idCliente.nombres.toLowerCase().includes(this.terminoBusqueda.toLowerCase()) ||
             venta.venta.idCliente.apellidos.toLowerCase().includes(this.terminoBusqueda.toLowerCase())) &&
-          venta.venta.estado === 'Finalizada' // Filtrar solo las ventas con estado 'Finalizada'
+          venta.venta.estado === 'En Fabricación' || venta.venta.estado === 'En Tienda'
         );
       }
     }, error => {
       console.log(error);
     });
   }
-
   limpiarBusqueda() {
     this.terminoBusqueda = '';
     this.obtenerVentas();
@@ -81,29 +80,10 @@ export class VentaComponent {
     }
   }
 
-  descargarContrato(id: string) {
-    this._ventaService.descargarContratoPDF(id).subscribe(
-      response => {
-        const blob = new Blob([response], { type: 'application/pdf' });
-        const url = window.URL.createObjectURL(blob);
-        const link = document.createElement('a');
-        link.href = url;
-        link.setAttribute('download', `Contrato-Venta-${id}.pdf`);
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-      },
-      error => {
-        console.error('Error al descargar el contrato', error);
-      }
-    );
-  }
-
   isLoggedIn: boolean = this.api.isLogged();
 
   onClickLogout() {
     localStorage.removeItem('token');
     this.router.navigate(['login']);
   }
-
 }

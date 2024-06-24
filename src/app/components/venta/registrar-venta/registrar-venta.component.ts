@@ -94,11 +94,11 @@ export class RegistrarVentaComponent implements OnInit {
       aCuenta: ['', Validators.required],
       saldo: ['', Validators.required],
       total: ['', Validators.required],
-      estado: ['En fabricación'],
+      estado: ['En Fabricación'],
       idCliente: ['', Validators.required],
       idTrabajador: ['661f922817a3412bdbe33107', Validators.required],
-      idTipoLuna: '',
-      idMaterialLuna: '',
+      idTipoLuna: [''],
+      idMaterialLuna: [''],
       productosAgregados: this.fb.array([]),
       tratamientosAgregados: this.fb.array([])
     });
@@ -258,7 +258,7 @@ export class RegistrarVentaComponent implements OnInit {
     console.log('Producto seleccionado:', this.selectedProduct);
 
     if (this.selectedProduct) {
-      this.cantidad = 0;
+      this.cantidad = 1;
     }
   }
 
@@ -274,19 +274,19 @@ export class RegistrarVentaComponent implements OnInit {
         this.cantidad = 0;
         return;
       }
-  
+
       // Verificar si la cantidad ingresada es menor o igual al stock disponible
       if (this.cantidad <= this.selectedProduct.stock) {
         // Calcular el total del producto multiplicando la cantidad por el precio
         const total = this.cantidad * this.selectedProduct.precio;
-  
+
         // Agregar el producto al array de productos agregados
         this.productosAgregados.push({
           ...this.selectedProduct,
           cantidad: this.cantidad,
           total: total
         });
-  
+
         // Actualizar el formulario de venta con el nuevo producto agregado
         const detalleVentaArray = this.ventaForm.get('productosAgregados') as FormArray;
         detalleVentaArray.push(this.fb.group({
@@ -294,12 +294,12 @@ export class RegistrarVentaComponent implements OnInit {
           cantidad: this.cantidad,
           total: total
         }));
-  
+
         // Limpiar el producto seleccionado y la cantidad después de agregar
         this.detalleVentaForm.reset();
         this.selectedProduct = undefined;
         this.cantidad = 0;
-  
+
         // Recalcular el total de productos y el total general
         this.calcularTotalProductos();
         this.calcularTotalGeneral();
@@ -407,6 +407,24 @@ export class RegistrarVentaComponent implements OnInit {
       // Aquí maneja la validación del formulario de venta
       this.toastr.error('Por favor, complete todos los campos correctamente en el formulario de venta.', 'Error');
       return;
+    }
+
+    // Validar de nuevo antes de guardar
+    if (!this.ventaForm.get('idTipoLuna')?.value || !this.ventaForm.get('idMaterialLuna')?.value ||
+        !this.ventaForm.get('oDEsfera')?.value || !this.ventaForm.get('oIEsfera')?.value ||
+        !this.ventaForm.get('oDCilindro')?.value || !this.ventaForm.get('oICilindro')?.value || 
+        !this.ventaForm.get('oDEje')?.value || !this.ventaForm.get('oIEje')?.value || 
+        !this.ventaForm.get('oDAvLejos')?.value || !this.ventaForm.get('oIAvLejos')?.value ||
+        !this.ventaForm.get('oDAvCerca')?.value || !this.ventaForm.get('oIAvCerca')?.value ||
+        !this.ventaForm.get('oDAdd')?.value || !this.ventaForm.get('oIAdd')?.value ||
+        !this.ventaForm.get('oDAltura')?.value || !this.ventaForm.get('oIAltura')?.value ||
+        !this.ventaForm.get('oDCurva')?.value || !this.ventaForm.get('oICurva')?.value ||
+        !this.ventaForm.get('dipLejos')?.value || !this.ventaForm.get('dipCerca')?.value ||
+        !this.ventaForm.get('tratamientosAgregados')?.value
+      ) {
+      this.ventaForm.get('estado')?.setValue('Finalizada');
+    } else {
+      this.ventaForm.get('estado')?.setValue('');
     }
 
     const ventaData = this.ventaForm.value;

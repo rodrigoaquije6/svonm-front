@@ -19,7 +19,7 @@ export class VentaService {
     return this.http.get(this.url + id);
   }
 
-  eliminarVenta(id: string): Observable<any>{
+  eliminarVenta(id: string): Observable<any> {
     return this.http.delete(this.url + id);
   }
 
@@ -29,6 +29,16 @@ export class VentaService {
 
   editarVenta(id: string, venta: Venta): Observable<any> {
     return this.http.put(this.url + id, venta);
+  }
+
+  actualizarEstadoVenta(id: string, nuevoEstado: string): Observable<any> {
+    return this.http.put(`${this.url}${id}/estado`, { estado: nuevoEstado });
+  }
+
+  descargarContratoPDF(id: string): Observable<any> {
+    return this.http.get(`${this.url}${id}/descargar-contrato`, {
+      responseType: 'blob'
+    });
   }
 
 }

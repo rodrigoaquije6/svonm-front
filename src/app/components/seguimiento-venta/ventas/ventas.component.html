@@ -16,7 +16,7 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="venta.component.css" rel="stylesheet">
+    <link href="ventas.component.css" rel="stylesheet">
 
 </head>
 
@@ -140,7 +140,7 @@
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                    <span class="span-text mx-3">GESTIONAR VENTA</span>
+                    <span class="span-text mx-3">SEGUIMIENTO DE VENTAS</span>
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -164,11 +164,6 @@
                         <div class="col-lg-11 offser-lg-2">
                             <input type="text" class="form-control" style="width: 350px;" [(ngModel)]="terminoBusqueda"
                                 (keyup)="obtenerVentas()" placeholder="Buscar venta...">
-                            <button class="btn btn-success float-end"
-                                routerLink="/dashboard-trabajador/venta/registrar-venta">
-                                Agregar
-                                <i class="fa-solid fa-plus"></i>
-                            </button>
                             <table *ngIf="listVenta.length > 0" class="table table-striped mx-5 mt-5 text-center">
                                 <thead>
                                     <tr>
@@ -189,11 +184,34 @@
                                         <td>{{ venta.venta.fechaCreacion | date:'dd-MM-yyyy'}}</td>
                                         <td>{{ venta.venta.estado }}</td>
                                         <td>
-                                            <i [routerLink]="['/dashboard-trabajador/venta/detalle-venta/', venta.venta._id]"
-                                                class="faw fa fa-eye text-primary"></i>
-                                            <i (click)="descargarContrato(venta.venta._id)"
-                                                class="fa fa-file-pdf text-danger"
-                                                style="cursor: pointer; margin-left: 10px;"></i>
+                                            <i *ngIf="venta.venta.estado === 'En Fabricación'" data-bs-toggle="modal"
+                                                data-bs-target="#confirmacionModal"
+                                                (click)="prepararCambioEstado(venta.venta._id, 'En Tienda', confirmacionModal)"
+                                                class="faw fas fa-solid fa-house text-warning "></i>
+
+                                            <i *ngIf="venta.venta.estado === 'En Tienda'" data-bs-toggle="modal"
+                                                data-bs-target="#confirmacionModal"
+                                                (click)="prepararCambioEstado(venta.venta._id, 'Finalizada', confirmacionModal)"
+                                                class="faw fas fa-solid fa-thumbs-up text-success"></i>
+
+                                            <!-- Modal de Confirmación -->
+                                            <ng-template #confirmacionModal let-modal>
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title">Confirmar Cambio de Estado</h4>
+                                                    <button type="button" class="btn-close" aria-label="Close"
+                                                        (click)="modal.dismiss('Cross click')"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p class="label-text">{{ mensajeConfirmacion }}</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-success"
+                                                        (click)="confirmarCambioEstado()">Confirmar</button>
+                                                </div>
+                                            </ng-template>
+
+                                            <i [routerLink]="['/dashboard-trabajador/seguimiento-venta/detalle-venta/', venta.venta._id]"
+                                                class="faw fa fa-eye text-primary"></i>                                         
                                         </td>
                                     </tr>
                                 </tbody>

@@ -140,7 +140,7 @@
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                    <span class="span-text mx-3">REGISTRAR VENTA</span>
+                    <span class="span-text mx-3">REGISTRAR DEVOLUCIÓN</span>
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -160,7 +160,7 @@
 
                 <!-- CONTENT -->
                 <div class="container mx-4">
-                    <form [formGroup]="ventaForm">
+                    <form [formGroup]="devolucionForm" (ngSubmit)="guardarDevolucion()">
                         <div class="mb-3 d-flex align-items-end">
                             <div class="arreglo-orden">
                                 <div style="flex: 1;">
@@ -168,42 +168,43 @@
                                         <label class="form-label label-text"
                                             style="margin-right: 20px; margin-top: 8px;">CLIENTE</label>
                                     </div>
-                                    <select formControlName="idCliente" class="form-select"
-                                        style="width: 400px;margin-top: 20px;">
-                                        <option *ngFor="let cliente of clientes" [value]="cliente._id"> {{cliente.dni}}
-                                            - {{ cliente.nombres }} {{ cliente.apellidos }}</option>
+                                    <select class="form-select" style="width: 400px; margin-top: 20px;" disabled>
+                                        <option *ngIf="venta?.venta?.idCliente">
+                                            {{ venta?.venta?.idCliente?.dni }} - {{ venta?.venta?.idCliente?.nombres }}
+                                            {{ venta?.venta?.idCliente?.apellidos }}
+                                        </option>
                                     </select>
                                     <div class="arreglo-orden" style="margin-top: 20px;">
                                         <label class="form-label label-text"> Nombres </label>
                                         <input class="form-control" type="text" style="width: 300px;"
-                                            [value]="selectedCliente?.nombres" placeholder="Seleccione un cliente..."
-                                            disabled>
+                                            [value]="venta?.venta?.idCliente?.nombres"
+                                            placeholder="Seleccione un cliente..." disabled>
                                     </div>
                                     <div class="arreglo-orden">
                                         <label class="form-label label-text"> Apellidos </label>
                                         <input class="form-control" type="text" style="width: 300px;"
-                                            [value]="selectedCliente?.apellidos" placeholder="Seleccione un cliente..."
-                                            disabled>
+                                            [value]="venta?.venta?.idCliente?.apellidos"
+                                            placeholder="Seleccione un cliente..." disabled>
                                     </div>
                                     <div class="arreglo-orden">
                                         <label class="form-label label-text"> Celular </label>
                                         <input class="form-control" type="text" style="width: 200px;"
-                                            [value]="selectedCliente?.celular" placeholder="Seleccione un cliente..."
-                                            disabled>
+                                            [value]="venta?.venta?.idCliente?.celular"
+                                            placeholder="Seleccione un cliente..." disabled>
                                     </div>
                                 </div>
                                 <div style="flex: 1;">
                                     <div class="arreglo-orden">
                                         <label class="form-label label-text"> Direccion </label>
                                         <input class="form-control" type="text" style="width: 400px;"
-                                            [value]="selectedCliente?.direccion" placeholder="Seleccione un cliente..."
-                                            disabled>
+                                            [value]="venta?.venta?.idCliente?.direccion"
+                                            placeholder="Seleccione un cliente..." disabled>
                                     </div>
                                     <div class="arreglo-orden">
                                         <label class="form-label label-text"> Correo Electronico </label>
                                         <input class="form-control" type="text" style="width: 400px;"
-                                            [value]="selectedCliente?.correo" placeholder="Seleccione un cliente..."
-                                            disabled>
+                                            [value]="venta?.venta?.idCliente?.correo"
+                                            placeholder="Seleccione un cliente..." disabled>
                                     </div>
                                 </div>
 
@@ -220,8 +221,9 @@
                                         <div *ngFor="let option of materialLunaOptions" class="radio-item">
                                             <label class="form-label label-text" style="margin-right: 10px;">{{
                                                 option.material }}</label>
-                                            <input type="radio" [value]="option._id" formControlName="idMaterialLuna"
-                                                style="width: 30px; margin-right: 10px;">
+                                            <input type="radio" [value]="option._id"
+                                                [checked]=" option._id === venta?.venta?.idMaterialLuna"
+                                                style="width: 30px; margin-right: 10px;" disabled>
                                         </div>
                                     </div>
                                 </div>
@@ -235,36 +237,40 @@
                                     </div>
                                     <div class="arreglo-orden">
                                         <label class="form-label label-text" style="margin-left: 23px;"> Esfera </label>
-                                        <input type="text" formControlName="oDEsfera" style="width: 100px;">
-                                        <input type="text" formControlName="oIEsfera"
-                                            style="width: 100px; margin-top: 3px;">
+                                        <input type="text" style="width: 100px;" [value]="venta?.venta?.oDEsfera"
+                                            disabled>
+                                        <input type="text" style="width: 100px; margin-top: 3px;"
+                                            [value]="venta?.venta?.oIEsfera" disabled>
                                     </div>
                                     <div class="arreglo-orden">
                                         <label class="form-label label-text" style="margin-left: 18px;"> Cilindro
                                         </label>
-                                        <input type="text" formControlName="oDCilindro" style="width: 100px;">
-                                        <input type="text" formControlName="oICilindro"
-                                            style="width: 100px; margin-top: 3px;">
+                                        <input type="text" style="width: 100px;" [value]="venta?.venta?.oDCilindro"
+                                            disabled>
+                                        <input type="text" style="width: 100px; margin-top: 3px;"
+                                            [value]="venta?.venta?.oICilindro" disabled>
                                     </div>
                                     <div class="arreglo-orden">
                                         <label class="form-label label-text" style="margin-left: 36px;"> Eje </label>
-                                        <input type="text" formControlName="oDEje" style="width: 100px;">
-                                        <input type="text" formControlName="oIEje"
-                                            style="width: 100px; margin-top: 3px;">
+                                        <input type="text" style="width: 100px;" [value]="venta?.venta?.oDEje" disabled>
+                                        <input type="text" style="width: 100px; margin-top: 3px;"
+                                            [value]="venta?.venta?.oIEje" disabled>
                                     </div>
                                     <div class="arreglo-orden">
                                         <label class="form-label label-text" style="margin-left: 11px;"> A/V Lejos
                                         </label>
-                                        <input type="text" formControlName="oDAvLejos" style="width: 100px;">
-                                        <input type="text" formControlName="oIAvLejos"
-                                            style="width: 100px; margin-top: 3px;">
+                                        <input type="text" style="width: 100px;" [value]="venta?.venta?.oDAvLejos"
+                                            disabled>
+                                        <input type="text" style="width: 100px; margin-top: 3px;"
+                                            [value]="venta?.venta?.oIAvLejos" disabled>
                                     </div>
                                     <div class="arreglo-orden">
                                         <label class="form-label label-text" style="margin-left: 9px;"> A/V Cerca
                                         </label>
-                                        <input type="text" formControlName="oDAvCerca" style="width: 100px;">
-                                        <input type="text" formControlName="oIAvCerca"
-                                            style="width: 100px; margin-top: 3px;">
+                                        <input type="text" style="width: 100px;" [value]="venta?.venta?.oDAvCerca"
+                                            disabled>
+                                        <input type="text" style="width: 100px; margin-top: 3px;"
+                                            [value]="venta?.venta?.oIAvCerca" disabled>
                                     </div>
                                 </div>
                                 <div style="flex: 1;">
@@ -275,31 +281,35 @@
                                     </div>
                                     <div class="arreglo-orden">
                                         <label class="form-label label-text" style="margin-left: 29px;"> Add. </label>
-                                        <input type="text" formControlName="oDAdd" style="width: 100px;">
-                                        <input type="text" formControlName="oIAdd"
-                                            style="width: 100px; margin-top: 3px;">
+                                        <input type="text" style="width: 100px;" [value]="venta?.venta?.oDAdd" disabled>
+                                        <input type="text" style="width: 100px; margin-top: 3px;"
+                                            [value]="venta?.venta?.oIAdd" disabled>
                                     </div>
                                     <div class="arreglo-orden">
                                         <label class="form-label label-text" style="margin-left: 23px;"> Altura </label>
-                                        <input type="text" formControlName="oDAltura" style="width: 100px;">
-                                        <input type="text" formControlName="oIAltura"
-                                            style="width: 100px; margin-top: 3px;">
+                                        <input type="text" style="width: 100px;" [value]="venta?.venta?.oDAltura"
+                                            disabled>
+                                        <input type="text" style="width: 100px; margin-top: 3px;"
+                                            [value]="venta?.venta?.oIAltura" disabled>
                                     </div>
                                     <div class="arreglo-orden">
                                         <label class="form-label label-text" style="margin-left: 25px;"> Curva </label>
-                                        <input type="text" formControlName="oDCurva" style="width: 100px;">
-                                        <input type="text" formControlName="oICurva"
-                                            style="width: 100px; margin-top: 3px;">
+                                        <input type="text" style="width: 100px;" [value]="venta?.venta?.oDCurva"
+                                            disabled>
+                                        <input type="text" style="width: 100px; margin-top: 3px;"
+                                            [value]="venta?.venta?.oICurva" disabled>
                                     </div>
                                     <div class="arreglo-orden">
                                         <label class="form-label label-text" style="margin-left: 11px;"> DIP
                                             Lejos</label>
-                                        <input type="text" formControlName="dipLejos" style="width: 100px;">
+                                        <input type="text" style="width: 100px;" [value]="venta?.venta?.dipLejos"
+                                            disabled>
                                     </div>
                                     <div class="arreglo-orden">
                                         <label class="form-label label-text" style="margin-left: 9px;"> DIP
                                             Cerca</label>
-                                        <input type="text" formControlName="dipCerca" style="width: 100px;">
+                                        <input type="text" style="width: 100px;" [value]="venta?.venta?.dipCerca"
+                                            disabled>
                                     </div>
                                 </div>
 
@@ -310,46 +320,47 @@
                                         <div *ngFor="let option of tiposLunaOptions" class="radio-item">
                                             <label class="form-label label-text" style="margin-right: 10px;">{{
                                                 option.nombre }}</label>
-                                            <input type="radio" [value]="option._id" formControlName="idTipoLuna"
-                                                style="width: 30px; margin-right: 10px;">
+                                            <input type="radio" [value]="option._id"
+                                                [checked]=" option._id === venta?.venta?.idTipoLuna"
+                                                style="width: 30px; margin-right: 10px;" disabled>
                                         </div>
                                     </div>
                                 </div>
 
                                 <!-- PRODUCTOS -->
-                                <form [formGroup]="detalleVentaForm">
-                                    <div style="display: flex; flex-direction: row; margin-top: 20px;">
-                                        <div style="flex: 1;">
-                                            <label class="form-label label-text"
-                                                style="margin-right: 20px; margin-top: 30px;">PRODUCTO</label>
-                                            <!-- Lista de productos seleccionados -->
-                                            <div *ngIf="productosAgregados.length > 0" style="margin-top: 20px;">
-                                                <table class="table table-striped text-center">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Código</th>
-                                                            <th>Nombre</th>
-                                                            <th>Precio</th>
-                                                            <th>Stock</th>
-                                                            <th>Cantidad</th>
-                                                            <th>Total</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr *ngFor="let producto of productosAgregados; let i = index">
-                                                            <td>{{ producto.codigo }}</td>
-                                                            <td>{{ producto.nombre }}</td>
-                                                            <td>{{ producto.precio }}</td>
-                                                            <td>{{ producto.stock }}</td>
-                                                            <td>{{ producto.cantidad }}</td>
-                                                            <td>{{ producto.total }} </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
+                                <div style="display: flex; flex-direction: row; margin-top: 20px;">
+                                    <div style="flex: 1;">
+                                        <label class="form-label label-text"
+                                            style="margin-right: 20px; margin-top: 30px;">PRODUCTO</label>
+                                        <!-- Lista de productos seleccionados -->
+                                        <div *ngIf="venta && venta.detallesVenta && venta.detallesVenta.length > 0"
+                                            style="margin-top: 20px;">
+                                            <table class="table table-striped text-center">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Código</th>
+                                                        <th>Nombre</th>
+                                                        <th>Precio</th>
+                                                        <th>Stock</th>
+                                                        <th>Cantidad</th>
+                                                        <th>Total</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngFor="let producto of detallesVenta; let i = index">
+                                                        <td>{{ producto.idProducto.codigo }}</td>
+                                                        <td>{{ producto.idProducto.nombre }}</td>
+                                                        <td>{{ producto.idProducto.precio }}</td>
+                                                        <td>{{ producto.idProducto.stock }}</td>
+                                                        <td>{{ producto.cantidad }}</td>
+                                                        <td>{{ producto.total }} </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
-                                </form>
+                                </div>
+
 
                                 <!-- TRATAMIENTOS -->
                                 <div style="flex: 1;">
@@ -363,7 +374,8 @@
                                                 class="tratamiento-item">
                                                 <label class="form-label label-text" style="width: 150px;"> {{
                                                     option.nombre }} </label>
-                                                <input type="checkbox" style="width: 30px; margin-right: 10px;" disabled>
+                                                <input type="checkbox" style="width: 30px; margin-right: 10px;"
+                                                    [checked]="tratamientoEstaEnVenta(option)" disabled>
                                             </div>
                                         </div>
                                     </div>
@@ -374,32 +386,68 @@
                                     <div class="arreglo-orden">
                                         <label class="form-label label-text">Observaciones</label>
                                         <textarea class="form-control" style="width: 500px; height: 100px;"
-                                            formControlName="observacion"
-                                            placeholder="Ingresar Observaciones"></textarea>
+                                            [value]="venta?.venta?.observacion" placeholder="Ingresar Observaciones"
+                                            disabled></textarea>
                                     </div>
                                 </div>
                                 <div style="flex: 1;margin-top: 20px;">
                                     <div class="arreglo-orden">
                                         <label class="form-label label-text">Vendedor(a)</label>
                                         <input type="text" class="form-control" style="width: 200px;"
-                                            formControlName="idTrabajador" placeholder="Nombre Vendedor" readonly>
+                                            [value]="venta?.venta?.idTrabajador?.nombre" placeholder="Nombre Vendedor"
+                                            disabled>
                                     </div>
                                 </div>
                                 <div style="flex: 1; margin-top: 20px;">
                                     <div class="arreglo-orden">
-                                        <label class="form-label label-text"> TOTAL </label>
+                                        <label class="form-label label-text"> TOTAL (S/.) </label>
                                         <input type="number" class="form-control" style="width: 150px;"
-                                            formControlName="total" placeholder="S/" readonly>
+                                            [value]="venta?.venta?.total" placeholder="S/" disabled>
                                     </div>
                                     <div class="arreglo-orden">
-                                        <label class="form-label label-text"> A CUENTA </label>
+                                        <label class="form-label label-text"> A CUENTA (S/.) </label>
                                         <input type="number" class="form-control" style="width: 150px;"
-                                            formControlName="aCuenta" placeholder="S/">
+                                            [value]="venta?.venta?.aCuenta" placeholder="S/" disabled>
                                     </div>
                                     <div class="arreglo-orden">
-                                        <label class="form-label label-text"> SALDO </label>
+                                        <label class="form-label label-text"> SALDO (S/.) </label>
                                         <input type="number" class="form-control" style="width: 150px;"
-                                            formControlName="saldo" placeholder="S/" readonly>
+                                            [value]="venta?.venta?.saldo" placeholder="S/" disabled>
+                                    </div>
+                                </div>
+
+                                <!-- Sección de DEVOLUCIÓN -->
+                                <div class="border border-5 rounded p-4 mb-4" style="margin-top: 30px;">
+                                    <h4 class="mb-3 titulo-devolucion">DEVOLUCIÓN</h4>
+                                    <!-- Motivo y opciones -->
+                                    <div class="mb-3">
+                                        <label class="form-label label-text">Motivo</label>
+                                        <div class="d-flex">
+                                            <div class="form-check me-3">
+                                                <input class="form-check-input" type="radio" formControlName="motivo"
+                                                    id="cambio" value="Cambio">
+                                                <label class="radio-text form-check-label" for="cambio">Cambio</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" formControlName="motivo"
+                                                    id="reembolso" value="Reembolso">
+                                                <label class="radio-text form-check-label"
+                                                    for="reembolso">Reembolso</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Observación -->
+                                    <div class="mb-3">
+                                        <label class="form-label label-text">Observación</label>
+                                        <textarea class="form-control" style="width: 500px; height: 100px;"
+                                            formControlName="observacion"
+                                            placeholder="Ingresar motivo de devolución..."></textarea>
+                                    </div>
+                                    <!-- Observación -->
+                                    <div class="arreglo-orden">
+                                        <label class="form-label label-text">Vendedor(a)</label>
+                                        <input type="text" class="form-control" style="width: 200px;"
+                                            formControlName="idTrabajador" readonly>
                                     </div>
                                 </div>
                             </div>

@@ -185,7 +185,7 @@
                                         <td>{{ ventaF.venta.fechaCreacion | date:'dd-MM-yyyy'}}</td>
                                         <td>{{ ventaF.venta.estado }}</td>
                                         <td>
-                                            <i [routerLink]="['/dashboard-trabajador/devolucion/registrar-devolucion/', ventaF.venta._id]"
+                                            <i *ngIf="ventaF.venta.estado === 'Finalizada'" [routerLink]="['/dashboard-trabajador/devolucion/registrar-devolucion/', ventaF.venta._id]"
                                                 class="faw fa-solid fa-plus text-success"></i>
                                             <!--<i class="fas" [ngClass]="{'fa-eye': producto.estado === 'Activo', 'fa-eye-slash': producto.estado === 'Inactivo', 
                                                 'text-success': producto.estado === 'Activo', 'text-danger': producto.estado === 'Inactivo'}" (click)="toggleEstadoProducto(producto)">
