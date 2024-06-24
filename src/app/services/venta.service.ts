@@ -35,7 +35,7 @@ export class VentaService {
     return this.http.put(`${this.url}${id}/estado`, { estado: nuevoEstado });
   }
 
-  descargarContratoPDF(id: string): Observable<any> {
+  descargarContratoPDF(id: string): Observable<Blob> {
     return this.http.get(`${this.url}${id}/descargar-contrato`, {
       responseType: 'blob'
     });

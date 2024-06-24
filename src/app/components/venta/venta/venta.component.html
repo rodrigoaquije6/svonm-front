@@ -191,8 +191,8 @@
                                         <td>
                                             <i [routerLink]="['/dashboard-trabajador/venta/detalle-venta/', venta.venta._id]"
                                                 class="faw fa fa-eye text-primary"></i>
-                                            <i (click)="descargarContrato(venta.venta._id)"
-                                                class="fa fa-file-pdf text-danger"
+                                            <i (click)="descargarContrato(venta.venta._id, venta.venta.codigo, venta.venta.idCliente.apellidos)"
+                                                class="faw fa fa-file-pdf text-danger"
                                                 style="cursor: pointer; margin-left: 10px;"></i>
                                         </td>
                                     </tr>

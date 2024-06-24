@@ -53,42 +53,15 @@ export class VentaComponent {
     this.obtenerVentas();
   }
 
-  prepararCambioEstado(id: string, nuevoEstado: string, content: any) {
-    this.ventaSeleccionada = this.listVenta.find((v) => v.venta._id === id);
-    this.estadoDestino = nuevoEstado;
-    this.mensajeConfirmacion = `¿Estás seguro de cambiar el estado de la venta a "${nuevoEstado}"?`;
-
-    // Abrir el modal de confirmación
-    this.modalRef = this.modalService.open(content, { centered: true });
-  }
-
-  confirmarCambioEstado() {
-    if (this.ventaSeleccionada) {
-      this._ventaService.actualizarEstadoVenta(this.ventaSeleccionada.venta._id, this.estadoDestino).subscribe(
-        (data: any) => {
-          this.toastr.success('El estado de la venta ha sido actualizado exitosamente.', 'Estado Actualizado');
-          this.modalRef?.close(); // Cerrar el modal después de confirmar
-          this.obtenerVentas();
-        },
-        (error) => {
-          console.error('Error al actualizar el estado de la venta:', error);
-          this.toastr.error(
-            'Ocurrió un error al actualizar el estado de la venta. Por favor, inténtelo de nuevo más tarde.',
-            'Error'
-          );
-        }
-      );
-    }
-  }
-
-  descargarContrato(id: string) {
+  descargarContrato(id: string, codigo: string, apellido: string) {
     this._ventaService.descargarContratoPDF(id).subscribe(
-      response => {
+      (response: Blob) => {
         const blob = new Blob([response], { type: 'application/pdf' });
         const url = window.URL.createObjectURL(blob);
         const link = document.createElement('a');
+        const filename = `${codigo}-${apellido}.pdf`;
         link.href = url;
-        link.setAttribute('download', `Contrato-Venta-${id}.pdf`);
+        link.setAttribute('download', filename);
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);

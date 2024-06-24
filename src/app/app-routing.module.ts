@@ -27,7 +27,7 @@ import { RegistrarCompraComponent } from './components/compra/registrar-compra/r
 import { DevolucionesComponent } from './components/devolucion/devoluciones/devoluciones.component';
 import { RegistrarDevolucionComponent } from './components/devolucion/registrar-devolucion/registrar-devolucion.component';
 import { VentasComponent } from './components/seguimiento-venta/ventas/ventas.component';
-import { DetalleVenta } from './models/detalleVenta';
+import { DetalleVentaComponent } from './components/seguimiento-venta/detalle-venta/detalle-venta.component';
 
 
 const routes: Routes = [
@@ -80,9 +80,9 @@ const routes: Routes = [
 
   //DASHBOARD-TRABAJADOR
   { path: 'dashboard-trabajador/venta/registrar-venta', component: RegistrarVentaComponent},
-  { path: 'dashboard-trabajador/venta/detalle-venta/:id', component: RegistrarVentaComponent},
+  { path: 'dashboard-trabajador/venta/detalle-venta/:id', component: DetalleVentaComponent},
 
-  { path: 'dashboard-trabajador/seguimiento-venta/detalle-venta/:id', component: RegistrarVentaComponent},
+  { path: 'dashboard-trabajador/seguimiento-venta/detalle-venta/:id', component: DetalleVentaComponent},
 
   { path: 'dashboard-trabajador/devolucion/registrar-devolucion/:id', component: RegistrarDevolucionComponent},
   { path: 'dashboard-trabajador/devolucion/editar-devolucion/:id', component: RegistrarDevolucionComponent},

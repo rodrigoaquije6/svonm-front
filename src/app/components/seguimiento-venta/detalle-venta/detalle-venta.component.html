@@ -1,1 +1,473 @@
-<p>detalle-venta works!</p>
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <title>Dashboard-gerente</title>
+
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="detalle-venta.component.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- Sidebar - Logo -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center"
+                routerLink="/dashboard-trabajador">
+                <div class="sidebar-brand-icon">
+                    <i class="fa-solid fa-glasses"></i>
+                </div>
+                <div class="sidebar-brand-text mx-1">Óptica Nuevo Mundo</div>
+            </a>
+
+            <!-- Divisor -->
+            <hr class="sidebar-divider my-0">
+            <li class="nav-item active">
+                <a class="nav-link">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span></a>
+            </li>
+
+            <!-- Divisor -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading Cita-->
+            <div class="sidebar-heading">
+                Cita
+            </div>
+
+            <!-- Gestionar Cita -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" routerLink="#" data-toggle="collapse">
+                    <i class="fa-solid fa-calendar-check"></i>
+                    <span>Gestionar Cita</span>
+                </a>
+            </li>
+
+            <!-- Divisor -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading Venta-->
+            <div class="sidebar-heading">
+                Venta
+            </div>
+
+            <!-- Gestionar Venta -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" routerLink="/dashboard-trabajador/venta" data-toggle="collapse">
+                    <i class="fa-solid fa-dollar-sign"></i>
+                    <span>Gestionar Venta</span>
+                </a>
+            </li>
+
+            <!-- Seguimiento de Venta -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" routerLink="#" data-toggle="collapse">
+                    <i class="fa-solid fa-person-walking"></i>
+                    <span>Seguimiento de Venta</span>
+                </a>
+            </li>
+
+            <!-- Divisor -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading Cliente-->
+            <div class="sidebar-heading">
+                Cliente
+            </div>
+
+            <!-- Gestionar Cliente -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" routerLink="#" data-toggle="collapse">
+                    <i class="fa-solid fa-user"></i>
+                    <span>Gestionar Clientes</span>
+                </a>
+            </li>
+
+            <!-- Historial Cliente -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" routerLink="#" data-toggle="collapse">
+                    <i class="fa-solid fa-book-medical"></i>
+                    <span>Historial de Clientes</span>
+                </a>
+            </li>
+
+            <!-- Divisor -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading Producto-->
+            <div class="sidebar-heading">
+                Producto
+            </div>
+
+            <!-- Visualizar Stock -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" routerLink="#" data-toggle="collapse">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <span>Visualizar Stock</span>
+                </a>
+            </li>
+
+            <!-- Divisor -->
+            <hr class="sidebar-divider">
+
+        </ul>
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                    <span class="span-text mx-3">VENTA DETALLE</span>
+
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item"> <!-- *ngIf="isLoggedIn" (click)="onClickLogout()" -->
+                            <a class="nav-link" routerLink="/login">
+                                <i class="fa-solid fa-right-from-bracket" style="color: #ff000d;"></i>
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </nav>
+
+                <!-- End of Topbar -->
+
+                <!-- CONTENT -->
+                <div class="container mx-4">
+                    <form [formGroup]="devolucionForm" (ngSubmit)="guardarDevolucion()">
+                        <div class="mb-3 d-flex align-items-end">
+                            <div class="arreglo-orden">
+                                <div style="flex: 1;">
+                                    <div style="display: flex; flex-direction: row;align-items: center;">
+                                        <label class="form-label label-text"
+                                            style="margin-right: 20px; margin-top: 8px;">CLIENTE</label>
+                                    </div>
+                                    <select class="form-select" style="width: 400px; margin-top: 20px;" disabled>
+                                        <option *ngIf="venta?.venta?.idCliente">
+                                            {{ venta?.venta?.idCliente?.dni }} - {{ venta?.venta?.idCliente?.nombres }}
+                                            {{ venta?.venta?.idCliente?.apellidos }}
+                                        </option>
+                                    </select>
+                                    <div class="arreglo-orden" style="margin-top: 20px;">
+                                        <label class="form-label label-text"> Nombres </label>
+                                        <input class="form-control" type="text" style="width: 300px;"
+                                            [value]="venta?.venta?.idCliente?.nombres"
+                                            placeholder="Seleccione un cliente..." disabled>
+                                    </div>
+                                    <div class="arreglo-orden">
+                                        <label class="form-label label-text"> Apellidos </label>
+                                        <input class="form-control" type="text" style="width: 300px;"
+                                            [value]="venta?.venta?.idCliente?.apellidos"
+                                            placeholder="Seleccione un cliente..." disabled>
+                                    </div>
+                                    <div class="arreglo-orden">
+                                        <label class="form-label label-text"> Celular </label>
+                                        <input class="form-control" type="text" style="width: 200px;"
+                                            [value]="venta?.venta?.idCliente?.celular"
+                                            placeholder="Seleccione un cliente..." disabled>
+                                    </div>
+                                </div>
+                                <div style="flex: 1;">
+                                    <div class="arreglo-orden">
+                                        <label class="form-label label-text"> Direccion </label>
+                                        <input class="form-control" type="text" style="width: 400px;"
+                                            [value]="venta?.venta?.idCliente?.direccion"
+                                            placeholder="Seleccione un cliente..." disabled>
+                                    </div>
+                                    <div class="arreglo-orden">
+                                        <label class="form-label label-text"> Correo Electronico </label>
+                                        <input class="form-control" type="text" style="width: 400px;"
+                                            [value]="venta?.venta?.idCliente?.correo"
+                                            placeholder="Seleccione un cliente..." disabled>
+                                    </div>
+                                </div>
+
+                                <!-- LUNA -->
+                                <div style="flex: 1;">
+                                    <label class="form-label label-text"
+                                        style="margin-right: 105px; margin-top: 30px;">LUNA</label>
+                                </div>
+                                <!-- MATERIAL LUNA -->
+                                <div style="flex: 1; margin-top: 30px;">
+                                    <div class="radio-container">
+                                        <label class="form-label label-text"
+                                            style="margin-right: 65px;">Material:</label>
+                                        <div *ngFor="let option of materialLunaOptions" class="radio-item">
+                                            <label class="form-label label-text" style="margin-right: 10px;">{{
+                                                option.material }}</label>
+                                            <input type="radio" [value]="option._id"
+                                                [checked]=" option._id === venta?.venta?.idMaterialLuna"
+                                                style="width: 30px; margin-right: 10px;" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- VENTA -->
+                                <div style="flex: 1;margin-top: 20px;">
+                                    <div class="arreglo-orden">
+                                        <label class="form-label label-text"> </label>
+                                        <label style="margin-top: 10px;">Ojo Derecho</label>
+                                        <label style="margin-top: 10px;">Ojo Izquierdo</label>
+                                    </div>
+                                    <div class="arreglo-orden">
+                                        <label class="form-label label-text" style="margin-left: 23px;"> Esfera </label>
+                                        <input type="text" style="width: 100px;" [value]="venta?.venta?.oDEsfera"
+                                            disabled>
+                                        <input type="text" style="width: 100px; margin-top: 3px;"
+                                            [value]="venta?.venta?.oIEsfera" disabled>
+                                    </div>
+                                    <div class="arreglo-orden">
+                                        <label class="form-label label-text" style="margin-left: 18px;"> Cilindro
+                                        </label>
+                                        <input type="text" style="width: 100px;" [value]="venta?.venta?.oDCilindro"
+                                            disabled>
+                                        <input type="text" style="width: 100px; margin-top: 3px;"
+                                            [value]="venta?.venta?.oICilindro" disabled>
+                                    </div>
+                                    <div class="arreglo-orden">
+                                        <label class="form-label label-text" style="margin-left: 36px;"> Eje </label>
+                                        <input type="text" style="width: 100px;" [value]="venta?.venta?.oDEje" disabled>
+                                        <input type="text" style="width: 100px; margin-top: 3px;"
+                                            [value]="venta?.venta?.oIEje" disabled>
+                                    </div>
+                                    <div class="arreglo-orden">
+                                        <label class="form-label label-text" style="margin-left: 11px;"> A/V Lejos
+                                        </label>
+                                        <input type="text" style="width: 100px;" [value]="venta?.venta?.oDAvLejos"
+                                            disabled>
+                                        <input type="text" style="width: 100px; margin-top: 3px;"
+                                            [value]="venta?.venta?.oIAvLejos" disabled>
+                                    </div>
+                                    <div class="arreglo-orden">
+                                        <label class="form-label label-text" style="margin-left: 9px;"> A/V Cerca
+                                        </label>
+                                        <input type="text" style="width: 100px;" [value]="venta?.venta?.oDAvCerca"
+                                            disabled>
+                                        <input type="text" style="width: 100px; margin-top: 3px;"
+                                            [value]="venta?.venta?.oIAvCerca" disabled>
+                                    </div>
+                                </div>
+                                <div style="flex: 1;">
+                                    <div class="arreglo-orden">
+                                        <label class="form-label label-text"> </label>
+                                        <label style="margin-top: 10px;">Ojo Derecho</label>
+                                        <label style="margin-top: 10px;">Ojo Izquierdo</label>
+                                    </div>
+                                    <div class="arreglo-orden">
+                                        <label class="form-label label-text" style="margin-left: 29px;"> Add. </label>
+                                        <input type="text" style="width: 100px;" [value]="venta?.venta?.oDAdd" disabled>
+                                        <input type="text" style="width: 100px; margin-top: 3px;"
+                                            [value]="venta?.venta?.oIAdd" disabled>
+                                    </div>
+                                    <div class="arreglo-orden">
+                                        <label class="form-label label-text" style="margin-left: 23px;"> Altura </label>
+                                        <input type="text" style="width: 100px;" [value]="venta?.venta?.oDAltura"
+                                            disabled>
+                                        <input type="text" style="width: 100px; margin-top: 3px;"
+                                            [value]="venta?.venta?.oIAltura" disabled>
+                                    </div>
+                                    <div class="arreglo-orden">
+                                        <label class="form-label label-text" style="margin-left: 25px;"> Curva </label>
+                                        <input type="text" style="width: 100px;" [value]="venta?.venta?.oDCurva"
+                                            disabled>
+                                        <input type="text" style="width: 100px; margin-top: 3px;"
+                                            [value]="venta?.venta?.oICurva" disabled>
+                                    </div>
+                                    <div class="arreglo-orden">
+                                        <label class="form-label label-text" style="margin-left: 11px;"> DIP
+                                            Lejos</label>
+                                        <input type="text" style="width: 100px;" [value]="venta?.venta?.dipLejos"
+                                            disabled>
+                                    </div>
+                                    <div class="arreglo-orden">
+                                        <label class="form-label label-text" style="margin-left: 9px;"> DIP
+                                            Cerca</label>
+                                        <input type="text" style="width: 100px;" [value]="venta?.venta?.dipCerca"
+                                            disabled>
+                                    </div>
+                                </div>
+
+                                <!-- TIPO LUNAS -->
+                                <div style="flex: 1; margin-top: 50px;">
+                                    <div class="radio-container">
+                                        <label class="form-label label-text" style="margin-right: 65px;">Tipo:</label>
+                                        <div *ngFor="let option of tiposLunaOptions" class="radio-item">
+                                            <label class="form-label label-text" style="margin-right: 10px;">{{
+                                                option.nombre }}</label>
+                                            <input type="radio" [value]="option._id"
+                                                [checked]=" option._id === venta?.venta?.idTipoLuna"
+                                                style="width: 30px; margin-right: 10px;" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- PRODUCTOS -->
+                                <div style="display: flex; flex-direction: row; margin-top: 20px;">
+                                    <div style="flex: 1;">
+                                        <label class="form-label label-text"
+                                            style="margin-right: 20px; margin-top: 30px;">PRODUCTO</label>
+                                        <!-- Lista de productos seleccionados -->
+                                        <div *ngIf="venta && venta.detallesVenta && venta.detallesVenta.length > 0"
+                                            style="margin-top: 20px;">
+                                            <table class="table table-striped text-center">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Código</th>
+                                                        <th>Nombre</th>
+                                                        <th>Precio</th>
+                                                        <th>Stock</th>
+                                                        <th>Cantidad</th>
+                                                        <th>Total</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngFor="let producto of detallesVenta; let i = index">
+                                                        <td>{{ producto.idProducto.codigo }}</td>
+                                                        <td>{{ producto.idProducto.nombre }}</td>
+                                                        <td>{{ producto.idProducto.precio }}</td>
+                                                        <td>{{ producto.idProducto.stock }}</td>
+                                                        <td>{{ producto.cantidad }}</td>
+                                                        <td>{{ producto.total }} </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <!-- TRATAMIENTOS -->
+                                <div style="flex: 1;">
+                                    <label class="form-label label-text"
+                                        style="margin-right: 105px; margin-top: 40px;">TRATAMIENTOS</label>
+                                </div>
+                                <div style="flex: 1;">
+                                    <div class="arreglo-orden">
+                                        <div class="tratamientos-container">
+                                            <div style="flex: 1;" *ngFor="let option of tratamientosOptions"
+                                                class="tratamiento-item">
+                                                <label class="form-label label-text" style="width: 150px;"> {{
+                                                    option.nombre }} </label>
+                                                <input type="checkbox" style="width: 30px; margin-right: 10px;"
+                                                    [checked]="tratamientoEstaEnVenta(option)" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- OBSERVACION Y MONTOS TOTAL, A CUENTA Y SALDO -->
+                                <div style="flex: 1; margin-top: 20px;">
+                                    <div class="arreglo-orden">
+                                        <label class="form-label label-text">Observaciones</label>
+                                        <textarea class="form-control" style="width: 500px; height: 100px;"
+                                            [value]="venta?.venta?.observacion" placeholder="Ingresar Observaciones"
+                                            disabled></textarea>
+                                    </div>
+                                </div>
+                                <div style="flex: 1;margin-top: 20px;">
+                                    <div class="arreglo-orden">
+                                        <label class="form-label label-text">Vendedor(a)</label>
+                                        <input type="text" class="form-control" style="width: 200px;"
+                                            [value]="venta?.venta?.idTrabajador?.nombre" placeholder="Nombre Vendedor"
+                                            disabled>
+                                    </div>
+                                </div>
+                                <div style="flex: 1; margin-top: 20px;">
+                                    <div class="arreglo-orden">
+                                        <label class="form-label label-text"> TOTAL (S/.) </label>
+                                        <input type="number" class="form-control" style="width: 150px;"
+                                            [value]="venta?.venta?.total" placeholder="S/" disabled>
+                                    </div>
+                                    <div class="arreglo-orden">
+                                        <label class="form-label label-text"> A CUENTA (S/.) </label>
+                                        <input type="number" class="form-control" style="width: 150px;"
+                                            [value]="venta?.venta?.aCuenta" placeholder="S/" disabled>
+                                    </div>
+                                    <div class="arreglo-orden">
+                                        <label class="form-label label-text"> SALDO (S/.) </label>
+                                        <input type="number" class="form-control" style="width: 150px;"
+                                            [value]="venta?.venta?.saldo" placeholder="S/" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-success float-end"
+                            style="margin-left: 10px; margin-top: 20px;">Aceptar</button>
+                            <div class="class mb 3">
+                                <button routerLink="/dashboard-trabajador/venta" *ngIf="isVentaRoute()"
+                                    class="btn btn-secondary flat-start"
+                                    style="margin-top: 20px; margin-bottom: 40px;">Volver</button>
+    
+                                <button routerLink="/dashboard-trabajador/seguimiento-venta"
+                                    *ngIf="isSeguimientoVentaRoute()" class="btn btn-secondary flat-start"
+                                    style="margin-top: 20px; margin-bottom: 40px;">Volver</button>
+                            </div>
+                    </form>
+                </div>
+                <!-- End of Content -->
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Óptica Nuevo Mundo &copy; 2024</span>
+                    </div>
+                </div>
+            </footer>
+
+            <!-- End of Footer -->
+
+        </div>
+
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="vendor/chart.js/Chart.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="js/demo/chart-area-demo.js"></script>
+    <script src="js/demo/chart-pie-demo.js"></script>
+
+</body>

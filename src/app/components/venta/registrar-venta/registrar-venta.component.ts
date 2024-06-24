@@ -411,17 +411,17 @@ export class RegistrarVentaComponent implements OnInit {
 
     // Validar de nuevo antes de guardar
     if (!this.ventaForm.get('idTipoLuna')?.value || !this.ventaForm.get('idMaterialLuna')?.value ||
-        !this.ventaForm.get('oDEsfera')?.value || !this.ventaForm.get('oIEsfera')?.value ||
-        !this.ventaForm.get('oDCilindro')?.value || !this.ventaForm.get('oICilindro')?.value || 
-        !this.ventaForm.get('oDEje')?.value || !this.ventaForm.get('oIEje')?.value || 
-        !this.ventaForm.get('oDAvLejos')?.value || !this.ventaForm.get('oIAvLejos')?.value ||
-        !this.ventaForm.get('oDAvCerca')?.value || !this.ventaForm.get('oIAvCerca')?.value ||
-        !this.ventaForm.get('oDAdd')?.value || !this.ventaForm.get('oIAdd')?.value ||
-        !this.ventaForm.get('oDAltura')?.value || !this.ventaForm.get('oIAltura')?.value ||
-        !this.ventaForm.get('oDCurva')?.value || !this.ventaForm.get('oICurva')?.value ||
-        !this.ventaForm.get('dipLejos')?.value || !this.ventaForm.get('dipCerca')?.value ||
-        !this.ventaForm.get('tratamientosAgregados')?.value
-      ) {
+      !this.ventaForm.get('oDEsfera')?.value || !this.ventaForm.get('oIEsfera')?.value ||
+      !this.ventaForm.get('oDCilindro')?.value || !this.ventaForm.get('oICilindro')?.value ||
+      !this.ventaForm.get('oDEje')?.value || !this.ventaForm.get('oIEje')?.value ||
+      !this.ventaForm.get('oDAvLejos')?.value || !this.ventaForm.get('oIAvLejos')?.value ||
+      !this.ventaForm.get('oDAvCerca')?.value || !this.ventaForm.get('oIAvCerca')?.value ||
+      !this.ventaForm.get('oDAdd')?.value || !this.ventaForm.get('oIAdd')?.value ||
+      !this.ventaForm.get('oDAltura')?.value || !this.ventaForm.get('oIAltura')?.value ||
+      !this.ventaForm.get('oDCurva')?.value || !this.ventaForm.get('oICurva')?.value ||
+      !this.ventaForm.get('dipLejos')?.value || !this.ventaForm.get('dipCerca')?.value ||
+      !this.ventaForm.get('tratamientosAgregados')?.value
+    ) {
       this.ventaForm.get('estado')?.setValue('Finalizada');
     } else {
       this.ventaForm.get('estado')?.setValue('');
