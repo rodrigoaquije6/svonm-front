@@ -53,11 +53,32 @@
                 Cita
             </div>
 
+            <!-- Heading Cita-->
+            <div class="sidebar-heading">
+                Cita
+            </div>
+
             <!-- Gestionar Cita -->
             <li class="nav-item">
-                <a class="nav-link collapsed" routerLink="#" data-toggle="collapse">
+                <a class="nav-link collapsed" routerLink="/dashboard-trabajador/cita" data-toggle="collapse">
                     <i class="fa-solid fa-calendar-check"></i>
-                    <span>Gestionar Cita</span>
+                    <span> Gestionar Cita </span>
+                </a>
+            </li>
+
+            <!-- Divisor -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading Producto -->
+            <div class="sidebar-heading">
+                Producto
+            </div>
+
+            <!-- Ver Productos -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" routerLink="/dashboard-trabajador/ver-producto" data-toggle="collapse">
+                    <i class="fa-solid fa-box-archive"></i>
+                    <span> Ver Productos </span>
                 </a>
             </li>
 
@@ -73,15 +94,24 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" routerLink="/dashboard-trabajador/venta" data-toggle="collapse">
                     <i class="fa-solid fa-dollar-sign"></i>
-                    <span>Gestionar Venta</span>
+                    <span> Gestionar Venta </span>
                 </a>
             </li>
 
             <!-- Seguimiento de Venta -->
             <li class="nav-item">
-                <a class="nav-link collapsed" routerLink="#" data-toggle="collapse">
+                <a class="nav-link collapsed" routerLink="/dashboard-trabajador/seguimiento-venta"
+                    data-toggle="collapse">
                     <i class="fa-solid fa-person-walking"></i>
-                    <span>Seguimiento de Venta</span>
+                    <span> Seguimiento de Venta </span>
+                </a>
+            </li>
+
+            <!-- Gestionar Devoluciones -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" routerLink="/dashboard-trabajador/devolucion" data-toggle="collapse">
+                    <i class="fa-solid fa-dollar-sign"></i>
+                    <span> Gestionar Devoluciones </span>
                 </a>
             </li>
 
@@ -95,39 +125,20 @@
 
             <!-- Gestionar Cliente -->
             <li class="nav-item">
-                <a class="nav-link collapsed" routerLink="#" data-toggle="collapse">
+                <a class="nav-link collapsed" routerLink="/dashboard-trabajador/cliente" data-toggle="collapse">
                     <i class="fa-solid fa-user"></i>
-                    <span>Gestionar Clientes</span>
+                    <span> Gestionar Clientes </span>
                 </a>
             </li>
 
             <!-- Historial Cliente -->
-
             <li class="nav-item">
-                <a class="nav-link collapsed" routerLink="#" data-toggle="collapse">
+                <a class="nav-link collapsed" routerLink="/dashboard-trabajador/historial-cliente"
+                    data-toggle="collapse">
                     <i class="fa-solid fa-book-medical"></i>
-                    <span>Historial de Clientes</span>
+                    <span> Historial de Clientes </span>
                 </a>
             </li>
-
-            <!-- Divisor -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading Producto-->
-            <div class="sidebar-heading">
-                Producto
-            </div>
-
-            <!-- Visualizar Stock -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" routerLink="#" data-toggle="collapse">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                    <span>Visualizar Stock</span>
-                </a>
-            </li>
-
-            <!-- Divisor -->
-            <hr class="sidebar-divider">
 
         </ul>
         <!-- End of Sidebar -->
@@ -140,7 +151,7 @@
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                    <span class="span-text mx-3">REGISTRAR DEVOLUCIÓN</span>
+                    <span class="span-text mx-3">DEVOLUCIÓN DETALLE</span>
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -415,13 +426,15 @@
                                     <label class="form-label label-text">Motivo</label>
                                     <div class="d-flex">
                                         <div class="form-check me-3">
-                                            <input class="form-check-input" type="radio" [checked]="venta?.devolucion?.motivo === 'Cambio'"
-                                                id="cambio" value="Cambio" disabled>
+                                            <input class="form-check-input" type="radio"
+                                                [checked]="venta?.devolucion?.motivo === 'Cambio'" id="cambio"
+                                                value="Cambio" disabled>
                                             <label class="radio-text form-check-label" for="cambio">Cambio</label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" [checked]="venta?.devolucion?.motivo === 'Reembolso'"
-                                                id="reembolso" value="Reembolso" disabled>
+                                            <input class="form-check-input" type="radio"
+                                                [checked]="venta?.devolucion?.motivo === 'Reembolso'" id="reembolso"
+                                                value="Reembolso" disabled>
                                             <label class="radio-text form-check-label" for="reembolso">Reembolso</label>
                                         </div>
                                     </div>

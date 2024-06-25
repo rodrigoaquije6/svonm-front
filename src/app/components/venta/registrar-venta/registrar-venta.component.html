@@ -53,11 +53,32 @@
                 Cita
             </div>
 
+            <!-- Heading Cita-->
+            <div class="sidebar-heading">
+                Cita
+            </div>
+
             <!-- Gestionar Cita -->
             <li class="nav-item">
-                <a class="nav-link collapsed" routerLink="#" data-toggle="collapse">
+                <a class="nav-link collapsed" routerLink="/dashboard-trabajador/cita" data-toggle="collapse">
                     <i class="fa-solid fa-calendar-check"></i>
-                    <span>Gestionar Cita</span>
+                    <span> Gestionar Cita </span>
+                </a>
+            </li>
+
+            <!-- Divisor -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading Producto -->
+            <div class="sidebar-heading">
+                Producto
+            </div>
+
+            <!-- Ver Productos -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" routerLink="/dashboard-trabajador/ver-producto" data-toggle="collapse">
+                    <i class="fa-solid fa-box-archive"></i>
+                    <span> Ver Productos </span>
                 </a>
             </li>
 
@@ -73,15 +94,24 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" routerLink="/dashboard-trabajador/venta" data-toggle="collapse">
                     <i class="fa-solid fa-dollar-sign"></i>
-                    <span>Gestionar Venta</span>
+                    <span> Gestionar Venta </span>
                 </a>
             </li>
 
             <!-- Seguimiento de Venta -->
             <li class="nav-item">
-                <a class="nav-link collapsed" routerLink="#" data-toggle="collapse">
+                <a class="nav-link collapsed" routerLink="/dashboard-trabajador/seguimiento-venta"
+                    data-toggle="collapse">
                     <i class="fa-solid fa-person-walking"></i>
-                    <span>Seguimiento de Venta</span>
+                    <span> Seguimiento de Venta </span>
+                </a>
+            </li>
+
+            <!-- Gestionar Devoluciones -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" routerLink="/dashboard-trabajador/devolucion" data-toggle="collapse">
+                    <i class="fa-solid fa-dollar-sign"></i>
+                    <span> Gestionar Devoluciones </span>
                 </a>
             </li>
 
@@ -95,39 +125,20 @@
 
             <!-- Gestionar Cliente -->
             <li class="nav-item">
-                <a class="nav-link collapsed" routerLink="#" data-toggle="collapse">
+                <a class="nav-link collapsed" routerLink="/dashboard-trabajador/cliente" data-toggle="collapse">
                     <i class="fa-solid fa-user"></i>
-                    <span>Gestionar Clientes</span>
+                    <span> Gestionar Clientes </span>
                 </a>
             </li>
 
             <!-- Historial Cliente -->
-
             <li class="nav-item">
-                <a class="nav-link collapsed" routerLink="#" data-toggle="collapse">
+                <a class="nav-link collapsed" routerLink="/dashboard-trabajador/historial-cliente"
+                    data-toggle="collapse">
                     <i class="fa-solid fa-book-medical"></i>
-                    <span>Historial de Clientes</span>
+                    <span> Historial de Clientes </span>
                 </a>
             </li>
-
-            <!-- Divisor -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading Producto-->
-            <div class="sidebar-heading">
-                Producto
-            </div>
-
-            <!-- Visualizar Stock -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" routerLink="#" data-toggle="collapse">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                    <span>Visualizar Stock</span>
-                </a>
-            </li>
-
-            <!-- Divisor -->
-            <hr class="sidebar-divider">
 
         </ul>
         <!-- End of Sidebar -->
@@ -165,34 +176,48 @@
                             <div class="arreglo-orden">
                                 <div style="flex: 1;">
                                     <div style="display: flex; flex-direction: row;align-items: center;">
-                                        <label class="form-label label-text" style="margin-right: 20px; margin-top: 8px;">CLIENTE</label>
-                                        <button class="btn btn-success btn-sm" style="height: auto; margin-right: 5px;" (click)="openModal(addClienteModal)">+</button>
+                                        <label class="form-label label-text"
+                                            style="margin-right: 20px; margin-top: 8px;">CLIENTE</label>
+                                        <button class="btn btn-success btn-sm" style="height: auto; margin-right: 5px;"
+                                            (click)="openModal(addClienteModal)">+</button>
                                     </div>
-                                    <select formControlName="idCliente" class="form-select" style="width: 400px;margin-top: 20px;" (change)="onClienteChange($event)">
+                                    <select formControlName="idCliente" class="form-select"
+                                        style="width: 400px;margin-top: 20px;" (change)="onClienteChange($event)">
                                         <option value="" disabled selected>Seleccionar cliente...</option>
-                                        <option *ngFor="let cliente of clientes" [value]="cliente._id"> {{cliente.dni}} - {{ cliente.nombres }} {{ cliente.apellidos }}</option>
+                                        <option *ngFor="let cliente of clientes" [value]="cliente._id"> {{cliente.dni}}
+                                            - {{ cliente.nombres }} {{ cliente.apellidos }}</option>
                                     </select>
                                     <div class="arreglo-orden" style="margin-top: 20px;">
                                         <label class="form-label label-text"> Nombres </label>
-                                        <input class="form-control" type="text" style="width: 300px;" [value]="selectedCliente?.nombres" placeholder="Seleccione un cliente..." disabled>
+                                        <input class="form-control" type="text" style="width: 300px;"
+                                            [value]="selectedCliente?.nombres" placeholder="Seleccione un cliente..."
+                                            disabled>
                                     </div>
                                     <div class="arreglo-orden">
                                         <label class="form-label label-text"> Apellidos </label>
-                                        <input class="form-control" type="text" style="width: 300px;" [value]="selectedCliente?.apellidos" placeholder="Seleccione un cliente..." disabled>
+                                        <input class="form-control" type="text" style="width: 300px;"
+                                            [value]="selectedCliente?.apellidos" placeholder="Seleccione un cliente..."
+                                            disabled>
                                     </div>
                                     <div class="arreglo-orden">
                                         <label class="form-label label-text"> Celular </label>
-                                        <input class="form-control" type="text" style="width: 200px;" [value]="selectedCliente?.celular" placeholder="Seleccione un cliente..." disabled>
+                                        <input class="form-control" type="text" style="width: 200px;"
+                                            [value]="selectedCliente?.celular" placeholder="Seleccione un cliente..."
+                                            disabled>
                                     </div>
                                 </div>
                                 <div style="flex: 1;">
                                     <div class="arreglo-orden">
                                         <label class="form-label label-text"> Direccion </label>
-                                        <input class="form-control" type="text" style="width: 400px;" [value]="selectedCliente?.direccion" placeholder="Seleccione un cliente..." disabled>
+                                        <input class="form-control" type="text" style="width: 400px;"
+                                            [value]="selectedCliente?.direccion" placeholder="Seleccione un cliente..."
+                                            disabled>
                                     </div>
                                     <div class="arreglo-orden">
                                         <label class="form-label label-text"> Correo Electronico </label>
-                                        <input class="form-control" type="text" style="width: 400px;" [value]="selectedCliente?.correo" placeholder="Seleccione un cliente..." disabled>
+                                        <input class="form-control" type="text" style="width: 400px;"
+                                            [value]="selectedCliente?.correo" placeholder="Seleccione un cliente..."
+                                            disabled>
                                     </div>
                                 </div>
 
@@ -205,33 +230,47 @@
                                         <form [formGroup]="clienteForm">
                                             <div class="form-group">
                                                 <label class="form-label label-text">DNI</label>
-                                                <input type="text" formControlName="dni" class="form-control" style="margin-top: 5px;" placeholder="Ingresa el DNI del cliente...">
+                                                <input type="text" formControlName="dni" class="form-control"
+                                                    style="margin-top: 5px;"
+                                                    placeholder="Ingresa el DNI del cliente...">
                                             </div>
                                             <div class="form-group" style="margin-top: 20px;">
                                                 <label class="form-label label-text">Nombres</label>
-                                                <input type="text" formControlName="nombres" class="form-control" style="margin-top: 5px;" placeholder="Ingresa los nombres del cliente...">
+                                                <input type="text" formControlName="nombres" class="form-control"
+                                                    style="margin-top: 5px;"
+                                                    placeholder="Ingresa los nombres del cliente...">
                                             </div>
                                             <div class="form-group" style="margin-top: 20px;">
                                                 <label class="form-label label-text">Apellidos</label>
-                                                <input type="text" formControlName="apellidos" class="form-control" style="margin-top: 5px;" placeholder="Ingresa los apellidos del cliente...">
+                                                <input type="text" formControlName="apellidos" class="form-control"
+                                                    style="margin-top: 5px;"
+                                                    placeholder="Ingresa los apellidos del cliente...">
                                             </div>
                                             <div class="form-group" style="margin-top: 20px;">
                                                 <label class="form-label label-text">Celular</label>
-                                                <input type="text" formControlName="celular" class="form-control" style="margin-top: 5px;" placeholder="Ingresa el número celular del cliente...">
+                                                <input type="text" formControlName="celular" class="form-control"
+                                                    style="margin-top: 5px;"
+                                                    placeholder="Ingresa el número celular del cliente...">
                                             </div>
                                             <div class="form-group" style="margin-top: 20px;">
                                                 <label class="form-label label-text">Dirección</label>
-                                                <input type="text" formControlName="direccion" class="form-control" style="margin-top: 5px;" placeholder="Ingresa la dirección del cliente...">
+                                                <input type="text" formControlName="direccion" class="form-control"
+                                                    style="margin-top: 5px;"
+                                                    placeholder="Ingresa la dirección del cliente...">
                                             </div>
                                             <div class="form-group" style="margin-top: 20px;">
                                                 <label class="form-label label-text">Correo</label>
-                                                <input type="text" formControlName="correo" class="form-control" style="margin-top: 5px;" placeholder="Ingresa el correo del cliente...">
+                                                <input type="text" formControlName="correo" class="form-control"
+                                                    style="margin-top: 5px;"
+                                                    placeholder="Ingresa el correo del cliente...">
                                             </div>
                                         </form>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" (click)="modal.dismiss()">Cancelar</button>
-                                        <button type="button" class="btn btn-primary" (click)="agregarCliente()">Guardar</button>
+                                        <button type="button" class="btn btn-secondary"
+                                            (click)="modal.dismiss()">Cancelar</button>
+                                        <button type="button" class="btn btn-primary"
+                                            (click)="agregarCliente()">Guardar</button>
                                     </div>
                                 </ng-template>
 
@@ -243,12 +282,17 @@
                                 <!-- MATERIAL LUNA -->
                                 <div style="flex: 1; margin-top: 30px;">
                                     <div class="radio-container">
-                                        <label class="form-label label-text" style="margin-right: 65px;">Material:</label>
+                                        <label class="form-label label-text"
+                                            style="margin-right: 65px;">Material:</label>
                                         <div *ngFor="let option of materialLunaOptions" class="radio-item">
-                                            <label class="form-label label-text" style="margin-right: 10px;">{{ option.material }}</label>
-                                            <input type="radio" [value]="option._id" formControlName="idMaterialLuna" style="width: 30px; margin-right: 10px;" (change)="calcularTotalGeneral()">
+                                            <label class="form-label label-text" style="margin-right: 10px;">{{
+                                                option.material }}</label>
+                                            <input type="radio" [value]="option._id" formControlName="idMaterialLuna"
+                                                style="width: 30px; margin-right: 10px;"
+                                                (change)="calcularTotalGeneral()">
                                         </div>
-                                        <button type="button" class="btn btn-outline-primary btn-sm" (click)="deseleccionarMaterialLuna()">Deseleccionar</button>
+                                        <button type="button" class="btn btn-outline-primary btn-sm"
+                                            (click)="deseleccionarMaterialLuna()">Deseleccionar</button>
                                     </div>
                                 </div>
 
@@ -262,30 +306,35 @@
                                     <div class="arreglo-orden">
                                         <label class="form-label label-text" style="margin-left: 23px;"> Esfera </label>
                                         <input type="text" formControlName="oDEsfera" style="width: 100px;">
-                                        <input type="text" formControlName="oIEsfera" style="width: 100px; margin-top: 3px;">
+                                        <input type="text" formControlName="oIEsfera"
+                                            style="width: 100px; margin-top: 3px;">
                                     </div>
                                     <div class="arreglo-orden">
                                         <label class="form-label label-text" style="margin-left: 18px;"> Cilindro
                                         </label>
                                         <input type="text" formControlName="oDCilindro" style="width: 100px;">
-                                        <input type="text" formControlName="oICilindro" style="width: 100px; margin-top: 3px;">
+                                        <input type="text" formControlName="oICilindro"
+                                            style="width: 100px; margin-top: 3px;">
                                     </div>
                                     <div class="arreglo-orden">
                                         <label class="form-label label-text" style="margin-left: 36px;"> Eje </label>
                                         <input type="text" formControlName="oDEje" style="width: 100px;">
-                                        <input type="text" formControlName="oIEje" style="width: 100px; margin-top: 3px;">
+                                        <input type="text" formControlName="oIEje"
+                                            style="width: 100px; margin-top: 3px;">
                                     </div>
                                     <div class="arreglo-orden">
                                         <label class="form-label label-text" style="margin-left: 11px;"> A/V Lejos
                                         </label>
                                         <input type="text" formControlName="oDAvLejos" style="width: 100px;">
-                                        <input type="text" formControlName="oIAvLejos" style="width: 100px; margin-top: 3px;">
+                                        <input type="text" formControlName="oIAvLejos"
+                                            style="width: 100px; margin-top: 3px;">
                                     </div>
                                     <div class="arreglo-orden">
                                         <label class="form-label label-text" style="margin-left: 9px;"> A/V Cerca
                                         </label>
                                         <input type="text" formControlName="oDAvCerca" style="width: 100px;">
-                                        <input type="text" formControlName="oIAvCerca" style="width: 100px; margin-top: 3px;">
+                                        <input type="text" formControlName="oIAvCerca"
+                                            style="width: 100px; margin-top: 3px;">
                                     </div>
                                 </div>
                                 <div style="flex: 1;">
@@ -297,24 +346,29 @@
                                     <div class="arreglo-orden">
                                         <label class="form-label label-text" style="margin-left: 29px;"> Add. </label>
                                         <input type="text" formControlName="oDAdd" style="width: 100px;">
-                                        <input type="text" formControlName="oIAdd" style="width: 100px; margin-top: 3px;">
+                                        <input type="text" formControlName="oIAdd"
+                                            style="width: 100px; margin-top: 3px;">
                                     </div>
                                     <div class="arreglo-orden">
                                         <label class="form-label label-text" style="margin-left: 23px;"> Altura </label>
                                         <input type="text" formControlName="oDAltura" style="width: 100px;">
-                                        <input type="text" formControlName="oIAltura" style="width: 100px; margin-top: 3px;">
+                                        <input type="text" formControlName="oIAltura"
+                                            style="width: 100px; margin-top: 3px;">
                                     </div>
                                     <div class="arreglo-orden">
                                         <label class="form-label label-text" style="margin-left: 25px;"> Curva </label>
                                         <input type="text" formControlName="oDCurva" style="width: 100px;">
-                                        <input type="text" formControlName="oICurva" style="width: 100px; margin-top: 3px;">
+                                        <input type="text" formControlName="oICurva"
+                                            style="width: 100px; margin-top: 3px;">
                                     </div>
                                     <div class="arreglo-orden">
-                                        <label class="form-label label-text" style="margin-left: 11px;"> DIP Lejos</label>
+                                        <label class="form-label label-text" style="margin-left: 11px;"> DIP
+                                            Lejos</label>
                                         <input type="text" formControlName="dipLejos" style="width: 100px;">
                                     </div>
                                     <div class="arreglo-orden">
-                                        <label class="form-label label-text" style="margin-left: 9px;"> DIP Cerca</label>
+                                        <label class="form-label label-text" style="margin-left: 9px;"> DIP
+                                            Cerca</label>
                                         <input type="text" formControlName="dipCerca" style="width: 100px;">
                                     </div>
                                 </div>
@@ -324,21 +378,25 @@
                                     <div class="radio-container">
                                         <label class="form-label label-text" style="margin-right: 65px;">Tipo:</label>
                                         <div *ngFor="let option of tiposLunaOptions" class="radio-item">
-                                            <label class="form-label label-text" style="margin-right: 10px;">{{ option.nombre }}</label>
-                                            <input type="radio" [value]="option._id" formControlName="idTipoLuna" style="width: 30px; margin-right: 10px;" (change)="calcularTotalGeneral()">
-                                      </div>
-                                      <button type="button" class="btn btn-outline-primary btn-sm" (click)="deseleccionarTipoLuna()">Deseleccionar</button>
+                                            <label class="form-label label-text" style="margin-right: 10px;">{{
+                                                option.nombre }}</label>
+                                            <input type="radio" [value]="option._id" formControlName="idTipoLuna"
+                                                style="width: 30px; margin-right: 10px;"
+                                                (change)="calcularTotalGeneral()">
+                                        </div>
+                                        <button type="button" class="btn btn-outline-primary btn-sm"
+                                            (click)="deseleccionarTipoLuna()">Deseleccionar</button>
                                     </div>
-                                  </div>
+                                </div>
 
                                 <!-- PRODUCTOS -->
-                                 <form [formGroup]="detalleVentaForm">
+                                <form [formGroup]="detalleVentaForm">
                                     <div style="display: flex; flex-direction: row; margin-top: 20px;">
                                         <div style="flex: 1;">
                                             <label class="form-label label-text"
                                                 style="margin-right: 20px; margin-top: 30px;">PRODUCTO</label>
-                                            <select class="form-select" style="width: 300px;" formControlName="idProducto"
-                                                (change)="onProductChange($event)">
+                                            <select class="form-select" style="width: 300px;"
+                                                formControlName="idProducto" (change)="onProductChange($event)">
                                                 <option value="" disabled selected>Seleccione un producto...</option>
                                                 <option *ngFor="let producto of productos" [value]="producto._id">{{
                                                     producto.nombre }}</option>
@@ -347,28 +405,33 @@
                                                 style="display: flex; flex-wrap: wrap; margin-left: 20px; margin-top: 20px;">
                                                 <div style="margin-right: 20px;">
                                                     <label for="codigo" class="form-label label-text">Código:</label>
-                                                    <input type="text" id="codigo" class="form-control" style="width: 100px;"
-                                                        [value]="selectedProduct?.codigo" disabled>
+                                                    <input type="text" id="codigo" class="form-control"
+                                                        style="width: 100px;" [value]="selectedProduct?.codigo"
+                                                        disabled>
                                                 </div>
                                                 <div style="margin-right: 20px;">
                                                     <label for="nombre" class="form-label label-text">Nombre:</label>
-                                                    <input type="text" id="nombre" class="form-control" style="width: 270px;"
-                                                        [value]="selectedProduct?.nombre" disabled>
+                                                    <input type="text" id="nombre" class="form-control"
+                                                        style="width: 270px;" [value]="selectedProduct?.nombre"
+                                                        disabled>
                                                 </div>
                                                 <div style="margin-right: 20px;">
                                                     <label for="precio" class="form-label label-text">Precio:</label>
-                                                    <input type="text" id="precio" class="form-control" style="width: 100px;"
-                                                        [value]="selectedProduct?.precio" disabled>
+                                                    <input type="text" id="precio" class="form-control"
+                                                        style="width: 100px;" [value]="selectedProduct?.precio"
+                                                        disabled>
                                                 </div>
                                                 <div style="margin-right: 20px;">
                                                     <label for="stock" class="form-label label-text">Stock:</label>
-                                                    <input type="text" id="stock" class="form-control" style="width: 100px;"
-                                                        [value]="selectedProduct?.stock" disabled>
+                                                    <input type="text" id="stock" class="form-control"
+                                                        style="width: 100px;" [value]="selectedProduct?.stock" disabled>
                                                 </div>
                                                 <div style="margin-right: 20px;">
-                                                    <label for="cantidad" class="form-label label-text">Cantidad:</label>
-                                                    <input type="number" id="cantidad" class="form-control" formControlName="cantidad"
-                                                        style="width: 100px;" [(ngModel)]="cantidad"
+                                                    <label for="cantidad"
+                                                        class="form-label label-text">Cantidad:</label>
+                                                    <input type="number" id="cantidad" class="form-control"
+                                                        formControlName="cantidad" style="width: 100px;"
+                                                        [(ngModel)]="cantidad"
                                                         (ngModelChange)="calcularTotal(selectedProduct)">
                                                 </div>
                                                 <div>
@@ -410,27 +473,31 @@
                                 </form>
 
                                 <!-- TRATAMIENTOS -->
-                                    <div style="flex: 1;">
-                                        <label class="form-label label-text"
-                                            style="margin-right: 105px; margin-top: 40px;">TRATAMIENTOS</label>
-                                    </div>
-                                    <div style="flex: 1;">
-                                        <div class="arreglo-orden">
-                                            <div class="tratamientos-container">
-                                                <div style="flex: 1;" *ngFor="let option of tratamientosOptions" class="tratamiento-item">
-                                                    <label class="form-label label-text" style="width: 150px;"> {{ option.nombre }} </label>
-                                                    <input type="checkbox" style="width: 30px; margin-right: 10px;" (change)="updateCheckboxValues(option, $event); calcularTotalTratamientos()">
-                                                </div>
+                                <div style="flex: 1;">
+                                    <label class="form-label label-text"
+                                        style="margin-right: 105px; margin-top: 40px;">TRATAMIENTOS</label>
+                                </div>
+                                <div style="flex: 1;">
+                                    <div class="arreglo-orden">
+                                        <div class="tratamientos-container">
+                                            <div style="flex: 1;" *ngFor="let option of tratamientosOptions"
+                                                class="tratamiento-item">
+                                                <label class="form-label label-text" style="width: 150px;"> {{
+                                                    option.nombre }} </label>
+                                                <input type="checkbox" style="width: 30px; margin-right: 10px;"
+                                                    (change)="updateCheckboxValues(option, $event); calcularTotalTratamientos()">
                                             </div>
                                         </div>
                                     </div>
+                                </div>
 
                                 <!-- OBSERVACION Y MONTOS TOTAL, A CUENTA Y SALDO -->
                                 <div style="flex: 1; margin-top: 20px;">
                                     <div class="arreglo-orden">
                                         <label class="form-label label-text">Observaciones</label>
                                         <textarea class="form-control" style="width: 500px; height: 100px;"
-                                            formControlName="observacion" placeholder="Ingresar Observaciones"></textarea>
+                                            formControlName="observacion"
+                                            placeholder="Ingresar Observaciones"></textarea>
                                     </div>
                                 </div>
                                 <div style="flex: 1;margin-top: 20px;">
@@ -462,8 +529,8 @@
                         <button type="submit" class="btn btn-success float-end"
                             style="margin-left: 10px; margin-top: 20px;">Aceptar</button>
                         <div class="class mb 3">
-                            <button routerLink="/dashboard-trabajador/venta"
-                                class="btn btn-secondary flat-start" style="margin-top: 20px;margin-bottom: 40px;">Volver</button>
+                            <button routerLink="/dashboard-trabajador/venta" class="btn btn-secondary flat-start"
+                                style="margin-top: 20px;margin-bottom: 40px;">Volver</button>
                         </div>
                     </form>
                 </div>
