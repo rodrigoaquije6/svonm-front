@@ -34,7 +34,6 @@ export class ComprasComponent {
 
   obtenerIngresos() {
     this._ingresoService.getIngresos().subscribe((data: any) => {
-      console.log(data);
       if (data && data.ingresosConDetalles) {
         this.listIngreso = data.ingresosConDetalles.filter((ingreso: any) =>
           ingreso.ingreso.codigo.toLowerCase().includes(this.terminoBusqueda.toLowerCase()) ||
