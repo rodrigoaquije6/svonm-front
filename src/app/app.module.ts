@@ -36,6 +36,8 @@ import { DevolucionesComponent } from './components/devolucion/devoluciones/devo
 import { RegistrarDevolucionComponent } from './components/devolucion/registrar-devolucion/registrar-devolucion.component';
 import { VentasComponent } from './components/seguimiento-venta/ventas/ventas.component';
 import { DetalleVentaComponent } from './components/seguimiento-venta/detalle-venta/detalle-venta.component';
+import { DetalleCompraComponent } from './components/compra/detalle-compra/detalle-compra.component';
+import { DetalleDevolucionComponent } from './components/devolucion/detalle-devolucion/detalle-devolucion.component';
 
 @NgModule({
   declarations: [
@@ -68,6 +70,8 @@ import { DetalleVentaComponent } from './components/seguimiento-venta/detalle-ve
     RegistrarDevolucionComponent,
     VentasComponent,
     DetalleVentaComponent,
+    DetalleCompraComponent,
+    DetalleDevolucionComponent,
   ],
   imports: [
     BrowserModule,

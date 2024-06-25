@@ -68,6 +68,37 @@
                     <span> Gestionar Roles</span>
                 </a>
             </li>
+            <!-- Divisor -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading Lunas -->
+            <div class="sidebar-heading">
+                Lunas
+            </div>
+
+            <!-- Gestionar Tipo Luna -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" routerLink="/dashboard-gerente/tipoLuna" data-toggle="collapse">
+                    <i class="fa-solid fa-eye"></i>
+                    <span> Tipo de Lunas</span>
+                </a>
+            </li>
+
+            <!-- Gestionar Material Luna -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" routerLink="/dashboard-gerente/luna" data-toggle="collapse">
+                    <i class="fa-solid fa-eye"></i>
+                    <span> Material de Lunas</span>
+                </a>
+            </li>
+
+            <!-- Gestionar Tratamientos -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" routerLink="/dashboard-gerente/tratamiento" data-toggle="collapse">
+                    <i class="fa-solid fa-notes-medical"></i>
+                    <span> Tratamientos</span>
+                </a>
+            </li>
 
             <!-- Divisor -->
             <hr class="sidebar-divider">
@@ -93,14 +124,6 @@
                 </a>
             </li>
 
-            <!-- Gestionar Lunas -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" routerLink="/dashboard-gerente/luna" data-toggle="collapse">
-                    <i class="fa-regular fa-eye"></i>
-                    <span> Lunas</span>
-                </a>
-            </li>
-
             <!-- Gestionar Marca -->
             <li class="nav-item">
                 <a class="nav-link collapsed" routerLink="/dashboard-gerente/marca" data-toggle="collapse">
@@ -112,38 +135,34 @@
             <!-- Divisor -->
             <hr class="sidebar-divider">
 
-            <!-- Heading Catálogo-->
+            <!-- Heading Inventario -->
             <div class="sidebar-heading">
-                Catálogo
+                Inventario
             </div>
 
-            <!-- Gestionar Catálogo -->
+            <!-- Gestionar Proveedor -->
             <li class="nav-item">
-                <a class="nav-link collapsed" routerLink="/dashboard-gerente/catalogo" data-toggle="collapse">
-                    <i class="fa-solid fa-book"></i>
-                    <span> Gestionar Catálogo</span>
+                <a class="nav-link collapsed" routerLink="/dashboard-gerente/proveedor" data-toggle="collapse">
+                    <i class="fa-solid fa-truck-field"></i>
+                    <span> Gestionar Proveedor</span>
                 </a>
             </li>
 
-            <!-- Divisor -->
-            <hr class="sidebar-divider">
+            <!-- Ingreso de Productos -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" routerLink="/dashboard-gerente/ingresos" data-toggle="collapse">
+                    <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                    <span> Ingreso de Productos </span>
+                </a>
+            </li>
 
-            <!-- Heading Almacén-->
-            <div class="sidebar-heading">
-                Almacén
-            </div>
-
-            <!-- Gestionar Almacén -->
+            <!-- Visualizar Stock Producto (kárdex) -->
             <li class="nav-item">
                 <a class="nav-link collapsed" routerLink="/dashboard-gerente/almacen" data-toggle="collapse">
                     <i class="fa-solid fa-box"></i>
-                    <span> Gestionar Almacén</span>
+                    <span> Visualizar Stock </span>
                 </a>
             </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
         </ul>
         <!-- End of Sidebar -->
 
@@ -155,7 +174,7 @@
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                    <span class="span-text mx-3">{{titulo}}</span>
+                    <span class="span-text mx-3">{{titulo | uppercase}}</span>
 
 
                     <!-- Topbar Navbar -->
@@ -179,7 +198,8 @@
                         <div class="mb-3 d-flex align-items-end">
                             <div style="flex: 1;">
                                 <label class="form-label label-text">Tipo de Producto</label>
-                                <input type="text" formControlName="nombre" class="form-control" style="width: 350px;" placeholder="Escriba el nombre del tipo de producto...">
+                                <input type="text" formControlName="nombre" class="form-control" style="width: 350px;"
+                                    placeholder="Escriba el nombre del tipo de producto...">
                                 <div class="text-danger"
                                     *ngIf="tipoProductoForm.get('nombre')?.hasError('required') && tipoProductoForm.get('nombre')?.touched">
                                     <span>El nombre del tipo de producto <strong>es obligatorio</strong></span>
@@ -188,7 +208,8 @@
                             <button class="btn btn-success float-end" style="margin-left: 10px;">Agregar</button>
                         </div>
                         <div class="class mb 3">
-                            <button routerLink="/dashboard-gerente/tipoProducto" class="btn btn-secondary flat-start">Volver</button>
+                            <button routerLink="/dashboard-gerente/tipoProducto"
+                                class="btn btn-secondary flat-start">Volver</button>
                         </div>
                     </form>
                 </div>

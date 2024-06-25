@@ -31,4 +31,8 @@ export class IngresoService {
     return this.http.put(this.url + id, ingreso);
   }
 
+  actualizarEstadoIngreso(id: string, nuevoEstado: string): Observable<any> {
+    return this.http.put(`${this.url}${id}/estado`, { estado: nuevoEstado });
+  }
+
 }

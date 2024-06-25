@@ -48,65 +48,50 @@
             <!-- Divisor -->
             <hr class="sidebar-divider">
 
-            <!-- Heading Cita-->
-            <div class="sidebar-heading">
-                Cita
-            </div>
-
-            <!-- Gestionar Cita -->
+            <!-- Gestionar Trabajador -->
             <li class="nav-item">
-                <a class="nav-link collapsed" routerLink="#" data-toggle="collapse">
-                    <i class="fa-solid fa-calendar-check"></i>
-                    <span>Gestionar Cita</span>
+                <a class="nav-link collapsed" routerLink="/dashboard-gerente/trabajador" data-toggle="collapse">
+                    <i class="fa-solid fa-briefcase"></i>
+                    <span> Gestionar Trabajador</span>
                 </a>
             </li>
 
+            <!-- Gestionar Roles -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" routerLink="/dashboard-gerente/rol" data-toggle="collapse">
+                    <i class="fa-solid fa-sheet-plastic"></i>
+                    <span> Gestionar Roles</span>
+                </a>
+            </li>
             <!-- Divisor -->
             <hr class="sidebar-divider">
 
-            <!-- Heading Venta-->
+            <!-- Heading Lunas -->
             <div class="sidebar-heading">
-                Venta
+                Lunas
             </div>
 
-            <!-- Gestionar Venta -->
+            <!-- Gestionar Tipo Luna -->
             <li class="nav-item">
-                <a class="nav-link collapsed" routerLink="/dashboard-trabajador/venta" data-toggle="collapse">
-                    <i class="fa-solid fa-dollar-sign"></i>
-                    <span>Gestionar Venta</span>
+                <a class="nav-link collapsed" routerLink="/dashboard-gerente/tipoLuna" data-toggle="collapse">
+                    <i class="fa-solid fa-eye"></i>
+                    <span> Tipo de Lunas</span>
                 </a>
             </li>
 
-            <!-- Seguimiento de Venta -->
+            <!-- Gestionar Material Luna -->
             <li class="nav-item">
-                <a class="nav-link collapsed" routerLink="#" data-toggle="collapse">
-                    <i class="fa-solid fa-person-walking"></i>
-                    <span>Seguimiento de Venta</span>
+                <a class="nav-link collapsed" routerLink="/dashboard-gerente/luna" data-toggle="collapse">
+                    <i class="fa-solid fa-eye"></i>
+                    <span> Material de Lunas</span>
                 </a>
             </li>
 
-            <!-- Divisor -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading Cliente-->
-            <div class="sidebar-heading">
-                Cliente
-            </div>
-
-            <!-- Gestionar Cliente -->
+            <!-- Gestionar Tratamientos -->
             <li class="nav-item">
-                <a class="nav-link collapsed" routerLink="#" data-toggle="collapse">
-                    <i class="fa-solid fa-user"></i>
-                    <span>Gestionar Clientes</span>
-                </a>
-            </li>
-
-            <!-- Historial Cliente -->
-
-            <li class="nav-item">
-                <a class="nav-link collapsed" routerLink="#" data-toggle="collapse">
-                    <i class="fa-solid fa-book-medical"></i>
-                    <span>Historial de Clientes</span>
+                <a class="nav-link collapsed" routerLink="/dashboard-gerente/tratamiento" data-toggle="collapse">
+                    <i class="fa-solid fa-notes-medical"></i>
+                    <span> Tratamientos</span>
                 </a>
             </li>
 
@@ -118,16 +103,61 @@
                 Producto
             </div>
 
-            <!-- Visualizar Stock -->
+            <!-- Gestionar tipoProducto -->
             <li class="nav-item">
-                <a class="nav-link collapsed" routerLink="#" data-toggle="collapse">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                    <span>Visualizar Stock</span>
+                <a class="nav-link collapsed" routerLink="/dashboard-gerente/tipoProducto" data-toggle="collapse">
+                    <i class="fa-brands fa-product-hunt"></i>
+                    <span> Tipo de Producto</span>
+                </a>
+            </li>
+
+            <!-- Gestionar Producto -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" routerLink="/dashboard-gerente/gestionar-producto" data-toggle="collapse">
+                    <i class="fa-solid fa-box-archive"></i>
+                    <span> Gestionar Producto</span>
+                </a>
+            </li>
+
+            <!-- Gestionar Marca -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" routerLink="/dashboard-gerente/marca" data-toggle="collapse">
+                    <i class="fa-regular fa-copyright"></i>
+                    <span> Marcas</span>
                 </a>
             </li>
 
             <!-- Divisor -->
             <hr class="sidebar-divider">
+
+            <!-- Heading Inventario -->
+            <div class="sidebar-heading">
+                Inventario
+            </div>
+
+            <!-- Gestionar Proveedor -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" routerLink="/dashboard-gerente/proveedor" data-toggle="collapse">
+                    <i class="fa-solid fa-truck-field"></i>
+                    <span> Gestionar Proveedor</span>
+                </a>
+            </li>
+
+            <!-- Ingreso de Productos -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" routerLink="/dashboard-gerente/ingresos" data-toggle="collapse">
+                    <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                    <span> Ingreso de Productos </span>
+                </a>
+            </li>
+
+            <!-- Visualizar Stock Producto (kárdex) -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" routerLink="/dashboard-gerente/almacen" data-toggle="collapse">
+                    <i class="fa-solid fa-box"></i>
+                    <span> Visualizar Stock </span>
+                </a>
+            </li>
 
         </ul>
         <!-- End of Sidebar -->
@@ -347,7 +377,7 @@
                         <button type="submit" class="btn btn-success float-end"
                             style="margin-left: 10px; margin-top: 20px;">Aceptar</button>
                         <div class="class mb 3">
-                            <button routerLink="/dashboard-trabajador/venta" class="btn btn-secondary flat-start"
+                            <button routerLink="/dashboard-gerente/ingresos" class="btn btn-secondary flat-start"
                                 style="margin-top: 20px;margin-bottom: 40px;">Volver</button>
                         </div>
                     </form>

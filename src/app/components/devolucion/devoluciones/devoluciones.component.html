@@ -187,9 +187,10 @@
                                         <td>
                                             <i *ngIf="ventaF.venta.estado === 'Finalizada'" [routerLink]="['/dashboard-trabajador/devolucion/registrar-devolucion/', ventaF.venta._id]"
                                                 class="faw fa-solid fa-plus text-success"></i>
-                                            <!--<i class="fas" [ngClass]="{'fa-eye': producto.estado === 'Activo', 'fa-eye-slash': producto.estado === 'Inactivo', 
-                                                'text-success': producto.estado === 'Activo', 'text-danger': producto.estado === 'Inactivo'}" (click)="toggleEstadoProducto(producto)">
-                                            </i> -->
+                                            <i *ngIf="ventaF.venta.estado === 'Finalizada'" [routerLink]="['/dashboard-trabajador/devolucion/detalle-venta/', ventaF.venta._id]"
+                                                class="faw fa fa-eye text-primary"></i>
+                                            <i *ngIf="ventaF.venta.estado === 'Cambio Solicitado' || ventaF.venta.estado === 'Reembolso'" [routerLink]="['/dashboard-trabajador/devolucion/detalle-devolucion/', ventaF.venta._id]"
+                                                class="faw fa fa-eye text-primary"></i>
                                         </td>
                                     </tr>
                                 </tbody>

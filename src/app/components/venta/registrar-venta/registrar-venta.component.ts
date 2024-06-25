@@ -216,7 +216,7 @@ export class RegistrarVentaComponent implements OnInit {
   }
 
   obtenerProductos() {
-    this._productoService.getProductos().subscribe(
+    this._productoService.getProductosActivos().subscribe(
       (productos: Producto[]) => {
         this.productos = productos;
         console.log('Productos obtenidos:', this.productos);

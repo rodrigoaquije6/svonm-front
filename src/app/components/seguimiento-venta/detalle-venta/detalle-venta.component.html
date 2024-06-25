@@ -417,17 +417,19 @@
                                 </div>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-success float-end"
-                            style="margin-left: 10px; margin-top: 20px;">Aceptar</button>
-                            <div class="class mb 3">
-                                <button routerLink="/dashboard-trabajador/venta" *ngIf="isVentaRoute()"
-                                    class="btn btn-secondary flat-start"
-                                    style="margin-top: 20px; margin-bottom: 40px;">Volver</button>
-    
-                                <button routerLink="/dashboard-trabajador/seguimiento-venta"
-                                    *ngIf="isSeguimientoVentaRoute()" class="btn btn-secondary flat-start"
-                                    style="margin-top: 20px; margin-bottom: 40px;">Volver</button>
-                            </div>
+                        <div class="class mb 3">
+                            <button routerLink="/dashboard-trabajador/venta" *ngIf="isVentaRoute()"
+                                class="btn btn-secondary flat-start"
+                                style="margin-top: 20px; margin-bottom: 40px;">Volver</button>
+
+                            <button routerLink="/dashboard-trabajador/seguimiento-venta"
+                                *ngIf="isSeguimientoVentaRoute()" class="btn btn-secondary flat-start"
+                                style="margin-top: 20px; margin-bottom: 40px;">Volver</button>
+
+                            <button routerLink="/dashboard-trabajador/devolucion"
+                                *ngIf="isDevolucionRoute()" class="btn btn-secondary flat-start"
+                                style="margin-top: 20px; margin-bottom: 40px;">Volver</button>
+                        </div>
                     </form>
                 </div>
                 <!-- End of Content -->

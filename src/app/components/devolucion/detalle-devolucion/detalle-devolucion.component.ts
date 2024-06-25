@@ -1,28 +1,30 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Producto } from 'src/app/models/producto';
-import { DevolucionService } from 'src/app/services/devolucion.service';
 import { LoginService } from 'src/app/services/login.service';
+import { VentaService } from 'src/app/services/venta.service';
+import { Producto } from 'src/app/models/producto';
+import { Cliente } from 'src/app/models/cliente';
+import { TratamientoService } from 'src/app/services/tratamiento.service';
 import { LunaService } from 'src/app/services/luna.service';
 import { TipoLunaService } from 'src/app/services/tipoLuna.service';
-import { TratamientoService } from 'src/app/services/tratamiento.service';
-import { VentaService } from 'src/app/services/venta.service';
+import { DevolucionService } from 'src/app/services/devolucion.service';
 
 @Component({
-  selector: 'app-detalle-venta',
-  templateUrl: './detalle-venta.component.html',
-  styleUrls: ['./detalle-venta.component.css']
+  selector: 'app-detalle-devolucion',
+  templateUrl: './detalle-devolucion.component.html',
+  styleUrls: ['./detalle-devolucion.component.css']
 })
-export class DetalleVentaComponent {
+export class DetalleDevolucionComponent {
 
   ventaForm: FormGroup;
   devolucionForm: FormGroup;
 
   venta: any = {};
   detallesVenta: any[] = [];
+  devolucion: any = {};
 
   tratamientosOptions: { _id: string, nombre: string, precio: number }[] = [];
   tiposLunaOptions: { _id: string, nombre: string, precio: number }[] = [];
@@ -129,8 +131,8 @@ export class DetalleVentaComponent {
   }
 
   tratamientoEstaEnVenta(tratamientoOption: any): boolean {
-    if (this.venta && Array.isArray(this.venta.detallesTratamiento)) {
-      return this.venta.detallesTratamiento.some((detalle: any) => detalle.idTratamiento._id === tratamientoOption._id);
+    if (this.venta && this.venta.detallesTratamiento) {
+      return this.venta.detallesTratamiento.some((detalle: any) => detalle.idTratamiento === tratamientoOption._id);
     }
     return false;
   }
@@ -184,6 +186,7 @@ export class DetalleVentaComponent {
         (data: any) => { // Asegúrate de que 'data' tenga el tipo correcto según la respuesta del servicio
           this.venta = data;
           this.detallesVenta = data.detallesVenta;
+          this.devolucion = data.devolucion;
 
           // Asigna los valores al formulario usando patchValue
           this.ventaForm.patchValue({
@@ -248,18 +251,6 @@ export class DetalleVentaComponent {
     }
   }
 
-  isVentaRoute(): boolean {
-    return this.aRouter.snapshot.routeConfig?.path === 'dashboard-trabajador/venta/detalle-venta/:id';
-  }
-
-  isSeguimientoVentaRoute(): boolean {
-    return this.aRouter.snapshot.routeConfig?.path === 'dashboard-trabajador/seguimiento-venta/detalle-venta/:id';
-  }
-
-  isDevolucionRoute(): boolean {
-    return this.aRouter.snapshot.routeConfig?.path === 'dashboard-trabajador/devolucion/detalle-venta/:id';
-  }
-
   isLoggedIn: boolean = this.api.isLogged();
 
   onClickLogout() {
@@ -267,5 +258,4 @@ export class DetalleVentaComponent {
     localStorage.removeItem('rol');
     this.router.navigate(['login']);
   }
-
 }

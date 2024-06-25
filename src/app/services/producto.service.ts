@@ -16,6 +16,9 @@ export class ProductoService {
     return this.http.get(this.url);
   }
 
+  getProductosActivos(): Observable<any> {
+    return this.http.get(this.url + 'activos');
+  }
   obtenerProducto(id: string): Observable<any> {
     return this.http.get(this.url + id);
   }

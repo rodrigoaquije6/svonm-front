@@ -14,7 +14,7 @@ import { LunaService } from 'src/app/services/luna.service';
 export class CrearLunaComponent implements OnInit {
   lunaForm: FormGroup;
 
-  titulo = 'Crear Luna';
+  titulo = 'Crear Tipo Luna';
 
   id: string | null;
 
@@ -89,7 +89,7 @@ export class CrearLunaComponent implements OnInit {
 
   esEditar() {
     if (this.id !== null) {
-      this.titulo = 'Editar Luna';
+      this.titulo = 'Editar Tipo Luna';
       this._lunaService.obtenerLuna(this.id).subscribe(data => {
         this.lunaForm.setValue({
           material: data.material,

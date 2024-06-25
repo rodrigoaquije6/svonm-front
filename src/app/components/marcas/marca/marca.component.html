@@ -68,6 +68,37 @@
                     <span> Gestionar Roles</span>
                 </a>
             </li>
+            <!-- Divisor -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading Lunas -->
+            <div class="sidebar-heading">
+                Lunas
+            </div>
+
+            <!-- Gestionar Tipo Luna -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" routerLink="/dashboard-gerente/tipoLuna" data-toggle="collapse">
+                    <i class="fa-solid fa-eye"></i>
+                    <span> Tipo de Lunas</span>
+                </a>
+            </li>
+
+            <!-- Gestionar Material Luna -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" routerLink="/dashboard-gerente/luna" data-toggle="collapse">
+                    <i class="fa-solid fa-eye"></i>
+                    <span> Material de Lunas</span>
+                </a>
+            </li>
+
+            <!-- Gestionar Tratamientos -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" routerLink="/dashboard-gerente/tratamiento" data-toggle="collapse">
+                    <i class="fa-solid fa-notes-medical"></i>
+                    <span> Tratamientos</span>
+                </a>
+            </li>
 
             <!-- Divisor -->
             <hr class="sidebar-divider">
@@ -93,14 +124,6 @@
                 </a>
             </li>
 
-            <!-- Gestionar Lunas -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" routerLink="/dashboard-gerente/luna" data-toggle="collapse">
-                    <i class="fa-regular fa-eye"></i>
-                    <span> Lunas</span>
-                </a>
-            </li>
-
             <!-- Gestionar Marca -->
             <li class="nav-item">
                 <a class="nav-link collapsed" routerLink="/dashboard-gerente/marca" data-toggle="collapse">
@@ -112,37 +135,34 @@
             <!-- Divisor -->
             <hr class="sidebar-divider">
 
-            <!-- Heading Catálogo-->
+            <!-- Heading Inventario -->
             <div class="sidebar-heading">
-                Catálogo
+                Inventario
             </div>
 
-            <!-- Gestionar Catálogo -->
+            <!-- Gestionar Proveedor -->
             <li class="nav-item">
-                <a class="nav-link collapsed" routerLink="/dashboard-gerente/catalogo" data-toggle="collapse">
-                    <i class="fa-solid fa-book"></i>
-                    <span> Gestionar Catálogo</span>
+                <a class="nav-link collapsed" routerLink="/dashboard-gerente/proveedor" data-toggle="collapse">
+                    <i class="fa-solid fa-truck-field"></i>
+                    <span> Gestionar Proveedor</span>
                 </a>
             </li>
 
-            <!-- Divisor -->
-            <hr class="sidebar-divider">
+            <!-- Ingreso de Productos -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" routerLink="/dashboard-gerente/ingresos" data-toggle="collapse">
+                    <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                    <span> Ingreso de Productos </span>
+                </a>
+            </li>
 
-            <!-- Heading Almacén-->
-            <div class="sidebar-heading">
-                Almacén
-            </div>
-
-            <!-- Gestionar Almacén -->
+            <!-- Visualizar Stock Producto (kárdex) -->
             <li class="nav-item">
                 <a class="nav-link collapsed" routerLink="/dashboard-gerente/almacen" data-toggle="collapse">
                     <i class="fa-solid fa-box"></i>
-                    <span> Gestionar Almacén</span>
+                    <span> Visualizar Stock </span>
                 </a>
             </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
 
         </ul>
         <!-- End of Sidebar -->
@@ -184,25 +204,28 @@
                             <table *ngIf="listMarcas.length > 0" class="table table-striped mx-5 mt-5 text-center">
                                 <thead>
                                     <tr>
-                                        
+
                                         <th>Nombre</th>
                                         <th>Acción</th>
                                     </tr>
                                 </thead>
-                                <tbody>                    
+                                <tbody>
                                     <tr *ngFor="let marca of listMarcas">
-                                        
+
                                         <td>
                                             {{marca.nombre}}
                                         </td>
                                         <td>
-                                            <i [routerLink]="['/dashboard-gerente/marca/editar-marca/', marca._id]" class="faw fa fa-edit text-primary"></i>
-                                            <i (click)= "eliminarMarca(marca._id)"class='faw fa-solid fa-trash text-danger'></i>
+                                            <i [routerLink]="['/dashboard-gerente/marca/editar-marca/', marca._id]"
+                                                class="faw fa fa-edit text-primary"></i>
+                                            <i (click)="eliminarMarca(marca._id)"
+                                                class='faw fa-solid fa-trash text-danger'></i>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
-                            <h5 style="text-align: start; margin-top: 10px;" *ngIf="listMarcas.length == 0">No hay marcas para mostrar</h5>
+                            <h5 style="text-align: start; margin-top: 10px;" *ngIf="listMarcas.length == 0">No hay
+                                marcas para mostrar</h5>
                         </div>
                     </div>
                 </div>

@@ -9,7 +9,7 @@
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <title>Dashboard-gerente</title> 
+    <title>Dashboard-gerente</title>
 
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
@@ -29,7 +29,8 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Logo -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" routerLink="/dashboard-trabajador">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center"
+                routerLink="/dashboard-trabajador">
                 <div class="sidebar-brand-icon">
                     <i class="fa-solid fa-glasses"></i>
                 </div>
@@ -47,65 +48,50 @@
             <!-- Divisor -->
             <hr class="sidebar-divider">
 
-            <!-- Heading Cita-->
-            <div class="sidebar-heading">
-                Cita
-            </div>
-
-            <!-- Gestionar Cita -->
+            <!-- Gestionar Trabajador -->
             <li class="nav-item">
-                <a class="nav-link collapsed" routerLink="#" data-toggle="collapse">
-                    <i class="fa-solid fa-calendar-check"></i>
-                    <span>Gestionar Cita</span>
+                <a class="nav-link collapsed" routerLink="/dashboard-gerente/trabajador" data-toggle="collapse">
+                    <i class="fa-solid fa-briefcase"></i>
+                    <span> Gestionar Trabajador</span>
                 </a>
             </li>
 
+            <!-- Gestionar Roles -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" routerLink="/dashboard-gerente/rol" data-toggle="collapse">
+                    <i class="fa-solid fa-sheet-plastic"></i>
+                    <span> Gestionar Roles</span>
+                </a>
+            </li>
             <!-- Divisor -->
             <hr class="sidebar-divider">
 
-            <!-- Heading Venta-->
+            <!-- Heading Lunas -->
             <div class="sidebar-heading">
-                Venta
+                Lunas
             </div>
 
-            <!-- Gestionar Venta -->
+            <!-- Gestionar Tipo Luna -->
             <li class="nav-item">
-                <a class="nav-link collapsed" routerLink="/dashboard-trabajador/venta" data-toggle="collapse">
-                    <i class="fa-solid fa-dollar-sign"></i>
-                    <span>Gestionar Venta</span>
+                <a class="nav-link collapsed" routerLink="/dashboard-gerente/tipoLuna" data-toggle="collapse">
+                    <i class="fa-solid fa-eye"></i>
+                    <span> Tipo de Lunas</span>
                 </a>
             </li>
 
-             <!-- Seguimiento de Venta -->
-             <li class="nav-item">
-                <a class="nav-link collapsed" routerLink="#" data-toggle="collapse">
-                    <i class="fa-solid fa-person-walking"></i>
-                    <span>Seguimiento de Venta</span>
+            <!-- Gestionar Material Luna -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" routerLink="/dashboard-gerente/luna" data-toggle="collapse">
+                    <i class="fa-solid fa-eye"></i>
+                    <span> Material de Lunas</span>
                 </a>
             </li>
 
-            <!-- Divisor -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading Cliente-->
-            <div class="sidebar-heading">
-                Cliente
-            </div>
-
-            <!-- Gestionar Cliente -->
+            <!-- Gestionar Tratamientos -->
             <li class="nav-item">
-                <a class="nav-link collapsed" routerLink="#" data-toggle="collapse">
-                    <i class="fa-solid fa-user"></i>
-                    <span>Gestionar Clientes</span>
-                </a>
-            </li>
-
-            <!-- Historial Cliente -->
-
-            <li class="nav-item">
-                <a class="nav-link collapsed" routerLink="#" data-toggle="collapse">
-                    <i class="fa-solid fa-book-medical"></i>
-                    <span>Historial de Clientes</span>
+                <a class="nav-link collapsed" routerLink="/dashboard-gerente/tratamiento" data-toggle="collapse">
+                    <i class="fa-solid fa-notes-medical"></i>
+                    <span> Tratamientos</span>
                 </a>
             </li>
 
@@ -117,16 +103,61 @@
                 Producto
             </div>
 
-            <!-- Visualizar Stock -->
+            <!-- Gestionar tipoProducto -->
             <li class="nav-item">
-                <a class="nav-link collapsed" routerLink="#" data-toggle="collapse">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                    <span>Visualizar Stock</span>
+                <a class="nav-link collapsed" routerLink="/dashboard-gerente/tipoProducto" data-toggle="collapse">
+                    <i class="fa-brands fa-product-hunt"></i>
+                    <span> Tipo de Producto</span>
+                </a>
+            </li>
+
+            <!-- Gestionar Producto -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" routerLink="/dashboard-gerente/gestionar-producto" data-toggle="collapse">
+                    <i class="fa-solid fa-box-archive"></i>
+                    <span> Gestionar Producto</span>
+                </a>
+            </li>
+
+            <!-- Gestionar Marca -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" routerLink="/dashboard-gerente/marca" data-toggle="collapse">
+                    <i class="fa-regular fa-copyright"></i>
+                    <span> Marcas</span>
                 </a>
             </li>
 
             <!-- Divisor -->
             <hr class="sidebar-divider">
+
+            <!-- Heading Inventario -->
+            <div class="sidebar-heading">
+                Inventario
+            </div>
+
+            <!-- Gestionar Proveedor -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" routerLink="/dashboard-gerente/proveedor" data-toggle="collapse">
+                    <i class="fa-solid fa-truck-field"></i>
+                    <span> Gestionar Proveedor</span>
+                </a>
+            </li>
+
+            <!-- Ingreso de Productos -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" routerLink="/dashboard-gerente/ingresos" data-toggle="collapse">
+                    <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                    <span> Ingreso de Productos </span>
+                </a>
+            </li>
+
+            <!-- Visualizar Stock Producto (kárdex) -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" routerLink="/dashboard-gerente/almacen" data-toggle="collapse">
+                    <i class="fa-solid fa-box"></i>
+                    <span> Visualizar Stock </span>
+                </a>
+            </li>
 
         </ul>
         <!-- End of Sidebar -->
@@ -139,14 +170,14 @@
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                    <span class="span-text mx-3">GESTIONAR ÓRDEN DE COMPRA</span>
+                    <span class="span-text mx-3">GESTIONAR INGRESOS</span>
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item"> <!-- *ngIf="isLoggedIn" (click)="onClickLogout()" -->
-                            <a class="nav-link" routerLink="/login" >
+                            <a class="nav-link" routerLink="/login">
                                 <i class="fa-solid fa-right-from-bracket" style="color: #ff000d;"></i>
                             </a>
                         </li>
@@ -163,7 +194,8 @@
                         <div class="col-lg-11 offser-lg-2">
                             <input type="text" class="form-control" style="width: 350px;" [(ngModel)]="terminoBusqueda"
                                 (keyup)="obtenerIngresos()" placeholder="Buscar órden de compra...">
-                            <button class="btn btn-success float-end" routerLink="/dashboard-gerente/ingresos/registrar-ingreso">
+                            <button class="btn btn-success float-end"
+                                routerLink="/dashboard-gerente/ingresos/registrar-ingreso">
                                 Agregar
                                 <i class="fa-solid fa-plus"></i>
                             </button>
@@ -182,14 +214,34 @@
                                     <tr *ngFor="let ingreso of listIngreso">
                                         <td>{{ ingreso.ingreso.codigo }}</td>
                                         <td>{{ ingreso.ingreso.idProveedor.nombre }}</td>
-                                        <td>{{ ingreso.ingreso.idProveedor.nombreContacto }} {{ ingreso.ingreso.idProveedor.apellidoContacto }}</td>
+                                        <td>{{ ingreso.ingreso.idProveedor.nombreContacto }} {{
+                                            ingreso.ingreso.idProveedor.apellidoContacto }}</td>
                                         <td>{{ ingreso.ingreso.fechaCreacion | date:'dd-MM-yyyy'}}</td>
                                         <td>{{ ingreso.ingreso.estado }}</td>
                                         <td>
-                                            <i [routerLink]="['/dashboard-gerente/ingresos/editar_ingresos/:id/', ingreso._id]" class="faw fa fa-edit text-primary"></i>
-                                            <!--<i class="fas" [ngClass]="{'fa-eye': producto.estado === 'Activo', 'fa-eye-slash': producto.estado === 'Inactivo', 
-                                                'text-success': producto.estado === 'Activo', 'text-danger': producto.estado === 'Inactivo'}" (click)="toggleEstadoProducto(producto)">
-                                            </i> -->
+                                            <i *ngIf="ingreso.ingreso.estado === 'Pendiente'" data-bs-toggle="modal"
+                                                data-bs-target="#confirmacionModal"
+                                                (click)="prepararCambioEstado(ingreso.ingreso._id, 'Recibido', confirmacionModal)"
+                                                class="faw fas fa-solid fa-check text-success"></i>
+
+                                            <!-- Modal de Confirmación -->
+                                            <ng-template #confirmacionModal let-modal>
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title">Confirmar Cambio de Estado</h4>
+                                                    <button type="button" class="btn-close" aria-label="Close"
+                                                        (click)="modal.dismiss('Cross click')"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p class="label-text">{{ mensajeConfirmacion }}</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-success"
+                                                        (click)="confirmarCambioEstado()">Confirmar</button>
+                                                </div>
+                                            </ng-template>
+
+                                            <i [routerLink]="['/dashboard-gerente/ingresos/detalle-ingreso/', ingreso.ingreso._id]"
+                                                class="faw fa fa-eye text-primary"></i>
                                         </td>
                                     </tr>
                                 </tbody>
