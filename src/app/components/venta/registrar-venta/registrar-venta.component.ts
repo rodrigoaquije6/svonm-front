@@ -424,7 +424,7 @@ export class RegistrarVentaComponent implements OnInit {
     ) {
       this.ventaForm.get('estado')?.setValue('Finalizada');
     } else {
-      this.ventaForm.get('estado')?.setValue('');
+      this.ventaForm.get('estado')?.setValue('En Fabricación');
     }
 
     const ventaData = this.ventaForm.value;

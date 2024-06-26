@@ -32,4 +32,10 @@ export class ClienteService {
     return this.http.put(this.url + id, cliente);
   }
 
+  descargarHistorialCliente(id: string): Observable<Blob> {
+    return this.http.get(`${this.url}${id}/historial-cliente`, {
+      responseType: 'blob'
+    });
+  }
+
 }

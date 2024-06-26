@@ -30,6 +30,7 @@ import { VentasComponent } from './components/seguimiento-venta/ventas/ventas.co
 import { DetalleVentaComponent } from './components/seguimiento-venta/detalle-venta/detalle-venta.component';
 import { DetalleCompraComponent } from './components/compra/detalle-compra/detalle-compra.component';
 import { DetalleDevolucionComponent } from './components/devolucion/detalle-devolucion/detalle-devolucion.component';
+import { ClientesComponent } from './components/cliente/clientes/clientes.component';
 
 
 const routes: Routes = [
@@ -53,6 +54,7 @@ const routes: Routes = [
   { path: 'dashboard-trabajador/venta', component: VentaComponent},
   { path: 'dashboard-trabajador/seguimiento-venta', component: VentasComponent},
   { path: 'dashboard-trabajador/devolucion', component: DevolucionesComponent},
+  { path: 'dashboard-trabajador/cliente', component: ClientesComponent},
 
   //------------------------------------------GESTIONAR------------------------------------------
   //DASHBOARD-GERENTE
@@ -89,6 +91,8 @@ const routes: Routes = [
   { path: 'dashboard-trabajador/devolucion/registrar-devolucion/:id', component: RegistrarDevolucionComponent},
   { path: 'dashboard-trabajador/devolucion/detalle-devolucion/:id', component: DetalleDevolucionComponent},
   { path: 'dashboard-trabajador/devolucion/detalle-venta/:id', component: DetalleVentaComponent},
+
+  { path: 'dashboard-trabajador/cliente/editar-cliente/:id', component: ClientesComponent},
 
 
   { path: '**', redirectTo: '', pathMatch: 'full' }
