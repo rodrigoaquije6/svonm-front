@@ -193,7 +193,7 @@
                 <!-- End of Topbar -->
 
                 <!-- Content -->
-                <div class="container mt-5 mx-4 col-lg-4">
+                <div class="container mt-5 mx-4 col-lg-6">
                     <form [formGroup]="productoForm" (ngSubmit)="agregarProducto()">
                         <div class="mb-3 d-flex align-items-center">
                             <div style="flex: 1;">
@@ -285,7 +285,7 @@
                                 </select>
                             </div>
                             <!-- Contenedor para la imagen -->
-                            <div class="ml-10 mr-2 " style="margin-top: 100%; margin-left: 50px;">
+                            <div class="ml-10 mr-2 " style="margin-top: 50%; margin-left: 50px;">
                                 <!-- Imagen -->
                                 <img *ngIf="productoForm.get('imagen')?.value" [src]="productoForm.get('imagen')?.value"
                                     class="img-fluid" alt="Imagen de la montura"

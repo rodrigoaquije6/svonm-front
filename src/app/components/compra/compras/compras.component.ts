@@ -78,6 +78,25 @@ export class ComprasComponent {
     }
   }
 
+  descargarContrato(id: string, codigo: string, nombre: string, estado: string) {
+    this._ingresoService.descargarContratoPDF(id).subscribe(
+      (response: Blob) => {
+        const blob = new Blob([response], { type: 'application/pdf' });
+        const url = window.URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        const filename = `orden-compra-${codigo}-${nombre}-${estado}.pdf`;
+        link.href = url;
+        link.setAttribute('download', filename);
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      },
+      error => {
+        console.error('Error al descargar el contrato', error);
+      }
+    );
+  }
+
   isLoggedIn: boolean = this.api.isLogged();
 
   onClickLogout() {

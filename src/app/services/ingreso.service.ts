@@ -19,7 +19,7 @@ export class IngresoService {
     return this.http.get(this.url + id);
   }
 
-  eliminarIngreso(id: string): Observable<any>{
+  eliminarIngreso(id: string): Observable<any> {
     return this.http.delete(this.url + id);
   }
 
@@ -33,6 +33,12 @@ export class IngresoService {
 
   actualizarEstadoIngreso(id: string, nuevoEstado: string): Observable<any> {
     return this.http.put(`${this.url}${id}/estado`, { estado: nuevoEstado });
+  }
+
+  descargarContratoPDF(id: string): Observable<Blob> {
+    return this.http.get(`${this.url}${id}/descargar-contrato`, {
+      responseType: 'blob'
+    });
   }
 
 }

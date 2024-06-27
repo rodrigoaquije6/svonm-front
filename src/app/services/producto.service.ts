@@ -31,9 +31,8 @@ export class ProductoService {
     return this.http.put(this.url + id, producto);
   }
 
-  editarEstadoProducto(id: string, nuevoEstado: string) {
-    const url = `${this.url}${id}/estado`;
-    return this.http.put(url, { estado: nuevoEstado });
+  actualizarEstadoProducto(id: string, nuevoEstado: string): Observable<any> {
+    return this.http.put(`${this.url}${id}/estado`, { estado: nuevoEstado });
   }
 
   obtenerProductosPorProveedor(idProveedor: string): Observable<any> {

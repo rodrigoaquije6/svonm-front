@@ -47,7 +47,7 @@
 
             <!-- Divisor -->
             <hr class="sidebar-divider">
-            
+
             <!-- Heading Trabajador-->
             <div class="sidebar-heading">
                 Trabajador
@@ -247,6 +247,10 @@
 
                                             <i [routerLink]="['/dashboard-gerente/ingresos/detalle-ingreso/', ingreso.ingreso._id]"
                                                 class="faw fa fa-eye text-primary"></i>
+
+                                            <i (click)="descargarContrato(ingreso.ingreso._id, ingreso.ingreso.codigo, ingreso.ingreso.idProveedor.nombre, ingreso.ingreso.estado)"
+                                                class="faw fa fa-file-pdf text-danger"
+                                                style="cursor: pointer; margin-left: 10px;"></i>
                                         </td>
                                     </tr>
                                 </tbody>

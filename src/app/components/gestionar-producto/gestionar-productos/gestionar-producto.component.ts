@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ProductoService } from 'src/app/services/producto.service';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-gestionar-producto',
@@ -16,12 +17,18 @@ export class GestionarProductoComponent {
 
   listProductoOriginal: Producto[] = [];
 
+  productoSeleccionada: any;
+  modalRef: NgbModalRef | undefined;
+  mensajeConfirmacion: string = '';
+  estadoDestino: string = '';
+
   terminoBusqueda: string = '';
 
   constructor(private _productoService: ProductoService,
     private toastr: ToastrService,
     private api: LoginService,
-    private router: Router) { }
+    private router: Router,
+    private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.obtenerProductos();
@@ -62,23 +69,32 @@ export class GestionarProductoComponent {
     this.router.navigate([ruta]);
   }
 
-  toggleEstadoProducto(producto: Producto): void {
-    if (!producto || !producto._id) {
-      console.error('El producto no está definido o no tiene un ID válido.');
-      return;
+  prepararCambioEstado(id: string, nuevoEstado: string, content: any) {
+    this.productoSeleccionada = this.listProducto.find((p) => p._id === id);
+    this.estadoDestino = nuevoEstado;
+    this.mensajeConfirmacion = `¿Estás seguro de cambiar el estado del producto a "${nuevoEstado}"?`;
+
+    // Abrir el modal de confirmación
+    this.modalRef = this.modalService.open(content, { centered: true });
+  }
+
+  confirmarCambioEstado() {
+    if (this.productoSeleccionada) {
+      this._productoService.actualizarEstadoProducto(this.productoSeleccionada._id, this.estadoDestino).subscribe(
+        (data: any) => {
+          this.toastr.success('El estado del producto ha sido actualizado exitosamente.', 'Estado Actualizado');
+          this.modalRef?.close(); // Cerrar el modal después de confirmar
+          this.obtenerProductos();
+        },
+        (error) => {
+          console.error('Error al actualizar el estado del producto:', error);
+          this.toastr.error(
+            'Ocurrió un error al actualizar el estado del producto. Por favor, inténtelo de nuevo más tarde.',
+            'Error'
+          );
+        }
+      );
     }
-
-    const nuevoEstado = (producto.estado === 'Activo') ? 'Inactivo' : 'Activo';
-
-    this._productoService.editarEstadoProducto(producto._id.toString(), nuevoEstado).subscribe(
-      () => {
-        console.log('Estado del producto actualizado correctamente');
-        producto.estado = nuevoEstado;
-      },
-      (error) => {
-        console.error('Error al actualizar el estado del producto:', error);
-      }
-    );
   }
 
   isLoggedIn: boolean = this.api.isLogged();
