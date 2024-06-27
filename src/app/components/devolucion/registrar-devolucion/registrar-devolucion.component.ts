@@ -32,6 +32,9 @@ export class RegistrarDevolucionComponent {
   productosAgregados: (Producto & { cantidad: number; total: number })[] = [];
   productosDevueltos: (Producto & { cantidad: number })[] = [];
 
+  nombresTrabajador: string | undefined;
+  apellidosTrabajador: string | undefined;
+
   id: string | null;
 
   constructor(
@@ -71,7 +74,7 @@ export class RegistrarDevolucionComponent {
       total: ['', Validators.required],
       estado: ['En fabricación'],
       idCliente: ['', Validators.required],
-      idTrabajador: ['661f922817a3412bdbe33107', Validators.required],
+      idTrabajador: ['', Validators.required],
       idTipoLuna: '',
       idMaterialLuna: '',
       productosAgregados: this.fb.array([]),
@@ -82,7 +85,7 @@ export class RegistrarDevolucionComponent {
       observacion: ['', Validators.required],
       total: ['', Validators.required],
       idVenta: ['', Validators.required],
-      idTrabajador: ['661f922817a3412bdbe33107', Validators.required],
+      idTrabajador: ['', Validators.required],
       productosDevolucion: this.fb.array([]),
     });
     this.id = this.aRouter.snapshot.paramMap.get('id');
@@ -93,7 +96,25 @@ export class RegistrarDevolucionComponent {
     this.obtenerTiposLuna();
     this.obtenerMatLuna();
     this.esEditar();
+    this.obtenerPerfilTrabajador();
   };
+
+  obtenerPerfilTrabajador() {
+    this.api.getProfile().subscribe(
+      (profile) => {
+        this.nombresTrabajador = profile.nombres;
+        this.apellidosTrabajador = profile.apellidos;
+        // Asigna el ID del trabajador automáticamente al formulario
+        this.devolucionForm.patchValue({
+          idTrabajador: profile._id
+        });
+      },
+      (error) => {
+        console.error('Error al obtener el perfil del trabajador:', error);
+        // Manejo de errores
+      }
+    );
+  }
 
   obtenerMatLuna() {
     this._lunaService.getLunas().subscribe(

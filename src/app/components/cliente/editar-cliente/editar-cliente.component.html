@@ -16,7 +16,7 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="crear-tipo-producto.component.css" rel="stylesheet">
+    <link href="editar-cliente.component.css" rel="stylesheet">
 
 </head>
 
@@ -163,6 +163,7 @@
                     <span> Visualizar Stock </span>
                 </a>
             </li>
+
         </ul>
         <!-- End of Sidebar -->
 
@@ -192,23 +193,63 @@
                 </nav>
                 <!-- End of Topbar -->
 
-                <!-- Content -->
+                <!-- Content  -->
                 <div class="container mt-5 mx-4 col-lg-4">
-                    <form [formGroup]="tipoProductoForm" (ngSubmit)="agregarTipoProducto()">
+                    <form [formGroup]="clienteForm" (ngSubmit)="agregarCliente()">
                         <div class="mb-3 d-flex align-items-end">
                             <div style="flex: 1;">
-                                <label class="form-label label-text">Tipo de Producto</label>
-                                <input type="text" formControlName="nombre" class="form-control" style="width: 350px;"
-                                    placeholder="Escriba el nombre del tipo de producto...">
+                                <label class="form-label label-text">DNI</label>
+                                <input type="text" formControlName="dni" class="form-control" style="width: 350px;"
+                                    placeholder="Escriba el DNI del cliente...">
                                 <div class="text-danger"
-                                    *ngIf="tipoProductoForm.get('nombre')?.hasError('required') && tipoProductoForm.get('nombre')?.touched">
-                                    <span>El nombre del tipo de producto <strong>es obligatorio</strong></span>
+                                    *ngIf="clienteForm.get('dni')?.hasError('required') && clienteForm.get('dni')?.touched">
+                                    <span>El DNI del cliente <strong>es obligatorio</strong></span>
+                                </div>
+
+                                <label class="form-label label-text" style="margin-top: 20px;">Nombres</label>
+                                <input type="text" formControlName="nombres" class="form-control" style="width: 350px;"
+                                    placeholder="Escriba el(los) nombre(s) del cliente...">
+                                <div class="text-danger"
+                                    *ngIf="clienteForm.get('nombres')?.hasError('required') && clienteForm.get('nombres')?.touched">
+                                    <span>El(los) nombre(s) del cliente <strong>son obligatorios</strong></span>
+                                </div>
+
+                                <label class="form-label label-text" style="margin-top: 20px;">Apellidos</label>
+                                <input type="text" formControlName="apellidos" class="form-control"
+                                    style="width: 350px;" placeholder="Escriba los apellidos del cliente...">
+                                <div class="text-danger"
+                                    *ngIf="clienteForm.get('apellidos')?.hasError('required') && clienteForm.get('apellidos')?.touched">
+                                    <span>Los apellidos del cliente <strong>son obligatorios</strong></span>
+                                </div>
+
+                                <label class="form-label label-text" style="margin-top: 20px;">Celular</label>
+                                <input type="text" formControlName="celular" class="form-control"
+                                    style="width: 350px;" placeholder="Escriba el celular del cliente...">
+                                <div class="text-danger"
+                                    *ngIf="clienteForm.get('celular')?.hasError('required') && clienteForm.get('celular')?.touched">
+                                    <span>El celular del cliente <strong>es obligatorio</strong></span>
+                                </div>
+
+                                <label class="form-label label-text" style="margin-top: 20px;">Dirección</label>
+                                <input type="text" formControlName="direccion" class="form-control" style="width: 350px;"
+                                    placeholder="Escriba la direccion del cliente...">
+                                <div class="text-danger"
+                                    *ngIf="clienteForm.get('direccion')?.hasError('required') && clienteForm.get('direccion')?.touched">
+                                    <span>La direccion del cliente <strong>es obligatoria</strong></span>
+                                </div>
+                        
+                                <label class="form-label label-text" style="margin-top: 20px;">Correo</label>
+                                <input type="text" formControlName="correo" class="form-control" style="width: 350px;"
+                                    placeholder="Escriba el correo del cliente...">
+                                <div class="text-danger"
+                                    *ngIf="clienteForm.get('correo')?.hasError('required') && clienteForm.get('correo')?.touched">
+                                    <span>El correo del cliente<strong>es obligatorio</strong></span>
                                 </div>
                             </div>
-                            <button class="btn btn-success float-end" style="margin-left: 10px;">Agregar</button>
+                            <button class="btn btn-success float-end" style="margin-left: 10px;">Aceptar</button>
                         </div>
                         <div class="class mb 3">
-                            <button routerLink="/dashboard-gerente/tipoProducto"
+                            <button routerLink="/dashboard-trabajador/cliente/" style="margin-top: 20px;"
                                 class="btn btn-secondary flat-start">Volver</button>
                         </div>
                     </form>

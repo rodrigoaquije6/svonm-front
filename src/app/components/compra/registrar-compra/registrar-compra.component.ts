@@ -39,6 +39,9 @@ export class RegistrarCompraComponent {
   totalProductos: number = 0;
   totalTratamientos: number = 0;
 
+  nombresTrabajador: string | undefined;
+  apellidosTrabajador: string | undefined;
+
   titulo = 'Crear Ingreso';
 
   id: string | null;
@@ -62,7 +65,7 @@ export class RegistrarCompraComponent {
       fechaEntregaEstimada: ['', [Validators.required, this.fechaEntregaValidator.bind(this)]],
       estado: ['Pendiente'],
       idProveedor: ['', Validators.required],
-      idTrabajador: ['661f922817a3412bdbe33107', Validators.required],
+      idTrabajador: ['', Validators.required],
       productosAgregados: this.fb.array([]),
     });
     this.detalleIngresoForm = this.fb.group({
@@ -75,6 +78,24 @@ export class RegistrarCompraComponent {
 
   ngOnInit(): void {
     this.obtenerProveedores();
+    this.obtenerPerfilTrabajador();
+  }
+
+  obtenerPerfilTrabajador() {
+    this.api.getProfile().subscribe(
+      (profile) => {
+        this.nombresTrabajador = profile.nombres;
+        this.apellidosTrabajador = profile.apellidos;
+        // Asigna el ID del trabajador automáticamente al formulario
+        this.ingresoForm.patchValue({
+          idTrabajador: profile._id
+        });
+      },
+      (error) => {
+        console.error('Error al obtener el perfil del trabajador:', error);
+        // Manejo de errores
+      }
+    );
   }
 
   obtenerProveedores(): void {

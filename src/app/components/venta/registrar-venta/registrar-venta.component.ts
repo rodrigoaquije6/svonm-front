@@ -43,6 +43,9 @@ export class RegistrarVentaComponent implements OnInit {
   totalProductos: number = 0;
   totalTratamientos: number = 0;
 
+  nombresTrabajador: string | undefined;
+  apellidosTrabajador: string | undefined;
+
   titulo = 'Crear venta';
 
   id: string | null;
@@ -96,7 +99,7 @@ export class RegistrarVentaComponent implements OnInit {
       total: ['', Validators.required],
       estado: ['En Fabricación'],
       idCliente: ['', Validators.required],
-      idTrabajador: ['661f922817a3412bdbe33107', Validators.required],
+      idTrabajador: ['', Validators.required],
       idTipoLuna: [''],
       idMaterialLuna: [''],
       productosAgregados: this.fb.array([]),
@@ -119,7 +122,25 @@ export class RegistrarVentaComponent implements OnInit {
     this.obtenerTratamientos();
     this.obtenerTiposLuna();
     this.obtenerMatLuna();
+    this.obtenerPerfilTrabajador();
   };
+
+  obtenerPerfilTrabajador() {
+    this.api.getProfile().subscribe(
+      (profile) => {
+        this.nombresTrabajador = profile.nombres;
+        this.apellidosTrabajador = profile.apellidos;
+        // Asigna el ID del trabajador automáticamente al formulario
+        this.ventaForm.patchValue({
+          idTrabajador: profile._id
+        });
+      },
+      (error) => {
+        console.error('Error al obtener el perfil del trabajador:', error);
+        // Manejo de errores
+      }
+    );
+  }
 
   openModal(content: any) {
     // Abre el modal para agregar un nuevo cliente

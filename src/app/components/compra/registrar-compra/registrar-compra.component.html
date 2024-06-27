@@ -181,8 +181,8 @@
                     <ul class="navbar-nav ml-auto">
 
                         <!-- Nav Item - User Information -->
-                        <li class="nav-item"> <!-- *ngIf="isLoggedIn" (click)="onClickLogout()" -->
-                            <a class="nav-link" routerLink="/login">
+                        <li class="nav-item" *ngIf="isLoggedIn" (click)="onClickLogout()">
+                            <a class="nav-link" href="">
                                 <i class="fa-solid fa-right-from-bracket" style="color: #ff000d;"></i>
                             </a>
                         </li>
@@ -364,8 +364,9 @@
                                 <div style="flex: 1;margin-top: 20px;">
                                     <div class="arreglo-orden">
                                         <label class="form-label label-text">Vendedor(a)</label>
-                                        <input type="text" class="form-control" style="width: 200px;margin-right: 40px;"
-                                            formControlName="idTrabajador" placeholder="Nombre Vendedor" readonly>
+                                        <input type="text" class="form-control" style="width: 280px; margin-right: 40px;"
+                                            formControlName="idTrabajador" placeholder="Nombre Vendedor"
+                                            [value]="nombresTrabajador + ' ' + apellidosTrabajador" readonly>
                                     </div>
                                     <div class="arreglo-orden">
                                         <label class="form-label label-text">Fecha de Entrega Estimada</label>

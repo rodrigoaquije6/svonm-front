@@ -48,6 +48,7 @@ import { CrearProveedorComponent } from './components/proveedor/crear-proveedor/
 import { CitasComponent } from './components/cita/citas/citas.component';
 import { VerCitaComponent } from './components/cita/ver-cita/ver-cita.component';
 import { VerProductoComponent } from './components/gestionar-producto/ver-producto/ver-producto.component';
+import { EditarClienteComponent } from './components/cliente/editar-cliente/editar-cliente.component';
 
 @NgModule({
   declarations: [
@@ -92,6 +93,7 @@ import { VerProductoComponent } from './components/gestionar-producto/ver-produc
     CitasComponent,
     VerCitaComponent,
     VerProductoComponent,
+    EditarClienteComponent,
   ],
   imports: [
     BrowserModule,

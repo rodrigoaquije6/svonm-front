@@ -39,6 +39,7 @@ import { CrearTipoLunasComponent } from './components/tipoLunas/crear-tipo-lunas
 import { CrearTratamientoComponent } from './components/tratamiento/crear-tratamiento/crear-tratamiento.component';
 import { TratamientosComponent } from './components/tratamiento/tratamientos/tratamientos.component';
 import { VerProductoComponent } from './components/gestionar-producto/ver-producto/ver-producto.component';
+import { EditarClienteComponent } from './components/cliente/editar-cliente/editar-cliente.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent},
@@ -112,7 +113,7 @@ const routes: Routes = [
   { path: 'dashboard-trabajador/devolucion/detalle-devolucion/:id', component: DetalleDevolucionComponent, canActivate: [AuthGuard], data: { role: '2' }},
   { path: 'dashboard-trabajador/devolucion/detalle-venta/:id', component: DetalleVentaComponent, canActivate: [AuthGuard], data: { role: '2' }},
 
-  { path: 'dashboard-trabajador/cliente/editar-cliente/:id', component: ClientesComponent, canActivate: [AuthGuard], data: { role: '2' }},
+  { path: 'dashboard-trabajador/cliente/editar-cliente/:id', component: EditarClienteComponent, canActivate: [AuthGuard], data: { role: '2' }},
 
 
   { path: '**', redirectTo: '', pathMatch: 'full' }
