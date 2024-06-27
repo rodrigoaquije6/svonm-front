@@ -1,5 +1,5 @@
 export class Tratamiento {
-    id?: number;
+    _id?: number;
     nombre: string;
     precio: number;
     estado: string;

@@ -1,14 +1,34 @@
-export class Trabajador{
+export class Trabajador {
     _id?: number;
-    dni: string ;
-    nombre: string;
-    rol: string;
-    estado: string;
+    user_dni: string;
+    role: string;
+    nombres: string;
+    apellidos: string;
+    password: string;
+    celular: string;
+    fecha_nac: Date;
+    email: string;
+    isActive: boolean;
 
-    constructor(dni: string, nombre: string, rol: string, estado: string) {
-        this.dni = dni
-        this.nombre = nombre
-        this.rol = rol
-        this.estado = estado
+    constructor(
+        user_dni: string,
+        role: string,
+        nombres: string,
+        apellidos: string,
+        password: string,
+        celular: string,
+        fecha_nac: Date,
+        email: string,
+        isActive: boolean
+    ) {
+        this.user_dni = user_dni;
+        this.role = role;
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.password = password;
+        this.celular = celular;
+        this.fecha_nac = fecha_nac;
+        this.email = email;
+        this.isActive = isActive;
     }
 }

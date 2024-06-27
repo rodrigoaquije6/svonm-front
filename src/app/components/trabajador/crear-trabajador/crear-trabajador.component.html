@@ -193,47 +193,79 @@
                 </nav>
                 <!-- End of Topbar -->
 
-                <!-- Content -->
+                <!-- Content  -->
                 <div class="container mt-5 mx-4 col-lg-4">
                     <form [formGroup]="trabajadorForm" (ngSubmit)="agregarTrabajador()">
                         <div class="mb-3 d-flex align-items-end">
                             <div style="flex: 1;">
-
-                                <label class="form-label label-text">Dni</label>
-                                <input type="text" formControlName="dni" class="form-control" style="width: 350px;"
+                                <label class="form-label label-text">DNI</label>
+                                <input type="text" formControlName="user_dni" class="form-control" style="width: 350px;"
                                     placeholder="Escriba el dni del trabajador...">
                                 <div class="text-danger"
-                                    *ngIf="trabajadorForm.get('dni')?.hasError('required') && trabajadorForm.get('dni')?.touched">
-                                    <span>El dni del trabajador <strong>es obligatorio</strong></span>
+                                    *ngIf="trabajadorForm.get('user_dni')?.hasError('required') && trabajadorForm.get('user_dni')?.touched">
+                                    <span>El DNI del trabajador <strong>es obligatorio</strong></span>
                                 </div>
 
 
-                                <label class="form-label label-text" style="margin-top: 10px;">Nombre</label>
-                                <input type="text" formControlName="nombre" class="form-control" style="width: 350px;"
-                                    placeholder="Escriba el nombre del trabajador...">
+                                <label class="form-label label-text" style="margin-top: 20px;">Nombres</label>
+                                <input type="text" formControlName="nombres" class="form-control" style="width: 350px;"
+                                    placeholder="Escriba el(los) nombre(s) del trabajador...">
                                 <div class="text-danger"
-                                    *ngIf="trabajadorForm.get('nombre')?.hasError('required') && trabajadorForm.get('nombre')?.touched">
-                                    <span>El nombre del trabajador <strong>es obligatorio</strong></span>
+                                    *ngIf="trabajadorForm.get('nombres')?.hasError('required') && trabajadorForm.get('nombres')?.touched">
+                                    <span>El(los) nombre(s) del trabajador <strong>son obligatorios</strong></span>
                                 </div>
 
-                                <label class="form-label label-text" style="margin-top: 10px;">Rol</label>
-                                <select formControlName="rol" class="form-select" style="width: 350px;">
+                                <label class="form-label label-text" style="margin-top: 20px;">Apellidos</label>
+                                <input type="text" formControlName="apellidos" class="form-control"
+                                    style="width: 350px;" placeholder="Escriba los apellidos del trabajador...">
+                                <div class="text-danger"
+                                    *ngIf="trabajadorForm.get('apellidos')?.hasError('required') && trabajadorForm.get('apellidos')?.touched">
+                                    <span>Los apellidos del trabajador <strong>son obligatorios</strong></span>
+                                </div>
+
+                                <label class="form-label label-text" style="margin-top: 20px;">Celular</label>
+                                <input type="text" formControlName="celular" class="form-control" style="width: 350px;"
+                                    placeholder="Escriba el celular del trabajador...">
+                                <div class="text-danger"
+                                    *ngIf="trabajadorForm.get('celular')?.hasError('required') && trabajadorForm.get('celular')?.touched">
+                                    <span>El celular del trabajador <strong>es obligatorio</strong></span>
+                                </div>
+
+                                <label class="form-label label-text" style="margin-top: 20px;">Fecha de Nacimiento</label>
+                                <input type="text" formControlName="fecha_nac" class="form-control" placeholder="Formato: YYYY-MM-DD..."
+                                    style="width: 350px;">
+                                <div class="text-danger"
+                                    *ngIf="trabajadorForm.get('fecha_nac')?.hasError('required') && trabajadorForm.get('fecha_nac')?.touched">
+                                    <span>La fecha de nacimiento del trabajador <strong>es obligatoria</strong></span>
+                                </div>
+
+                                <label class="form-label label-text" style="margin-top: 20px;">Correo</label>
+                                <input type="text" formControlName="email" class="form-control" style="width: 350px;"
+                                    placeholder="Escriba el correo del trabajador...">
+                                <div class="text-danger"
+                                    *ngIf="trabajadorForm.get('email')?.hasError('required') && trabajadorForm.get('email')?.touched">
+                                    <span>El correo del trabajador <strong>es obligatorio</strong></span>
+                                </div>
+
+                                <label class="form-label label-text" style="margin-top: 20px;">Contraseña</label>
+                                <input type="text" formControlName="password" class="form-control" style="width: 350px;"
+                                    placeholder="Escriba la contraseña del trabajador...">
+                                <div class="text-danger"
+                                    *ngIf="trabajadorForm.get('password')?.hasError('required') && trabajadorForm.get('password')?.touched">
+                                    <span>La contraseña del trabajador <strong>es obligatoria</strong></span>
+                                </div>
+
+                                <label class="form-label label-text" style="margin-top: 20px;">Rol</label>
+                                <select formControlName="role" class="form-select" style="width: 350px;">
                                     <option disabled selected>Selecciona el rol...</option>
-                                    <option *ngFor="let roles of rol" [value]="roles.nombre">{{ roles.nombre }}</option>
+                                    <option *ngFor="let roles of rol"
+                                        [value]="roles.nombre === 'Gerente' ? '1' : roles.nombre === 'Trabajador' ? '2' : roles.nombre"> {{ roles.nombre }}</option>
                                 </select>
-
-                                <label class="form-label label-text" style="margin-top: 10px;">Estado</label>
-                                <select formControlName="estado" class="form-select" style="width: 350px;">
-                                    <option disabled selected>Selecciona el estado...</option>
-                                    <option value="Activo">Activo</option>
-                                    <option value="Inactivo">Inactivo</option>
-                                </select>
-
                             </div>
                             <button class="btn btn-success float-end" style="margin-left: 10px;">Aceptar</button>
                         </div>
                         <div class="class mb 3">
-                            <button routerLink="/dashboard-gerente/trabajador/"
+                            <button routerLink="/dashboard-gerente/trabajador/" style="margin-top: 20px;margin-bottom: 40px;"
                                 class="btn btn-secondary flat-start">Volver</button>
                         </div>
                     </form>

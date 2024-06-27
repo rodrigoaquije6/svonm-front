@@ -126,15 +126,6 @@
                 </a>
             </li>
 
-            <!-- Historial Cliente -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" routerLink="/dashboard-trabajador/historial-cliente"
-                    data-toggle="collapse">
-                    <i class="fa-solid fa-book-medical"></i>
-                    <span> Historial de Clientes </span>
-                </a>
-            </li>
-
         </ul>
         <!-- End of Sidebar -->
 
@@ -195,8 +186,8 @@
                                         <td>
                                             <i [routerLink]="['/dashboard-trabajador/cliente/editar-cliente/', cliente._id]"
                                                 class="faw fa fa-edit text-primary"></i>
-                                            <i (click)="eliminarLuna(cliente._id)"
-                                                class='faw fa-solid fa-trash text-danger'></i>
+                                            <!--<i (click)="eliminarCliente(cliente._id)"
+                                                class='faw fa-solid fa-trash text-danger'></i>-->
                                             <i class="btn btn-primary"
                                                 (click)="generarHistorial(cliente._id, cliente.apellidos)"
                                                 class="faw fa fa-file-excel text-success"

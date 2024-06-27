@@ -124,14 +124,6 @@
                 </a>
             </li>
 
-            <!-- Historial Cliente -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" routerLink="/dashboard-trabajador/historial-cliente" data-toggle="collapse">
-                    <i class="fa-solid fa-book-medical"></i>
-                    <span> Historial de Clientes </span>
-                </a>
-            </li>
-
         </ul>
         <!-- End of Sidebar -->
 
@@ -148,8 +140,8 @@
                     <ul class="navbar-nav ml-auto">
 
                         <!-- Nav Item - User Information -->
-                        <li class="nav-item">
-                            <a class="nav-link" routerLink="/login" >
+                        <li class="nav-item" *ngIf="isLoggedIn" (click)="onClickLogout()">
+                            <a class="nav-link" href="" >
                                 <i class="fa-solid fa-right-from-bracket" style="color: #ff000d;"></i>
                             </a>
                         </li>

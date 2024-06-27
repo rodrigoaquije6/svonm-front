@@ -31,68 +31,88 @@ import { DetalleVentaComponent } from './components/seguimiento-venta/detalle-ve
 import { DetalleCompraComponent } from './components/compra/detalle-compra/detalle-compra.component';
 import { DetalleDevolucionComponent } from './components/devolucion/detalle-devolucion/detalle-devolucion.component';
 import { ClientesComponent } from './components/cliente/clientes/clientes.component';
-
+import { AuthGuard } from './guard/auth.guard';
+import { ProveedoresComponent } from './components/proveedor/proveedores/proveedores.component';
+import { CrearProveedorComponent } from './components/proveedor/crear-proveedor/crear-proveedor.component';
+import { TipoLunasComponent } from './components/tipoLunas/tipo-lunas/tipo-lunas.component';
+import { CrearTipoLunasComponent } from './components/tipoLunas/crear-tipo-lunas/crear-tipo-lunas.component';
+import { CrearTratamientoComponent } from './components/tratamiento/crear-tratamiento/crear-tratamiento.component';
+import { TratamientosComponent } from './components/tratamiento/tratamientos/tratamientos.component';
+import { VerProductoComponent } from './components/gestionar-producto/ver-producto/ver-producto.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent},
   { path: 'login', component: LoginComponent},
   //DASHBOARD-GERENTE
-  { path: 'dashboard-gerente', component: DashboardGerenteComponent},
-  { path: 'dashboard-trabajador', component: DashboardTrabajadorComponent},
-  { path: 'dashboard-gerente/trabajador', component: TrabajadorComponent},
-  { path: 'dashboard-gerente/rol', component: RolComponent},
-  { path: 'dashboard-gerente/luna', component: LunaComponent},
-  { path: 'dashboard-gerente/marca', component: MarcaComponent},
-  { path: 'dashboard-gerente/gestionar-producto', component: GestionarProductoComponent},
-  { path: 'dashboard-gerente/tipoProducto', component: TipoComponent},
-  { path: 'dashboard-gerente/almacen', component: AlmacenComponent},
-  { path: 'dashboard-gerente/catalogo', component: CatalogoComponent},
-  { path: 'dashboard-gerente/tipoProducto', component: TipoComponent},
-  { path: 'dashboard-gerente/ingresos', component: ComprasComponent},
+  { path: 'dashboard-gerente', component: DashboardGerenteComponent, canActivate: [AuthGuard], data: { role: '1' }},
+  { path: 'dashboard-gerente/trabajador', component: TrabajadorComponent, canActivate: [AuthGuard], data: { role: '1' }},
+  { path: 'dashboard-gerente/rol', component: RolComponent, canActivate: [AuthGuard], data: { role: '1' }},
+  { path: 'dashboard-gerente/luna', component: LunaComponent, canActivate: [AuthGuard], data: { role: '1' }},
+  { path: 'dashboard-gerente/marca', component: MarcaComponent, canActivate: [AuthGuard], data: { role: '1' }},
+  { path: 'dashboard-gerente/gestionar-producto', component: GestionarProductoComponent, canActivate: [AuthGuard], data: { role: '1' }},
+  { path: 'dashboard-gerente/tipoProducto', component: TipoComponent, canActivate: [AuthGuard], data: { role: '1' }},
+  { path: 'dashboard-gerente/almacen', component: AlmacenComponent, canActivate: [AuthGuard], data: { role: '1' }},
+  { path: 'dashboard-gerente/catalogo', component: CatalogoComponent, canActivate: [AuthGuard], data: { role: '1' }},
+  { path: 'dashboard-gerente/tipoProducto', component: TipoComponent, canActivate: [AuthGuard], data: { role: '1' }},
+  { path: 'dashboard-gerente/ingresos', component: ComprasComponent, canActivate: [AuthGuard], data: { role: '1' }},
+  { path: 'dashboard-gerente/proveedor', component: ProveedoresComponent, canActivate: [AuthGuard], data: { role: '1' }},
+  { path: 'dashboard-gerente/tipoLuna', component: TipoLunasComponent, canActivate: [AuthGuard], data: { role: '1' }},
+  { path: 'dashboard-gerente/tratamiento', component: TratamientosComponent, canActivate: [AuthGuard], data: { role: '1' }},
 
   //DASHBOARD-TRABAJADOR
-  { path: 'dashboard-trabajador/venta', component: VentaComponent},
-  { path: 'dashboard-trabajador/seguimiento-venta', component: VentasComponent},
-  { path: 'dashboard-trabajador/devolucion', component: DevolucionesComponent},
-  { path: 'dashboard-trabajador/cliente', component: ClientesComponent},
+  { path: 'dashboard-trabajador', component: DashboardTrabajadorComponent, canActivate: [AuthGuard], data: { role: '2' }},
+  { path: 'dashboard-trabajador/venta', component: VentaComponent, canActivate: [AuthGuard], data: { role: '2' }},
+  { path: 'dashboard-trabajador/seguimiento-venta', component: VentasComponent, canActivate: [AuthGuard], data: { role: '2' }},
+  { path: 'dashboard-trabajador/devolucion', component: DevolucionesComponent, canActivate: [AuthGuard], data: { role: '2' }},
+  { path: 'dashboard-trabajador/cliente', component: ClientesComponent, canActivate: [AuthGuard], data: { role: '2' }},
+  { path: 'dashboard-trabajador/ver-producto', component: VerProductoComponent, canActivate: [AuthGuard], data: { role: '2' }},
 
   //------------------------------------------GESTIONAR------------------------------------------
   //DASHBOARD-GERENTE
-  { path: 'dashboard-gerente/rol/crear-rol', component: CrearRolComponent},
-  { path: 'dashboard-gerente/rol/editar-rol/:id', component: CrearRolComponent},
+  { path: 'dashboard-gerente/rol/crear-rol', component: CrearRolComponent, canActivate: [AuthGuard], data: { role: '1' }},
+  { path: 'dashboard-gerente/rol/editar-rol/:id', component: CrearRolComponent, canActivate: [AuthGuard], data: { role: '1' }},
 
-  { path: 'dashboard-gerente/marca/crear-marca', component: CrearMarcaComponent},
-  { path: 'dashboard-gerente/marca/editar-marca/:id', component: CrearMarcaComponent},
+  { path: 'dashboard-gerente/marca/crear-marca', component: CrearMarcaComponent, canActivate: [AuthGuard], data: { role: '1' }},
+  { path: 'dashboard-gerente/marca/editar-marca/:id', component: CrearMarcaComponent, canActivate: [AuthGuard], data: { role: '1' }},
 
-  { path: 'dashboard-gerente/trabajador/crear-trabajador', component: CrearTrabajadorComponent},
-  { path: 'dashboard-gerente/trabajador/editar-trabajador/:id', component: CrearTrabajadorComponent},
+  { path: 'dashboard-gerente/trabajador/crear-trabajador', component: CrearTrabajadorComponent, canActivate: [AuthGuard], data: { role: '1' }},
+  { path: 'dashboard-gerente/trabajador/editar-trabajador/:id', component: CrearTrabajadorComponent, canActivate: [AuthGuard], data: { role: '1' }},
 
-  { path: 'dashboard-gerente/luna/crear-luna', component: CrearLunaComponent},
-  { path: 'dashboard-gerente/luna/editar-luna/:id', component: CrearLunaComponent},
+  { path: 'dashboard-gerente/luna/crear-luna', component: CrearLunaComponent, canActivate: [AuthGuard], data: { role: '1' }},
+  { path: 'dashboard-gerente/luna/editar-luna/:id', component: CrearLunaComponent, canActivate: [AuthGuard], data: { role: '1' }},
 
-  { path: 'dashboard-gerente/tipoProducto/crear-tipoProducto', component: CrearTipoProductoComponent},
-  { path: 'dashboard-gerente/tipoProducto/editar-tipoProducto/:id', component: CrearTipoProductoComponent},
+  { path: 'dashboard-gerente/tipoProducto/crear-tipoProducto', component: CrearTipoProductoComponent, canActivate: [AuthGuard], data: { role: '1' }},
+  { path: 'dashboard-gerente/tipoProducto/editar-tipoProducto/:id', component: CrearTipoProductoComponent, canActivate: [AuthGuard], data: { role: '1' }},
 
-  { path: 'dashboard-gerente/gestionar-producto/crear-producto', component: CrearProductoComponent},
-  { path: 'dashboard-gerente/gestionar-producto/editar-montura/:id', component: EditarMonturaComponent},
-  { path: 'dashboard-gerente/gestionar-producto/editar-lente-sol/:id', component: EditarLenteSolComponent},
-  { path: 'dashboard-gerente/gestionar-producto/editar-otro/:id', component: EditarOtroComponent},
-  { path: 'dashboard-gerente/gestionar-producto/editar/:id', component: EditarOtroComponent},
+  { path: 'dashboard-gerente/gestionar-producto/crear-producto', component: CrearProductoComponent, canActivate: [AuthGuard], data: { role: '1' }},
+  { path: 'dashboard-gerente/gestionar-producto/editar-montura/:id', component: EditarMonturaComponent, canActivate: [AuthGuard], data: { role: '1' }},
+  { path: 'dashboard-gerente/gestionar-producto/editar-lente-sol/:id', component: EditarLenteSolComponent, canActivate: [AuthGuard], data: { role: '1' }},
+  { path: 'dashboard-gerente/gestionar-producto/editar-otro/:id', component: EditarOtroComponent, canActivate: [AuthGuard], data: { role: '1' }},
+  { path: 'dashboard-gerente/gestionar-producto/editar/:id', component: EditarOtroComponent, canActivate: [AuthGuard], data: { role: '1' }},
 
-  { path: 'dashboard-gerente/ingresos/registrar-ingreso', component: RegistrarCompraComponent},
-  { path: 'dashboard-gerente/ingresos/detalle-ingreso/:id', component: DetalleCompraComponent},
+  { path: 'dashboard-gerente/ingresos/registrar-ingreso', component: RegistrarCompraComponent, canActivate: [AuthGuard], data: { role: '1' }},
+  { path: 'dashboard-gerente/ingresos/detalle-ingreso/:id', component: DetalleCompraComponent, canActivate: [AuthGuard], data: { role: '1' }},
 
+  { path: 'dashboard-gerente/proveedor/crear-proveedor', component: CrearProveedorComponent, canActivate: [AuthGuard], data: { role: '1' }},
+  { path: 'dashboard-gerente/proveedor/editar-proveedor/:id', component: CrearProveedorComponent, canActivate: [AuthGuard], data: { role: '1' }},
+
+  { path: 'dashboard-gerente/tipoLuna/crear-tipo-luna', component: CrearTipoLunasComponent, canActivate: [AuthGuard], data: { role: '1' }},
+  { path: 'dashboard-gerente/tipoLuna/editar-tipo-luna/:id', component: CrearTipoLunasComponent, canActivate: [AuthGuard], data: { role: '1' }},
+
+  { path: 'dashboard-gerente/tratamiento/crear-tratamiento', component: CrearTratamientoComponent, canActivate: [AuthGuard], data: { role: '1' }},
+  { path: 'dashboard-gerente/tratamiento/editar-tratamiento/:id', component: CrearTratamientoComponent, canActivate: [AuthGuard], data: { role: '1' }},
+ 
   //DASHBOARD-TRABAJADOR
-  { path: 'dashboard-trabajador/venta/registrar-venta', component: RegistrarVentaComponent},
-  { path: 'dashboard-trabajador/venta/detalle-venta/:id', component: DetalleVentaComponent},
+  { path: 'dashboard-trabajador/venta/registrar-venta', component: RegistrarVentaComponent, canActivate: [AuthGuard], data: { role: '2' }},
+  { path: 'dashboard-trabajador/venta/detalle-venta/:id', component: DetalleVentaComponent, canActivate: [AuthGuard], data: { role: '2' }},
 
-  { path: 'dashboard-trabajador/seguimiento-venta/detalle-venta/:id', component: DetalleVentaComponent},
+  { path: 'dashboard-trabajador/seguimiento-venta/detalle-venta/:id', component: DetalleVentaComponent, canActivate: [AuthGuard], data: { role: '2' }},
 
-  { path: 'dashboard-trabajador/devolucion/registrar-devolucion/:id', component: RegistrarDevolucionComponent},
-  { path: 'dashboard-trabajador/devolucion/detalle-devolucion/:id', component: DetalleDevolucionComponent},
-  { path: 'dashboard-trabajador/devolucion/detalle-venta/:id', component: DetalleVentaComponent},
+  { path: 'dashboard-trabajador/devolucion/registrar-devolucion/:id', component: RegistrarDevolucionComponent, canActivate: [AuthGuard], data: { role: '2' }},
+  { path: 'dashboard-trabajador/devolucion/detalle-devolucion/:id', component: DetalleDevolucionComponent, canActivate: [AuthGuard], data: { role: '2' }},
+  { path: 'dashboard-trabajador/devolucion/detalle-venta/:id', component: DetalleVentaComponent, canActivate: [AuthGuard], data: { role: '2' }},
 
-  { path: 'dashboard-trabajador/cliente/editar-cliente/:id', component: ClientesComponent},
+  { path: 'dashboard-trabajador/cliente/editar-cliente/:id', component: ClientesComponent, canActivate: [AuthGuard], data: { role: '2' }},
 
 
   { path: '**', redirectTo: '', pathMatch: 'full' }

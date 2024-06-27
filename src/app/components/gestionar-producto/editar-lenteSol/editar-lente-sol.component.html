@@ -206,7 +206,7 @@
                                         <span>El codigo del producto <strong>es obligatorio</strong></span>
                                     </div>
 
-                                    <label class="form-label label-text" style="margin-top: 10px;">Nombre</label>
+                                    <label class="form-label label-text" style="margin-top: 20px;">Nombre</label>
                                     <input type="text" formControlName="nombre" class="form-control"
                                         style="width: 350px;" placeholder="Escriba el nombre del producto...">
                                     <div class="text-danger"
@@ -214,7 +214,7 @@
                                         <span>El nombre del producto <strong>es obligatorio</strong></span>
                                     </div>
 
-                                    <label class="form-label label-text" style="margin-top: 10px;">Precio</label>
+                                    <label class="form-label label-text" style="margin-top: 20px;">Precio</label>
                                     <input type="number" formControlName="precio" class="form-control"
                                         style="width: 350px;" placeholder="Escriba el precio del producto...">
                                     <div class="text-danger"
@@ -222,19 +222,19 @@
                                         <span>El precio del producto <strong>es obligatorio</strong></span>
                                     </div>
 
-                                    <label class="form-label label-text" style="margin-top: 10px;">Imagen</label>
+                                    <label class="form-label label-text" style="margin-top: 20px;">Imagen</label>
                                     <input type="text" formControlName="imagen" class="form-control"
                                         style="width: 350px;" placeholder="Ingrese la URL de la imagen...">
                                 </div>
 
-                                <label class="form-label label-text" style="margin-top: 10px;">Marca</label>
+                                <label class="form-label label-text" style="margin-top: 20px;">Marca</label>
                                 <select formControlName="marca" class="form-select" style="width: 350px;">
                                     <option disabled selected>Selecciona la marca...</option>
                                     <option *ngFor="let marcas of marca" [value]="marcas.nombre">{{ marcas.nombre }}
                                     </option>
                                 </select>
 
-                                <label class="form-label label-text" style="margin-top: 10px;">Género</label>
+                                <label class="form-label label-text" style="margin-top: 20px;">Género</label>
                                 <div class="d-flex">
                                     <div class="form-check me-3">
                                         <input class="form-check-input" type="radio" formControlName="genero"
@@ -259,7 +259,7 @@
                                     </div>
                                 </div>
 
-                                <label class="form-label label-text" style="margin-top: 10px;">Forma</label>
+                                <label class="form-label label-text" style="margin-top: 20px;">Forma</label>
                                 <input type="string" formControlName="forma" class="form-control" style="width: 350px;"
                                     placeholder="Escriba la forma de la montura...">
                                 <div class="text-danger"
@@ -267,7 +267,7 @@
                                     <span>La forma de la montura <strong>es obligatorio</strong></span>
                                 </div>
 
-                                <label class="form-label label-text" style="margin-top: 10px;">Color</label>
+                                <label class="form-label label-text" style="margin-top: 20px;">Color</label>
                                 <input type="text" formControlName="color" class="form-control" style="width: 350px;"
                                     placeholder="Escriba el color de la montura...">
                                 <div class="text-danger"
@@ -275,7 +275,7 @@
                                     <span>El color de la montura <strong>es obligatorio</strong></span>
                                 </div>
 
-                                <label class="form-label label-text" style="margin-top: 10px;">Color de
+                                <label class="form-label label-text" style="margin-top: 20px;">Color de
                                     Lente</label>
                                 <input type="text" formControlName="colorlente" class="form-control"
                                     style="width: 350px;" placeholder="Escriba el color de lente de la montura...">
@@ -284,7 +284,7 @@
                                     <span>El color de lente de la montura <strong>es obligatorio</strong></span>
                                 </div>
 
-                                <label class="form-label label-text" style="margin-top: 10px;">Protección UV</label>
+                                <label class="form-label label-text" style="margin-top: 20px;">Protección UV</label>
                                 <div class="d-flex">
                                     <div class="form-check me-3">
                                         <input class="form-check-input" type="radio" formControlName="protuv" id="si"
@@ -302,7 +302,7 @@
                                     </div>
                                 </div>
 
-                                <label class="form-label label-text" style="margin-top: 10px;">Proveedor</label>
+                                <label class="form-label label-text" style="margin-top: 20px;">Proveedor</label>
                                 <select formControlName="proveedor" class="form-select" style="width: 350px;">
                                     <option disabled selected>Selecciona el proveedor...</option>
                                     <option *ngFor="let proveedores of proveedor" [value]="proveedores.nombre">{{
@@ -335,7 +335,7 @@
             <div style="height: 100px;"></div> <!-- Espacio en blanco -->
 
             <!-- Footer -->
-            <footer class="footer sticky-footer bg-white">
+            <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
                         <span>Óptica Nuevo Mundo &copy; 2024</span>

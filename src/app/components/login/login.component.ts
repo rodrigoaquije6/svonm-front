@@ -1,27 +1,12 @@
-// import { Component } from '@angular/core';
 
-// @Component({
-//   selector: 'app-login',
-//   templateUrl: './login.component.html',
-//   styleUrls: ['./login.component.css']
-// })
-// export class LoginComponent {
-
-// }
 import { formatCurrency } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-
-import {
-  FormGroup,
-  FormControl,
-  Validators,
-  FormGroupDirective,
+import { FormGroup, FormControl, Validators, FormGroupDirective,
 } from '@angular/forms';
 import { LoginService } from '../../../app/services/login.service';
 import { LoginI } from '../../models/login.interface';
 import { ResponseI } from '../../models/response.interface';
 import { HttpClient } from '@angular/common/http';
-
 import { Router } from '@angular/router';
 import { response } from 'express';
 import { Token } from '@angular/compiler';
@@ -63,7 +48,7 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['dashboard-gerente']);
     }
     else if(Number(role) == 2){
-      this.router.navigate(['']);
+      this.router.navigate(['dashboard-trabajador']);
     }
   }
 

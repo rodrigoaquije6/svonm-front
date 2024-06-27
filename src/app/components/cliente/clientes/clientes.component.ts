@@ -31,7 +31,7 @@ export class ClientesComponent {
     })
   }
 
-  eliminarLuna(id: any) {
+  eliminarCliente(id: any) {
     this._clienteService.eliminarCliente(id).subscribe(data => {
       this.toastr.info('El cliente fue eliminado con éxito!', 'Cliente Eliminado!')
       this.obtenerClientes();

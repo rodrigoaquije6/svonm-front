@@ -39,6 +39,15 @@ import { DetalleVentaComponent } from './components/seguimiento-venta/detalle-ve
 import { DetalleCompraComponent } from './components/compra/detalle-compra/detalle-compra.component';
 import { DetalleDevolucionComponent } from './components/devolucion/detalle-devolucion/detalle-devolucion.component';
 import { ClientesComponent } from './components/cliente/clientes/clientes.component';
+import { TipoLunasComponent } from './components/tipoLunas/tipo-lunas/tipo-lunas.component';
+import { CrearTipoLunasComponent } from './components/tipoLunas/crear-tipo-lunas/crear-tipo-lunas.component';
+import { TratamientosComponent } from './components/tratamiento/tratamientos/tratamientos.component';
+import { CrearTratamientoComponent } from './components/tratamiento/crear-tratamiento/crear-tratamiento.component';
+import { ProveedoresComponent } from './components/proveedor/proveedores/proveedores.component';
+import { CrearProveedorComponent } from './components/proveedor/crear-proveedor/crear-proveedor.component';
+import { CitasComponent } from './components/cita/citas/citas.component';
+import { VerCitaComponent } from './components/cita/ver-cita/ver-cita.component';
+import { VerProductoComponent } from './components/gestionar-producto/ver-producto/ver-producto.component';
 
 @NgModule({
   declarations: [
@@ -74,6 +83,15 @@ import { ClientesComponent } from './components/cliente/clientes/clientes.compon
     DetalleCompraComponent,
     DetalleDevolucionComponent,
     ClientesComponent,
+    TipoLunasComponent,
+    CrearTipoLunasComponent,
+    TratamientosComponent,
+    CrearTratamientoComponent,
+    ProveedoresComponent,
+    CrearProveedorComponent,
+    CitasComponent,
+    VerCitaComponent,
+    VerProductoComponent,
   ],
   imports: [
     BrowserModule,

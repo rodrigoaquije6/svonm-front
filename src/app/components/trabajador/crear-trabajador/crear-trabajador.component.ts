@@ -31,10 +31,15 @@ export class CrearTrabajadorComponent implements OnInit {
     private api: LoginService,
     private http: HttpClient) {
     this.trabajadorForm = this.fb.group({
-      dni: ['', Validators.required],
-      nombre: ['', Validators.required],
-      rol: ['', Validators.required],
-      estado: ['', Validators.required],
+      user_dni: ['', Validators.required],
+      role: ['', Validators.required],
+      nombres: ['', Validators.required],
+      apellidos: ['', Validators.required],
+      password: ['', Validators.required],
+      celular: ['', Validators.required],
+      fecha_nac: ['', Validators.required],
+      email: ['', Validators.required],
+      isActive: [true, Validators.required],
     })
     this.id = this.aRouter.snapshot.paramMap.get('id')
   }
@@ -63,14 +68,18 @@ export class CrearTrabajadorComponent implements OnInit {
     }
 
     const TRABAJADOR: Trabajador = {
-      dni: this.trabajadorForm.get('dni')?.value,
-      nombre: this.trabajadorForm.get('nombre')?.value,
-      rol: this.trabajadorForm.get('rol')?.value,
-      estado: this.trabajadorForm.get('estado')?.value
+      user_dni: this.trabajadorForm.get('user_dni')?.value,
+      role: this.trabajadorForm.get('role')?.value,
+      nombres: this.trabajadorForm.get('nombres')?.value,
+      apellidos: this.trabajadorForm.get('apellidos')?.value,
+      password: this.trabajadorForm.get('password')?.value,
+      celular: this.trabajadorForm.get('celular')?.value,
+      fecha_nac: this.trabajadorForm.get('fecha_nac')?.value,
+      email: this.trabajadorForm.get('email')?.value,
+      isActive: this.trabajadorForm.get('estado')?.value
     }
 
     if (this.id !== null) {
-      //editamos rol
       this._trabajadorService.editarTrabajador(this.id, TRABAJADOR).subscribe(data => {
         this.toastr.info('El trabajador fue actualizado con éxito!', 'Trabajador Actualizado!')
         this.router.navigate(['/dashboard-gerente/trabajador']);
@@ -113,10 +122,15 @@ export class CrearTrabajadorComponent implements OnInit {
       this.titulo = 'Editar Trabajador';
       this._trabajadorService.obtenerTrabajador(this.id).subscribe(data => {
         this.trabajadorForm.setValue({
-          dni: data.dni,
-          nombre: data.nombre,
-          rol: data.rol,
-          estado: data.estado
+          user_dni: data.user_dni,
+          role: data.role,
+          nombres: data.nombres,
+          apellidos: data.apellidos,
+          password: data.password,
+          celular: data.celular,
+          fecha_nac: data.fecha_nac,
+          email: data.email,
+          isActive: data.isActive,
         })
       })
     }
