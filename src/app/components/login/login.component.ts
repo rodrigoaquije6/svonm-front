@@ -1,7 +1,8 @@
 
 import { formatCurrency } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormGroupDirective,
+import {
+  FormGroup, FormControl, Validators, FormGroupDirective,
 } from '@angular/forms';
 import { LoginService } from '../../../app/services/login.service';
 import { LoginI } from '../../models/login.interface';
@@ -10,6 +11,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { response } from 'express';
 import { Token } from '@angular/compiler';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -28,7 +30,9 @@ export class LoginComponent implements OnInit {
     }),
   });
 
-  constructor(private api: LoginService, private router: Router) {}
+  constructor(private api: LoginService, 
+              private router: Router,
+              private toastr: ToastrService) { }
 
   errorStatus: boolean = false;
   errorMsg: any = '';
@@ -44,10 +48,10 @@ export class LoginComponent implements OnInit {
   }
 
   checkRole(role: string | null) {
-    if(Number(role) == 1){
+    if (Number(role) == 1) {
       this.router.navigate(['dashboard-gerente']);
     }
-    else if(Number(role) == 2){
+    else if (Number(role) == 2) {
       this.router.navigate(['dashboard-trabajador']);
     }
   }
@@ -63,16 +67,15 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('token', token);
           localStorage.setItem('rol', rol);
           this.checkRole(rol);
+          this.toastr.success('Bienvenido', '¡Inicio de sesión exitoso!');
         }
       },
       error: (error: any) => {
-        //console.log(error);
-        this.errorStatus = true;
         let msg = error.error;
         if (msg.message) {
-          this.errorMsg = msg.message;
+          this.toastr.error(msg.message, '¡Error al iniciar sesión!');
         } else if (msg.error) {
-          this.errorMsg = msg.error[0];
+          this.toastr.error(msg.error[0], '¡Error al iniciar sesión!');
         }
       },
     });

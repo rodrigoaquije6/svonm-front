@@ -197,7 +197,8 @@
                 <div class="container mt-5">
                     <div class="row">
                         <div class="col-lg-11 offser-lg-2">
-                            <button class="btn btn-success float-end" routerLink="/dashboard-gerente/trabajador/crear-trabajador">
+                            <button class="btn btn-success float-end"
+                                routerLink="/dashboard-gerente/trabajador/crear-trabajador">
                                 Agregar
                                 <i class="fa-solid fa-plus"></i>
                             </button>
@@ -213,27 +214,57 @@
                                 </thead>
                                 <tbody>
 
-                                    <tr *ngFor="let trabajador of listTrabajador">                                    
+                                    <tr *ngFor="let trabajador of listTrabajador">
                                         <td>
                                             {{trabajador.user_dni}}
                                         </td>
                                         <td>
-                                            {{trabajador.nombres}} {{trabajador.apellidos}}                                 
+                                            {{trabajador.nombres}} {{trabajador.apellidos}}
                                         </td>
                                         <td>
-                                            {{ trabajador.role === '1' ? 'Gerente' : trabajador.role === '2' ? 'Trabajador' : trabajador.role }}
+                                            {{ trabajador.role === '1' ? 'Gerente' : trabajador.role === '2' ?
+                                            'Trabajador' : trabajador.role }}
                                         </td>
                                         <td>
-                                            {{trabajador.isActive === true ? 'Activo' : trabajador.isActive === false ? 'Inactivo' : trabajador.isActive}}                              
+                                            {{trabajador.estado}}
                                         </td>
                                         <td>
-                                            <i [routerLink]="['/dashboard-gerente/trabajador/editar-trabajador/', trabajador._id]" class="faw fa fa-edit text-primary"></i>
-                                            <i (click)="eliminarTrabajador(trabajador._id)" class='faw fa-solid fa-trash text-danger'></i>
+                                            <i [routerLink]="['/dashboard-gerente/trabajador/editar-trabajador/', trabajador._id]"
+                                                class="faw fa fa-edit text-primary"></i>
+                                            <i *ngIf="trabajador.estado === 'Activo'" data-bs-toggle="modal"
+                                                data-bs-target="#confirmacionModal"
+                                                (click)="prepararCambioEstado(trabajador._id, 'Inactivo', confirmacionModal)"
+                                                class="faw fas fa-solid fa-eye text-success"></i>
+
+                                            <i *ngIf="trabajador.estado === 'Inactivo'" data-bs-toggle="modal"
+                                                data-bs-target="#confirmacionModal"
+                                                (click)="prepararCambioEstado(trabajador._id, 'Activo', confirmacionModal)"
+                                                class="faw fas fa-solid fa-eye text-danger"></i>
+
+                                            <!-- Modal de Confirmación -->
+                                            <ng-template #confirmacionModal let-modal>
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title">Confirmar Cambio de Estado</h4>
+                                                    <button type="button" class="btn-close" aria-label="Close"
+                                                        (click)="modal.dismiss('Cross click')"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p class="label-text">{{ mensajeConfirmacion }}</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-success"
+                                                        (click)="confirmarCambioEstado()">Confirmar</button>
+                                                </div>
+                                            </ng-template>
+
+                                            <i (click)="eliminarTrabajador(trabajador._id)"
+                                                class='faw fa-solid fa-trash text-danger'></i>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
-                            <h5 style="text-align: start; margin-top: 10px;" *ngIf="listTrabajador.length == 0">No hay trabajadores para mostrar</h5>
+                            <h5 style="text-align: start; margin-top: 10px;" *ngIf="listTrabajador.length == 0">No hay
+                                trabajadores para mostrar</h5>
                         </div>
                     </div>
                 </div>

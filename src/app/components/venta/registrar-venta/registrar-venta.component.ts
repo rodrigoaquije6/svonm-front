@@ -218,7 +218,6 @@ export class RegistrarVentaComponent implements OnInit {
     this._lunaService.getLunas().subscribe(
       (materiales: any[]) => {
         this.materialLunaOptions = materiales;
-        console.log('Materiales de luna obtenidos:', this.materialLunaOptions);
       },
       (error) => {
         console.error('Error al obtener los materiales de luna:', error);
@@ -230,7 +229,6 @@ export class RegistrarVentaComponent implements OnInit {
     this._tipoLunaService.getTipoLunas().subscribe(
       (tipos: any[]) => {
         this.tiposLunaOptions = tipos;
-        console.log('Tipos de luna obtenidos:', this.tiposLunaOptions);
       },
       (error) => {
         console.error('Error al obtener los tipos de luna:', error);
@@ -242,7 +240,6 @@ export class RegistrarVentaComponent implements OnInit {
     this._productoService.getProductosActivos().subscribe(
       (productos: Producto[]) => {
         this.productos = productos;
-        console.log('Productos obtenidos:', this.productos);
       },
       (error) => {
         console.error('Error al obtener los productos:', error);
@@ -254,7 +251,6 @@ export class RegistrarVentaComponent implements OnInit {
     this._clienteService.getClientes().subscribe(
       (clientes: Cliente[]) => {
         this.clientes = clientes;
-        console.log('Clientes obtenidos:', this.clientes);
       },
       (error) => {
         console.error('Error al obtener los clientes:', error);
@@ -265,20 +261,16 @@ export class RegistrarVentaComponent implements OnInit {
   onClienteChange(event: Event) {
     const target = event.target as HTMLSelectElement;
     const clienteId = target.value;
-    console.log('ID del cliente seleccionado:', clienteId);
 
     // Convertir cliente._id a cadena para asegurar que ambos lados de la comparación sean cadenas
     this.selectedCliente = this.clientes.find(cliente => String(cliente._id) === clienteId);
-    console.log('Cliente seleccionado:', this.selectedCliente);
   }
 
   onProductChange(event: Event) {
     const target = event.target as HTMLSelectElement;
     const productId = target.value;
-    console.log('ID del producto seleccionado:', productId);
 
     this.selectedProduct = this.productos.find(producto => String(producto._id) === productId);
-    console.log('Producto seleccionado:', this.selectedProduct);
 
     if (this.selectedProduct) {
       this.cantidad = 1;
@@ -359,7 +351,6 @@ export class RegistrarVentaComponent implements OnInit {
       (tratamientos: any[]) => {
         // Asigna los tratamientos obtenidos a tu lista de opciones de tratamiento
         this.tratamientosOptions = tratamientos;
-        console.log('Tratamientos obtenidos:', this.tratamientosOptions);
       },
       (error) => {
         console.error('Error al obtener los tratamientos:', error);
@@ -381,8 +372,6 @@ export class RegistrarVentaComponent implements OnInit {
 
     // Obtener los _id de los tratamientos seleccionados
     const idsTratamientosSeleccionados = this.tratamientosSeleccionados.map((tratamiento: any) => tratamiento._id);
-
-    console.log(idsTratamientosSeleccionados); // Mostrará todos los _id de los tratamientos seleccionados
   }
 
   // Función para calcular el total de los productos seleccionados
@@ -406,7 +395,6 @@ export class RegistrarVentaComponent implements OnInit {
         // Calcular el total multiplicando el precio por la cantidad y aplicando el descuento
         const precioConDescuento = selectedProduct.precio * (1 - this.descuento / 100);
         selectedProduct.total = precioConDescuento * this.cantidad;
-        console.log('Total calculado:', selectedProduct.total); // Muestra el valor calculado
       } else {
         console.error('Cantidad o descuento no válidos.');
       }
@@ -420,7 +408,6 @@ export class RegistrarVentaComponent implements OnInit {
     let totalProductos = 0;
     this.productosAgregados.forEach(producto => {
       totalProductos += producto.total;
-      console.log('Total del producto', producto.nombre, ':', producto.total);
     });
     let totalTratamientos = this.calcularTotalTratamientos();
     let costoTipoLuna = this.tiposLunaOptions.find(tipo => tipo._id === this.ventaForm.get('idTipoLuna')?.value)?.precio || 0;
@@ -499,24 +486,6 @@ export class RegistrarVentaComponent implements OnInit {
     this.ventaForm.get('idMaterialLuna')?.setValue(null);
     this.calcularTotalGeneral();
   }
-
-  /*esEditar() {
-    if (this.id !== null) {
-      this.titulo = 'Editar producto';
-      this._ventaService.obtenerMontura(this.id).subscribe(data => {
-        this.ventaForm.setValue({
-          codigo: data.codigo,
-          marca: data.marca,
-          nombre: data.nombre,
-          color: data.color,
-          genero: data.genero,
-          precio: data.precio,
-          forma: data.forma,
-          imagen: data.imagen,
-        })
-      })
-    }
-  }*/
 
   isLoggedIn: boolean = this.api.isLogged();
 

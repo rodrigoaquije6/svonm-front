@@ -33,4 +33,8 @@ export class TrabajadorService {
     return this.http.put(this.url + id, trabajador);
   }
 
+  actualizarEstadoTrabajador(id: string, nuevoEstado: string): Observable<any> {
+    return this.http.put(`${this.url}${id}/estado`, { estado: nuevoEstado });
+  }
+
 }

@@ -44,7 +44,7 @@ export class DetalleCompraComponent {
       fechaEntregaEstimada: ['', Validators.required],
       estado: ['Pendiente'],
       idProveedor: ['', Validators.required],
-      idTrabajador: ['661f922817a3412bdbe33107', Validators.required],
+      idTrabajador: ['', Validators.required],
       productosAgregados: this.fb.array([]),
     });
     this.id = this.aRouter.snapshot.paramMap.get('id');

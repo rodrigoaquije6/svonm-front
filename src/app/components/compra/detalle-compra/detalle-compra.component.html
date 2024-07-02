@@ -326,8 +326,8 @@
                             <div style="flex: 1;margin-top: 20px;">
                                 <div class="arreglo-orden">
                                     <label class="form-label label-text">Vendedor(a)</label>
-                                    <input type="text" class="form-control" style="width: 200px;margin-right: 40px;"
-                                        [value]="ingreso?.ingreso?.idTrabajador?.nombre" placeholder="Nombre Vendedor"
+                                    <input type="text" class="form-control" style="width: 300px;margin-right: 40px;"
+                                        [value]="ingreso?.ingreso?.idTrabajador?.nombres + ' ' + ingreso?.ingreso?.idTrabajador?.apellidos" placeholder="Nombre Vendedor"
                                         readonly>
                                 </div>
                                 <div class="arreglo-orden">

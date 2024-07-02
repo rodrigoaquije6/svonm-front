@@ -232,7 +232,7 @@
                                         <td>
                                             <i class="faw fa fa-edit text-primary"
                                                 (click)="editarProducto(producto)"></i>
-                                                <i *ngIf="producto.estado === 'Activo'" data-bs-toggle="modal"
+                                            <i *ngIf="producto.estado === 'Activo'" data-bs-toggle="modal"
                                                 data-bs-target="#confirmacionModal"
                                                 (click)="prepararCambioEstado(producto._id, 'Inactivo', confirmacionModal)"
                                                 class="faw fas fa-solid fa-eye text-success"></i>
