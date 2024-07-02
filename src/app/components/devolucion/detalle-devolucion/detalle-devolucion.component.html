@@ -331,6 +331,7 @@
                                                     <th>Precio</th>
                                                     <th>Stock</th>
                                                     <th>Cantidad</th>
+                                                    <th>Descuento</th>
                                                     <th>Total</th>
                                                 </tr>
                                             </thead>
@@ -341,6 +342,7 @@
                                                     <td>{{ producto.idProducto.precio }}</td>
                                                     <td>{{ producto.idProducto.stock }}</td>
                                                     <td>{{ producto.cantidad }}</td>
+                                                    <td>{{ producto.descuento }}%</td>
                                                     <td>{{ producto.total }} </td>
                                                 </tr>
                                             </tbody>
@@ -381,8 +383,8 @@
                             <div style="flex: 1;margin-top: 20px;">
                                 <div class="arreglo-orden">
                                     <label class="form-label label-text">Vendedor(a)</label>
-                                    <input type="text" class="form-control" style="width: 200px;"
-                                        [value]="venta?.venta?.idTrabajador?.nombre" placeholder="Nombre Vendedor"
+                                    <input type="text" class="form-control" style="width: 300px;"
+                                        [value]="venta?.venta?.idTrabajador?.nombres + ' ' + venta?.venta?.idTrabajador?.apellidos" placeholder="Nombre Vendedor"
                                         disabled>
                                 </div>
                             </div>
@@ -435,8 +437,8 @@
                                 <!-- Observación -->
                                 <div class="arreglo-orden">
                                     <label class="form-label label-text">Vendedor(a)</label>
-                                    <input type="text" class="form-control" style="width: 200px;"
-                                        [value]="venta?.devolucion?.idTrabajador?.nombre" disabled>
+                                    <input type="text" class="form-control" style="width: 300px;"
+                                        [value]="venta?.venta?.idTrabajador?.nombres + ' ' + venta?.venta?.idTrabajador?.apellidos" disabled>
                                 </div>
                             </div>
                         </div>

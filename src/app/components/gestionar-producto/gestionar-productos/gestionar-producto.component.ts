@@ -103,5 +103,4 @@ export class GestionarProductoComponent {
     localStorage.removeItem('token');
     this.router.navigate(['login']);
   }
-
 }

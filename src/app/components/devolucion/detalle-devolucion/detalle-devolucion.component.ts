@@ -72,7 +72,7 @@ export class DetalleDevolucionComponent {
       total: ['', Validators.required],
       estado: ['En fabricación'],
       idCliente: ['', Validators.required],
-      idTrabajador: ['661f922817a3412bdbe33107', Validators.required],
+      idTrabajador: ['', Validators.required],
       idTipoLuna: '',
       idMaterialLuna: '',
       productosAgregados: this.fb.array([]),
@@ -83,7 +83,7 @@ export class DetalleDevolucionComponent {
       observacion: ['', Validators.required],
       total: ['', Validators.required],
       idVenta: ['', Validators.required],
-      idTrabajador: ['661f922817a3412bdbe33107', Validators.required],
+      idTrabajador: ['', Validators.required],
       productosDevolucion: this.fb.array([]),
     });
     this.id = this.aRouter.snapshot.paramMap.get('id');
@@ -227,6 +227,7 @@ export class DetalleDevolucionComponent {
               productosAgregadosFormArray.push(this.fb.group({
                 _id: producto._id,
                 cantidad: producto.cantidad,
+                descuento: producto.descuento,
                 total: producto.total
               }));
             });

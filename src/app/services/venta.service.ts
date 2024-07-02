@@ -41,4 +41,10 @@ export class VentaService {
     });
   }
 
+  generarCsvVentasDeHoy(): Observable<any> {
+    return this.http.get(`${this.url}ventasDeHoy/csv`, {
+      responseType: 'text'
+    });
+  }
+
 }

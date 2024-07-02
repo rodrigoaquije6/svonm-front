@@ -70,7 +70,7 @@ export class DetalleVentaComponent {
       total: ['', Validators.required],
       estado: ['En fabricación'],
       idCliente: ['', Validators.required],
-      idTrabajador: ['661f922817a3412bdbe33107', Validators.required],
+      idTrabajador: ['', Validators.required],
       idTipoLuna: '',
       idMaterialLuna: '',
       productosAgregados: this.fb.array([]),
@@ -224,6 +224,7 @@ export class DetalleVentaComponent {
               productosAgregadosFormArray.push(this.fb.group({
                 _id: producto._id,
                 cantidad: producto.cantidad,
+                descuento: producto.descuento,
                 total: producto.total
               }));
             });

@@ -38,7 +38,8 @@ export class RegistrarVentaComponent implements OnInit {
   productos: Producto[] = [];
   selectedProduct: Producto | undefined;
   cantidad: number = 0;
-  productosAgregados: (Producto & { cantidad: number; total: number })[] = [];
+  descuento: number = 0;
+  productosAgregados: (Producto & { cantidad: number; descuento: number; total: number })[] = [];
 
   totalProductos: number = 0;
   totalTratamientos: number = 0;
@@ -107,6 +108,7 @@ export class RegistrarVentaComponent implements OnInit {
     });
     this.detalleVentaForm = this.fb.group({
       cantidad: ['', Validators.required],
+      descuento: ['', Validators.required],
       total: ['', Validators.required],
       idProducto: ['', Validators.required],
     });
@@ -280,12 +282,18 @@ export class RegistrarVentaComponent implements OnInit {
 
     if (this.selectedProduct) {
       this.cantidad = 1;
+      this.descuento = 0;
     }
   }
 
   agregarProducto() {
     // Verificar si se ha seleccionado un producto y la cantidad es válida
     if (this.selectedProduct && this.cantidad > 0) {
+
+      if (this.descuento < 0) {
+        this.toastr.error('El descuento no puede ser negativo.', 'Error');
+        return;
+      }
       // Verificar si el producto ya ha sido agregado
       const productoExistente = this.productosAgregados.find(producto => producto._id === this.selectedProduct?._id);
       if (productoExistente) {
@@ -293,18 +301,20 @@ export class RegistrarVentaComponent implements OnInit {
         this.detalleVentaForm.reset();
         this.selectedProduct = undefined;
         this.cantidad = 0;
+        this.descuento = 0;
         return;
       }
 
       // Verificar si la cantidad ingresada es menor o igual al stock disponible
       if (this.cantidad <= this.selectedProduct.stock) {
         // Calcular el total del producto multiplicando la cantidad por el precio
-        const total = this.cantidad * this.selectedProduct.precio;
+        const total = (this.selectedProduct.precio * (1 - this.descuento / 100)) * this.cantidad;
 
         // Agregar el producto al array de productos agregados
         this.productosAgregados.push({
           ...this.selectedProduct,
           cantidad: this.cantidad,
+          descuento: this.descuento,
           total: total
         });
 
@@ -313,6 +323,7 @@ export class RegistrarVentaComponent implements OnInit {
         detalleVentaArray.push(this.fb.group({
           _id: this.selectedProduct._id,
           cantidad: this.cantidad,
+          descuento: this.descuento,
           total: total
         }));
 
@@ -320,6 +331,7 @@ export class RegistrarVentaComponent implements OnInit {
         this.detalleVentaForm.reset();
         this.selectedProduct = undefined;
         this.cantidad = 0;
+        this.descuento = 0;
 
         // Recalcular el total de productos y el total general
         this.calcularTotalProductos();
@@ -388,11 +400,16 @@ export class RegistrarVentaComponent implements OnInit {
   }
 
   calcularTotal(selectedProduct: any) {
-    console.log('Cantidad actual:', this.cantidad); // Asegúrate de que esto muestra el valor correcto
-    // Verificar que la cantidad sea un número válido
     if (selectedProduct) {
-      // Calcular el total multiplicando el precio por la cantidad
-      selectedProduct.total = selectedProduct.precio * selectedProduct.cantidad;
+      // Verificar que la cantidad y el descuento sean válidos
+      if (this.cantidad > 0 && this.descuento >= 0) {
+        // Calcular el total multiplicando el precio por la cantidad y aplicando el descuento
+        const precioConDescuento = selectedProduct.precio * (1 - this.descuento / 100);
+        selectedProduct.total = precioConDescuento * this.cantidad;
+        console.log('Total calculado:', selectedProduct.total); // Muestra el valor calculado
+      } else {
+        console.error('Cantidad o descuento no válidos.');
+      }
     } else {
       console.error('selectedProduct no está definido.');
     }

@@ -420,6 +420,14 @@
                                                         [(ngModel)]="cantidad"
                                                         (ngModelChange)="calcularTotal(selectedProduct)">
                                                 </div>
+                                                <div style="margin-right: 20px;">
+                                                    <label for="descuento"
+                                                        class="form-label label-text">Descuento (%):</label>
+                                                    <input type="number" id="descuento" class="form-control"
+                                                        formControlName="descuento" style="width: 100px;"
+                                                        [(ngModel)]="descuento"
+                                                        (ngModelChange)="calcularTotal(selectedProduct)">
+                                                </div>
                                                 <div>
                                                     <button class="btn btn-success btn-sm"
                                                         style="margin-left: 30px; margin-top: 35px;"
@@ -436,6 +444,7 @@
                                                             <th>Precio</th>
                                                             <th>Stock</th>
                                                             <th>Cantidad</th>
+                                                            <th>Descuento</th>
                                                             <th>Total</th>
                                                             <th>Acciones</th>
                                                         </tr>
@@ -447,6 +456,7 @@
                                                             <td>{{ producto.precio }}</td>
                                                             <td>{{ producto.stock }}</td>
                                                             <td>{{ producto.cantidad }}</td>
+                                                            <td>{{ producto.descuento }}%</td>
                                                             <td>{{ producto.total }} </td>
                                                             <td><button class="btn btn-danger btn-sm"
                                                                     (click)="quitarProducto(i)">x</button></td>

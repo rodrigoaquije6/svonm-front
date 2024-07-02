@@ -188,7 +188,7 @@
                                             <i *ngIf="ventaF.venta.estado === 'Finalizada'"
                                                 [routerLink]="['/dashboard-trabajador/devolucion/detalle-venta/', ventaF.venta._id]"
                                                 class="faw fa fa-eye text-primary"></i>
-                                            <i *ngIf="ventaF.venta.estado === 'Cambio Solicitado' || ventaF.venta.estado === 'Reembolso'"
+                                            <i *ngIf="ventaF.venta.estado === 'Cambio Solicitado' || ventaF.venta.estado === 'Reembolsada'"
                                                 [routerLink]="['/dashboard-trabajador/devolucion/detalle-devolucion/', ventaF.venta._id]"
                                                 class="faw fa fa-eye text-primary"></i>
                                         </td>
