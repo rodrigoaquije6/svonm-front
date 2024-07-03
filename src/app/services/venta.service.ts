@@ -47,4 +47,8 @@ export class VentaService {
     });
   }
 
+  obtenerVentasMesActual(): Observable<any> {
+    return this.http.get(`${this.url}mes-actual`);
+  }
+
 }

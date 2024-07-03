@@ -103,11 +103,11 @@ export class DetalleCompraComponent {
       date = new Date(date); // Intenta convertirlo a Date
     }
 
-    const day = date.getDate().toString().padStart(2, '0');
-    const month = (date.getMonth() + 1).toString().padStart(2, '0');
-    const year = date.getFullYear().toString();
+    // Ajusta la fecha según la zona horaria necesaria
+    const options = { year: 'numeric', month: '2-digit', day: '2-digit', timeZone: 'UTC' };
+    const formattedDate = date.toLocaleDateString('es-PE', options);
 
-    return `${day}/${month}/${year}`;
+    return formattedDate;
   }
 
   isLoggedIn: boolean = this.api.isLogged();

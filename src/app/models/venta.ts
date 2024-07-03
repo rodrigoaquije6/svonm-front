@@ -56,7 +56,7 @@ export class Venta {
     dipCerca?: number,
     estado?: string,
     idTipoLuna?: string,
-    idMaterialLuna?: string
+    idMaterialLuna?: string,
   ) {
     this.codigo = codigo;
     this.oDEsfera = oDEsfera;

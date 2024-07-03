@@ -203,20 +203,22 @@
                             <table *ngIf="listProducto.length > 0" class="table table-striped mx-5 mt-5 text-center">
                                 <thead>
                                     <tr>
+                                        <th>Stock</th>
                                         <th>Codigo</th>
                                         <th>Nombre</th>
                                         <th>Marca</th>
                                         <th>Tipo de Producto</th>
-                                        <th>Stock</th>
+                                        <th>Proveedor</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let producto of listProducto">
+                                        <td>{{ producto.stock }}</td>
                                         <td>{{ producto.codigo }}</td>
                                         <td>{{ producto.nombre }}</td>
                                         <td>{{ producto.marca.nombre }}</td>
                                         <td>{{ producto.tipoProducto.nombre }}</td>
-                                        <td>{{ producto.stock }}</td>
+                                        <td>{{ producto.proveedor.nombre }}</td>
                                     </tr>
                                 </tbody>
                             </table>

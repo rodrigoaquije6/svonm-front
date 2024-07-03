@@ -41,4 +41,8 @@ export class IngresoService {
     });
   }
 
+  ejecutarAutomatizacion(trabajadorId: string, descuento: number): Observable<any> {
+    const body = { trabajadorId, descuento };
+    return this.http.post(`${this.url}automatizar-orden-compra`, body);
+  }
 }

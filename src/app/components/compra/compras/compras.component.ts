@@ -81,6 +81,10 @@ export class ComprasComponent {
   descargarContrato(id: string, codigo: string, nombre: string, estado: string) {
     this._ingresoService.descargarContratoPDF(id).subscribe(
       (response: Blob) => {
+        if (response.size === 0) {
+          console.error('Error: Archivo PDF vacío');
+          return;
+        }
         const blob = new Blob([response], { type: 'application/pdf' });
         const url = window.URL.createObjectURL(blob);
         const link = document.createElement('a');

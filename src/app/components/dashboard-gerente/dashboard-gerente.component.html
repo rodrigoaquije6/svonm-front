@@ -175,6 +175,7 @@
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                    <span class="span-text mx-3">DASHBOARD GERENTE</span>
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -190,15 +191,129 @@
 
                 </nav>
                 <!-- End of Topbar -->
+
+                <div class="container-fluid" style="margin-top: 40px;">
+                    <!-- Cards -->
+                    <div class="row">
+                        <!-- Ventas-->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-primary shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                Total de Ventas de este Mes</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">S/. {{ totalVentasMes }}</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Devoluciones-->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-warning shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                                Total Devoluciones de este Mes</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">10</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-undo fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Clientes-->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                Nuevos clientes este Mes</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">50</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-user-plus fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Trabajadores-->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-info shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                                Mejor Trabajador</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">John Doe</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-user-tie fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.row -->
+
+                    <!-- Nuevos cards -->
+                    <div class="row">
+                        <!-- Card de Ganancias Anuales -->
+                        <div class="col-xl-8 col-lg-6 mb-4">
+                            <div class="card shadow h-100" style="min-height: 600px;">
+                                <div class="card-header">
+                                    <h6 class="m-0 font-weight-bold text-primary">Total de Ganancias Anuales</h6>
+                                </div>
+                                <div class="card-body">
+                                    <!-- Aquí va tu gráfico de ganancias -->
+                                    <canvas id="gananciasAnualesChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card de Productos que Necesitan Orden de Compra -->
+                        <div class="col-xl-4 col-lg-6 mb-4" style="height: 300px;">
+                            <div class="card shadow h-100 border-left-danger d-flex flex-column" >
+                                <div class="card-header">
+                                    <h6 class="m-0 font-weight-bold text-danger">Productos que Necesitan Orden de Compra
+                                    </h6>
+                                </div>
+                                <div class="card-body flex-grow-1">
+                                    <ul>
+                                        <li>a</li>
+                                    </ul>
+                                </div>
+                                <div class="card-footer">
+                                    <form [formGroup]="ingresoForm"
+                                        class="d-flex justify-content-end align-items-center">
+                                        <div class="form-group mb-0">
+                                            <label for="descuento" class="form-label me-2">Descuento (%):</label>
+                                            <input formControlName="descuento" type="number" id="descuento"
+                                                name="descuento" [(ngModel)]="descuento" min="0" max="100" step="1"
+                                                class="form-control d-inline-block w-auto">
+                                        </div>
+                                        <button class="btn btn-success ms-2"
+                                            (click)="ejecutarAutomatizacion(trabajadorId, descuento)">Generar</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.container-fluid -->
+
             </div>
-
-            <!-- Main Content -->
-
-            <button (click)="generarCsvVentasDeHoy()">Generar CSV de Ventas de Hoy</button>
-
             <!-- End of Main Content -->
-
-
 
             <!-- Footer -->
             <footer class="sticky-footer bg-white">
