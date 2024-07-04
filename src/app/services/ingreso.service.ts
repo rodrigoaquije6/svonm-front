@@ -41,8 +41,12 @@ export class IngresoService {
     });
   }
 
-  ejecutarAutomatizacion(trabajadorId: string, descuento: number): Observable<any> {
-    const body = { trabajadorId, descuento };
+  ejecutarAutomatizacion(trabajadorId: string/*, proveedorId: string, descuento: number*/): Observable<any> {
+    const body = { trabajadorId/*, proveedorId, descuento*/ };
     return this.http.post(`${this.url}automatizar-orden-compra`, body);
+  }
+
+  obtenerProveedoresConProductos(): Observable<any> {
+    return this.http.get(`${this.url}productos-proveedor/abastecer`);
   }
 }

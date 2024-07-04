@@ -25,6 +25,9 @@ export class RegistrarVentaComponent implements OnInit {
   detalleVentaForm: FormGroup;
   //detalleTratamientoForm: FormGroup;
 
+  venta: any = {};
+  detallesVenta: any[] = [];
+
   clienteForm: FormGroup;
   clientes: Cliente[] = [];
   selectedCliente: Cliente | undefined;
@@ -125,6 +128,7 @@ export class RegistrarVentaComponent implements OnInit {
     this.obtenerTiposLuna();
     this.obtenerMatLuna();
     this.obtenerPerfilTrabajador();
+    this.esEditar();
   };
 
   obtenerPerfilTrabajador() {
@@ -429,7 +433,6 @@ export class RegistrarVentaComponent implements OnInit {
 
   guardarVenta() {
     if (this.ventaForm.invalid) {
-      // Aquí maneja la validación del formulario de venta
       this.toastr.error('Por favor, complete todos los campos correctamente en el formulario de venta.', 'Error');
       return;
     }
@@ -460,8 +463,36 @@ export class RegistrarVentaComponent implements OnInit {
     }));
     ventaData.tratamientosAgregados = tratamientosDetalle;
 
+    // Verificar si this.id tiene un valor antes de usarlo
+    if (this.id !== null && this.id !== undefined) {
+      // Editar venta existente
+      this.editarVentaExistente(ventaData);
+    } else {
+      // Guardar nueva venta
+      this.guardarNuevaVenta(ventaData);
+    }
+  }
+
+  private editarVentaExistente(ventaData: any) {
+    this._ventaService.editarVenta(this.id!, ventaData).subscribe(
+      data => {
+        this.toastr.success('La venta ha sido actualizada exitosamente.', 'Venta Actualizada');
+        this.router.navigate(['/dashboard-trabajador/venta']);
+        // Limpiar los formularios y los campos después de guardar la venta
+        this.ventaForm.reset();
+        this.productosAgregados = [];
+        const detalleVentaArray = this.ventaForm.get('productosAgregados') as FormArray;
+        detalleVentaArray.clear();
+      },
+      error => {
+        console.error('Error al hacer la solicitud PUT:', error);
+        this.toastr.error('Ocurrió un error al actualizar la venta. Por favor, inténtalo de nuevo más tarde.', 'Error');
+      }
+    );
+  }
+  private guardarNuevaVenta(ventaData: any) {
     this._ventaService.guardarVenta(ventaData).subscribe(
-      (data) => {
+      data => {
         this.toastr.success('La venta ha sido registrada exitosamente.', 'Venta Registrada');
         this.router.navigate(['/dashboard-trabajador/venta']);
         // Limpiar los formularios y los campos después de guardar la venta
@@ -470,7 +501,7 @@ export class RegistrarVentaComponent implements OnInit {
         const detalleVentaArray = this.ventaForm.get('productosAgregados') as FormArray;
         detalleVentaArray.clear();
       },
-      (error) => {
+      error => {
         console.error('Error al hacer la solicitud POST:', error);
         this.toastr.error('Ocurrió un error al guardar la venta. Por favor, inténtalo de nuevo más tarde.', 'Error');
       }
@@ -485,6 +516,75 @@ export class RegistrarVentaComponent implements OnInit {
   deseleccionarMaterialLuna() {
     this.ventaForm.get('idMaterialLuna')?.setValue(null);
     this.calcularTotalGeneral();
+  }
+
+  esEditar() {
+    if (this.id !== null) { // Asumiendo que tienes un ID válido para buscar la venta
+      this._ventaService.obtenerVenta(this.id).subscribe(
+        (data: any) => { // Asegúrate de que 'data' tenga el tipo correcto según la respuesta del servicio
+          this.venta = data.venta;
+          this.detallesVenta = data.detallesVenta;
+
+          // Asigna los valores al formulario usando patchValue
+          this.ventaForm.patchValue({
+            oDEsfera: data.venta.oDEsfera,
+            oDCilindro: data.venta.oDCilindro,
+            oDEje: data.venta.oDEje,
+            oDAvLejos: data.venta.oDAvLejos,
+            oDAvCerca: data.venta.oDAvCerca,
+            oDAdd: data.venta.oDAdd,
+            oDAltura: data.venta.oDAltura,
+            oDCurva: data.venta.oDCurva,
+            oIEsfera: data.venta.oIEsfera,
+            oICilindro: data.venta.oICilindro,
+            oIEje: data.venta.oIEje,
+            oIAvLejos: data.venta.oIAvLejos,
+            oIAvCerca: data.venta.oIAvCerca,
+            oIAdd: data.venta.oIAdd,
+            oIAltura: data.venta.oIAltura,
+            oICurva: data.venta.oICurva,
+            dipLejos: data.venta.dipLejos,
+            dipCerca: data.venta.dipCerca,
+            observacion: data.venta.observacion,
+            aCuenta: data.venta.aCuenta,
+            saldo: data.venta.saldo,
+            total: data.venta.total,
+            estado: data.venta.estado,
+            idCliente: data.venta.idCliente._id,
+            idTipoLuna: data.venta.idTipoLuna,
+            idMaterialLuna: data.venta.idMaterialLuna
+          });
+
+          // Actualiza productosAgregados
+          const productosAgregadosFormArray = this.ventaForm.get('productosAgregados') as FormArray;
+          productosAgregadosFormArray.clear(); // Limpia el FormArray antes de agregar nuevos elementos
+          if (Array.isArray(data.productosAgregados)) {
+            data.productosAgregados.forEach((producto: any) => {
+              productosAgregadosFormArray.push(this.fb.group({
+                _id: producto._id,
+                cantidad: producto.cantidad,
+                total: producto.total
+              }));
+            });
+          }
+
+          // Actualiza tratamientosAgregados
+          const tratamientosAgregadosFormArray = this.ventaForm.get('tratamientosAgregados') as FormArray;
+          tratamientosAgregadosFormArray.clear(); // Limpia el FormArray antes de agregar nuevos elementos
+          if (Array.isArray(data.tratamientosAgregados)) {
+            data.tratamientosAgregados.forEach((tratamiento: any) => {
+              tratamientosAgregadosFormArray.push(this.fb.group({
+                _id: tratamiento._id
+              }));
+            });
+          }
+        },
+        (error: any) => {
+          console.error('Error al obtener la venta:', error);
+          this.toastr.error('Error al obtener la venta. Por favor, inténtelo de nuevo más tarde.', 'Error');
+        }
+      );
+    }
   }
 
   isLoggedIn: boolean = this.api.isLogged();

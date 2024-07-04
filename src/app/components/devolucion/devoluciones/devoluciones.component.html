@@ -162,7 +162,7 @@
                             <input type="text" class="form-control" style="width: 350px;" [(ngModel)]="terminoBusqueda"
                                 (keyup)="obtenerVentas()" placeholder="Buscar...">
                             <table *ngIf="listVentasFinalizadas.length > 0"
-                                class="table table-striped mx-5 mt-5 text-center">
+                                class="table table-striped mx-5 mt-4 text-center">
                                 <thead>
                                     <tr>
                                         <th>Codigo</th>
@@ -191,6 +191,9 @@
                                             <i *ngIf="ventaF.venta.estado === 'Cambio Solicitado' || ventaF.venta.estado === 'Reembolsada'"
                                                 [routerLink]="['/dashboard-trabajador/devolucion/detalle-devolucion/', ventaF.venta._id]"
                                                 class="faw fa fa-eye text-primary"></i>
+                                            <!--<i *ngIf="ventaF.venta.estado === 'Cambio Solicitado'"
+                                                [routerLink]="['/dashboard-trabajador/venta/editar-venta/', ventaF.venta._id]"
+                                                class="faw fa fa-edit text-primary"></i>-->
                                         </td>
                                     </tr>
                                 </tbody>

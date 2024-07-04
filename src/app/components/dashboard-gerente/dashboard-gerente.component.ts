@@ -5,6 +5,7 @@ import { VentaService } from 'src/app/services/venta.service';
 import { IngresoService } from 'src/app/services/ingreso.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Venta } from 'src/app/models/venta';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-dashboard-gerente',
@@ -16,10 +17,17 @@ export class DashboardGerenteComponent {
 
   ventasConDetalles: any[] = [];
   listVentas: Venta[] = [];
-  totalVentasMes: number = 0;
 
-  descuento: number = 0;
+  totalVentasMes: number = 0;
+  totalDevolucionesMes: number = 0;
+  totalGananciasMes: number = 0;
+
+  //descuento: number = 0;
   trabajadorId: string | undefined;
+  proveedoresConProductos: any[] = [];
+  mostrarCardOrdenes: boolean = true;
+
+  today: Date = new Date(); // Esta es la fecha actual
 
   ingresoForm: FormGroup;
 
@@ -27,16 +35,26 @@ export class DashboardGerenteComponent {
     private router: Router,
     private _ventaService: VentaService,
     private _ingresoService: IngresoService,
-    private fb: FormBuilder) {
+    private fb: FormBuilder,
+    private toastr: ToastrService) {
     this.ingresoForm = this.fb.group({
       idTrabajador: ['', Validators.required],
-      descuento: ['', Validators.required]
+      //descuento: [0, Validators.required]
     });
   }
 
   ngOnInit(): void {
     this.obtenerPerfilTrabajador();
-    this.obtenerVentasConDetalles()
+    this.obtenerTotalVentasFinalizadasMesActual();
+    this.obtenerTotalDevolucionesMesActual();
+    this.obtenerTotalGananciasMesActual();
+    this.obtenerProveedoresConProductos();
+  }
+
+  getNombreMes(numeroMes: number): string {
+    const meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+      'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+    return meses[numeroMes - 1]; // Restamos 1 porque los arrays empiezan en índice 0
   }
 
   generarCsvVentasDeHoy() {
@@ -44,11 +62,36 @@ export class DashboardGerenteComponent {
       .subscribe(
         data => {
           console.log('CSV generado:', data);
-          // Aquí podrías manejar la descarga o mostrar un mensaje de éxito
+          this.toastr.success('Abra el archivo de Power BI para visualizar el reporte de hoy.', '¡Archivo CSV generado y subido a GCP exitosamente!');
         },
         error => {
           console.error('Error al generar CSV:', error);
-          // Manejar errores como desees
+        }
+      );
+  }
+
+  generarCsvVentasDeEsteMes() {
+    this._ventaService.generarCsvVentasDeEsteMes()
+      .subscribe(
+        data => {
+          console.log('CSV generado:', data);
+          this.toastr.success('Abra el archivo de Power BI para visualizar el reporte del mes.', '¡Archivo CSV generado y subido a GCP exitosamente!');
+        },
+        error => {
+          console.error('Error al generar CSV:', error);
+        }
+      );
+  }
+
+  generarCsvVentasDeEsteAnio() {
+    this._ventaService.generarCsvVentasDeEsteAnio()
+      .subscribe(
+        data => {
+          console.log('CSV generado:', data);
+          this.toastr.success('Abra el archivo de Power BI para visualizar el reporte del año.', '¡Archivo CSV generado y subido a GCP exitosamente!');
+        },
+        error => {
+          console.error('Error al generar CSV:', error);
         }
       );
   }
@@ -69,41 +112,90 @@ export class DashboardGerenteComponent {
     );
   }
 
-  ejecutarAutomatizacion(trabajadorId: string | undefined, descuento: number) {
+  esSabado(): boolean {
+    const today = new Date();
+    return today.getDay() === 4;
+  }
+
+  obtenerProveedoresConProductos(): void {
+    this._ingresoService.obtenerProveedoresConProductos().subscribe(
+      (data: any[]) => {
+        this.proveedoresConProductos = data;
+        console.log('Proveedores con productos:', this.proveedoresConProductos);
+      },
+      error => {
+        console.error('Error al obtener proveedores con productos:', error);
+        // Manejar el error según tu lógica de aplicación
+      }
+    );
+  }
+
+  ejecutarAutomatizacion(trabajadorId: string | undefined/*, proveedorId: string*/) {
     if (!trabajadorId) {
       console.error('ID del trabajador no definido.');
       return;
     }
-
-    this._ingresoService.ejecutarAutomatizacion(trabajadorId, descuento)
+    this._ingresoService.ejecutarAutomatizacion(trabajadorId/*, proveedorId, descuento*/)
       .subscribe(
         (response) => {
-          console.log('Automatización de órdenes de compra exitosa:', response);
-          this.router.navigate(['/dashboard-gerente/ingresos']);
+          console.log('Automatización de órden de compra exitosa:', response);
+          this.toastr.success('Tus ordenes de compra han sido generadas.', '¡Órden(es) de compra generada(s) exitosamente!');
         },
         (error) => {
           console.error('Error en automatización de órdenes de compra:', error);
-          // Manejo de errores
         }
       );
   }
 
-  obtenerVentasConDetalles() {
-    this._ventaService.obtenerVentasMesActual()
-      .subscribe(
-        (data) => {
-          this.ventasConDetalles = data.ventasConDetalles;
-          // Extraer solo las ventas (sin detalles)
-          this.listVentas = this.ventasConDetalles.map(v => v.venta);
-          this.totalVentasMes = this.listVentas.length;
-          console.log('Ventas del mes actual:', this.listVentas);
-        },
-        (error) => {
-          console.error('Error al obtener las ventas:', error);
-        }
-      );
+  hayProveedoresConProductos(): boolean {
+    return this.proveedoresConProductos && this.proveedoresConProductos.length > 0;
   }
 
+  obtenerTotalVentasFinalizadasMesActual() {
+    this._ventaService.obtenerVentasMesActual().subscribe(
+      (data: any) => { // Asegúrate de ajustar el tipo 'any' según la estructura de tus datos
+        // Filtrar solo las ventas con estado "Finalizada"
+        this.ventasConDetalles = data.ventas.filter((v: any) => v.estado === 'Finalizada');
+        this.listVentas = this.ventasConDetalles.map((v: any) => v.venta);
+        this.totalVentasMes = this.listVentas.length;
+      },
+      (error) => {
+        console.error('Error al obtener las ventas:', error);
+      }
+    );
+  }
+
+  obtenerTotalDevolucionesMesActual() {
+    this._ventaService.obtenerVentasMesActual().subscribe(
+      (data: any) => { // Asegúrate de ajustar el tipo 'any' según la estructura de tus datos
+        // Filtrar solo las ventas con estado "Finalizada"
+        this.ventasConDetalles = data.ventas.filter((v: any) => v.estado === 'Reembolsada');
+        this.listVentas = this.ventasConDetalles.map((v: any) => v.venta);
+        this.totalDevolucionesMes = this.listVentas.length;
+      },
+      (error) => {
+        console.error('Error al obtener las ventas:', error);
+      }
+    );
+  }
+
+  obtenerTotalGananciasMesActual() {
+    this._ventaService.obtenerVentasMesActual().subscribe(
+      (data: any) => { // Ajusta el tipo 'any' según la estructura de tus datos
+        // Filtrar solo las ventas finalizadas y reembolsadas
+        const ventasFinalizadas = data.ventas.filter((v: any) => v.estado === 'Finalizada');
+        const ventasReembolsadas = data.ventas.filter((v: any) => v.estado === 'Reembolsada');
+
+        const totalFinalizadas = ventasFinalizadas.reduce((total: number, venta: any) => total + venta.total, 0);
+        const totalReembolsadas = ventasReembolsadas.reduce((total: number, venta: any) => total + venta.total, 0);
+
+        this.totalGananciasMes = totalFinalizadas - totalReembolsadas;
+      },
+      (error) => {
+        console.error('Error al obtener las ventas:', error);
+      }
+    );
+  }
 
   onClickLogout() {
     localStorage.removeItem('token');

@@ -381,10 +381,10 @@
                                         <div style="flex: 1;">
                                             <label class="form-label label-text"
                                                 style="margin-right: 20px; margin-top: 30px;">PRODUCTO</label>
-                                            <select class="form-select" style="width: 300px;"
+                                            <select class="form-select" style="width: 400px;"
                                                 formControlName="idProducto" (change)="onProductChange($event)">
                                                 <option value="" disabled selected>Seleccione un producto...</option>
-                                                <option *ngFor="let producto of productos" [value]="producto._id">{{
+                                                <option *ngFor="let producto of productos" [value]="producto._id"> {{producto.codigo}} - {{
                                                     producto.nombre }}</option>
                                             </select>
                                             <div

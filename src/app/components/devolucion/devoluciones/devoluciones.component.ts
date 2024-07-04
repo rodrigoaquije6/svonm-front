@@ -24,13 +24,19 @@ export class DevolucionesComponent {
   }
 
   obtenerVentas() {
+    const treintaDiasAtras = new Date();
+    treintaDiasAtras.setDate(treintaDiasAtras.getDate() - 30); // Restar 30 días a la fecha actual
+
     this._ventaService.getVentas().subscribe((data: any) => {
       console.log(data);
       if (data && data.ventasConDetalles) {
-        // Filtrar por estado 'Finalizada' y 'Devuelto'
-        const ventasFiltradas = data.ventasConDetalles.filter((venta: any) =>
-          venta.venta.estado === 'Finalizada' || venta.venta.estado === 'Cambio Solicitado' || venta.venta.estado === 'Reembolsada'
-        );
+        const ventasFiltradas = data.ventasConDetalles.filter((venta: any) => {
+          const fechaCreacion = new Date(venta.venta.fechaCreacion);
+          return (
+            (venta.venta.estado === 'Finalizada' || venta.venta.estado === 'Cambio Solicitado' || venta.venta.estado === 'Reembolsada') &&
+            fechaCreacion >= treintaDiasAtras
+          );
+        });
 
         // Filtrar por término de búsqueda
         this.listVentasFinalizadas = ventasFiltradas.filter((venta: any) =>

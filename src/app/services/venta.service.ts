@@ -47,8 +47,20 @@ export class VentaService {
     });
   }
 
+  generarCsvVentasDeEsteMes(): Observable<any> {
+    return this.http.get(`${this.url}ventasEsteMes/csv`, {
+      responseType: 'text'
+    });
+  }
+
+  generarCsvVentasDeEsteAnio(): Observable<any> {
+    return this.http.get(`${this.url}ventasEsteAnio/csv`, {
+      responseType: 'text'
+    });
+  }
+
   obtenerVentasMesActual(): Observable<any> {
-    return this.http.get(`${this.url}mes-actual`);
+    return this.http.get(`${this.url}mes-actual/total`);
   }
 
 }

@@ -105,6 +105,7 @@ const routes: Routes = [
  
   //DASHBOARD-TRABAJADOR
   { path: 'dashboard-trabajador/venta/registrar-venta', component: RegistrarVentaComponent, canActivate: [AuthGuard], data: { role: '2' }},
+  { path: 'dashboard-trabajador/venta/editar-venta/:id', component: RegistrarVentaComponent, canActivate: [AuthGuard], data: { role: '2' }},
   { path: 'dashboard-trabajador/venta/detalle-venta/:id', component: DetalleVentaComponent, canActivate: [AuthGuard], data: { role: '2' }},
 
   { path: 'dashboard-trabajador/seguimiento-venta/detalle-venta/:id', component: DetalleVentaComponent, canActivate: [AuthGuard], data: { role: '2' }},

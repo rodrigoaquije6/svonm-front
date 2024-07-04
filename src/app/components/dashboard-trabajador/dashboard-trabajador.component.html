@@ -29,7 +29,8 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Logo -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" routerLink="/dashboard-trabajador">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center"
+                routerLink="/dashboard-trabajador">
                 <div class="sidebar-brand-icon">
                     <i class="fa-solid fa-glasses"></i>
                 </div>
@@ -92,9 +93,10 @@
                 </a>
             </li>
 
-             <!-- Seguimiento de Venta -->
-             <li class="nav-item">
-                <a class="nav-link collapsed" routerLink="/dashboard-trabajador/seguimiento-venta" data-toggle="collapse">
+            <!-- Seguimiento de Venta -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" routerLink="/dashboard-trabajador/seguimiento-venta"
+                    data-toggle="collapse">
                     <i class="fa-solid fa-person-walking"></i>
                     <span> Seguimiento de Venta </span>
                 </a>
@@ -135,13 +137,14 @@
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                    <span class="span-text mx-3">DASHBOARD TRABAJADOR</span>
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item" *ngIf="isLoggedIn" (click)="onClickLogout()">
-                            <a class="nav-link" href="" >
+                            <a class="nav-link" href="">
                                 <i class="fa-solid fa-right-from-bracket" style="color: #ff000d;"></i>
                             </a>
                         </li>
@@ -151,6 +154,127 @@
                 </nav>
 
                 <!-- End of Topbar -->
+
+                <div class="container-fluid" style="margin-top: 40px;">
+                    <!-- Cards -->
+                    <div class="row">
+                        <!-- Ventas-->
+                        <div class="col-xl-4 col-md-6 mb-4">
+                            <div class="card border-left-primary shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                Ventas Finalizadas este mes</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{
+                                                totalVentasMes }}
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Devoluciones-->
+                        <div class="col-xl-4 col-md-6 mb-4">
+                            <div class="card border-left-warning shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                                Devoluciones Realizadas este mes</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{
+                                                totalDevolucionesMes
+                                                }}</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-undo fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Ganancias-->
+                        <div class="col-xl-4 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                Ganancias Generadas este mes</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">S/. {{
+                                                totalGananciasMes
+                                                }}</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-money-bill fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Trabajadores
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-info shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                                Mejor Trabajador de este Mes</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">John Doe</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-user-tie fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>-->
+                    </div>
+                    <div class="card shadow" style="margin-bottom: 20px; margin-top: 10px;">
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="m-0 font-weight-bold">Ventas en Proceso</h5>
+                        </div>
+                        <div class="row">
+                            <div class="card-body">
+                                <div *ngIf="ventasEnProceso.length === 0" class="alert alert-warning" role="alert">
+                                    No hay ventas en proceso.
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4" *ngFor="let venta of ventasEnProceso">
+                                        <div class="card mb-3">
+                                            <div class="card-header">
+                                                <h5 class="card-text">{{ venta.codigoVenta }}</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <p><strong>Cliente:</strong> {{ venta.cliente }}</p>
+                                                <p><strong>Fecha de Creación:</strong> {{
+                                                    venta.fechaCreacion }}</p>
+                                                <p><strong>Estado:</strong> {{ venta.estado }}</p>
+                                                <p><strong>Productos:</strong></p>
+                                                <ul class="list-group list-group-flush">
+                                                    <li class="list-group-item" *ngFor="let producto of venta.productos"
+                                                        style="margin-bottom: 5px;">
+                                                        + {{ producto.codigo }} - {{ producto.nombre }}
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer d-flex justify-content-end">
+                                    <button class="btn btn-primary"
+                                        routerLink="/dashboard-trabajador/seguimiento-venta">Ir</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.container-fluid -->
+                <!-- End of Main Content -->
             </div>
 
             <!-- End of Main Content -->

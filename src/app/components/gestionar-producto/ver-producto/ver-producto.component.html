@@ -169,18 +169,18 @@
                                     <tr>
                                         <th>Codigo</th>
                                         <th>Nombre</th>
+                                        <th>Precio</th>
                                         <th>Tipo de Producto</th>
                                         <th>Marca</th>
-                                        <th>Precio</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let producto of listProducto">
                                         <td>{{ producto.codigo }}</td>
                                         <td>{{ producto.nombre }}</td>
+                                        <td>{{ producto.precio }}</td>
                                         <td>{{ producto.tipoProducto.nombre }}</td>
                                         <td>{{ producto.marca.nombre }}</td>
-                                        <td>{{ producto.precio }}</td>
                                     </tr>
                                 </tbody>
                             </table>
