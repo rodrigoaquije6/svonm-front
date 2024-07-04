@@ -108,7 +108,7 @@ export class CrearProductoComponent implements OnInit {
   agregarProducto() {
     // Obtener los valores del formulario
     const productoData = this.productoForm.value;
-  
+
     // Crear un nuevo producto con los datos del formulario
     const producto: any = {
       codigo: productoData.codigo,
@@ -117,12 +117,12 @@ export class CrearProductoComponent implements OnInit {
       precio: productoData.precio,
       imagen: productoData.imagen,
       marca: productoData.marca,
-      proveedor : productoData.proveedor,
+      proveedor: productoData.proveedor,
       stock: productoData.stock,
       stockMinimo: productoData.stockMinimo,
       estado: productoData.estado
     };
-  
+
     // Verificar el tipo de producto y asignar los atributos específicos
     if (productoData.tipoProducto === 'Montura') {
       // Asignar los atributos específicos de Montura
@@ -137,7 +137,10 @@ export class CrearProductoComponent implements OnInit {
       producto.colorlente = productoData.colorlente;
       producto.protuv = productoData.protuv;
     }
-  
+
+    // Obtener el valor de tipoProducto antes de resetear el formulario
+    const tipoProducto = this.productoForm.get('tipoProducto')?.value;
+
     // Llamar al servicio para guardar el producto
     this._productoService.guardarProducto(producto).subscribe({
       next: (data) => {
@@ -149,19 +152,26 @@ export class CrearProductoComponent implements OnInit {
           this.toastr.success('El producto fue registrado con éxito!', 'Producto Registrado!');
         }
         this.router.navigate(['/dashboard-gerente/gestionar-producto']);
+
       },
       error: (error) => {
-        console.error('Error al registrar el producto:', error);
-        this.toastr.error('Hubo un error al registrar el producto.', 'Error');
-        this.productoForm.reset();
+        if (error.error && error.error.msg) {
+          error.error.msg.forEach((errorMessage: string) => {
+            //const errorMessage = error.error.msg.join('\n');
+            this.toastr.error(errorMessage, 'Error');
+          });
+        } else {
+          console.log(error);
+          this.productoForm.reset({ tipoProducto: tipoProducto });
+        }
       }
     });
   }
 
-isLoggedIn: boolean = this.api.isLogged();
+  isLoggedIn: boolean = this.api.isLogged();
 
-onClickLogout() {
-  localStorage.removeItem('token');
-  this.router.navigate(['login']);
-}
+  onClickLogout() {
+    localStorage.removeItem('token');
+    this.router.navigate(['login']);
+  }
 }
