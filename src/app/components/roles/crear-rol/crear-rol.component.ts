@@ -38,7 +38,7 @@ export class CrearRolComponent implements OnInit {
 
     if (this.rolForm.invalid) {
       this.toastr.error('Por favor, complete el formulario correctamente.', 'Error');
-      return;
+      return; 
     }
 
     const ROL: Rol = {
@@ -88,7 +88,7 @@ export class CrearRolComponent implements OnInit {
 
   esEditar() {
     if (this.id !== null) {
-      this.titulo = 'Editar producto';
+      this.titulo = 'Editar Rol';
       this._rolService.obtenerRol(this.id).subscribe(data => {
         this.rolForm.setValue({
           nombre: data.nombre,

@@ -207,7 +207,7 @@
                                 </div>
 
                                 <label class="form-label label-text" style="margin-top: 20px;">Precio</label>
-                                <input type="text" formControlName="precio" class="form-control" style="width: 350px;"
+                                <input type="number" formControlName="precio" class="form-control" style="width: 350px;"
                                     placeholder="Escriba el precio del tipo de luna...">
                                 <div class="text-danger"
                                     *ngIf="tipoLunaForm.get('precio')?.hasError('required') && tipoLunaForm.get('precio')?.touched">

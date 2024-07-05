@@ -24,7 +24,7 @@ export class EditarMonturaComponent implements OnInit {
 
   urlMarca = 'http://localhost:4000/api/crear-marca/';
 
-  urlProveedor = 'http://localhost:4000/api/proveedor/'; 
+  urlProveedor = 'http://localhost:4000/api/proveedor/';
 
   constructor(private fb: FormBuilder,
     private toastr: ToastrService,
@@ -116,9 +116,14 @@ export class EditarMonturaComponent implements OnInit {
           this.router.navigate(['/dashboard-gerente/gestionar-producto']);
         },
         error: (error) => {
-          console.error('Error al registrar el producto:', error);
-          this.toastr.error('Hubo un error al registrar el producto.', 'Error');
-          this.productoForm.reset();
+          if (error.error && error.error.msg) {
+            error.error.msg.forEach((errorMessage: string) => {
+              //const errorMessage = error.error.msg.join('\n');
+              this.toastr.error(errorMessage, 'Error');
+            });
+          } else {
+            console.log(error);
+          }
         }
       });
     } else {
@@ -144,11 +149,11 @@ export class EditarMonturaComponent implements OnInit {
           estado: data.estado,
           color: data.color,
           genero: data.genero,
-          forma: data.forma, 
-          colorlente: '', 
+          forma: data.forma,
+          colorlente: '',
           protuv: ''
         };
-  
+
         // Asignar valores al formulario
         this.productoForm.setValue(formularioData);
       })

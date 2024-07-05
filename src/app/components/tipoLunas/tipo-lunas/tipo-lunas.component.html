@@ -205,7 +205,6 @@
                                     <tr>
                                         <th>Nombre</th>
                                         <th>Precio</th>
-                                        <th>Estado</th>
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>
@@ -216,9 +215,6 @@
                                         </td>
                                         <td>
                                             {{tipoLuna.precio}}
-                                        </td>
-                                        <td>
-                                            {{tipoLuna.estado}}
                                         </td>
                                         <td>
                                             <i [routerLink]="['/dashboard-gerente/tipoLuna/editar-tipo-luna/', tipoLuna._id]"

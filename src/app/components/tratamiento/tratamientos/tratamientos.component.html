@@ -207,7 +207,6 @@
                                     <tr>
                                         <th>Nombre</th>
                                         <th>Precio</th>
-                                        <th>Estado</th>
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>
@@ -218,9 +217,6 @@
                                         </td>
                                         <td>
                                             {{tratamiento.precio}}
-                                        </td>
-                                        <td>
-                                            {{tratamiento.estado}}
                                         </td>
                                         <td>
                                             <i [routerLink]="['/dashboard-gerente/tratamiento/editar-tratamiento', tratamiento._id]"

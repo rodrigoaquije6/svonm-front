@@ -145,47 +145,45 @@ export class RegistrarCompraComponent {
   }
 
   agregarProducto() {
-    // Verificar si se ha seleccionado un producto y la cantidad es válida
-    if (this.selectedProduct && this.cantidad > 0) {
-      // Verificar si el producto ya está en la lista
-      const productoExistente = this.productosAgregados.find(p => p._id === this.selectedProduct?._id);
+    if (!this.selectedProduct) {
+      this.toastr.error('Debe seleccionar un producto.', 'Error');
+      return;
+    }
 
-      if (productoExistente) {
-        // Si el producto ya existe, mostrar un mensaje o manejar como desees
-        this.toastr.warning('El producto ya ha sido agregado. Si deseas modificar la cantidad, elimínalo y agrégalo nuevamente.', 'Advertencia');
-        this.detalleIngresoForm.reset();
-        this.selectedProduct = null;
-        this.cantidad = 0;
-      } else {
-        // Calcular el total del producto multiplicando la cantidad por el precio
-        const total = this.cantidad * this.selectedProduct.precio;
+    if (this.cantidad <= 0 || isNaN(this.cantidad)) {
+      this.toastr.error('La cantidad ingresada no es válida.', 'Error');
+      return;
+    }
 
-        // Agregar el producto al array de productos agregados
-        this.productosAgregados.push({
-          ...this.selectedProduct,
-          cantidad: this.cantidad,
-          total: total
-        });
+    const productoExistente = this.productosAgregados.find(p => p._id === this.selectedProduct?._id);
 
-        // Actualizar el formulario de ingreso con el nuevo producto agregado
-        const detalleIngresoArray = this.ingresoForm.get('productosAgregados') as FormArray;
-        detalleIngresoArray.push(this.fb.group({
-          _id: this.selectedProduct._id,
-          cantidad: this.cantidad,
-          total: total
-        }));
-
-        // Limpiar el producto seleccionado y la cantidad después de agregar
-        this.detalleIngresoForm.reset();
-        this.selectedProduct = null;
-        this.cantidad = 0;
-
-        // Recalcular el subtotal y el total
-        this.calcularSubtotal();
-        this.calcularTotal();
-      }
+    if (productoExistente) {
+      this.toastr.warning('El producto ya ha sido agregado. Si deseas modificar la cantidad, elimínalo y agrégalo nuevamente.', 'Advertencia');
+      this.detalleIngresoForm.reset();
+      this.selectedProduct = null;
+      this.cantidad = 0;
     } else {
-      this.toastr.error('La cantidad ingresada no es válida o el producto no ha sido seleccionado.', 'Error');
+      const total = this.cantidad * this.selectedProduct.precio;
+
+      this.productosAgregados.push({
+        ...this.selectedProduct,
+        cantidad: this.cantidad,
+        total: total
+      });
+
+      const detalleIngresoArray = this.ingresoForm.get('productosAgregados') as FormArray;
+      detalleIngresoArray.push(this.fb.group({
+        _id: this.selectedProduct._id,
+        cantidad: this.cantidad,
+        total: total
+      }));
+
+      this.detalleIngresoForm.reset();
+      this.selectedProduct = null;
+      this.cantidad = 0;
+
+      this.calcularSubtotal();
+      this.calcularTotal();
     }
   }
 
@@ -264,8 +262,16 @@ export class RegistrarCompraComponent {
         this.productosAgregados = [];
       },
       (error) => {
-        console.error('Error al hacer la solicitud POST:', error);
-        this.toastr.error('Ocurrió un error al guardar el ingreso. Por favor, inténtalo de nuevo más tarde.', 'Error');
+        console.error('Error al guardar ingreso:', error); // Imprime el error completo en la consola
+        if (error.error && error.error.errors) {
+          error.error.errors.forEach((errorDetail: any) => {
+            // Mostrar cada mensaje de error usando Toastr
+            this.toastr.error(errorDetail.msg, 'Error');
+          });
+        } else {
+          console.log(error);
+          this.toastr.error('Ocurrió un error al intentar guardar el ingreso.', 'Error');
+        }
       }
     );
   }
