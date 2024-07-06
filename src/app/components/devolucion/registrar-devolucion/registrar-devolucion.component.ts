@@ -194,8 +194,15 @@ export class RegistrarDevolucionComponent {
         this.router.navigate(['/dashboard-trabajador/devolucion']);
       },
       (error) => {
-        console.error('Error al guardar la devolución:', error);
-        this.toastr.error('Ocurrió un error al guardar la devolución. Por favor, inténtelo de nuevo más tarde.', 'Error');
+        if (error.error && error.error.errors) {
+          error.error.errors.forEach((errorDetail: any) => {
+            // Mostrar cada mensaje de error usando Toastr
+            this.toastr.error(errorDetail, 'Error');
+          });
+        } else {
+          console.log(error);
+          this.toastr.error('Ocurrió un error al intentar guardar el ingreso.', 'Error');
+        }
       }
     );
   }

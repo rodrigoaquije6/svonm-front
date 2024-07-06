@@ -97,6 +97,16 @@ export class GestionarProductoComponent {
     }
   }
 
+  eliminarProducto(id: any){
+    this._productoService.eliminarProducto(id).subscribe(data => {
+      this.toastr.info('El producto fue eliminado con éxito!','Producto Eliminado!');
+      this.obtenerProductos();
+      console.log(id)
+    },error =>{
+      console.log(error);
+    })
+  }
+
   isLoggedIn: boolean = this.api.isLogged();
 
   onClickLogout() {

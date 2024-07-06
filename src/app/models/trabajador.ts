@@ -5,10 +5,11 @@ export class Trabajador {
     nombres: string;
     apellidos: string;
     password: string;
+    nuevaContrasena?: string; // Asegúrate de que 'nuevaContrasena' sea opcional con '?'
     celular: string;
     fecha_nac: Date;
     email: string;
-    isActive: boolean;
+    estado: string;
 
     constructor(
         user_dni: string,
@@ -19,7 +20,7 @@ export class Trabajador {
         celular: string,
         fecha_nac: Date,
         email: string,
-        isActive: boolean
+        estado: string
     ) {
         this.user_dni = user_dni;
         this.role = role;
@@ -29,6 +30,6 @@ export class Trabajador {
         this.celular = celular;
         this.fecha_nac = fecha_nac;
         this.email = email;
-        this.isActive = isActive;
+        this.estado = estado;
     }
 }

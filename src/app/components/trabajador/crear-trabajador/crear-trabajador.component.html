@@ -247,12 +247,10 @@
                                     <span>El correo del trabajador <strong>es obligatorio</strong></span>
                                 </div>
 
-                                <label class="form-label label-text" style="margin-top: 20px;">Contraseña</label>
-                                <input type="text" formControlName="password" class="form-control" style="width: 350px;"
-                                    placeholder="Escriba la contraseña del trabajador...">
-                                <div class="text-danger"
-                                    *ngIf="trabajadorForm.get('password')?.hasError('required') && trabajadorForm.get('password')?.touched">
-                                    <span>La contraseña del trabajador <strong>es obligatoria</strong></span>
+                                <label class="form-label label-text" style="margin-top: 20px;">{{ id ? 'Nueva contraseña' : 'Contraseña' }}</label>
+                                <input type="password" [formControlName]="id ? 'nuevaContrasena' : 'password'" class="form-control" style="width: 350px;" placeholder="{{ id ? 'Escriba la nueva contraseña del trabajador...' : 'Escriba la contraseña del trabajador...' }}">
+                                <div class="text-danger" *ngIf="trabajadorForm.get(id ? 'nuevaContrasena' : 'password')?.hasError('required') && trabajadorForm.get(id ? 'nuevaContrasena' : 'password')?.touched">
+                                    <span>{{ id ? 'La nueva contraseña del trabajador es obligatoria' : 'La contraseña del trabajador es obligatoria' }}</span>
                                 </div>
 
                                 <label class="form-label label-text" style="margin-top: 20px;">Rol</label>

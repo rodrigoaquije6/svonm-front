@@ -30,18 +30,19 @@ export class CrearTrabajadorComponent implements OnInit {
     private aRouter: ActivatedRoute,
     private api: LoginService,
     private http: HttpClient) {
+    this.id = this.aRouter.snapshot.paramMap.get('id')
     this.trabajadorForm = this.fb.group({
       user_dni: ['', Validators.required],
       role: ['', Validators.required],
       nombres: ['', Validators.required],
       apellidos: ['', Validators.required],
-      password: ['', Validators.required],
+      password: ['', this.id ? Validators.nullValidator : Validators.required],
+      nuevaContrasena: [''],
       celular: ['', Validators.required],
       fecha_nac: ['', Validators.required],
       email: ['', Validators.required],
-      isActive: [true, Validators.required],
+      estado: ['Activo', Validators.required],
     })
-    this.id = this.aRouter.snapshot.paramMap.get('id')
   }
 
   ngOnInit(): void {
@@ -61,7 +62,6 @@ export class CrearTrabajadorComponent implements OnInit {
   }
 
   agregarTrabajador() {
-
     if (this.trabajadorForm.invalid) {
       this.toastr.error('Por favor, complete el formulario correctamente.', 'Error');
       return;
@@ -72,11 +72,20 @@ export class CrearTrabajadorComponent implements OnInit {
       role: this.trabajadorForm.get('role')?.value,
       nombres: this.trabajadorForm.get('nombres')?.value,
       apellidos: this.trabajadorForm.get('apellidos')?.value,
-      password: this.trabajadorForm.get('password')?.value,
+      password: '', // Inicializa las contraseñas como vacías para evitar errores de validación
+      nuevaContrasena: '',
       celular: this.trabajadorForm.get('celular')?.value,
       fecha_nac: this.trabajadorForm.get('fecha_nac')?.value,
       email: this.trabajadorForm.get('email')?.value,
-      isActive: this.trabajadorForm.get('estado')?.value
+      estado: this.trabajadorForm.get('estado')?.value
+    };
+
+    if (this.id !== null) {
+      // Asigna la nueva contraseña si se proporcionó al editar
+      TRABAJADOR.nuevaContrasena = this.trabajadorForm.get('nuevaContrasena')?.value;
+    } else {
+      // Asigna la contraseña normal al crear un nuevo trabajador
+      TRABAJADOR.password = this.trabajadorForm.get('password')?.value;
     }
 
     if (this.id !== null) {
@@ -86,34 +95,27 @@ export class CrearTrabajadorComponent implements OnInit {
       }, error => {
         if (error.error && error.error.msg) {
           error.error.msg.forEach((errorMessage: string) => {
-            //const errorMessage = error.error.msg.join('\n');
             this.toastr.error(errorMessage, 'Error');
           });
         } else {
           console.log(error);
           this.trabajadorForm.reset();
         }
-        //console.log(error);
-        //this.trabajadorForm.reset();
-      })
+      });
     } else {
-      console.log(TRABAJADOR);
       this._trabajadorService.guardarTrabajador(TRABAJADOR).subscribe(data => {
         this.toastr.success('El trabajador fue registrado con éxito!', 'Trabajador Registrado!');
         this.router.navigate(['/dashboard-gerente/trabajador']);
       }, error => {
         if (error.error && error.error.msg) {
           error.error.msg.forEach((errorMessage: string) => {
-            //const errorMessage = error.error.msg.join('\n');
             this.toastr.error(errorMessage, 'Error');
           });
         } else {
           console.log(error);
           this.trabajadorForm.reset();
         }
-        //console.log(error);
-        //this.trabajadorForm.reset();
-      })
+      });
     }
   }
 
@@ -126,13 +128,19 @@ export class CrearTrabajadorComponent implements OnInit {
           role: data.role,
           nombres: data.nombres,
           apellidos: data.apellidos,
-          password: data.password,
+          password: '',
+          nuevaContrasena: '',
           celular: data.celular,
           fecha_nac: data.fecha_nac,
           email: data.email,
-          isActive: data.isActive,
+          estado: data.estado,
         })
-      })
+      },
+        error => {
+          console.error('Error al obtener trabajador para editar', error);
+          this.toastr.error('Error al obtener trabajador para editar', 'Error');
+        }
+      );
     }
   }
 

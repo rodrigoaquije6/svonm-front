@@ -186,13 +186,14 @@ export class RegistrarVentaComponent implements OnInit {
           this.modalService.dismissAll();
         },
         error => {
-          if (error.error && error.error.msg) {
-            error.error.msg.forEach((errorMessage: string) => {
-              this.toastr.error(errorMessage, 'Error');
+          if (error.error && error.error.errors) {
+            error.error.errors.forEach((errorDetail: any) => {
+              // Mostrar cada mensaje de error usando Toastr
+              this.toastr.error(errorDetail, 'Error');
             });
           } else {
             console.log(error);
-            this.clienteForm.reset();
+            this.toastr.error('Ocurrió un error al intentar guardar el ingreso.', 'Error');
           }
         }
       );
@@ -203,15 +204,15 @@ export class RegistrarVentaComponent implements OnInit {
           this.toastr.success('El cliente fue registrado con éxito!', 'Cliente Registrado!');
           this.modalService.dismissAll();
           this.obtenerClientes();
+          this.clienteForm.reset();
         },
         error => {
-          if (error.error && error.error.msg) {
-            error.error.msg.forEach((errorMessage: string) => {
+          if (error.error && error.error.errors) {
+            error.error.errors.forEach((errorMessage: string) => {
               this.toastr.error(errorMessage, 'Error');
             });
           } else {
             console.log(error);
-            this.clienteForm.reset();
           }
         }
       );
@@ -502,8 +503,15 @@ export class RegistrarVentaComponent implements OnInit {
         detalleVentaArray.clear();
       },
       error => {
-        console.error('Error al hacer la solicitud POST:', error);
-        this.toastr.error('Ocurrió un error al guardar la venta. Por favor, inténtalo de nuevo más tarde.', 'Error');
+        if (error.error && error.error.errors) {
+          error.error.errors.forEach((errorDetail: any) => {
+            // Mostrar cada mensaje de error usando Toastr
+            this.toastr.error(errorDetail.msg, 'Error');
+          });
+        } else {
+          console.log(error);
+          this.toastr.error('Ocurrió un error al intentar guardar el ingreso.', 'Error');
+        }
       }
     );
   }
